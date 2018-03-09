@@ -16,7 +16,7 @@
             <input type="email" name="username" placeholder="Enter email"/>
             <input type="password" name="password" placeholder="Enter password"/>
             <button type="submit" class="btn login">Login</button>
-            <p><a href="javascript:void(0)">Forgotten account</a></p>
+            <p onclick="toggleForgotPassword()">Forgotten password?</p>
         </form>
     </div>
 
@@ -26,6 +26,13 @@
             <input type="password" name="password" placeholder="Create password"/>
             <button type="submit" class="btn signup">Create account</button>
             <!-- <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p> -->
+        </form>
+    </div>
+
+    <div id="forgotPassword-form">
+       <form action="/restorePassword" method="POST" name="restorePasswordForm">
+            <input type="email" name="username" placeholder="Enter email"/>
+            <button type="submit" class="btn restorePassword">Restore password</button>
         </form>
     </div>
 

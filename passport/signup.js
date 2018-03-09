@@ -29,9 +29,9 @@ var newUser = new User();
 // set the user's local credentials
 newUser.email = email;
 newUser.password = createHash(password);
-//newUser.email = req.param('email');
-//newUser.firstName = req.param('firstName');
-//newUser.lastName = req.param('lastName');
+
+var currentDate = new Date();
+newUser.date_registration = currentDate.toUTCString();
 
 // save the user
 newUser.save(function(err) {

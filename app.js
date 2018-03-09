@@ -12,8 +12,6 @@ var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 
 
-//https://codepen.io/cyberveos/pen/OxmwpR для личного кабинета
-
 var app = express();
 
 // use ejs-locals for all ejs templates:
