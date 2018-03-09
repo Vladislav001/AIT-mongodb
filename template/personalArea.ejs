@@ -1,0 +1,9 @@
+<link rel='stylesheet' href='/css/personalArea.css' />
+
+<% layout('layout/pattern') -%>
+<% block('title') -%>
+
+<% if (user) { %>
+Авторизован <%=user.email%>
+<a href="/signout">Разлогин</a>
+<% } %>
