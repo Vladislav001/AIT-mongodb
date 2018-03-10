@@ -25,7 +25,6 @@ req.logout();
 res.redirect('/');
 });
 
-router.get('/test', require('./test'));
 router.post('/addNewStudent', require('./addNewStudent'));
 
 
