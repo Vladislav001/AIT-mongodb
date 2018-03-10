@@ -29,24 +29,72 @@
         <i class="fa fa-cog"></i>
       </div>
       <div class="widget-content">
+        <table class="table">
+          <tr>
+            <th>№</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th class="empty"></th>
+          </tr>
 
-        <% for (var i=0; i<length; i++) { %>
-          <%=students[i].login%><br><br>
-            <a href="result_test/id<%=students[i].login%>"><%=students[i].login%></a><br><br>
-        <% } %>
-
+          <tr>
+              <% for (var i=0; i<length; i++) { %>
+                <tbody>
+                  <tr>
+                    <td><%=i+1%></td>
+                    <td><a href="result_test/id<%=students[i].id%>"><%=students[i].name%></a></td>
+                    <td><%=students[i].gender%></td>
+                    <td><%=students[i].age%></td>
+                    <form action="/editStudent/id<%=students[i].id%>" method="POST" name="editStudentForm">
+                      <td class="edit"><button class="edit-buttons">Edit</button></td>
+                    </form>
+                    <form action="/deleteStudent/id<%=students[i].id%>" method="POST" name="deleteStudentForm">
+                      <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+                    </form>
+                  </tr>
+                </tbody>
+              <% } %>
+          </tr>
+        </table>
       </div>
     </div>
+
     <div class="widget-box sample-widget">
       <div class="widget-header">
-        <h2>Widget Header</h2>
+        <h2>New student</h2>
         <i class="fa fa-cog"></i>
       </div>
       <div class="widget-content">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/87118/sample-data-1.png">
+        <div>
+      <form action="/addNewStudent" method="POST" name="addNewStudentForm">
+          <label for="flogin">Login</label>
+          <input type="text" id="flogin" name="login" placeholder="Enter login">
+
+          <label for="fpassword">Password</label>
+          <input type="text" id="fpassword" name="password" placeholder="Create password">
+
+          <label for="fname">Name</label>
+          <input type="text" id="fname" name="name" placeholder="Enter name">
+
+          <label for="fage">Age</label>
+          <input type="number" id="fage" name="age" placeholder="Enter age">
+
+          <label for="fgender">Gender</label>
+          <select id="fgender" name="gender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Non-binary</option>
+            <option>Non-applicable</option>
+            <option>I prefer not say</option>
+          </select>
+
+          <input type="submit" value="Create new student">
+        </form>
+      </div>
       </div>
     </div>
-      <div class="widget-box sample-widget">
+      <!-- <div class="widget-box sample-widget">
       <div class="widget-header">
         <h2>Widget Header</h2>
         <i class="fa fa-cog"></i>
@@ -54,18 +102,20 @@
       <div class="widget-content">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/87118/sample-data-1.png">
       </div>
-    </div>
+    </div> -->
   </div>
-
- <div class="form-modal">
-      <div id="signup-form">
-            <form action="/addNewStudent" method="POST" name="addNewStudentForm">
-              <input type="text" name="login" placeholder="Enter name"/>
-              <input type="password" name="password" placeholder="Create password"/>
-              <button type="submit" class="btn signup">Create student</button>
-          </form>
-      </div>
-  </div>
-
 
 </section>
+
+
+
+<script>
+// Подтверждение удаления
+function confirmDelete() {
+	if (confirm("Do you confirm the deletion?")) {
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>

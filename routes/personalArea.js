@@ -8,7 +8,7 @@ router.get('/personalArea', function(req, res) {
 var students = [];
 
 // Получим список студентов, привязанных к тренеру
-Student.find({trainer_ID: req.user._id }, {login: true},  function(err, data) {
+Student.find({trainer_ID: req.user._id },  function(err, data) {
 //  console.log(err, data, data.length);
 students = data;
 

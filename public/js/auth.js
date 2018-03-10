@@ -19,6 +19,8 @@ function toggleLogin(){
 }
 
 function toggleForgotPassword(){
+    document.getElementById("login-toggle").style.backgroundColor="#fff";
+    document.getElementById("login-toggle").style.color="#222";
     document.getElementById("signup-form").style.display="none";
     document.getElementById("login-form").style.display="none";
     document.getElementById("forgotPassword-form").style.display="block";

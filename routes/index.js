@@ -6,7 +6,7 @@ module.exports = function(passport){
 
 router.get('/', require('./main'));
 router.get('/personalArea', isAuthenticated, require('./personalArea'));
-
+router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
 
 router.post('/signup', passport.authenticate('signup', {
 successRedirect: '/personalArea',
@@ -25,8 +25,8 @@ req.logout();
 res.redirect('/');
 });
 
-router.post('/addNewStudent', require('./addNewStudent'));
-
+router.post('/addNewStudent', require('./addNewStudent').post);
+router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
 
 
 return router;

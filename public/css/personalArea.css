@@ -180,6 +180,7 @@ div.user-image {
 }
 .widget-header {
   background: #279BE4;
+  margin-bottom: 10px;
 }
 .widget-header h2 {
   font-size: 15px;
@@ -196,3 +197,77 @@ div.user-image {
   margin: 11px 11px 0 0;
   font-size: 20px;
 }
+
+
+/* Добавление студента НАЧАЛО*/
+/* https://codepen.io/abubakr/pen/BpmMYq */
+input[type=text], input[type=number], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+/* Добавление студента КОНЕЦ*/
+
+
+/* Таблица студентов НАЧАЛО*/
+/* https://codepen.io/Orangetronic/pen/pJgpXw */
+table.table { width: 100%; }
+
+.table th, .table td {
+  text-align: center;
+}
+
+td.edit { text-align: right; }
+td.delete { text-align: right; }
+ .edit-buttons, .delete-buttons{
+  border-radius: 3px;
+  border: none;
+  margin: 0 0.25em;
+  transition: all 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 4px rgba(3,3,3,0.8);
+  opacity: 0.9;
+}
+
+button.edit-buttons{ background: #FFFF00; }
+button.delete-buttons { background: #D32F2F; }
+
+@media screen and (max-width: 800px) {
+  tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.5em 0;
+    border: 1px solid rgba(3,3,3,0.2);
+  }
+  td, th {
+    flex: 1 1 150px;
+    border: 0.5px solid rgba(3,3,3,0.2);
+  }
+  td.edit { text-align: center; }
+  td.delete { text-align: center; }
+}
+
+* { box-model: border-box; font-family: 'futura'; }
+/* Таблица студентов КОНЕЦ*/

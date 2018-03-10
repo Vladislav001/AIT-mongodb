@@ -15,6 +15,18 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
     trainer_ID: {
         type: String,
         required: true
