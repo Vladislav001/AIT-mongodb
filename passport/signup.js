@@ -31,7 +31,7 @@ newUser.email = email;
 newUser.password = createHash(password);
 
 var currentDate = new Date();
-newUser.date_registration = currentDate.toUTCString();
+newUser.created = currentDate.toUTCString();
 
 // save the user
 newUser.save(function(err) {

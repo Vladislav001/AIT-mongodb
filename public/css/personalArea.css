@@ -144,7 +144,7 @@ div.user-image {
 }
 .content {
   float: left;
-  background: #E9EEF4;
+  background: #fff;
   width: 100%;
   height: calc(100% - 64px);
   -webkit-box-sizing: border-box;

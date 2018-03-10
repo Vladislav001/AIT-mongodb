@@ -29,11 +29,6 @@ router.get('/test', require('./test'));
 router.post('/addNewStudent', require('./addNewStudent'));
 
 
-/* GET Home Page */
-// router.get('/home', isAuthenticated, function(req, res){
-// res.render('home', { user: req.user });
-// });
-
 
 return router;
 }

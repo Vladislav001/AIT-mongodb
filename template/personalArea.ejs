@@ -22,22 +22,19 @@
       <h1>Welcome</h1>
       <p><%=user.email%></p>
     </div>
+
     <div class="widget-box sample-widget">
       <div class="widget-header">
-        <h2>Widget Header</h2>
+        <h2>My Students</h2>
         <i class="fa fa-cog"></i>
       </div>
       <div class="widget-content">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/87118/sample-data-1.png">
-      </div>
-    </div>
-    <div class="widget-box sample-widget">
-      <div class="widget-header">
-        <h2>Widget Header</h2>
-        <i class="fa fa-cog"></i>
-      </div>
-      <div class="widget-content">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/87118/sample-data-1.png">
+
+        <% for (var i=0; i<length; i++) { %>
+          <%=students[i].login%><br><br>
+            <a href="result_test/id<%=students[i].login%>"><%=students[i].login%></a><br><br>
+        <% } %>
+
       </div>
     </div>
     <div class="widget-box sample-widget">
@@ -60,11 +57,15 @@
     </div>
   </div>
 
+ <div class="form-modal">
+      <div id="signup-form">
+            <form action="/addNewStudent" method="POST" name="addNewStudentForm">
+              <input type="text" name="login" placeholder="Enter name"/>
+              <input type="password" name="password" placeholder="Create password"/>
+              <button type="submit" class="btn signup">Create student</button>
+          </form>
+      </div>
+  </div>
 
-    <form action="/addNewStudent" method="POST" name="addNewStudentForm">
-         <input type="text" name="username" placeholder="Enter name"/>
-         <input type="password" name="password" placeholder="Create password"/>
-         <button type="submit" class="btn add">Add</button>
-    </form>
 
 </section>

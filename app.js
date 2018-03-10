@@ -36,6 +36,7 @@ app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // Initialize Passport
 var initPassport = require('./passport/init');
 initPassport(passport);
@@ -61,5 +62,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+
+
 
 module.exports = app;
