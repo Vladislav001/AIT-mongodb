@@ -10,7 +10,7 @@
   <div id="sidebar-nav">
     <ul>
       <li class="active"><a href="#">Personal Area</a></li>
-      <li><a href="#">My Website</a></li>
+      <li><a href="http://app-ait.herokuapp.com/" target="_blank">Old version</a></li>
       <li><a href="/signout">Logout</a></li>
     </ul>
   </div>
@@ -43,7 +43,7 @@
                 <tbody>
                   <tr>
                     <td><%=i+1%></td>
-                    <td><a href="result_test/id<%=students[i].id%>"><%=students[i].name%></a></td>
+                    <td><a href="profileStudent/id<%=students[i].id%>"><%=students[i].name%></a></td>
                     <td><%=students[i].gender%></td>
                     <td><%=students[i].age%></td>
                     <form action="/editStudent/id<%=students[i].id%>" method="POST" name="editStudentForm">
@@ -66,7 +66,6 @@
         <i class="fa fa-cog"></i>
       </div>
       <div class="widget-content">
-        <div>
       <form action="/addNewStudent" method="POST" name="addNewStudentForm">
           <label for="flogin">Login</label>
           <input type="text" id="flogin" name="login" placeholder="Enter login">
@@ -78,7 +77,7 @@
           <input type="text" id="fname" name="name" placeholder="Enter name">
 
           <label for="fage">Age</label>
-          <input type="number" id="fage" name="age" placeholder="Enter age">
+          <input type="number" id="fage" name="age" min="5" max="200" placeholder="Enter age">
 
           <label for="fgender">Gender</label>
           <select id="fgender" name="gender">
@@ -91,7 +90,6 @@
 
           <input type="submit" value="Create new student">
         </form>
-      </div>
       </div>
     </div>
       <!-- <div class="widget-box sample-widget">

@@ -6,7 +6,10 @@ module.exports = function(passport){
 
 router.get('/', require('./main'));
 router.get('/personalArea', isAuthenticated, require('./personalArea'));
-router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
+// router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
+router.get('/profileStudent/id:idTag', require('./profileStudent').get);
+router.get('/test_settings/id:idTag', require('./testSettings').get);
+
 
 router.post('/signup', passport.authenticate('signup', {
 successRedirect: '/personalArea',
@@ -24,6 +27,7 @@ router.get('/signout', function(req, res) {
 req.logout();
 res.redirect('/');
 });
+
 
 router.post('/addNewStudent', require('./addNewStudent').post);
 router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);

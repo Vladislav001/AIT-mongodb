@@ -34,29 +34,6 @@ a {
   max-height: 43px;
 }
 
-
-.user-profile {
-  float: right;
-}
-.user-profile > div {
-  float: left;
-  padding: 20px 8px;
-  position: relative;
-}
-.user-profile i {
-  font-size: 1.2em;
-  color: #5F6F86;
-}
-.user-profile i:hover {
-  color: #397AC5;
-}
-
-div.user-image {
-  padding: 9px 5px;
-  margin: 0 5px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-}
 #sidebar {
   overflow: hidden;
   width: 210px;
@@ -269,5 +246,4 @@ button.delete-buttons { background: #D32F2F; }
   td.delete { text-align: center; }
 }
 
-* { box-model: border-box; font-family: 'futura'; }
 /* Таблица студентов КОНЕЦ*/

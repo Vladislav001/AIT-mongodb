@@ -9,8 +9,8 @@
   </div>
   <div id="sidebar-nav">
     <ul>
-      <li class="active"><a href="#">Personal Area</a></li>
-      <li><a href="#">My Website</a></li>
+      <li><a href="/personalArea">Personal Area</a></li>
+      <li><a href="http://app-ait.herokuapp.com/" target="_blank">Old version</a></li>
       <li><a href="/signout">Logout</a></li>
     </ul>
   </div>
@@ -19,13 +19,27 @@
 <section id="content">
   <div class="content">
     <div class="content-header">
-      <h1>Welcome</h1>
-      <p><%=user.email%></p>
+      <h1>Profile student</h1>
+      <p><%=name%></p>
     </div>
 
     <div class="widget-box sample-widget">
       <div class="widget-header">
-        <h2>My Students</h2>
+        <h2>About student</h2>
+        <i class="fa fa-cog"></i>
+      </div>
+      <div class="widget-content">
+
+
+      <td aria-label="Test settings"><a href="/test_settings/id<%=id%>">Start</a></td>
+
+
+      </div>
+    </div>
+
+    <div class="widget-box sample-widget">
+      <div class="widget-header">
+        <h2>Student Application</h2>
         <i class="fa fa-cog"></i>
       </div>
       <div class="widget-content">

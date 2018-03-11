@@ -7,8 +7,8 @@ exports.get = function(req, res) {
 // Получим данные о конкретном студенте
 Student.findById(req.params.idTag,  function(err, data) {
 
-    res.render('profileStudent', {
-      title: 'profileStudent',
+    res.render('testSettings', {
+      title: 'testSettings',
       id: data._id,
       login: data.login,
       name: data.name,
