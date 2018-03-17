@@ -4,8 +4,8 @@ var router = express.Router();
 
 exports.get = function(req, res) {
 
-// Получим данные о конкретном студенте
-Student.findById(req.params.idTag,  function(err, data) {
+  // Получим данные о конкретном студенте
+  Student.findById(req.params.idTag,  function(err, data) {
 
     res.render('testSettings', {
       title: 'testSettings',

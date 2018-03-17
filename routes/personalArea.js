@@ -5,26 +5,26 @@ var Student = require('../models/student');
 
 router.get('/personalArea', function(req, res) {
 
-var students = [];
+  var students = [];
 
-// Получим список студентов, привязанных к тренеру
-Student.find({trainer_ID: req.user._id },  function(err, data) {
-//  console.log(err, data, data.length);
-students = data;
+  // Получим список студентов, привязанных к тренеру
+  Student.find({trainer_ID: req.user._id },  function(err, data) {
+    //  console.log(err, data, data.length);
+    students = data;
 
-res.render('personalArea', {
-  title: 'personalArea',
-  user: req.user,
-  length: data.length,
-  students: students
-});
-});
+    res.render('personalArea', {
+      title: 'personalArea',
+      user: req.user,
+      length: data.length,
+      students: students
+    });
+  });
 
 
- //  res.render('personalArea', {
- //    title: 'personalArea',
- //    user: req.user
- //  });
+  //  res.render('personalArea', {
+  //    title: 'personalArea',
+  //    user: req.user
+  //  });
 });
 
 module.exports = router;
