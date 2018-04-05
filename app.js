@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
 
- 
+
 var app = express();
 
 // use ejs-locals for all ejs templates:

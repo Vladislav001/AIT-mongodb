@@ -2,6 +2,7 @@ var Student = require('../models/student');
 var express = require('express');
 var router = express.Router();
 
+
 exports.post = function(req, res, done) {
   Student.findOne({ 'login' : req.body.login }, function(err, user) {
     // In case of any error, return using the done method
@@ -12,7 +13,7 @@ exports.post = function(req, res, done) {
     // already exists
     if (user) {
       console.log('User already exists with login: ' + req.body.login);
-     res.send('User already exists with login: ' + req.body.login);
+      res.redirect('/personalArea');
 
     } else {
       var newStudent = new Student();
@@ -31,6 +32,7 @@ exports.post = function(req, res, done) {
           throw err;
         }
         console.log('Student Registration succesful');
+
         return done(null, newStudent);
 
       });

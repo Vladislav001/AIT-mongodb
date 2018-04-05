@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var isAuthenticated = require('../middleware/isAuthenticated');
+var verifyToken = require('../middleware/verifyToken');
+var Student = require('../models/student');
+
+
 
 module.exports = function(passport){
 
@@ -32,6 +36,13 @@ module.exports = function(passport){
   router.post('/addNewStudent', require('./addNewStudent').post);
   router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
   router.post('/updateStudent/id:idTag', require('./updateStudent').post);
+
+
+
+
+  // API
+  router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
+  router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
 
   return router;
 }
