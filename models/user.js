@@ -21,6 +21,15 @@ var trainerSchema = mongoose.Schema({
         type: String,
         default: Date.now
     },
+    access_level: {
+      type: Number,
+      required: true,
+      default: 3
+    },
+    admin_ID: {
+      type: String,
+      required: false
+    },
 });
 
 trainerSchema.virtual('userId').get(function(){

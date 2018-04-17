@@ -178,7 +178,7 @@ a {
 
 /* Добавление студента НАЧАЛО*/
 /* https://codepen.io/abubakr/pen/BpmMYq */
-input[type=text], input[type=number], select {
+input[type=text], input[type=number], input[type=email], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
