@@ -17,6 +17,6 @@ exports.post = function(req, res) {
   }, function(err, results) {
     console.log(results.result);
   });
-  res.redirect('/profileStudent/id' + req.params.idTag);
+  res.redirect('/publicProfile/id' + req.params.idTag);
 
 };

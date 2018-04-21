@@ -11,9 +11,8 @@ module.exports = function(passport){
   router.get('/', require('./main'));
   router.get('/personalArea', isAuthenticated, require('./personalArea'));
   // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
-  router.get('/profileStudent/id:idTag', require('./profileStudent').get);
+  router.get('/publicProfile/id:idTag', require('./publicProfile').get);
   router.get('/test_settings/id:idTag', require('./testSettings').get);
-
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea',
@@ -34,9 +33,9 @@ module.exports = function(passport){
 
 
 
-  router.post('/addNewAdmin', require('./addNewAdmin').post);
-  router.post('/addNewCoach', require('./addNewCoach').post);
-  router.post('/addNewStudent', require('./addNewStudent').post);
+  router.post('/addNewAdmin', require('./add/addNewAdmin').post);
+  router.post('/addNewCoach', require('./add/addNewCoach').post);
+  router.post('/addNewStudent', require('./add/addNewStudent').post);
   router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
   router.post('/deleteAdmin/id:idTag', require('./deleteAdmin').post);
   router.post('/deleteCoach/id:idTag', require('./deleteCoach').post);

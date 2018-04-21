@@ -27,7 +27,7 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    trainer_ID: {
+    parent_ID: {
         type: String,
         required: true
     },

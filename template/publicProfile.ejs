@@ -1,0 +1,24 @@
+<% layout('layout/pattern') -%>
+<% block('title') -%>
+
+<%-partial('./partials/leftVerticalMenu')%>
+
+<section id="content">
+  <div class="content">
+    <div class="content-header">
+      <h1>Profile: </h1>
+      <p></p>
+    </div>
+
+<% if(user.access_level == 3) { %>
+<%-partial('./partials/publicProfile/student')%>
+   <% }  else if(user.access_level == 2) { %>
+  <%-partial('./partials/publicProfile/coach')%>
+  <% }  else if(user.access_level == 1) { %>
+ <%-partial('./partials/publicProfile/admin')%>
+<% } %>
+
+</div>
+</section>
+
+<script src="/js/confirmDelete.js"></script>

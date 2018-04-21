@@ -10,14 +10,15 @@
     <div class="content-header">
       <h1>Welcome</h1>
       <p><%=user.email%></p>
+      <p><%=user.access_level%></p>
     </div>
-    
+
 <% if(user.access_level == 3) { %>
-<%-partial('./partials/coachPersonalArea')%>
+<%-partial('./partials/personalArea/coach')%>
    <% }  else if(user.access_level == 2) { %>
-  <%-partial('./partials/adminPersonalArea')%>
+  <%-partial('./partials/personalArea/admin')%>
   <% }  else if(user.access_level == 1) { %>
- <%-partial('./partials/superAdminPersonalArea')%>
+ <%-partial('./partials/personalArea/superAdmin')%>
 <% } %>
 
 </div>

@@ -26,7 +26,7 @@ var trainerSchema = mongoose.Schema({
       required: true,
       default: 3
     },
-    admin_ID: {
+    parent_ID: {
       type: String,
       required: false
     },

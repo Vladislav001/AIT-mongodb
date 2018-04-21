@@ -10,7 +10,7 @@ if(req.user.access_level == 3) {
   var students = [];
 
   // Получим список студентов, привязанных к тренеру
-  Student.find({trainer_ID: req.user._id },  function(err, data) {
+  Student.find({parent_ID: req.user._id },  function(err, data) {
     //  console.log(err, data, data.length);
     students = data;
     res.render('personalArea', {
@@ -24,9 +24,9 @@ if(req.user.access_level == 3) {
     var coaches = [];
 
     // Получим список тренеров, привязанных к админу
-    Admin.find({admin_ID: req.user._id },  function(err, data) {
+    Admin.find({parent_ID: req.user._id },  function(err, data) {
       coaches = data;
-      
+
       res.render('personalArea', {
         title: 'personalArea',
         user: req.user,
