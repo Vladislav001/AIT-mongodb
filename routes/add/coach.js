@@ -20,7 +20,13 @@ exports.post = function(req, res, done) {
 
       newCoach.email = req.body.email;
       newCoach.password = createHash(req.body.password);
-      newCoach.parent_ID = req.user._id;
+      //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
+      if(req.user.access_level == 2){
+            newCoach.parent_ID = req.user._id;
+      } else {
+          newCoach.parent_ID = req.body.idTag;
+      }
+
       newCoach.access_level = 3;
 
       // save the user

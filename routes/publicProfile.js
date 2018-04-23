@@ -39,6 +39,7 @@ exports.get = function(req, res) {
       var students = [];
 
       // Получим данные о конкретном админе(НЕ ГЛАВНОМ) - его список тренеров
+      // Admin.find({ $or : [ { parent_ID :req.params.idTag }, {_id:req.params.idTag} ] },  function(err, dataCoaches) {
       Admin.find({parent_ID: req.params.idTag },  function(err, dataCoaches) {
         coaches = dataCoaches;
 
@@ -55,6 +56,7 @@ exports.get = function(req, res) {
               user: req.user,
               lengthCoaches: dataCoaches.length,
               lengthStudents: dataStudents.length,
+              idTag: req.params.idTag,
               coaches: coaches,
               students: students,
               student: dataStudent

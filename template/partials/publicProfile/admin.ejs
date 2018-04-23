@@ -36,6 +36,27 @@
       </div>
         <% } %>
     </div>
+
+    <div class="widget-box sample-widget">
+      <div class="widget-header">
+        <h2>New coach</h2>
+        <i class="fa fa-cog"></i>
+      </div>
+      <div class="widget-content">
+        <form action="/addNewCoach" method="POST" name="addNewCoachForm">
+          <input  name="idTag" type="hidden" value="<%=idTag%>">
+          
+          <label for="femail">Email</label>
+          <input type="email" id="femail" name="email" placeholder="Enter email">
+
+          <label for="fpassword">Password</label>
+          <input type="text" id="fpassword" name="password" placeholder="Create password">
+
+          <input type="submit" value="Create new coach">
+          <span class="help-block error"></span>
+        </form>
+      </div>
+    </div>
    <% }  else if(students.length > 0) { %>
         <%-partial('../../partials/publicProfile/coach')%>
   <% } else if(student != null){ %>

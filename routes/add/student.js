@@ -23,7 +23,12 @@ exports.post = function(req, res, done) {
       newStudent.name = req.body.name;
       newStudent.age = req.body.age;
       newStudent.gender = req.body.gender;
-      newStudent.parent_ID = req.user._id;
+      //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
+      if(req.user.access_level == 3){
+            newStudent.parent_ID = req.user._id;
+      } else {
+          newStudent.parent_ID = req.body.idTag;
+      }
 
       // save the user
       newStudent.save(function(err) {

@@ -3,7 +3,7 @@ var router = express.Router();
 var isAuthenticated = require('../middleware/isAuthenticated');
 var verifyToken = require('../middleware/verifyToken');
 var Student = require('../models/student');
-
+// создаем парсер для данных в формате js
 
 
 module.exports = function(passport){
@@ -19,23 +19,22 @@ module.exports = function(passport){
     failureRedirect: '/',
     failureFlash : true
   }));
-
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/personalArea',
     failureRedirect: '/',
     failureFlash : true
   }));
-
   router.get('/signout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
+  router.post('/restorePassword', require('./restorePassword').post);
 
 
+  router.post('/addNewAdmin', require('./add/admin').post);
+  router.post('/addNewCoach', require('./add/coach').post);
+  router.post('/addNewStudent', require('./add/student').post);
 
-  router.post('/addNewAdmin', require('./add/addNewAdmin').post);
-  router.post('/addNewCoach', require('./add/addNewCoach').post);
-  router.post('/addNewStudent', require('./add/addNewStudent').post);
   router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
   router.post('/deleteAdmin/id:idTag', require('./deleteAdmin').post);
   router.post('/deleteCoach/id:idTag', require('./deleteCoach').post);

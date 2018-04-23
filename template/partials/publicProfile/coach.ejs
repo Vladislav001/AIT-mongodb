@@ -38,6 +38,42 @@
         </div>
             <% } %>
       </div>
+
+      <div class="widget-box sample-widget">
+        <div class="widget-header">
+          <h2>New student</h2>
+          <i class="fa fa-cog"></i>
+        </div>
+        <div class="widget-content">
+          <form action="/addNewStudent" method="POST" name="addNewStudentForm">
+            <input  name="idTag" type="hidden" value="<%=idTag%>">
+
+            <label for="flogin">Login</label>
+            <input type="text" id="flogin" name="login" placeholder="Enter login">
+
+            <label for="fpassword">Password</label>
+            <input type="text" id="fpassword" name="password" placeholder="Create password">
+
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="Enter name">
+
+            <label for="fage">Age</label>
+            <input type="number" id="fage" name="age" min="5" max="200" placeholder="Enter age">
+
+            <label for="fgender">Gender</label>
+            <select id="fgender" name="gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Non-binary</option>
+              <option>Non-applicable</option>
+              <option>I prefer not say</option>
+            </select>
+
+            <input type="submit" value="Create new student">
+            <span class="help-block error"></span>
+          </form>
+        </div>
+      </div>
 <% }  else if(student != null) { %>
         <%-partial('../../partials/publicProfile/student')%>
       <% } %>
