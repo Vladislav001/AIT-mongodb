@@ -4,6 +4,18 @@ var express = require('express');
 var router = express.Router();
 
 exports.get = function(req, res) {
+
+  // Как-то же надо проверять кого смотрим - ИСПРАВИТЬ ПО НОРМУ
+  var publicPage;
+  var url = req.url;
+  if(url.indexOf("admins") != -1){
+    publicPage = "admins";
+  } else if(url.indexOf("coaches") != -1){
+        publicPage = "coaches";
+  } else if(url.indexOf("students") != -1){
+        publicPage = "students";
+  }
+
   if(req.user.access_level == 3) {
 
   // Получим данные о конкретном студенте
@@ -29,6 +41,8 @@ exports.get = function(req, res) {
           title: 'profileAdmin',
           user: req.user,
           lengthStudents: dataStudents.length,
+          publicPage: publicPage,
+          idTag: req.params.idTag,
           students: students,
           student: dataStudent
         });
@@ -56,6 +70,7 @@ exports.get = function(req, res) {
               user: req.user,
               lengthCoaches: dataCoaches.length,
               lengthStudents: dataStudents.length,
+              publicPage: publicPage,
               idTag: req.params.idTag,
               coaches: coaches,
               students: students,

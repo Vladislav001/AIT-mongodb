@@ -12,7 +12,7 @@ exports.post = function(req, res, done) {
     }
     // already exists
     if (user) {
-      console.log('User already exists with login: ' + req.body.login);
+      console.log('Student already exists with login: ' + req.body.login);
       res.redirect('/personalArea');
 
     } else {

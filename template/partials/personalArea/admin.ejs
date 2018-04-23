@@ -11,13 +11,13 @@
             <th>Email</th>
             <th class="empty"></th>
           </tr>
- 
+
           <tr>
             <% for (var i=0; i<length; i++) { %>
               <tbody>
                 <tr>
                   <td><%=i+1%></td>
-                  <td><a href="publicProfile/id<%=coaches[i].id%>"><%=coaches[i].email%></a></td>
+                  <td><a href="publicProfile/coaches/id<%=coaches[i].id%>"><%=coaches[i].email%></a></td>
 
                   <!-- <form action="/editCoach/id<%=coaches[i].id%>" method="POST" name="editCoachForm">
                     <td class="edit"><button class="edit-buttons">Edit</button></td>
