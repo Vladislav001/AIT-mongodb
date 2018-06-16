@@ -4,7 +4,7 @@ var isAuthenticated = require('../middleware/isAuthenticated');
 var verifyToken = require('../middleware/verifyToken');
 var Student = require('../models/student');
 // создаем парсер для данных в формате js
-
+// https://monsterlessons.com/project/lessons/obrabatyvaem-oshibki-v-express-i-mongoose
 
 module.exports = function(passport){
 
@@ -50,6 +50,7 @@ module.exports = function(passport){
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
+  router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post);
 
   return router;
 }
