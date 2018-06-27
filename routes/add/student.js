@@ -12,8 +12,8 @@ exports.post = function(req, res, done) {
     }
     // already exists
     if (user) {
-      console.log('Student already exists with login: ' + req.body.login);
-      res.redirect('/personalArea');
+  console.log('Student already exists with login: ' + req.body.login);
+  res.redirect('/personalArea') ;
 
     } else {
       var newStudent = new Student();

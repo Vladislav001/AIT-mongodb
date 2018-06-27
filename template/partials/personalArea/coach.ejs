@@ -41,7 +41,7 @@
           <i class="fa fa-cog"></i>
         </div>
         <div class="widget-content">
-          <form action="/addNewStudent" method="POST" name="addNewStudentForm">
+          <form  action="addNewStudent" method="POST" name="addNewStudentForm">
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
 
@@ -63,8 +63,15 @@
               <option>I prefer not say</option>
             </select>
 
-            <input type="submit" value="Create new student">
+            <input type="submit" id="createNewPID" value="Create new student">
             <span class="help-block error"></span>
           </form>
         </div>
       </div>
+
+
+      <!-- data.login = $("input[name='login']").val();
+      data.password = $("input[name='password']").val();;
+      data.name = $("input[name='name']").val();;
+      data.age = $("input[name='age']").val();;
+      data.gender = $("select[name='gender']").val();; -->

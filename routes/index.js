@@ -10,12 +10,13 @@ module.exports = function(passport){
 
   router.get('/', require('./main'));
   router.get('/personalArea', isAuthenticated, require('./personalArea'));
+  router.get('/students/:page', isAuthenticated, require('./students'));
   // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
   //router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
   // Либо регуляркой мб проверять, либо передалть вообще - но надо понимать кого смотрим
   router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
   router.get('/publicProfile/coaches/id:idTag', require('./publicProfile').get);
-    router.get('/publicProfile/students/id:idTag', require('./publicProfile').get);
+  router.get('/publicProfile/students/id:idTag', require('./publicProfile').get);
   router.get('/test_settings/id:idTag', require('./testSettings').get);
 
   router.post('/signup', passport.authenticate('signup', {
