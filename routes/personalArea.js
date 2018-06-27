@@ -6,17 +6,17 @@ var Admin = require('../models/user');
 
 router.get('/personalArea', function(req, res) {
 
+  var perPage = 5; // сколько человек отображаь
+  var page = req.params.page || 1;
+
 if(req.user.access_level == 3) {
   var students = [];
 
   // Получим список студентов, привязанных к тренеру
-  Student.find({parent_ID: req.user._id },  function(err, data) {
-    //  console.log(err, data, data.length);
-    students = data;
+  Student.find({parent_ID: req.user._id },  function(err, students) {
     res.render('personalArea', {
       title: 'personalArea',
       user: req.user,
-      length: data.length,
       students: students
     });
   });
@@ -24,13 +24,10 @@ if(req.user.access_level == 3) {
     var coaches = [];
 
     // Получим список тренеров, привязанных к админу
-    Admin.find({parent_ID: req.user._id },  function(err, data) {
-      coaches = data;
-
+    Admin.find({parent_ID: req.user._id },  function(err, coaches) {
       res.render('personalArea', {
         title: 'personalArea',
         user: req.user,
-        length: data.length,
         coaches: coaches
       });
     });
@@ -38,12 +35,10 @@ if(req.user.access_level == 3) {
     var admins = [];
 
     // Получим список админов(НЕ ГЛАВНЫХ)
-    Admin.find({access_level: 2 },  function(err, data) {
-      admins = data;
+    Admin.find({access_level: 2 },  function(err, admins) {
       res.render('personalArea', {
         title: 'personalArea',
         user: req.user,
-        length: data.length,
         admins: admins
       });
     });
