@@ -13,7 +13,7 @@ exports.post = function(req, res, done) {
     // already exists
     if (user) {
       console.log('Coach already exists with email: ' + req.body.email);
-      res.redirect('/personalArea');
+      res.redirect('/personalArea/1');
 
     } else {
       var newCoach = new Coach();
@@ -40,7 +40,7 @@ exports.post = function(req, res, done) {
         return done(null, newCoach);
 
       });
-      res.redirect('/personalArea');
+      res.redirect('/personalArea/1');
     }
   });
 };

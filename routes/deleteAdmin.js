@@ -18,5 +18,5 @@ exports.post = function(req, res) {
 
 
 // Удаление всех тренеров и студентов тренеров или же перепривязка
-  res.redirect('/personalArea');
+  res.redirect('/personalArea/1');
 };

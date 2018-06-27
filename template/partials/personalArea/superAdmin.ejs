@@ -17,8 +17,7 @@
               <tbody>
                 <tr>
                   <td><%=i+1%></td>
-                  <td><a href="publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
-
+                  <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
                   <!-- <form action="/editStudent/id<%=admins[i].id%>" method="POST" name="editStudentForm">
                     <td class="edit"><button class="edit-buttons">Edit</button></td>
                   </form> -->
@@ -31,6 +30,7 @@
             </tr>
           </table>
         </div>
+          <%-partial('../../partials/personalArea/pagination')%>
       </div>
 
       <div class="widget-box sample-widget">

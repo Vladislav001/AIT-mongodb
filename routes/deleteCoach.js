@@ -9,7 +9,7 @@ exports.post = function(req, res) {
   Student.remove({parent_ID : req.params.idTag}, function (err) {});
   // Удаляем тренера
   Coach.remove({ _id: req.params.idTag }, function (err) {});
-  
+
   // удаление студентов привязанных к нему или перепривязка??
-  res.redirect('/personalArea');
+  res.redirect('/personalArea/1');
 };

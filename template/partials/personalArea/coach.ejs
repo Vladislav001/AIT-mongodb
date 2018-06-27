@@ -33,36 +33,7 @@
             </tr>
           </table>
         </div>
-        <% if (pages > 0) { %>
-          <div class="pagination">
-            <ul>
-                <% if (current == 1) { %>
-                    <li class="disabled"><a>First</a></li>
-                <% } else { %>
-                    <li><a href="/personalArea/1">First</a></li>
-                <% } %>
-                <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-                <% if (i !== 1) { %>
-                    <li class="disabled"><a>...</a></li>
-                <% } %>
-                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                    <% if (i == current) { %>
-                        <li class="active"><a><%= i %></a></li>
-                    <% } else { %>
-                        <li><a href="/personalArea/<%= i %>"><%= i %></a></li>
-                    <% } %>
-                    <% if (i == Number(current) + 4 && i < pages) { %>
-                        <li class="disabled"><a>...</a></li>
-                    <% } %>
-                <% } %>
-                <% if (current == pages) { %>
-                    <li class="disabled"><a>Last</a></li>
-                <% } else { %>
-                    <li><a href="/personalArea/<%= pages %>">Last</a></li>
-                <% } %>
-            </ul>
-            </div>
-        <% } %>
+      <%-partial('../../partials/personalArea/pagination')%>
       </div>
 
       <div class="widget-box sample-widget">
@@ -71,7 +42,7 @@
           <i class="fa fa-cog"></i>
         </div>
         <div class="widget-content">
-          <form  action="addNewStudent" method="POST" name="addNewStudentForm">
+          <form action="/addNewStudent" method="POST" name="addNewStudentForm">
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
 

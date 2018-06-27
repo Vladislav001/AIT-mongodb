@@ -13,7 +13,7 @@ exports.post = function(req, res, done) {
     // already exists
     if (user) {
       console.log('Admin already exists with email: ' + req.body.email);
-      res.redirect('/personalArea');
+      res.redirect('/personalArea/1');
 
     } else {
       var newAdmin = new Admin();
@@ -34,7 +34,7 @@ exports.post = function(req, res, done) {
         return done(null, newAdmin);
 
       });
-      res.redirect('/personalArea');
+      res.redirect('/personalArea/1');
     }
   });
 };
