@@ -9,8 +9,7 @@ var Student = require('../models/student');
 module.exports = function(passport){
 
   router.get('/', require('./main'));
-  router.get('/personalArea', isAuthenticated, require('./personalArea'));
-  router.get('/students/:page', isAuthenticated, require('./students'));
+  router.get('/personalArea/:page', isAuthenticated, require('./personalArea'));
   // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
   //router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
   // Либо регуляркой мб проверять, либо передалть вообще - но надо понимать кого смотрим
@@ -20,12 +19,12 @@ module.exports = function(passport){
   router.get('/test_settings/id:idTag', require('./testSettings').get);
 
   router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/personalArea',
+    successRedirect: '/personalArea/1',
     failureRedirect: '/',
     failureFlash : true
   }));
   router.post('/login', passport.authenticate('login', {
-    successRedirect: '/personalArea',
+    successRedirect: '/personalArea/1',
     failureRedirect: '/',
     failureFlash : true
   }));
