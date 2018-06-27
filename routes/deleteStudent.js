@@ -4,6 +4,9 @@ var router = express.Router();
 
 exports.post = function(req, res) {
 
-  Student.remove({ _id: req.params.idTag }, function (err) {});
+  Student.remove({ _id: req.params.idTag }, function (err) {
+      if (err) return next(err)
+  });
+  
   res.redirect('/personalArea/1');
 };
