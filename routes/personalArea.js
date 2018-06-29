@@ -7,7 +7,7 @@ var Admin = require('../models/user');
 
 router.get('/personalArea/:page', function(req, res) {
 
-  var perPage = 2; // сколько человек отображать
+  var perPage = 10; // сколько человек отображать
   var page = req.params.page || 1;
 
 if(req.user.access_level == 3) {

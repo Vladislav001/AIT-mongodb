@@ -42,7 +42,7 @@
           <i class="fa fa-cog"></i>
         </div>
         <div class="widget-content">
-          <form action="/addNewStudent" method="POST" name="addNewStudentForm">
+          <form action="/addNewStudent" method="POST" name="addNewStudentForm" id="myForm">
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
 
@@ -65,42 +65,41 @@
             </select>
 
             <input type="submit" id="createNewPID" value="Create new student">
-            <span class="help-block error"></span>
+              <div class="help-block">
+                <span class="error"></span>
+               </div>
           </form>
         </div>
       </div>
 
-      <script>
-             $("form").submit(function(e) {
-                 e.preventDefault();
-                 var login = $("input[name='login']").val();
-                 var password = $("input[name='password']").val();
-                 var name = $("input[name='name']").val();
-                 var age =$("input[name='age']").val();
-                 var gender = $("select[name='gender']").val();
 
-                 var form = $(this);
-                 $('.error', form).html('');
+         <script>
+             var form = $('form[name="addNewStudentForm"]');
 
-                 $.ajax({
-                     type: "POST",
-                     url: "/addNewStudent",
-                     data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender}),
-                     dataType: "json",
-                     contentType: "application/json",
-                     statusCode:{
-                        200: function(){
-                          $('addNewStudentForm')[0].reset(); // сделать очистку полей
-                        },
-                        403: function(){
-                         $('.error', form).html('Student already exists with login: ' + login);
-                        }
-                      }
-                    });
-             });
-         </script>
-      <!-- data.login = $("input[name='login']").val();
-      data.password = $("input[name='password']").val();;
-      data.name = $("input[name='name']").val();;
-      data.age = $("input[name='age']").val();;
-      data.gender = $("select[name='gender']").val();; -->
+             form.submit(function(e) {
+                    e.preventDefault();
+                    var login = $("input[name='login']").val();
+                    var password = $("input[name='password']").val();
+                    var name = $("input[name='name']").val();
+                    var age =$("input[name='age']").val();
+                    var gender = $("select[name='gender']").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/addNewStudent",
+                        data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender}),
+                        dataType: "json",
+                        contentType: "application/json",
+                        statusCode:{
+                           200: function(){
+                             form.trigger('reset'); // очистить поля формы
+                             $('.error', form).html('');
+                            window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+                           },
+                           403: function(){
+                            $('.error', form).html('Student already exists with login: ' + login);
+                           }
+                         }
+                       });
+                });
+            </script>

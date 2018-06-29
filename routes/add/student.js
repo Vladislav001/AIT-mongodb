@@ -16,7 +16,7 @@ exports.post = function(req, res, done) {
       res.json('Student already exists with login: ' + req.body.login);
     } else {
       var newStudent = new Student();
-
+ 
       newStudent.login = req.body.login;
       newStudent.password = req.body.password;
       newStudent.name = req.body.name;

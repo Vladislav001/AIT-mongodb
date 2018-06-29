@@ -12,7 +12,7 @@ var jsonParser = bodyParser.json();
 
 module.exports = function(passport){
 
-  router.get('/', require('./main'));
+  router.get('/', require('./main').get);
   router.get('/personalArea/:page', isAuthenticated, require('./personalArea'));
   // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
   //router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
@@ -21,6 +21,7 @@ module.exports = function(passport){
   router.get('/publicProfile/coaches/id:idTag', require('./publicProfile').get);
   router.get('/publicProfile/students/id:idTag', require('./publicProfile').get);
   router.get('/test_settings/id:idTag', require('./testSettings').get);
+  router.get('/developers', isAuthenticated, require('./developers').get);
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea/1',
@@ -47,8 +48,6 @@ module.exports = function(passport){
   router.post('/deleteAdmin/id:idTag', require('./deleteAdmin').post);
   router.post('/deleteCoach/id:idTag', require('./deleteCoach').post);
   router.post('/updateStudent/id:idTag', require('./updateStudent').post);
-
-
 
 
   // API

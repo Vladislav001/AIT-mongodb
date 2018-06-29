@@ -260,6 +260,11 @@ margin-top: 10%;
 }
 /* Пагинация КОНЕЦ*/
 
+.help-block {
+  text-align: center;
+  color: red;
+}
+
 @media screen and (max-width: 800px) {
   tr {
     display: flex;
