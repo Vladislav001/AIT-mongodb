@@ -5,6 +5,10 @@ var verifyToken = require('../middleware/verifyToken');
 var Student = require('../models/student');
 // создаем парсер для данных в формате js
 // https://monsterlessons.com/project/lessons/obrabatyvaem-oshibki-v-express-i-mongoose
+var bodyParser = require("body-parser");
+
+// создаем парсер для данных в формате json
+var jsonParser = bodyParser.json();
 
 module.exports = function(passport){
 
@@ -37,7 +41,7 @@ module.exports = function(passport){
 
   router.post('/addNewAdmin', require('./add/admin').post);
   router.post('/addNewCoach', require('./add/coach').post);
-  router.post('/addNewStudent', require('./add/student').post);
+  router.post('/addNewStudent',jsonParser, require('./add/student').post);
 
   router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
   router.post('/deleteAdmin/id:idTag', require('./deleteAdmin').post);

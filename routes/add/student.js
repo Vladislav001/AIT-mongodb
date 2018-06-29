@@ -12,9 +12,8 @@ exports.post = function(req, res, done) {
     }
     // already exists
     if (user) {
-  console.log('Student already exists with login: ' + req.body.login);
-  res.redirect('/personalArea/1') ;
-
+      return res.sendStatus(403);
+      res.json('Student already exists with login: ' + req.body.login);
     } else {
       var newStudent = new Student();
 
@@ -41,6 +40,7 @@ exports.post = function(req, res, done) {
         return done(null, newStudent);
 
       });
+      return res.sendStatus(200);
       res.redirect('/personalArea/1');
     }
   });
