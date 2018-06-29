@@ -31,6 +31,10 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    results: {
+        type: Array,
+        required: false
+    },
 });
 
 studentSchema.virtual('userId').get(function(){

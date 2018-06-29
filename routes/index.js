@@ -54,6 +54,7 @@ module.exports = function(passport){
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
   router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post);
-
+  router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post);
+  
   return router;
 }

@@ -14,6 +14,7 @@ exports.post = function(req, res) {
       "name": req.body.name,
       "age": req.body.age,
       "gender": req.body.gender,
+     "results": {133323: '233', 'dada':{'daad':'33131'}}
     }
   }, function(err, results) {
     console.log(results.result);

@@ -3,6 +3,7 @@ var Student = require('../models/student');
 var express = require('express');
 var router = express.Router();
 var async = require('async');
+// переделать бы на https://metanit.com/nosql/mongodb/2.11.php
 
 exports.post = function(req, res) {
 
