@@ -31,8 +31,8 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    results: {
-        type: Array,
+    application_1: {
+        type: Object, // мб Array
         required: false
     },
 });
