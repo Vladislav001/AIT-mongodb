@@ -10,7 +10,7 @@ exports.post = function(req, res) {
       "name":  req.body.name,
     }
   }, function(err, results) {
-    if (err) return res.status(500).send('Error on the server.');
+    if (err) return res.status(500).send('Error on the server: ' + err);
     res.status(200).send({ results: "Данные успешно обновлены" });
   });
 };

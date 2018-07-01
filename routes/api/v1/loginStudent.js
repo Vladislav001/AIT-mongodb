@@ -6,7 +6,7 @@ var bCrypt = require('bcrypt-nodejs');
 
 exports.post = function(req, res) {
   Student.findOne({ 'login' : req.body.login }, function (err, user) {
-      if (err) return res.status(500).send('Error on the server.');
+      if (err) return res.status(500).send('Error on the server: ' + err);
       if (!user) return res.status(404).send('No user found.');
       var isValidPassword = function(user, password){
       return bCrypt.compareSync(password, user.password);

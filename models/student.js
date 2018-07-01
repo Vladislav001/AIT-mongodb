@@ -31,10 +31,9 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    application_1: [{
-        type: Array, // хз пока Array/Object
-        required: false
-    }],
+    application_1: {
+        type: Array
+      }
 });
 
 studentSchema.virtual('userId').get(function(){
