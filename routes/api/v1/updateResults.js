@@ -14,19 +14,28 @@ exports.post = function(req, res) {
 // Формируем путь до рез-ов вопроса в БД
 var path = "application_1.results." + numberResult + "." + numberQuestion;
 
-  Student.update({
+  Student.updateOne({
     "_id": req.userId,
    },{
-      $push: {
+      $set: {
         [path] : {
           "answer": answerOnQuestion,
           "time":  timeOnQuestion,
           "happines": happinesOnQuestion
         }
-       }
+      }
      }, function(err, results) {
        if (err) return res.status(500).send('Error on the server: ' + err);
        res.status(200).send({ results: "Данные успешно обновлены" });
      });
+
+
+
+        // Student.findOne({ "_id": req.userId }, function(err, user) {
+        // //  console.log(user + " user");
+        //   console.log(user.login + " user.login");
+        //   console.log(JSON.stringify (user.application_1["results"]) + " application_1");
+        // });
+
 
 };
