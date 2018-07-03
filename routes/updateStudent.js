@@ -1,4 +1,4 @@
-var Student = require('../models/student');
+ var Student = require('../models/student');
 var express = require('express');
 var router = express.Router();
 
@@ -21,3 +21,4 @@ exports.post = function(req, res) {
   res.redirect('/publicProfile/students/id' + req.params.idTag);
 
 };
+ 

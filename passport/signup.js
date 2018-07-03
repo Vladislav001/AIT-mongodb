@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var nodemailer = require('nodemailer');
+
 
 module.exports = function(passport){
 
@@ -40,9 +42,36 @@ console.log('Error in Saving user: '+err);
 throw err;
 }
 console.log('User Registration succesful');
-return done(null, newUser);
+
+
+// https://www.w3schools.com/nodejs/nodejs_email.asp
+// указываем данные от почты
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: '',
+    pass: ''
+  }
 });
-}
+
+var mailOptions = {
+  from: 'vladislav@intervolga.ru',
+  to: 'vladgurjev@mail.ru', // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
+  subject: 'Congratulations on registration',
+  html: '<h1>Welcome</h1><p>That was easy!</p><br><p><a href="' + req.url + '">Go to the site</a></p>'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+return done(null, newUser);
+  });
+ }
 });
 };
 // Delay the execution of findOrCreateUser and execute the method

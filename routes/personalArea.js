@@ -45,13 +45,21 @@ if(req.user.access_level == 3) {
             })
         })
 } else if (req.user.access_level == 1) {
-    // Получим список админов(НЕ ГЛАВНЫХ)
+    // Получим список админов(НЕ ГЛАВНЫХ) и тренеров без parent_ID(родители) + исключим себя(у нас так же ведь нет parent_ID - чтобы не попасть под 2 условие)
     Admin
-        .find({access_level: 2})
+    .find({ $and : [
+      { $or: [ { access_level: 2 }, { parent_ID: {'$exists' : false} } ] },
+      { _id: { $ne: req.user.id } }
+    ] })
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .exec(function(err, admins) {
-            Admin.find({access_level: 2}).count().exec(function(err, count) { // получаем кол-во объектов
+            Admin.find({ $and : [
+                  { $or: [ { access_level: 2 }, { parent_ID: {'$exists' : false} } ] },
+                  { _id: { $ne: req.user.id } }
+                ] })
+                .count()
+                .exec(function(err, count) { // получаем кол-во объектов
                 if (err) return next(err)
                 res.render('personalArea', {
                     admins: admins,

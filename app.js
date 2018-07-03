@@ -19,7 +19,7 @@ app.engine('ejs', require('ejs-locals'));
 // view engine setup
 app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'ejs');
- 
+
 app.use(favicon(path.join(__dirname, 'public/systemImages', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());

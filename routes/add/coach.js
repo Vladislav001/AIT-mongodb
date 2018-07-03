@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var bCrypt = require('bcrypt-nodejs');
 
+
 exports.post = function(req, res, done) {
   Coach.findOne({ 'email' : req.body.email }, function(err, user) {
     // In case of any error, return using the done method
@@ -29,7 +30,7 @@ exports.post = function(req, res, done) {
 
       newCoach.access_level = 3;
 
-      // save the user
+      // save the user 
       newCoach.save(function(err) {
         if (err){
           console.log('Error in Saving coach: '+err);
@@ -38,7 +39,8 @@ exports.post = function(req, res, done) {
         console.log('Coach Registration succesful');
 
         return done(null, newCoach);
-
+        // Generate test SMTP service account from ethereal.email
+        // Only needed if you don't have a real mail account for testing
       });
       res.redirect('/personalArea/1');
     }

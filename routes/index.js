@@ -39,7 +39,6 @@ module.exports = function(passport){
   });
   router.post('/restorePassword', require('./restorePassword').post);
 
-
   router.post('/addNewAdmin', require('./add/admin').post);
   router.post('/addNewCoach', require('./add/coach').post);
   router.post('/addNewStudent',jsonParser, require('./add/student').post);
@@ -55,6 +54,6 @@ module.exports = function(passport){
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
   router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post);
   router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post);
-  
+
   return router;
 }
