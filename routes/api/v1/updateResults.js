@@ -13,7 +13,7 @@ exports.post = function(req, res) {
 
 // Формируем путь до рез-ов вопроса в БД
 //var path = "application_1.results." + numberResult + "." + numberQuestion;
-var path = "application_2";
+var path = "application_2.results." + numberResult + "." + numberQuestion;
 
   // 1 вариант мб
   Student.updateOne({
@@ -32,21 +32,42 @@ var path = "application_2";
      });
 
 
-    //  Student.findOne({ "_id": req.userId }, function(err, user) {
-    //   console.log(user + " user");
-    //   console.log(user.application_2 + " user.application_2");
-    //   console.log(Array(JSON.stringify (user.application_2) + " application_2");
-    // //  console.log(JSON.stringify (user.application_1) + " application_1 sdsd");
-    //
-    //  });
 
-  Student.findOne({ "_id": req.userId }, function(err, user) {
-  if (err) throw err;
-  console.log(user + " user");
-  console.log(user.application_2[0].answer + " user.application_2");
-  console.log(Array(JSON.stringify (user.application_2) + " application_2"));
-});
+// робит для path = "application_2";
+//   Student.findOne({ "_id": req.userId }, function(err, user) {
+//   if (err) throw err;
+//   console.log(user + " user");
+//   console.log(user.application_2[0].answer + " user.application_2");
+//   console.log(Array(JSON.stringify (user.application_2) + " application_2"));
+// });
 
+// робит для path = "application_2.results";
+// Student.findOne({ "_id": req.userId }, function(err, user) {
+// if (err) throw err;
+// console.log(user + " user");
+// console.log(user.application_2[0].results.answer + " user.application_2");
+// console.log(Array(JSON.stringify (user.application_2[0].results) + " application_2"));
+// });
+
+// робит для var path = "application_2.results." + numberResult;
+// Student.findOne({ "_id": req.userId }, function(err, user) {
+// if (err) throw err;
+// console.log(user + " user");
+// console.log(user.application_2[0].results[1].time + " user.application_2");
+// console.log(Array(JSON.stringify (user.application_2[0].results[1].answer) + " application_2"));
+// });
+
+// робит для var path = "application_2.results." + numberResult + "." + numberQuestion;
+// Вроде так работает*
+// application_2[0] - указывает на сущность, т.е если добавим settings, то к ней обращаться [1]
+//results[1][0] - [1] указывает на номер рез-та, [0] - на номер вопроса (где значение в [] есть КЛЮЧ, а не номер в массиве, т.е возможно и так ['ggg'])
+// Student.findOne({ "_id": req.userId }, function(err, user) {
+// if (err) throw err;
+// console.log(user + " user");
+// console.log(user.application_2[0].results[1] + " user.application_2");
+// console.log(Array(JSON.stringify (user.application_2[0].results[1][2].answer) + " application_2")); // Получаем значение answer из 2 ответа, находящегося в рез-те=1
+// //console.log(Array(JSON.stringify (user.application_2[0].test_settings) + " test_settings")); // второй массив
+// });
 
 
 };
