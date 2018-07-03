@@ -3,7 +3,6 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 
-
 module.exports = function(passport){
 
 passport.use('signup', new LocalStrategy({
@@ -43,31 +42,7 @@ throw err;
 }
 console.log('User Registration succesful');
 
-
-// https://www.w3schools.com/nodejs/nodejs_email.asp
-// указываем данные от почты
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: '',
-    pass: ''
-  }
-});
-
-var mailOptions = {
-  from: 'vladislav@intervolga.ru',
-  to: 'vladgurjev@mail.ru', // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
-  subject: 'Congratulations on registration',
-  html: '<h1>Welcome</h1><p>That was easy!</p><br><p><a href="' + req.url + '">Go to the site</a></p>'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+sendEmailSuccesRegistration(req.headers.host, email);
 
 return done(null, newUser);
   });
@@ -83,7 +58,34 @@ process.nextTick(findOrCreateUser);
 
 // Generates hash using bCrypt
 var createHash = function(password){
-return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+}
+
+//Выслать на почту уведомление, потом вынести из addCoach, addAdmin (вызов 1 фун-ции везде)
+var sendEmailSuccesRegistration = function(url, recipient){
+  // указываем данные от почты
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: '',
+      pass: ''
+    }
+  });
+
+  var mailOptions = {
+    from: '',
+    to: recipient, // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
+    subject: 'Registration successful',
+    html: '<h1>Congratulations on registration</h1><br><p><a href="http://' + url + '">Go to the site!</a></p>'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 }
 
 }

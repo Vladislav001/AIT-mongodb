@@ -43,7 +43,6 @@
         </div>
         <div class="widget-content">
           <form action="/addNewStudent" method="POST" name="addNewStudentForm" id="myForm">
-            <input  name="idTag" type="hidden" value="<%=idTag%>">
 
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
@@ -90,7 +89,7 @@
                     $.ajax({
                         type: "POST",
                         url: "/addNewStudent",
-                        data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender, idTag:idTag}),
+                        data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender}),
                         dataType: "json",
                         contentType: "application/json",
                         statusCode:{
