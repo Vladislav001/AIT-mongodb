@@ -12,7 +12,8 @@ exports.post = function(req, res) {
 
 
 // Формируем путь до рез-ов вопроса в БД
-var path = "application_1.results." + numberResult + "." + numberQuestion;
+//var path = "application_1.results." + numberResult + "." + numberQuestion;
+var path = "application_2";
 
   // 1 вариант мб
   Student.updateOne({
@@ -31,13 +32,20 @@ var path = "application_1.results." + numberResult + "." + numberQuestion;
      });
 
 
-     Student.findOne({ "_id": req.userId }, function(err, user) {
-      console.log(user + " user");
-      console.log(user.application_1 + " user.application_1");
-      console.log(Array(JSON.stringify (user.application_1)) + " application_1");
-    //  console.log(JSON.stringify (user.application_1) + " application_1 sdsd");
+    //  Student.findOne({ "_id": req.userId }, function(err, user) {
+    //   console.log(user + " user");
+    //   console.log(user.application_2 + " user.application_2");
+    //   console.log(Array(JSON.stringify (user.application_2) + " application_2");
+    // //  console.log(JSON.stringify (user.application_1) + " application_1 sdsd");
+    //
+    //  });
 
-     });
+  Student.findOne({ "_id": req.userId }, function(err, user) {
+  if (err) throw err;
+  console.log(user + " user");
+  console.log(user.application_2[0].answer + " user.application_2");
+  console.log(Array(JSON.stringify (user.application_2) + " application_2"));
+});
 
 
 
