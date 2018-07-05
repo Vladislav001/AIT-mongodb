@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
 
+
 var app = express();
 
 // use ejs-locals for all ejs templates:
@@ -62,7 +63,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+//
+// process.on('unhandledRejection', error => {
+//
+//   console.log('unhandledRejection', error.message);
+// });
 
+//  process.on('unhandledRejection', err => console.log(err.stack));
+//
+// var Student = require('./models/student');
+//
 
 
 module.exports = app;
