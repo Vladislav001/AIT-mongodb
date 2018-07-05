@@ -169,18 +169,27 @@ a {
 /* https://codepen.io/kulsakshi/pen/dJPReB */
 
 /* Профиль студента НАЧАЛО */
-
+.public-profile {
+  position: relative;
+  text-align: center;
+}
 
 
  .public-profile img{
   width:15%;
   border-radius:50%;
   border:3px solid grey;
-  margin-left:40%;
-  margin-bottom:-8%;
 }
+
+.public-profile input {
+  position: absolute;
+  top: 50%;
+  margin-top: -10.5px;
+  margin-left: 20px;
+}
+
 .section{
-  margin-top:8%;
+  margin-top:20px;
 }
 .section__heading{
   background-color:#279BE4;
@@ -305,6 +314,23 @@ a {
 
 @media only screen and (max-width: 850px){
   /*for desktop screen only*/
+  .public-profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .public-profile img {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+  .public-profile input {
+    position: relative;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .section__blog{
     display: flex;
@@ -354,9 +380,7 @@ a {
 
   .public-profile img{
     border:2px solid grey;
-    margin-left:38%;
     width:25%;
-    margin-bottom:0%;
   }
 
   .section__button button{
