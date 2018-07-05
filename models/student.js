@@ -33,7 +33,10 @@ var studentSchema = mongoose.Schema({
     },
     application_1: {
         type: Array
-      }
+      },
+      application_2: {
+          type: Array
+        }
 });
 
 studentSchema.virtual('userId').get(function(){

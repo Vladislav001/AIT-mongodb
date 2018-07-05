@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var nodemailer = require('nodemailer');
 
 module.exports = function(passport){
 
@@ -40,9 +41,12 @@ console.log('Error in Saving user: '+err);
 throw err;
 }
 console.log('User Registration succesful');
+
+sendEmailSuccesRegistration(req.headers.host, email);
+
 return done(null, newUser);
-});
-}
+  });
+ }
 });
 };
 // Delay the execution of findOrCreateUser and execute the method
@@ -54,7 +58,34 @@ process.nextTick(findOrCreateUser);
 
 // Generates hash using bCrypt
 var createHash = function(password){
-return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+}
+
+//Выслать на почту уведомление, потом вынести из addCoach, addAdmin (вызов 1 фун-ции везде)
+var sendEmailSuccesRegistration = function(url, recipient){
+  // указываем данные от почты
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: '',
+      pass: ''
+    }
+  });
+
+  var mailOptions = {
+    from: '',
+    to: recipient, // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
+    subject: 'Registration successful',
+    html: '<h1>Congratulations on registration</h1><br><p><a href="http://' + url + '">Go to the site!</a></p>'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 }
 
 }

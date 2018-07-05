@@ -16,7 +16,7 @@ exports.post = function(req, res, done) {
       res.json('Student already exists with login: ' + req.body.login);
     } else {
       var newStudent = new Student();
- 
+console.log(req.body.idTag + ' req.body.idTag ');
       newStudent.login = req.body.login;
       newStudent.password = req.body.password;
       newStudent.name = req.body.name;
@@ -26,13 +26,13 @@ exports.post = function(req, res, done) {
       if(req.user.access_level == 3){
             newStudent.parent_ID = req.user._id;
       } else {
-          newStudent.parent_ID = req.body.idTag;
+           newStudent.parent_ID = req.body.idTag;
       }
 
       // save the user
       newStudent.save(function(err) {
         if (err){
-          console.log('Error in Saving student: '+err);
+          console.log('Error in Saving student: ' + err);
           throw err;
         }
         console.log('Student Registration succesful');
@@ -41,7 +41,7 @@ exports.post = function(req, res, done) {
 
       });
       return res.sendStatus(200);
-      res.redirect('/personalArea/1');
+    //  res.redirect('/personalArea/1'); // т.к через ajax, то таблица автоматом обновляется
     }
   });
 };

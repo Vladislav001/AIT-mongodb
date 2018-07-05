@@ -70,11 +70,45 @@
               <option>I prefer not say</option>
             </select>
 
-            <input type="submit" value="Create new student">
-            <span class="help-block error"></span>
+            <input type="submit" id="createNewPID" value="Create new student">
+              <div class="help-block">
+                <span class="error"></span>
+               </div>
           </form>
         </div>
       </div>
 <% }  else if(publicPage == 'students') { %>
         <%-partial('../../partials/publicProfile/student')%>
       <% } %>
+
+      <script>
+          var form = $('form[name="addNewStudentForm"]');
+
+          form.submit(function(e) {
+                 e.preventDefault();
+                 var login = $("input[name='login']").val();
+                 var password = $("input[name='password']").val();
+                 var name = $("input[name='name']").val();
+                 var age =$("input[name='age']").val();
+                 var gender = $("select[name='gender']").val();
+                 var idTag =$("input[name='idTag']").val();
+                 
+                 $.ajax({
+                     type: "POST",
+                     url: "/addNewStudent",
+                     data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender, idTag:idTag}),
+                     dataType: "json",
+                     contentType: "application/json",
+                     statusCode:{
+                        200: function(){
+                          form.trigger('reset'); // очистить поля формы
+                          $('.error', form).html('');
+                         window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+                        },
+                        403: function(){
+                         $('.error', form).html('Student already exists with login: ' + login);
+                        }
+                      }
+                    });
+             });
+         </script>

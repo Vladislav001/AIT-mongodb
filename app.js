@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
 
+
 var app = express();
 
 // use ejs-locals for all ejs templates:
@@ -19,7 +20,7 @@ app.engine('ejs', require('ejs-locals'));
 // view engine setup
 app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'ejs');
- 
+
 app.use(favicon(path.join(__dirname, 'public/systemImages', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -62,7 +63,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+//
+// process.on('unhandledRejection', error => {
+//
+//   console.log('unhandledRejection', error.message);
+// });
 
+//  process.on('unhandledRejection', err => console.log(err.stack));
+//
+// var Student = require('./models/student');
+//
 
 
 module.exports = app;

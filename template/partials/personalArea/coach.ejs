@@ -43,6 +43,7 @@
         </div>
         <div class="widget-content">
           <form action="/addNewStudent" method="POST" name="addNewStudentForm" id="myForm">
+
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
 
@@ -83,6 +84,7 @@
                     var name = $("input[name='name']").val();
                     var age =$("input[name='age']").val();
                     var gender = $("select[name='gender']").val();
+                    var idTag =$("input[name='idTag']").val();
 
                     $.ajax({
                         type: "POST",
