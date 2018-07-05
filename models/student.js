@@ -32,11 +32,13 @@ var studentSchema = mongoose.Schema({
         required: true
     },
     application_1: {
-        type: Array
-      },
-      application_2: {
-          type: Array
+        type: Object,
+        default: {
+          results: { // т.к в api уже обращаемся к нему
+
+          }
         }
+      },
 });
 
 studentSchema.virtual('userId').get(function(){
