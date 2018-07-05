@@ -1,6 +1,9 @@
 html, body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 body {
   background: #FFFFFF;
@@ -205,7 +208,7 @@ a {
   color:white;
   width:33.33%;
 }
-.section__button: button hover {
+.section__button button:hover {
   background-color:#286090;
 }
 .section__button button.active {
