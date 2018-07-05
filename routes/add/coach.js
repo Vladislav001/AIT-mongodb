@@ -23,9 +23,9 @@ exports.post = function(req, res, done) {
       newCoach.password = createHash(req.body.password);
       //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
       if(req.user.access_level == 2){
-            newCoach.parent_ID = req.user._id;
+        newCoach.parent_ID = req.user._id;
       } else {
-          newCoach.parent_ID = req.body.idTag;
+        newCoach.parent_ID = req.body.idTag;
       }
 
       newCoach.access_level = 3;
@@ -48,7 +48,7 @@ exports.post = function(req, res, done) {
 
 // Generates hash using bCrypt
 var createHash = function(password){
-return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 }
 
 //Выслать на почту уведомление

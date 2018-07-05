@@ -63,16 +63,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//
-// process.on('unhandledRejection', error => {
-//
-//   console.log('unhandledRejection', error.message);
-// });
-
-//  process.on('unhandledRejection', err => console.log(err.stack));
-//
-// var Student = require('./models/student');
-//
 
 
 module.exports = app;
