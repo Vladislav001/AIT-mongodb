@@ -269,7 +269,7 @@ margin-top: 10%;
 }
 
 @media screen and (max-width: 800px) {
-  tr {
+  /* tr {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -281,7 +281,51 @@ margin-top: 10%;
     border: 0.5px solid rgba(3,3,3,0.2);
   }
   td.edit { text-align: center; }
-  td.delete { text-align: center; }
+  td.delete { text-align: center; } */
 }
 
 /* Таблица студентов КОНЕЦ*/
+
+@media only screen and (max-width: 850px){
+  /*for desktop screen only*/
+
+
+.widget-box {
+  float: none;
+  width: calc(100% - 15px);
+  margin-left: 5px;
+}
+
+.widget-box ul {
+  font-size: 3vw;
+}
+
+.sample-widget {
+  max-width: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.table {
+  font-size: 3vw;
+}
+}
+
+@media only screen and (max-width: 600px){
+  #sidebar {
+    width: 130px;
+  }
+
+  #sidebar-nav {
+    overflow-y: unset;
+  }
+
+  #content {
+    width: calc(100% - 130px);
+  }
+
+}
