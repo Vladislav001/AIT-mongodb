@@ -50,10 +50,13 @@ module.exports = function(passport){
 
 
   // Applications
-  
+
   // MoneyGame
   router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collectionMoney').get);
-
+  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/paymentPurchase').get);
+  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selectionGoods').get);
+  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').get);
+  // Тут еще post будут - для записи в БД
 
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
