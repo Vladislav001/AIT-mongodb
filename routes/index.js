@@ -58,6 +58,8 @@ module.exports = function(passport){
   router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').get);
   // Тут еще post будут - для записи в БД
 
+
+
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
