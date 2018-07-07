@@ -27,6 +27,9 @@ var studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    profile_photo: {
+        type: String
+    },
     parent_ID: {
         type: String,
         required: true
