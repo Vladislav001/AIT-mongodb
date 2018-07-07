@@ -1,11 +1,9 @@
 var Student = require('../models/student');
-var formidable = require('formidable');
-var fs = require('fs');
+// var formidable = require('formidable');
+// var fs = require('fs');
 
 
 exports.post = function(req, res) {
-
-
 
   // Обновим данные конкретнго студента
   Student.updateOne({
