@@ -9,7 +9,11 @@ var applicationSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    tests: {
+    tests: { // будут привязываться к тренеру, создавшему тест
+      type: Array,
+      default: null
+    },
+    settings: { // будут привязываться к конкретному cтуденту
       type: Array,
       default: null
     }
@@ -29,7 +33,7 @@ module.exports = Application;
 // var Application = require('./models/application');
 //
 // var newApplication = new Application();
-// newApplication.name = 'Ait';
+// newApplication.name = 'MoneyGame';
 // newApplication.description = 'About app';
 // // save the user
 // newApplication.save(function(err) {
