@@ -229,7 +229,7 @@ a {
   border-top:none;
   border-radius:4px;
 }
-.section__blog{
+.section__money_game{
   display:flex;
   justify-content:space-around;
   padding-top:5%;
@@ -242,7 +242,7 @@ a {
 
 }
 
-.section__blog p{
+.section__money_game p{
   text-align:center;margin-left:-15%;
 
 }
@@ -256,18 +256,7 @@ a {
   text-align:center;margin-right:20%;
 }
 #hackathon{display:block;}
-.color--yellow{
-  color: yellow;
-  font-size:70px!important;
-}
-.color--grey{
-  color:grey;
-  font-size:70px!important;
-}
-.color--brown{
-  color:#cd7f32;
-  font-size:70px!important;
-}
+
 .info-section a{
   text-decoration: none;
   color:white;
@@ -332,7 +321,7 @@ a {
     margin-right: auto;
   }
 
-  .section__blog{
+  .section__money_game{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -356,7 +345,7 @@ a {
 @media only screen and (max-width:680px){
   /* for small screen*/
 
-   .section__blog{
+   .section__money_game{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -387,7 +376,7 @@ a {
     font-size:100%;
     cursor:pointer;
   }
-  .section__blog{
+  .section__money_game{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -406,7 +395,7 @@ a {
   }
   .info-section__table--data td{padding:4%;}
   }
-  
+
 @media only screen and (max-width: 320px)
 {
 
