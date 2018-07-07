@@ -11,7 +11,7 @@ exports.post = function(req, res) {
 
     form.parse(req, function (err, fields, files) {
       var oldpath = files.filetoupload.path;
-      profilePhotoPath = req.headers.host + '/public/profilePhotos/' + pid_ID + ".png";
+      profilePhotoPath = 'public/profilePhotos/' +files.filetoupload.name;
 
       fs.rename(oldpath, profilePhotoPath, function (err) {
         if (err) throw err;
