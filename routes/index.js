@@ -50,8 +50,9 @@ module.exports = function(passport){
 
 
   // Applications
-  router.get('/customizeMoneyGame/id:idTag', require('./applications/moneygame/customizeMoneyGame').get);
-
+  
+  // MoneyGame
+  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collectionMoney').get);
 
 
   // API
