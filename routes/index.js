@@ -49,6 +49,11 @@ module.exports = function(passport){
   router.post('/updateStudent/id:idTag', require('./updateStudent').post);
 
 
+  // Applications
+  router.get('/customizeMoneyGame/id:idTag', require('./applications/moneygame/customizeMoneyGame').get);
+
+
+
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
