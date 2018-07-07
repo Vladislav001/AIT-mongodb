@@ -8,9 +8,6 @@
   width: 100%;
   max-height: 44px;
 }
-.white-label img {
-  max-height: 43px;
-}
 
 #sidebar {
   overflow: hidden;
@@ -77,4 +74,18 @@
   color: #60636B;
   width: 25px;
   text-align: center;
+}
+
+
+
+
+@media only screen and (max-width: 600px){
+  #sidebar {
+    width: 130px;
+  }
+
+  #sidebar-nav {
+    overflow-y: unset;
+  }
+
 }

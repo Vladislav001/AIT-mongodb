@@ -234,18 +234,3 @@ margin-top: 10%;
   font-size: 3vw;
 }
 }
-
-@media only screen and (max-width: 600px){
-  #sidebar {
-    width: 130px;
-  }
-
-  #sidebar-nav {
-    overflow-y: unset;
-  }
-
-  #content {
-    width: calc(100% - 130px);
-  }
-
-}
