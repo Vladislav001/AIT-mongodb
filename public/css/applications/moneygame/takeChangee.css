@@ -1,3 +1,7 @@
 #game-next {
     display: none;
 }
+
+#game-progressBar div {
+    width: 100%;
+}

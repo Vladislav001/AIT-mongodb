@@ -1,3 +1,7 @@
 #game-restart {
     display: none;
 }
+
+#game-progressBar div {
+    width: 75%;
+}
