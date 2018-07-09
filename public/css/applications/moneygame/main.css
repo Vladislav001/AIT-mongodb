@@ -58,6 +58,8 @@
 
 .container .settings label {
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 
 .container .settings input {
@@ -80,10 +82,26 @@
     justify-content: space-between;
     background: #279BE4;
     padding: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .game-header .nav-btn {
     cursor: pointer;
+}
+
+#statusBar {
+    width: 60%;
+    height: 15px;
+    background: white;
+    position: absolute;
+    right: 50%;
+    margin-right: -30%;
+    z-index: 999;
+}
+
+#statusBar div {
+    background: rgb(81, 214, 114);
 }
 
 .game .main {
@@ -133,6 +151,12 @@
     }
 }
 
-.disable {
-    opacity: 0.8;
+/* Programming styles */
+
+.disabled {
+    opacity: 0.5;
+}
+
+.none {
+    display: none;
 }

@@ -11,10 +11,10 @@
                 </div>
                 <div class="container">
                     <div class="pagination">
-                        <a href="/customizeMoneyGame/collectionMoney/id<%=id%>">Collection Money</a>
-                        <a href="/customizeMoneyGame/paymentPurchase/id<%=id%>">Payment Purchase</a>
-                        <a href="/customizeMoneyGame/selectionGoods/id<%=id%>" class="a-active">Selection Goods</a>
-                        <a href="/customizeMoneyGame/takeChangee/id<%=id%>">Take Changee</a>
+                        <a href="/customizeMoneyGame/collectionMoney/id<%=student.id%>">Collection Money</a>
+                        <a href="/customizeMoneyGame/selectionGoods/id<%=student.id%>" class="a-active">Selection Goods</a>
+                        <a href="/customizeMoneyGame/paymentPurchase/id<%=student.id%>">Payment Purchase</a>
+                        <a href="/customizeMoneyGame/takeChangee/id<%=student.id%>">Take Changee</a>
                     </div>
                     <%-partial('./partials/settings')%>
                         <div class="game">
@@ -58,3 +58,5 @@
                 </div>
             </div>
         </section>
+
+        <script src="/js/gameSettings.js"></script>

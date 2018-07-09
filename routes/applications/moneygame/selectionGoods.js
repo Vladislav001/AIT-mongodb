@@ -5,10 +5,10 @@ var express = require('express');
 exports.get = function(req, res) {
 
     // Получим данные о конкретном студенте
-    Student.findById(req.params.idTag,  function(err, data) {
+    Student.findById(req.params.idTag,  function(err, student) {
   
       res.render('./applications/moneygame/selectionGoods', {
-        id: data._id,
+        student: student
       });
     });
   
