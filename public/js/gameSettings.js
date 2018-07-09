@@ -1,39 +1,61 @@
-
-
+//path of page declaration
 var path = window.location.pathname.toString();
 path = path.replace('/customizeMoneyGame', '').replace(/\/id.*/, '');
 
-console.log(path);
+// game elems declaration
+var backBtn = document.getElementById('game-back');
+var nextBtn = document.getElementById('game-next');
+var statusBar = document.getElementById('game-statusBar');
+var againBtn = document.getElementById('game-again');
+var parnet;
+var basket;
 
-switch (path) {
-    case '/collectionMoney':
-        disable(document.getElementById('backBtnChanger'));
-        disable(document.getElementById('againBtnChanger'));
-        disable(document.getElementById('basketChanger'));
-        break;
+// changers declaration
+var backBtnChanger = document.getElementById('backBtnChanger');
+var statusBarChanger = document.getElementById('statusBarChanger');
+var nextBtnChanger = document.getElementById('nextBtnChanger');
+var againBtnChanger = document.getElementById('againBtnChanger');
+var parnetChanger = document.getElementById('parnetChanger');
+var basketChanger = document.getElementById('basketChanger');
 
-    case '/selectionGoods':
-        disable(document.getElementById('againBtnChanger'));
-        disable(document.getElementById('parnetChanger'));
-        break;
+// main part
+disableByURL(path);
 
-    case '/paymentPurchase':
-        disable(document.getElementById('againBtnChanger'));
-        disable(document.getElementById('basketChanger'));
-        break;
+//end of main part
 
-    case '/takeChangee':
-        disable(document.getElementById('nextBtnChanger'));
-        disable(document.getElementById('basketChanger'));
-
-    default:
-        break;
-}
-
+// function declaration part
 function disable(elem) {
     elem.classList.add('disabled');
     elem.setAttribute('disabled', 'disabled');
 
     var label = elem.parentElement;
     label.classList.add('disabled');
+}
+
+function disableByURL(path) {
+    switch (path) { //disable elems by path
+        case '/collectionMoney':
+            disable(backBtnChanger);
+            disable(againBtnChanger);
+            disable(basketChanger);
+            break;
+    
+        case '/selectionGoods':
+            disable(againBtnChanger);
+            disable(parnetChanger);
+            break;
+    
+        case '/paymentPurchase':
+            disable(againBtnChanger);
+            disable(basketChanger);
+            break;
+    
+        case '/takeChangee':
+            disable(nextBtnChanger);
+            disable(basketChanger);
+            break;
+    
+        default:
+            break;
+    }
 }

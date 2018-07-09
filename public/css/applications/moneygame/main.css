@@ -66,6 +66,16 @@
     margin-bottom: 20px;
 }
 
+/* For checkbox row visibility (looks better, then column) */
+.container .settings label:last-child {
+    flex-direction: row!important;
+}
+
+.container .settings label:last-child input {
+    margin-left: 20px;
+}
+
+
 /* Game styles part */
 .container .game {
     width: calc(60% - 30px);
