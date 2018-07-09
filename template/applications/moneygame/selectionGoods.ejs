@@ -1,5 +1,63 @@
 <link rel='stylesheet' href='/css/applications/moneygame/selectionGoods.css' />
+<link rel='stylesheet' href='/css/applications/moneygame/main.css' />
 
 <% layout('../../layout/pattern') -%>
-<%-partial('../../partials/leftVerticalMenu')%>
-<%-partial('./contentHeader')%>
+    <%-partial('../../partials/leftVerticalMenu')%>
+
+        <section id="content">
+            <div class="content">
+                <div class="content-header">
+                    <h1>Customize MoneyGame</h1>
+                </div>
+                <div class="container">
+                    <div class="pagination">
+                        <a href="/customizeMoneyGame/collectionMoney/id<%=student.id%>">Collection Money</a>
+                        <a href="/customizeMoneyGame/selectionGoods/id<%=student.id%>" class="a-active">Selection Goods</a>
+                        <a href="/customizeMoneyGame/paymentPurchase/id<%=student.id%>">Payment Purchase</a>
+                        <a href="/customizeMoneyGame/takeChangee/id<%=student.id%>">Take Changee</a>
+                    </div>
+                    <%-partial('./partials/settings')%>
+                        <div class="game">
+                            <div class="game-header">
+                                <div class="nav-btn" id="backBtn">back</div>
+                                <div id="progressBar"><div></div></div>
+                                <div class="nav-btn" id="nextBtn">next</div>
+                                <div class="nav-btn" id="restartBtn">restart</div>
+                            </div>
+                            <div class="main">
+                                <div class="row">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">4</div>
+                                    <div class="game-block">5</div>
+                                    <div class="game-block">6</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">7</div>
+                                    <div class="game-block">8</div>
+                                </div>
+                                <div class="row hidden">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                                <div class="row hidden">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                            </div>
+                            <div class="game-footer">
+                                <div id="parnet"></div>
+                                <div class="footer-image"></div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="/js/application/moneyGame/gameSettings.js" defer></script>

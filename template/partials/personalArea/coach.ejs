@@ -75,7 +75,8 @@
 
 <script>
 var form = $('form[name="addNewStudentForm"]');
-console.log('<%=students%>');
+
+
 form.submit(function(e) {
   e.preventDefault();
   var login = $("input[name='login']").val();
@@ -84,6 +85,7 @@ form.submit(function(e) {
   var age =$("input[name='age']").val();
   var gender = $("select[name='gender']").val();
   var idTag =$("input[name='idTag']").val();
+
 
   $.ajax({
     type: "POST",

@@ -1,0 +1,15 @@
+#backBtn {
+    display: none;
+}
+
+#restartBtn {
+    display: none;
+}
+
+.game .game-header {
+    justify-content: flex-end !important;
+}
+
+#progressBar div {
+    width: 25%;
+}

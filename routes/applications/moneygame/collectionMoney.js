@@ -1,5 +1,16 @@
+var Student = require('../../../models/student');
 var express = require('express');
 
+
 exports.get = function(req, res) {
-    res.render('./applications/moneygame/collectionMoney');
-}
+
+    // Получим данные о конкретном студенте
+    Student.findById(req.params.idTag,  function(err, student) {
+  
+      res.render('./applications/moneygame/collectionMoney', {
+        student: student
+      });
+    });
+  
+  };
+
