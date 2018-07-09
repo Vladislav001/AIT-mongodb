@@ -1,58 +1,60 @@
 <link rel='stylesheet' href='/css/applications/moneygame/collectionMoney.css' />
-<link rel='stylesheet' href='/css/applications/moneygame/contentHeader.css' />
+<link rel='stylesheet' href='/css/applications/moneygame/main.css' />
 
 <% layout('../../layout/pattern') -%>
     <%-partial('../../partials/leftVerticalMenu')%>
 
         <section id="content">
             <div class="content">
-                <%-partial('./contentHeader')%>
-                    <div class="container">
-                        <div class="pagination">
-                            <a href="/customizeMoneyGame/collectionMoney/" class="a-active">Collection Money</a>
-                            <a href="/customizeMoneyGame/paymentPurchase/">Payment Purchase</a>
-                            <a href="/customizeMoneyGame/selectionGoods/">Selection Goods</a>
-                            <a href="/customizeMoneyGame/takeChangee/">Take Changee</a>
-                        </div>
-                        <%-partial('./settings')%>
-                            <div class="game">
-                                <div class="game-header">
-                                    <div class="nav-btn" id="game-back">back</div>
-                                    <div class="nav-btn" id="game-next">next</div>
-                                    <div class="nav-btn" id="game-restart">restart</div>
-                                </div>
-                                <div class="main">
-                                    <div class="row">
-                                        <div class="game-block">1</div>
-                                        <div class="game-block">2</div>
-                                        <div class="game-block">3</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="game-block">4</div>
-                                        <div class="game-block">5</div>
-                                        <div class="game-block">6</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="game-block">7</div>
-                                        <div class="game-block">8</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="game-block">1</div>
-                                        <div class="game-block">2</div>
-                                        <div class="game-block">3</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="game-block">1</div>
-                                        <div class="game-block">2</div>
-                                        <div class="game-block">3</div>
-                                    </div>
-                                </div>
-                                <div class="game-footer">
-                                    Footer part
-                                    <div class="footer-image"></div>
-                                </div>
-
-                            </div>
+                <div class="content-header">
+                    <h1>Customize MoneyGame</h1>
+                </div>
+                <div class="container">
+                    <div class="pagination">
+                        <a href="/customizeMoneyGame/collectionMoney/id<%=id%>" class="a-active">Collection Money</a>
+                        <a href="/customizeMoneyGame/paymentPurchase/id<%=id%>">Payment Purchase</a>
+                        <a href="/customizeMoneyGame/selectionGoods/id<%=id%>">Selection Goods</a>
+                        <a href="/customizeMoneyGame/takeChangee/id<%=id%>">Take Changee</a>
                     </div>
+                    <%-partial('./partials/settings')%>
+                        <div class="game">
+                            <div class="game-header">
+                                <div class="nav-btn" id="game-back">back</div>
+                                <div class="nav-btn" id="game-next">next</div>
+                                <div class="nav-btn" id="game-restart">restart</div>
+                            </div>
+                            <div class="main">
+                                <div class="row">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">4</div>
+                                    <div class="game-block">5</div>
+                                    <div class="game-block">6</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">7</div>
+                                    <div class="game-block">8</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block">1</div>
+                                    <div class="game-block">2</div>
+                                    <div class="game-block">3</div>
+                                </div>
+                            </div>
+                            <div class="game-footer">
+                                Footer part
+                                <div class="footer-image"></div>
+                            </div>
+
+                        </div>
+                </div>
             </div>
         </section>
