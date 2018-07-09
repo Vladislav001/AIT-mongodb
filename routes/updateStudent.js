@@ -14,7 +14,8 @@ exports.post = function(req, res) {
       "name": req.body.name,
       "age": req.body.age,
       "gender": req.body.gender,
-      "profile_photo": profilePhotoPath
+      //"profile_photo": profilePhotoPath
+
     }
   }, function(err, results) {
 
