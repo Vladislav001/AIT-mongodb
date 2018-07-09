@@ -1,3 +1,4 @@
+<script>
 //path of page declaration
 var path = window.location.pathname.toString();
 path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
@@ -72,7 +73,7 @@ againBtnChanger.addEventListener('change', changeElem);
 parnetChanger.addEventListener('change', changeElem);
 basketChanger.addEventListener('change', changeElem);
 
-console.log('<%=student%>')
+      console.log('<%=student.login%>');
 //end of main part
 
 // function declaration part
@@ -95,4 +96,4 @@ function changeElem() {
         console.log(document.getElementById(searchId));
     }
 }
-
+</script>
