@@ -1,0 +1,138 @@
+.container {
+    width: 100%;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.container .pagination { 
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.container .pagination a {
+    border-radius: 5px;
+    margin: 5px;
+    margin-left: 10px;
+    width: 20%;
+    max-width: 160px;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.container .settings {
+    width: calc(40% - 20px);
+    max-width: 350px;
+    min-width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .settings h2, .container .pagination a {
+    font-weight: normal;
+    font-size: 12pt;
+    text-align: center;
+    padding: 10px;
+}
+
+.container .pagination a, .container .pagination a:visited {
+    color: black;
+}
+
+.a-active, .a-active:visited {
+    background: #279BE4;
+    color: white !important;
+}
+
+.container .settings h2 {
+    background: #279BE4;
+    color: white;
+    margin-top: 0;
+}
+
+.container .settings label {
+    font-weight: bold;
+}
+
+.container .settings input {
+    margin-bottom: 20px;
+}
+
+/* Game styles part */
+.container .game {
+    width: calc(60% - 30px);
+    max-width: 500px;
+    padding: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.game .game-header {
+    width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    background: #279BE4;
+    padding: 10px;
+}
+
+.game-header .nav-btn {
+    cursor: pointer;
+}
+
+.game .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: lightgrey;
+}
+
+.game .main .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-arround;
+}
+
+.game .main .row .game-block {
+    width: 30%;
+    min-height: 70px;
+    max-height: 15%;
+    height: auto;
+    background: black;
+    border-radius: 5px;
+    margin: 2%;
+}
+
+.game .game-footer {
+    width: (100% - 20px);
+    height: 200px;
+    padding: 10px;
+    background: grey;
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .container .game {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+
+    .container .game {
+        max-width: none;
+    }
+}
+
+.disable {
+    opacity: 0.8;
+}

@@ -1,42 +1,41 @@
+<div class="widget-box sample-widget">
+  <div class="widget-header">
+    <h2>Administrators and parents</h2>
+    <i class="fa fa-cog"></i>
+  </div>
+  <div class="widget-content">
+    <table class="table">
+      <tr>
+        <th>№</th>
+        <th>Email</th>
+        <th>Position</th>
+      </tr>
 
-    <div class="widget-box sample-widget">
-      <div class="widget-header">
-        <h2>Administrators and parents</h2>
-        <i class="fa fa-cog"></i>
-      </div>
-      <div class="widget-content">
-        <table class="table">
-          <tr>
-            <th>№</th>
-            <th>Email</th>
-            <th>Position</th>
-          </tr>
-
-          <tr>
-            <% for (var i=0; i< admins.length; i++) { %>
-              <tbody>
-                <tr>
-                  <td><%=i+1%></td>
-                  <% if(admins[i].access_level == 2) { %>
-                      <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
-                      <td>Administrator</td>
-                      <form action="/deleteAdmin/id<%=admins[i].id%>" method="POST" name="deleteAdminForm">
-                        <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
-                      </form>
-                     <% }  else { %>
-                      <td><a href="/publicProfile/coaches/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
-                      <td>Parent</td>
-                      <form action="/deleteCoach/id<%=admins[i].id%>" method="POST" name="deleteCoachForm">
-                        <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
-                      </form>
-                       <% } %>
+      <tr>
+        <% for (var i=0; i< admins.length; i++) { %>
+          <tbody>
+            <tr>
+              <td><%=i+1%></td>
+              <% if(admins[i].access_level == 2) { %>
+                <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
+                <td>Administrator</td>
+                <form action="/deleteAdmin/id<%=admins[i].id%>" method="POST" name="deleteAdminForm">
+                  <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+                </form>
+                <% }  else { %>
+                  <td><a href="/publicProfile/coaches/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
+                  <td>Parent</td>
+                  <form action="/deleteCoach/id<%=admins[i].id%>" method="POST" name="deleteCoachForm">
+                    <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+                  </form>
+                  <% } %>
                 </tr>
               </tbody>
               <% } %>
             </tr>
           </table>
         </div>
-          <%-partial('../../partials/personalArea/pagination')%>
+        <%-partial('../../partials/personalArea/pagination')%>
       </div>
 
       <div class="widget-box sample-widget">

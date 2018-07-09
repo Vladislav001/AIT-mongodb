@@ -1,0 +1,11 @@
+#game-back {
+    display: none;
+}
+
+#game-restart {
+    display: none;
+}
+
+.game .game-header {
+    justify-content: flex-end !important;
+}

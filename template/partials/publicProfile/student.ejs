@@ -1,128 +1,132 @@
 <link rel='stylesheet' href='/css/profileStudent.css' />
 
-    <div class="widget-box sample-widget">
-      <div class="widget-content">
-        <td aria-label="Test settings"><a href="/test_settings/id<%=student.id%>">Start</a></td>
-        <div class="public-profile">
-        <img alt="image" src="https://www.w3schools.com/howto/img_avatar.png">
-        <!-- <img src="<%=student.photoProfile%>" alt="Photo profile"> -->
-          <input type="file" name="photo" multiple accept="image/*,image/jpeg">
+<div class="widget-box sample-widget">
+  <div class="widget-content">
+    <td aria-label="Test settings"><a href="/test_settings/id<%=student.id%>">Start</a></td>
+    <div class="public-profile">
+      <img alt="image" src="https://www.w3schools.com/howto/img_avatar.png">
+      <!-- <img src="<%=student.profile_photo%>" alt="Photo profile"> -->
+      <input type="file" name="photo" multiple accept="image/*,image/jpeg">
+    </div>
 
+    <!-- <img src="<%=student.profile_photo%>" alt="Photo profile" style="max-width:100px"> -->
+    <!-- <form action="/updateStudent/id<%=student.id%>" method="post" enctype="multipart/form-data">
+      <input type="file" name="filetoupload"><br>
+      <input type="submit">
+    </form> -->
+
+    <div class="widget-content">
+      <div class="section">
+        <h2 class="info-section"><a href="#">Information</a></h2>
+        <div class="info-section__table">
+          <table class="info-section__table--data">
+            <tbody>
+              <form action="/updateStudent/id<%=student.id%>" method="POST" name="updateStudentForm">
+                <tr>
+                  <td>Login</td>
+                  <td><input type="text" id="flogin" name="login" value="<%=student.login%>"></td>
+                </tr>
+                <tr>
+                  <td>Name</td>
+                  <td><input type="text" id="fname" name="name" value="<%=student.name%>"></td>
+                </tr>
+                <tr>
+                  <td>Age</td>
+                  <td><input type="number" id="fage" name="age" min="5" max="200" value="<%=student.age%>"></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>
+                    <select id="fgender" name="gender" >
+                      <% switch (student.gender) {
+                        case "Male": %>
+                        <OPTION><%=student.gender%></OPTION>
+                        <OPTION>Female</OPTION>
+                        <OPTION>Non-binary</OPTION>
+                        <OPTION>Not-applicable</OPTION>
+                        <OPTION>I prefer not say</OPTION>
+                        <% break;%> <%
+                        case "Female": %>
+                        <OPTION><%=student.gender%></OPTION>
+                        <OPTION>Male</OPTION>
+                        <OPTION>Non-binary</OPTION>
+                        <OPTION>Not-applicable</OPTION>
+                        <OPTION>I prefer not say</OPTION>
+                        <% break;%> <%
+                        case "Non-binary": %>
+                        <OPTION><%=student.gender%></OPTION>
+                        <OPTION>Male</OPTION>
+                        <OPTION>Female</OPTION>
+                        <OPTION>Not-applicable</OPTION>
+                        <OPTION>I prefer not say</OPTION>
+                        <% break;%> <%
+                        case "Not-applicable": %>
+                        <OPTION><%=student.gender%></OPTION>
+                        <OPTION>Male</OPTION>
+                        <OPTION>Female</OPTION>
+                        <OPTION>Non-binary</OPTION>
+                        <OPTION>I prefer not say</OPTION>
+                        <% break;%> <%
+                        case "I prefer not say": %>
+                        <OPTION><%=student.gender%></OPTION>
+                        <OPTION>Male</OPTION>
+                        <OPTION>Female</OPTION>
+                        <OPTION>Non-binary</OPTION>
+                        <OPTION>Not-applicable</OPTION>
+                        <% break;%> <%
+                      } %>
+                    </select>
+                  </td>
+                  <tr>
+                    <td class="edit-buttons">
+                      <input type="submit" class="edit-buttons" value="Update student">
+                    </td>
+                  </form>
+                  <td>
+                    <form action="/deleteStudent/id<%=student.id%>" method="POST" name="deleteStudentForm">
+                      <input type="submit" class="delete-buttons" onclick="return confirmDelete();" value="Delete student">
+                    </form>
+                  </td>
+                </tr>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="widget-content">
-          <div class="section">
-            <h2 class="info-section"><a href="#">Information</a></h2>
-            <div class="info-section__table">
-              <table class="info-section__table--data">
-                <tbody>
-                  <form action="/updateStudent/id<%=student.id%>" method="POST" name="updateStudentForm">
-                    <tr>
-                      <td>Login</td>
-                      <td><input type="text" id="flogin" name="login" value="<%=student.login%>"></td>
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td><input type="text" id="fname" name="name" value="<%=student.name%>"></td>
-                    </tr>
-                    <tr>
-                      <td>Age</td>
-                      <td><input type="number" id="fage" name="age" min="5" max="200" value="<%=student.age%>"></td>
-                    </tr>
-                    <tr>
-                      <td>Gender</td>
-                      <td>
-                        <select id="fgender" name="gender" >
-                          <% switch (student.gender) {
-                            case "Male": %>
-                            <OPTION><%=student.gender%></OPTION>
-                            <OPTION>Female</OPTION>
-                            <OPTION>Non-binary</OPTION>
-                            <OPTION>Not-applicable</OPTION>
-                            <OPTION>I prefer not say</OPTION>
-                            <% break;%> <%
-                            case "Female": %>
-                            <OPTION><%=student.gender%></OPTION>
-                            <OPTION>Male</OPTION>
-                            <OPTION>Non-binary</OPTION>
-                            <OPTION>Not-applicable</OPTION>
-                            <OPTION>I prefer not say</OPTION>
-                            <% break;%> <%
-                            case "Non-binary": %>
-                            <OPTION><%=student.gender%></OPTION>
-                            <OPTION>Male</OPTION>
-                            <OPTION>Female</OPTION>
-                            <OPTION>Not-applicable</OPTION>
-                            <OPTION>I prefer not say</OPTION>
-                            <% break;%> <%
-                            case "Not-applicable": %>
-                            <OPTION><%=student.gender%></OPTION>
-                            <OPTION>Male</OPTION>
-                            <OPTION>Female</OPTION>
-                            <OPTION>Non-binary</OPTION>
-                            <OPTION>I prefer not say</OPTION>
-                            <% break;%> <%
-                            case "I prefer not say": %>
-                            <OPTION><%=student.gender%></OPTION>
-                            <OPTION>Male</OPTION>
-                            <OPTION>Female</OPTION>
-                            <OPTION>Non-binary</OPTION>
-                            <OPTION>Not-applicable</OPTION>
-                            <% break;%> <%
-                          } %>
-                        </select>
-                      </td>
-                      <tr>
-                        <td class="edit-buttons">
-                          <input type="submit" class="edit-buttons" value="Update student">
-                        </td>
-                      </form>
-                      <td>
-                        <form action="/deleteStudent/id<%=student.id%>" method="POST" name="deleteStudentForm">
-                          <input type="submit" class="delete-buttons" onclick="return confirmDelete();" value="Delete student">
-                        </form>
-                      </td>
-                    </tr>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
 
-            <h2 class="section__heading">Applications</h2>
-            <div class="section__button">
-              <button class="tablinks" onclick="openTest(event, 'Blog')">Blog</button>
-              <button class="tablinks" onclick="openTest(event, 'Discuss')">Discuss</button>
-              <button class="tablinks" onclick="openTest(event, 'Hackathon')">Hackathon</button>
-            </div>
-            <div id="Blog" class="tabcontent">
-              <div class="section__blog">
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Nice blogger</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Good blogger</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Great blogger</p></div>
-              </div>
-            </div>
-            <div id="Discuss" class="tabcontent">
-              <div class="section__discuss">
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Welcome</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>First emoji</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Editor</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>First like</p></div>
-                <div class="icons"><span><i class="fa fa-certificate color--brown" ></i></span><p>Top 3</p></div>
-              </div>
-            </div>
-            <div id="Hackathon" class="tabcontent">
-              <div class="section__hackathon">
-                <div class="icons"><span><i class="fa fa-trophy color--yellow"></i></span><p>Top 3</p></div>
-                <div class="icons"><span><i class="fa fa-trophy color--grey"></i></span><p>Top 25</p></div>
-                <div class="icons"><span><i class="fa fa-trophy color--brown"></i></span><p>Top 5</p></div>
-                <div class="icons"><span><i class="fa fa-trophy color--brown"></i></span><p>Top 5</p></div>
-                <div class="icons"><span><i class="fa fa-trophy color--brown"></i></span><p>Top 5</p></div>
-                <div class="icons"><span><i class="fa fa-trophy color--brown"></i></span><p>Top 5</p></div>
-              </div>
-            </div>
+        <h2 class="section__heading">Applications</h2>
+        <div class="section__button">
+          <button class="tablinks" onclick="openTest(event, 'MoneyGame')">MoneyGame</button>
+          <button class="tablinks" onclick="openTest(event, 'Second')">Second</button>
+          <button class="tablinks" onclick="openTest(event, 'Third')">Third</button>
+        </div>
+        <div id="MoneyGame" class="tabcontent">
+          <div class="section__money_game">
+            <div class="icons"><p><a href="/customizeMoneyGame/collectionMoney/id<%=student.id%>">Customize the screen</a></p></div>
+          </div>
+        </div>
+        <div id="Second" class="tabcontent">
+          <div class="section__discuss">
+            <div class="icons"><p>Welcome</p></div>
+            <div class="icons"><p>First emoji</p></div>
+            <div class="icons"><p>Editor</p></div>
+            <div class="icons"><p>First like</p></div>
+            <div class="icons"><p>Top 3</p></div>
+          </div>
+        </div>
+        <div id="Third" class="tabcontent">
+          <div class="section__hackathon">
+            <div class="icons"><p>Top 3</p></div>
+            <div class="icons"><p>Top 25</p></div>
+            <div class="icons"><p>Top 5</p></div>
+            <div class="icons"><p>Top 5</p></div>
+            <div class="icons"><p>Top 5</p></div>
+            <div class="icons"><p>Top 5</p></div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 
-    <script src="/js/profileStudentTabContent.js"></script>
+<script src="/js/profileStudentTabContent.js"></script>

@@ -65,16 +65,21 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//
-// process.on('unhandledRejection', error => {
-//
-//   console.log('unhandledRejection', error.message);
+
+
+
+//var Application = require('./models/application');
+
+// Application.find({"name": "MoneyGame", "tests.first": "1"}).exec(function(err, application) { , settings: { $in: ["5ae09fdd7f0513193049b939"] }
+//   console.log(application + ' application'); // [0] т.к массив возвращает мб ключ массива делать не сразу idpid, а id:idpid{...}
 // });
 
-//  process.on('unhandledRejection', err => console.log(err.stack));
-//
-// var Student = require('./models/student');
-//
+ //  тащить все данные(плохо!), да еще структура такая(надо бы без pid_ID)    "settings": { "pid_ID": {  "5b33c950a39dce246490ef83": {
+//   Application.find({name: "MoneyGame"}).exec(function(err, application) {
+//   console.log(application[0].settings[0].pid_ID["5b33c950a39dce246490ef83"].like + ' application'); // [0] т.к массив возвращает мб ключ массива делать не сразу idpid, а id:idpid{...}
+//   console.log(Array(JSON.stringify ((application[0].settings[0].pid_ID["5b33c950a39dce246490ef83"]))));
+// } );
+
 
 
 module.exports = app;

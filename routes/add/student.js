@@ -1,7 +1,7 @@
 var Student = require('../../models/student');
 var express = require('express');
 var router = express.Router();
-
+ 
 
 exports.post = function(req, res, done) {
   Student.findOne({ 'login' : req.body.login }, function(err, user) {
@@ -16,7 +16,7 @@ exports.post = function(req, res, done) {
       res.json('Student already exists with login: ' + req.body.login);
     } else {
       var newStudent = new Student();
-console.log(req.body.idTag + ' req.body.idTag ');
+
       newStudent.login = req.body.login;
       newStudent.password = req.body.password;
       newStudent.name = req.body.name;
@@ -24,9 +24,9 @@ console.log(req.body.idTag + ' req.body.idTag ');
       newStudent.gender = req.body.gender;
       //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
       if(req.user.access_level == 3){
-            newStudent.parent_ID = req.user._id;
+        newStudent.parent_ID = req.user._id;
       } else {
-           newStudent.parent_ID = req.body.idTag;
+        newStudent.parent_ID = req.body.idTag;
       }
 
       // save the user
@@ -41,7 +41,7 @@ console.log(req.body.idTag + ' req.body.idTag ');
 
       });
       return res.sendStatus(200);
-    //  res.redirect('/personalArea/1'); // т.к через ajax, то таблица автоматом обновляется
+      //  res.redirect('/personalArea/1'); // т.к через ajax, то таблица автоматом обновляется
     }
   });
 };
