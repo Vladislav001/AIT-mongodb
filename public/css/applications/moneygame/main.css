@@ -108,7 +108,7 @@
     cursor: pointer;
 }
 
-#game-progressBar {
+#progressBar {
     width: 60%;
     height: 20px;
     background: rgb(218, 218, 218);
@@ -120,7 +120,7 @@
     z-index: 999;
 }
 
-#game-progressBar div {
+#progressBar div {
     background: rgb(81, 214, 114);
     height: 100%;
 }

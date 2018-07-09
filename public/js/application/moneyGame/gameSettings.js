@@ -3,12 +3,12 @@ var path = window.location.pathname.toString();
 path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
 
 // game elems declaration
-var backBtn = document.getElementById("game-back");
-var progressBar = document.getElementById("game-progressBar");
-var nextBtn = document.getElementById("game-next");
-var againBtn = document.getElementById("game-again");
-var parnet = document.getElementById("game-parnet");
-var basket = document.getElementById("game-basket");
+var backBtn = document.getElementById("backBtn");
+var progressBar = document.getElementById("progressBar");
+var nextBtn = document.getElementById("nextBtn");
+var againBtn = document.getElementById("againBtn");
+var parnet = document.getElementById("parnet");
+var basket = document.getElementById("basket");
 
 // changers declaration
 var backBtnChanger = document.getElementById("backBtnChanger");
@@ -19,9 +19,7 @@ var parnetChanger = document.getElementById("parnetChanger");
 var basketChanger = document.getElementById("basketChanger");
 
 // main part
-switch (
-path //disable elems by path
-) {
+switch (path) {
     case "/collectionMoney":
         disableChanger(backBtnChanger);
         disableChanger(againBtnChanger);
@@ -67,22 +65,14 @@ path //disable elems by path
 }
 
 //listeners of changers
-// backBtnChanger.onChange = changeElem(backBtnChanger, backBtn);
-// progressBarChanger.onchange = function() {
-//     if (this.checked == true) progressBar.classList.remove('none');
-//     else progressBar.classList.add('none');
-// }
-
 backBtnChanger.addEventListener('change', changeElem);
 progressBarChanger.addEventListener('change', changeElem);
 nextBtnChanger.addEventListener('change', changeElem);
 againBtnChanger.addEventListener('change', changeElem);
 parnetChanger.addEventListener('change', changeElem);
 basketChanger.addEventListener('change', changeElem);
-// nextBtnChanger.onChange = changeElem(nextBtnChanger, nextBtn);
-// againBtnChanger.onChange = changeElem(againBtnChanger, againBtn);
-// parnetChanger.onChange = changeElem(parnetChanger, parnet);
-// basketChanger.onChange = changeElem(basketChanger, basket);
+
+console.log('<%=student%>')
 //end of main part
 
 // function declaration part
@@ -95,11 +85,14 @@ function disableChanger(elem) {
 }
 
 function changeElem() {
-    if (this.getAttribute('type') == 'checkbox') 
-    this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
+    if (this.getAttribute('type') == 'checkbox')
+        this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
 
     else {
-        console.log(this.id.toString().replace('Changer', ''));
+        var searchId = this.id.toString().replace('Changer', '');
+        document.querySelector(searchId);
+
+        console.log(document.getElementById(searchId));
     }
 }
 

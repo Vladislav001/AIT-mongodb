@@ -1,8 +1,8 @@
-#game-back {
+#backBtn {
     display: none;
 }
 
-#game-restart {
+#restartBtn {
     display: none;
 }
 
@@ -10,6 +10,6 @@
     justify-content: flex-end !important;
 }
 
-#game-progressBar div {
+#progressBar div {
     width: 25%;
 }
