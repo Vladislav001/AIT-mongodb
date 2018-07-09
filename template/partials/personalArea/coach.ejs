@@ -75,7 +75,7 @@
 
 <script>
 var form = $('form[name="addNewStudentForm"]');
-
+console.log('<%=students%>');
 form.submit(function(e) {
   e.preventDefault();
   var login = $("input[name='login']").val();
