@@ -16,7 +16,7 @@ var applicationSchema = mongoose.Schema({
     settings: { // будут привязываться к конкретному cтуденту
       type: Array,
       default: null
-    }
+    },
 });
 
 applicationSchema.virtual('applicationId').get(function(){

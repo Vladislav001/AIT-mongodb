@@ -1,99 +1,100 @@
-<script>
-//path of page declaration
-var path = window.location.pathname.toString();
-path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
 
-// game elems declaration
-var backBtn = document.getElementById("backBtn");
-var progressBar = document.getElementById("progressBar");
-var nextBtn = document.getElementById("nextBtn");
-var againBtn = document.getElementById("againBtn");
-var parnet = document.getElementById("parnet");
-var basket = document.getElementById("basket");
+// //path of page declaration
+// var path = window.location.pathname.toString();
+// path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
 
-// changers declaration
-var backBtnChanger = document.getElementById("backBtnChanger");
-var progressBarChanger = document.getElementById("progressBarChanger");
-var nextBtnChanger = document.getElementById("nextBtnChanger");
-var againBtnChanger = document.getElementById("againBtnChanger");
-var parnetChanger = document.getElementById("parnetChanger");
-var basketChanger = document.getElementById("basketChanger");
+// // game elems declaration
+// var backBtn = document.getElementById("backBtn");
+// var progressBar = document.getElementById("progressBar");
+// var nextBtn = document.getElementById("nextBtn");
+// var againBtn = document.getElementById("againBtn");
+// var parnet = document.getElementById("parnet");
+// var basket = document.getElementById("basket");
 
-// main part
-switch (path) {
-    case "/collectionMoney":
-        disableChanger(backBtnChanger);
-        disableChanger(againBtnChanger);
-        disableChanger(basketChanger);
+// // changers declaration
+// var backBtnChanger = document.getElementById("backBtnChanger");
+// var progressBarChanger = document.getElementById("progressBarChanger");
+// var nextBtnChanger = document.getElementById("nextBtnChanger");
+// var againBtnChanger = document.getElementById("againBtnChanger");
+// var parnetChanger = document.getElementById("parnetChanger");
+// var basketChanger = document.getElementById("basketChanger");
 
-        // changeElem(progressBarChanger, progressBar);
-        // changeElem(nextBtnChanger, nextBtn);
-        // changeElem(parnetChanger, parnet);
-        break;
+// // main part
+// switch (path) {
+//     case "/collectionMoney":
+//         disableChanger(backBtnChanger);
+//         disableChanger(againBtnChanger);
+//         disableChanger(basketChanger);
 
-    case "/selectionGoods":
-        disableChanger(againBtnChanger);
-        disableChanger(parnetChanger);
+//         // changeElem(progressBarChanger, progressBar);
+//         // changeElem(nextBtnChanger, nextBtn);
+//         // changeElem(parnetChanger, parnet);
+//         break;
 
-        // changeElem(backBtnChanger, backBtn);
-        // changeElem(progressBarChanger, progressBar);
-        // changeElem(nextBtnChanger, nextBtn);
-        // changeElem(basketChanger, basket);
-        break;
+//     case "/selectionGoods":
+//         disableChanger(againBtnChanger);
+//         disableChanger(parnetChanger);
 
-    case "/paymentPurchase":
-        disableChanger(againBtnChanger);
-        disableChanger(basketChanger);
+//         // changeElem(backBtnChanger, backBtn);
+//         // changeElem(progressBarChanger, progressBar);
+//         // changeElem(nextBtnChanger, nextBtn);
+//         // changeElem(basketChanger, basket);
+//         break;
 
-        // changeElem(backBtnChanger, backBtn);
-        // changeElem(progressBarChanger, progressBar);
-        // changeElem(nextBtnChanger, nextBtn);
-        // changeElem(parnetChanger, parnet);
-        break;
+//     case "/paymentPurchase":
+//         disableChanger(againBtnChanger);
+//         disableChanger(basketChanger);
 
-    case "/takeChangee":
-        disableChanger(nextBtnChanger);
-        disableChanger(basketChanger);
+//         // changeElem(backBtnChanger, backBtn);
+//         // changeElem(progressBarChanger, progressBar);
+//         // changeElem(nextBtnChanger, nextBtn);
+//         // changeElem(parnetChanger, parnet);
+//         break;
 
-        // changeElem(backBtnChanger, backBtn);
-        // changeElem(progressBarChanger, progressBar);
-        // changeElem(againBtnChanger, againBtn);
-        // changeElem(parnetChanger, parnet);
-        break;
+//     case "/takeChangee":
+//         disableChanger(nextBtnChanger);
+//         disableChanger(basketChanger);
 
-    default:
-        break;
-}
+//         // changeElem(backBtnChanger, backBtn);
+//         // changeElem(progressBarChanger, progressBar);
+//         // changeElem(againBtnChanger, againBtn);
+//         // changeElem(parnetChanger, parnet);
+//         break;
 
-//listeners of changers
-backBtnChanger.addEventListener('change', changeElem);
-progressBarChanger.addEventListener('change', changeElem);
-nextBtnChanger.addEventListener('change', changeElem);
-againBtnChanger.addEventListener('change', changeElem);
-parnetChanger.addEventListener('change', changeElem);
-basketChanger.addEventListener('change', changeElem);
+//     default:
+//         break;
+// }
 
-      console.log('<%=student.login%>');
-//end of main part
+// //listeners of changers
+// backBtnChanger.addEventListener('change', changeElem);
+// progressBarChanger.addEventListener('change', changeElem);
+// nextBtnChanger.addEventListener('change', changeElem);
+// againBtnChanger.addEventListener('change', changeElem);
+// parnetChanger.addEventListener('change', changeElem);
+// basketChanger.addEventListener('change', changeElem);
 
-// function declaration part
-function disableChanger(elem) {
-    elem.classList.add("disabled");
-    elem.setAttribute("disabled", "disabled");
+// console.log('<%=student%>')
+// //end of main part
 
-    var label = elem.parentElement;
-    label.classList.add("disabled");
-}
+// // function declaration part
+// function disableChanger(elem) {
+//     elem.classList.add("disabled");
+//     elem.setAttribute("disabled", "disabled");
 
-function changeElem() {
-    if (this.getAttribute('type') == 'checkbox')
-        this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
+//     var label = elem.parentElement;
+//     label.classList.add("disabled");
+// }
 
-    else {
-        var searchId = this.id.toString().replace('Changer', '');
-        document.querySelector(searchId);
+// function changeElem() {
+//     if (this.getAttribute('type') == 'checkbox')
+//         this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
 
-        console.log(document.getElementById(searchId));
-    }
-}
-</script>
+//     else {
+//         var searchId = this.id.toString().replace('Changer', '');
+//         document.querySelector(searchId);
+
+//         console.log(document.getElementById(searchId));
+//     }
+// }
+
+
