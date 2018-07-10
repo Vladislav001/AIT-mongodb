@@ -1,3 +1,4 @@
+
 // //path of page declaration
 // var path = window.location.pathname.toString();
 // path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
@@ -95,4 +96,5 @@
 //         console.log(document.getElementById(searchId));
 //     }
 // }
+
 
