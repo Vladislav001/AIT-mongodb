@@ -7,27 +7,41 @@ exports.get = function (req, res) {
   Student.findById(req.params.idTag, function (err, student) {
     Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
 
-      console.log(application)
-      if (application[0].settings[0][req.params.idTag]) {
-        Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
-          if (err) console.log(err);
-          else console.log(application);
-        });
+      var indexInArray; //index in settings array
 
+      if (application) {
+        var settings = application[0].settings;
+        settings.map((item, index) => {
+          for (var key in item) {
+            if (key == req.params.idTag) {
+              indexInArray = index;
+              break;
+            }
+          }
+        }) //write for case, when object doesn't find
+
+        console.log(indexInArray);
+        console.log(settings[indexInArray][req.params.idTag]);
         res.render("./applications/moneygame/collectionMoney", {
           student: student,
-          settings: JSON.stringify((application[0].settings[0][req.params.idTag]))
+          settings: JSON.stringify(settings[indexInArray][req.params.idTag])
         });
+        
+
       } else {
         // obj with default settings
-        var defaultSettings = [];
-        defaultSettings[req.params.idTag] = {
-          againBtn: '1',
-          backBtn: '1',
-          basket: '1',
-          parnet: '1',
-          progressBar: 'false'
+       
+        var defaultSettings = {
+          [req.params.idTag] : {
+            againBtn: '1',
+            backBtn: '1',
+            basket: '1',
+            parnet: '1',
+            progressBar: 'false'
+          }
         }
+
+        console.log(defaultSettings + ' 1111111111111111111');
         // pushing new settings in settings array
         Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
           if (err) console.log(err);
