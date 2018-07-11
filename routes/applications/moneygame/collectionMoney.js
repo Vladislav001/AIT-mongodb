@@ -23,7 +23,8 @@ exports.get = function (req, res) {
         if (indexInArray !== false) {
           res.render("./applications/moneygame/collectionMoney", {
             student: student,
-            settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+            settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
+            host: req.headers.host
           });
         } else {
           // obj with default settings
@@ -37,27 +38,34 @@ exports.get = function (req, res) {
             }
           }
 
+          // default settings with images's paths
+          // var defaultSettings = {
+          //   [req.params.idTag]: {
+          //     againBtn: 'public/application/applicationImages/againBtn/1.png',
+          //     backBtn: 'public/application/applicationImages/backBtn/1.png',
+          //     basket: 'public/application/applicationImages/basket/1.png',
+          //     parnet: 'public/application/applicationImages/parnet/1.png',
+          //     progressBar: 'false'
+          //   }
+          // }
+
           Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
-            if (err) console.log(err);
-            else console.log(application);
-          });
-
-          Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
-            indexInArray = false;
-            settings = application[0].settings;
-            settings.map((item, index) => {
-              for (var key in item) {
-                if (key == req.params.idTag) {
-                  indexInArray = index;
-                  break;
+            Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
+              indexInArray = false;
+              settings = application[0].settings;
+              settings.map((item, index) => {
+                for (var key in item) {
+                  if (key == req.params.idTag) {
+                    indexInArray = index;
+                    break;
+                  }
                 }
-              }
-            })
-            console.log('after pushing ' + settings[indexInArray][req.params.idTag]);
-
-            res.render("./applications/moneygame/collectionMoney", {
-              student: student,
-              settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+              })
+              res.render("./applications/moneygame/collectionMoney", {
+                student: student,
+                settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
+                host: req.headers.host
+              });
             });
           });
         }
@@ -80,8 +88,8 @@ exports.post = function (req, res) {
         }
       }
     })
-    
+
     settings[indexInArray][req.params.idTag] = req.body;
-    Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {});
+    Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) { });
   });
 }

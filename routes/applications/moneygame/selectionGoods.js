@@ -23,7 +23,8 @@ exports.get = function (req, res) {
         if (indexInArray !== false) {
           res.render("./applications/moneygame/selectionGoods", {
             student: student,
-            settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+            settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
+            host: req.headers.host
           });
         } else {
           // obj with default settings
@@ -57,7 +58,8 @@ exports.get = function (req, res) {
 
             res.render("./applications/moneygame/selectionGoods", {
               student: student,
-              settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+              settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
+              host: req.headers.host
             });
           });
         }
