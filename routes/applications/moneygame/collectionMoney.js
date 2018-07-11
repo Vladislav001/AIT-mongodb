@@ -7,10 +7,10 @@ exports.get = function (req, res) {
   Student.findById(req.params.idTag, function (err, student) {
     Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
 
-      var indexInArray; //index in settings array
-
+      var indexInArray = false; //index in settings array
+      var settings; //settings query
       if (application) {
-        var settings = application[0].settings;
+        settings = application[0].settings;
         settings.map((item, index) => {
           for (var key in item) {
             if (key == req.params.idTag) {
@@ -18,52 +18,70 @@ exports.get = function (req, res) {
               break;
             }
           }
-        }) //write for case, when object doesn't find
+        })
 
-        console.log(indexInArray);
-        console.log(settings[indexInArray][req.params.idTag]);
-        res.render("./applications/moneygame/collectionMoney", {
-          student: student,
-          settings: JSON.stringify(settings[indexInArray][req.params.idTag])
-        });
-        
-
-      } else {
-        // obj with default settings
-       
-        var defaultSettings = {
-          [req.params.idTag] : {
-            againBtn: '1',
-            backBtn: '1',
-            basket: '1',
-            parnet: '1',
-            progressBar: 'false'
-          }
-        }
-
-        console.log(defaultSettings + ' 1111111111111111111');
-        // pushing new settings in settings array
-        Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
-          if (err) console.log(err);
-          else console.log(application);
-        });
-
-        Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
+        if (indexInArray !== false) {
           res.render("./applications/moneygame/collectionMoney", {
             student: student,
-            settings: JSON.stringify((application[0].settings[0][req.params.idTag]))
+            settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+          });
+        } else {
+          // obj with default settings
+          var defaultSettings = {
+            [req.params.idTag]: {
+              againBtn: '1',
+              backBtn: '1',
+              basket: '1',
+              parnet: '1',
+              progressBar: 'false'
+            }
+          }
+
+          Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
+            if (err) console.log(err);
+            else console.log(application);
+          });
+
+          Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
+            indexInArray = false;
+            settings = application[0].settings;
+            settings.map((item, index) => {
+              for (var key in item) {
+                if (key == req.params.idTag) {
+                  indexInArray = index;
+                  break;
+                }
+              }
+            })
+            console.log('after pushing ' + settings[indexInArray][req.params.idTag]);
+
+            res.render("./applications/moneygame/collectionMoney", {
+              student: student,
+              settings: JSON.stringify(settings[indexInArray][req.params.idTag])
+            });
           });
         }
-        );
       }
     });
   });
 }
 
 exports.post = function (req, res) {
-  Application.update({ name: 'MoneyGame' }, { $set: { settings: { [req.params.idTag]: req.body } } }, function (err, data) {
-    if (err) return res.status(500).send('Error on the server: ' + err);
-    res.status(200).send({ results: "Данные успешно обновлены" });
-  });
+  Application.find({ name: 'MoneyGame' }, function (err, application) {
+    var settings;
+    var indexInArray;
 
+    settings = application[0].settings;
+    settings.map((item, index) => {
+      for (var key in item) {
+        if (key == req.params.idTag) {
+          indexInArray = index;
+          break;
+        }
+      }
+    })
+    
+    settings[indexInArray][req.params.idTag] = req.body;
+    Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {});
+  });
 }
