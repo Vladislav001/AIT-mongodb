@@ -6,7 +6,7 @@ exports.get = function (req, res) {
   // Получим данные о конкретном студенте
   Student.findById(req.params.idTag, function (err, student) {
     Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
- 
+
       console.log(application)
       if (application[0].settings[0][req.params.idTag]) {
         Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
