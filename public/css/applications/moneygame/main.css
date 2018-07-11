@@ -81,6 +81,14 @@
     margin-bottom: 0;
 }
 
+#submitBtn {
+    background: #279BE4;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
 
 /* Game styles part */
 .container .game {
