@@ -24,9 +24,9 @@ exports.get = function (req, res) {
                 })
 
                 if (indexInArray !== false) {
-                    res.status(200).send({
-                        settings: settings[indexInArray][user.id],
-                    });
+                    res.status(200).send(
+                        settings[indexInArray][user.id],
+                    );
                 } else {
 
                     // default settings with images's paths
@@ -53,9 +53,9 @@ exports.get = function (req, res) {
                                     }
                                 }
                             })
-                            res.status(200).send({
-                                settings: settings[indexInArray][user.id],
-                            });
+                            res.status(200).send(
+                                settings[indexInArray][user.id],
+                            );
                         });
                     });
                 }
