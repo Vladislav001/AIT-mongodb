@@ -9,6 +9,8 @@
     //get true/false from string
     settings.progressBar == 'true' ? settings.progressBar = true : settings.progressBar = false;
 
+    console.log(settings);
+
     // game elems declaration
     var backBtn = document.getElementById("backBtn");
     var progressBar = document.getElementById("progressBar");
@@ -18,6 +20,8 @@
     var basket = document.getElementById("basket");
 
     var hostName = '<%-host%>';
+
+     console.log(hostName);
    
     // changers declaration
     var backBtnChanger = document.getElementById("backBtnChanger");
@@ -151,21 +155,23 @@
         var newSettings = {};
 
         if (backBtn.classList.contains('none')) newSettings.backBtn = settings.backBtn;
-        else newSettings.backBtn = backBtn.src.replace(`http://${hostName}`, '');
+        else newSettings.backBtn = backBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
         
         newSettings.progressBar = progressBarChanger.checked.toString();
 
         if (nextBtn.classList.contains('none')) newSettings.nextBtn = settings.nextBtn;
-        else newSettings.nextBtn = nextBtn.src.replace(`http://${hostName}`, '');
+        else newSettings.nextBtn = nextBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
 
         if (againBtn.classList.contains('none')) newSettings.againBtn = settings.againBtn;
-        else newSettings.againBtn = againBtn.src.replace(`http://${hostName}`, '');
+        else newSettings.againBtn = againBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
         
         if (wallet.classList.contains('none')) newSettings.wallet = settings.wallet;
-        else newSettings.wallet = wallet.src.replace(`http://${hostName}`, '');
+        else newSettings.wallet = wallet.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
         
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
-        else newSettings.basket = basket.src.replace(`http://${hostName}`, '');
+        else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+
+        console.log(newSettings);
 
         $.ajax({
             type: 'POST',
@@ -174,7 +180,5 @@
             data: newSettings,
             success: console.log('Success'),
         });
-
-        console.log(newSettings);
     }
 </script>
