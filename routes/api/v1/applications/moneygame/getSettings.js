@@ -24,9 +24,14 @@ exports.get = function (req, res) {
                 })
 
                 if (indexInArray !== false) {
-                    res.status(200).send(
-                        settings[indexInArray][user.id],
-                    );
+                    res.status(200).send({
+                        "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
+                        "progressBar": settings[indexInArray][user.id]["progressBar"],
+                        "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
+                        "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
+                        "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
+                        "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
+                    });
                 } else {
 
                     // default settings with images's paths
@@ -54,7 +59,14 @@ exports.get = function (req, res) {
                                 }
                             })
                             res.status(200).send(
-                                settings[indexInArray][user.id],
+                                {
+                                    "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
+                                    "progressBar": settings[indexInArray][user.id]["progressBar"],
+                                    "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
+                                    "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
+                                    "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
+                                    "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
+                                }
                             );
                         });
                     });
