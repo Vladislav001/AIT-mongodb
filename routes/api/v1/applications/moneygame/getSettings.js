@@ -31,7 +31,7 @@ exports.get = function (req, res) {
 
                     // default settings with images's paths
                     var defaultSettings = {
-                        [req.params.idTag]: {
+                        [user.id]: {
                             backBtn: "/application/applicationImages/MoneyGame/backBtn/1.png",
                             progressBar: "false",
                             nextBtn: "/application/applicationImages/MoneyGame/nextBtn/1.png",
