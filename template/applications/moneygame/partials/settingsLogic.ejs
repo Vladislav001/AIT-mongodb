@@ -6,14 +6,17 @@
     var settings = '<%-settings%>';
     settings = JSON.parse(settings); //parse to get object
 
+    //get true/false from string
     settings.progressBar == 'true' ? settings.progressBar = true : settings.progressBar = false;
+
+    console.log(settings);
 
     // game elems declaration
     var backBtn = document.getElementById("backBtn");
     var progressBar = document.getElementById("progressBar");
     var nextBtn = document.getElementById("nextBtn");
     var againBtn = document.getElementById("againBtn");
-    var parnet = document.getElementById("parnet");
+    var wallet = document.getElementById("wallet");
     var basket = document.getElementById("basket");
 
     var hostName = '<%-host%>';
@@ -25,7 +28,7 @@
     var progressBarChanger = document.getElementById("progressBarChanger");
     var nextBtnChanger = document.getElementById("nextBtnChanger");
     var againBtnChanger = document.getElementById("againBtnChanger");
-    var parnetChanger = document.getElementById("parnetChanger");
+    var walletChanger = document.getElementById("walletChanger");
     var basketChanger = document.getElementById("basketChanger");
     var submitBtn = document.getElementById("submitBtn");
 
@@ -36,34 +39,35 @@
             disableChanger(againBtnChanger);
             disableChanger(basketChanger);
             ////////////////////////////////////////////
-            // nextBtn.src = hostName + settings.nextBtn;
+            nextBtn.src = settings.nextBtn;
+            wallet.src = settings.wallet;
             break;
 
         case "/selectionGoods":
             disableChanger(againBtnChanger);
-            disableChanger(parnetChanger);
+            disableChanger(walletChanger);
             ////////////////////////////////////////////
-            // backBtn.src = hostName + settings.backBtn;
-            // nextBtn.src = hostName + settings.nextBtn;
-            // basket.src = hostName + settings.basket;
+            backBtn.src = settings.backBtn;
+            nextBtn.src = settings.nextBtn;
+            basket.src = settings.basket;
             break;
 
         case "/paymentPurchase":
             disableChanger(againBtnChanger);
             disableChanger(basketChanger);
             ////////////////////////////////////////////
-            // backBtn.src = hostName + settings.backBtn;
-            // nextBtn.src = hostName + settings.nextBtn;
-            // basket.src = hostName + settings.basket;
+            backBtn.src = settings.backBtn;
+            nextBtn.src = settings.nextBtn;
+            wallet.src = settings.basket;
             break;
 
         case "/takeChangee":
             disableChanger(nextBtnChanger);
             disableChanger(basketChanger);
             ////////////////////////////////////////////
-            // backBtn.src = hostName + settings.backBtn;
-            // againBtn.src = hostName + settings.againBtn;
-            // parnet.src = hostName + settings.parnet;
+            backBtn.src = settings.backBtn;
+            againBtn.src = settings.againBtn;
+            wallet.src = settings.wallet;
             break;
 
         default:
@@ -75,33 +79,27 @@
     progressBarChanger.addEventListener('change', changeElem);
     nextBtnChanger.addEventListener('change', changeElem);
     againBtnChanger.addEventListener('change', changeElem);
-    parnetChanger.addEventListener('change', changeElem);
+    walletChanger.addEventListener('change', changeElem);
     basketChanger.addEventListener('change', changeElem);
 
     //input values from DB
-    backBtnChanger.value = settings.backBtn.match;
+    backBtnChanger.value = getValue(settings.backBtn);
     progressBarChanger.checked = settings.progressBar;
-    nextBtnChanger.value = settings.nextBtn;
-    againBtnChanger.value = settings.againBtn;
-    parnetChanger.value = settings.parnet;
-    basketChanger.value = settings.basket;
+    nextBtnChanger.value = getValue(settings.nextBtn);
+    againBtnChanger.value = getValue(settings.againBtn);
+    walletChanger.value = getValue(settings.wallet);
+    basketChanger.value = getValue(settings.basket);
 
-    //get values from URLs
-    // backBtnChanger.value = getValue(settings.backBtn.match);
-    // progressBarChanger.checked = getValue(settings.progressBar);
-    // nextBtnChanger.value = getValue(settings.nextBtn);
-    // againBtnChanger.value = getValue(settings.againBtn);
-    // parnetChanger.value = getValue(settings.parnet);
-    // basketChanger.value = getValue(settings.basket);
+    // get values from URLs
+    backBtnChanger.value = getValue(settings.backBtn);
+    progressBarChanger.checked = settings.progressBar;
+    nextBtnChanger.value = getValue(settings.nextBtn);
+    againBtnChanger.value = getValue(settings.againBtn);
+    walletChanger.value = getValue(settings.wallet);
+    basketChanger.value = getValue(settings.basket);
 
-    //need to remove, when imgages will linked
-    //changing design of game
-    showFromDB(backBtnChanger);
+
     showFromDB(progressBarChanger);
-    showFromDB(nextBtnChanger);
-    showFromDB(againBtnChanger);
-    showFromDB(parnetChanger);
-    showFromDB(basketChanger);
 
     //end of main part
 
@@ -115,14 +113,17 @@
     }
 
     function changeElem() {
-        if (this.getAttribute('type') == 'checkbox')
+        if (this.getAttribute('type') == 'checkbox') {
             this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
-
+        }
+            
         else {
             var searchId = this.id.toString().replace('Changer', '');
-            var elem = document.querySelector(searchId);
+            var elem = document.getElementById(searchId);
 
-            //elem.style.background = `url(${path}${this.value}.png)`;
+            var imagePath = elem.src;
+            imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
+            elem.src = imagePath;
         }
     }
 
@@ -132,7 +133,7 @@
 
         else {
             var searchId = changer.id.toString().replace('Changer', '');
-            var elem = document.querySelector(searchId);
+            var elem = document.getElementById(searchId);
 
             var imagePath = elem.src;
             imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
@@ -142,21 +143,33 @@
 
     function getValue(areaFromDb) {
         var value = areaFromDb.toString();
-        value = value.substring(this.lenth - 5, this.lenth - 1);
+        value = value.match(/\d.png/)[0];
         value = value.replace('.png', '');
+
+        // console.log(value);
+
         return parseInt(value);
     }
 
     submitBtn.onclick = function () {
         var newSettings = {};
 
-        //need to post url of images by tamplate with value of changer
-        // newSettings.backBtn = backBtn.src.replace(host, '');
-        // newSettings.progressBar = progressBarChanger.checked.toString();
-        // newSettings.nextBtn = nextBtn.src.replace(host, '');
-        // newSettings.againBtn = againBtn.src.replace(host, '');
-        // newSettings.parnet = parnet.src.replace(host, '');
-        // newSettings.basket = basket.src.replace(host, '');
+        if (backBtn.classList.contains('none')) newSettings.backBtn = settings.backBtn;
+        else newSettings.backBtn = backBtn.src.replace(`http://${hostName}`, '');
+        
+        newSettings.progressBar = progressBarChanger.checked.toString();
+
+        if (nextBtn.classList.contains('none')) newSettings.nextBtn = settings.nextBtn;
+        else newSettings.nextBtn = nextBtn.src.replace(`http://${hostName}`, '');
+
+        if (againBtn.classList.contains('none')) newSettings.againBtn = settings.againBtn;
+        else newSettings.againBtn = againBtn.src.replace(`http://${hostName}`, '');
+        
+        if (wallet.classList.contains('none')) newSettings.wallet = settings.wallet;
+        else newSettings.wallet = wallet.src.replace(`http://${hostName}`, '');
+        
+        if (basket.classList.contains('none')) newSettings.basket = settings.basket;
+        else newSettings.basket = basket.src.replace(`http://${hostName}`, '');
 
         $.ajax({
             type: 'POST',
@@ -165,5 +178,7 @@
             data: newSettings,
             success: console.log('Success'),
         });
+
+        console.log(newSettings);
     }
 </script>
