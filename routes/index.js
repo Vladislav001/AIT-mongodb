@@ -68,8 +68,9 @@ module.exports = function(passport){
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
-  router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post);
-  router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post);
+//router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post); пока не нужно
+  //router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post); пока не нужно
+ router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/getSettings').get);
 
   return router;
 }
