@@ -18,6 +18,8 @@
     var basket = document.getElementById("basket");
 
     var hostName = '<%-host%>';
+
+     console.log(hostName);
    
     // changers declaration
     var backBtnChanger = document.getElementById("backBtnChanger");
@@ -166,6 +168,8 @@
         
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
         else newSettings.basket = basket.src.replace(`http://${hostName}`, '');
+
+        console.log(newSettings);
 
         $.ajax({
             type: 'POST',
