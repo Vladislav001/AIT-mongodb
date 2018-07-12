@@ -27,27 +27,18 @@ exports.get = function (req, res) {
             host: req.headers.host
           });
         } else {
-          // obj with default settings
-          var defaultSettings = {
-            [req.params.idTag]: {
-              againBtn: '1',
-              backBtn: '1',
-              basket: '1',
-              parnet: '1',
-              progressBar: 'false'
-            }
-          }
 
           // default settings with images's paths
-          // var defaultSettings = {
-          //   [req.params.idTag]: {
-          //     againBtn: 'public/application/applicationImages/againBtn/1.png',
-          //     backBtn: 'public/application/applicationImages/backBtn/1.png',
-          //     basket: 'public/application/applicationImages/basket/1.png',
-          //     parnet: 'public/application/applicationImages/parnet/1.png',
-          //     progressBar: 'false'
-          //   }
-          // }
+          var defaultSettings = {
+            [req.params.idTag]: {
+          backBtn: "/application/applicationImages/MoneyGame/backBtn/1.png",
+          progressBar: "false",
+          nextBtn: "/application/applicationImages/MoneyGame/nextBtn/1.png",
+          againBtn: "/application/applicationImages/MoneyGame/againBtn/1.png",
+          wallet: "/application/applicationImages/MoneyGame/wallet/1.png",
+          basket: "/application/applicationImages/MoneyGame/basket/1.png"
+            }
+          }
 
           Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
             Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
