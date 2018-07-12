@@ -9,7 +9,7 @@ exports.post = function(req, res) {
   answerOnQuestion = req.body.answerOnQuestion; // ответ на вопрос (нравится/не нравится) - приходит из android
   timeOnQuestion = req.body.timeOnQuestion; // время ответа (может и не будет такого) - приходит из android
   happinesOnQuestion = req.body.happinesOnQuestion; // уровень счастья при ответе на вопрос - приходит из android
-  
+
 
   // Формируем путь до рез-ов вопроса в БД
   //var path = "application_1.results." + numberResult + "." + numberQuestion;

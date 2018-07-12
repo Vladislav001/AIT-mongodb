@@ -56,6 +56,11 @@ module.exports = function(passport){
   router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/paymentPurchase').get);
   router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selectionGoods').get);
   router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').get);
+
+  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collectionMoney').post);
+  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/paymentPurchase').post);
+  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selectionGoods').post);
+  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').post);
   // Тут еще post будут - для записи в БД
 
 
