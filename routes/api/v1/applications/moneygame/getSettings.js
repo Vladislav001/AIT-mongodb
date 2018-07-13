@@ -38,7 +38,7 @@ exports.get = function (req, res) {
                     var defaultSettings = {
                         [user.id]: {
                             backBtn: "/application/applicationImages/MoneyGame/backBtn/1.png",
-                            progressBar: "false",
+                            progressBar: false,
                             nextBtn: "/application/applicationImages/MoneyGame/nextBtn/1.png",
                             againBtn: "/application/applicationImages/MoneyGame/againBtn/1.png",
                             wallet: "/application/applicationImages/MoneyGame/wallet/1.png",

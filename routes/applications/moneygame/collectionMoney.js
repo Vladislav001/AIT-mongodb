@@ -32,7 +32,7 @@ exports.get = function (req, res) {
           var defaultSettings = {
             [req.params.idTag]: {
           backBtn: "/application/applicationImages/MoneyGame/backBtn/1.png",
-          progressBar: "false",
+          progressBar: false,
           nextBtn: "/application/applicationImages/MoneyGame/nextBtn/1.png",
           againBtn: "/application/applicationImages/MoneyGame/againBtn/1.png",
           wallet: "/application/applicationImages/MoneyGame/wallet/1.png",
@@ -69,7 +69,7 @@ exports.post = function (req, res) {
   Application.find({ name: 'MoneyGame' }, function (err, application) {
     var settings;
     var indexInArray;
-
+  
     settings = application[0].settings;
     settings.map((item, index) => {
       for (var key in item) {
@@ -79,8 +79,12 @@ exports.post = function (req, res) {
         }
       }
     })
-
+    
     settings[indexInArray][req.params.idTag] = req.body;
+    if (req.body.progressBar == 'true')
+    settings[indexInArray][req.params.idTag]['progressBar'] = true;
+    else settings[indexInArray][req.params.idTag]['progressBar'] = false;
+    
     Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) { });
   });
 }

@@ -6,11 +6,6 @@
     var settings = '<%-settings%>';
     settings = JSON.parse(settings); //parse to get object
 
-    //get true/false from string
-    settings.progressBar == 'true' ? settings.progressBar = true : settings.progressBar = false;
-
-    console.log(settings);
-
     // game elems declaration
     var backBtn = document.getElementById("backBtn");
     var progressBar = document.getElementById("progressBar");
@@ -20,8 +15,6 @@
     var basket = document.getElementById("basket");
 
     var hostName = '<%-host%>';
-
-     console.log(hostName);
    
     // changers declaration
     var backBtnChanger = document.getElementById("backBtnChanger");
@@ -156,8 +149,8 @@
 
         if (backBtn.classList.contains('none')) newSettings.backBtn = settings.backBtn;
         else newSettings.backBtn = backBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-        
-        newSettings.progressBar = progressBarChanger.checked.toString();
+
+        progressBarChanger.checked == true ? newSettings.progressBar = true : newSettings.progressBar = false;
 
         if (nextBtn.classList.contains('none')) newSettings.nextBtn = settings.nextBtn;
         else newSettings.nextBtn = nextBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
@@ -171,14 +164,12 @@
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
         else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
 
-        console.log(newSettings);
-
         $.ajax({
             type: 'POST',
             url: window.location.pathname,
             dataType: 'json',
             data: newSettings,
-            success: console.log('Success'),
+            success: console.log('Settings Saved'),
         });
     }
 </script>
