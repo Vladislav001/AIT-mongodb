@@ -58,16 +58,36 @@ exports.get = function (req, res) {
                                     }
                                 }
                             })
-                            res.status(200).send(
-                                {
-                                    "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
-                                    "progressBar": settings[indexInArray][user.id]["progressBar"],
-                                    "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
-                                    "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
-                                    "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
-                                    "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
-                                }
-                            );
+
+                            if (settings[indexInArray][req.params.idTag]['progressBar'] == 'true')
+                                settings[indexInArray][req.params.idTag]['progressBar'] = true;
+                            else settings[indexInArray][req.params.idTag]['progressBar'] = false;
+
+                            Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {
+                                Application.find({ name: 'MoneyGame' }, { settings: [user.id] }, function (err, application) {
+                                    indexInArray = false;
+                                    settings = application[0].settings;
+                                    settings.map((item, index) => {
+                                        for (var key in item) {
+                                            if (key == user.id) {
+                                                indexInArray = index;
+                                                break;
+                                            }
+                                        }
+                                    })
+
+                                res.status(200).send(
+                                    {
+                                        "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
+                                        "progressBar": settings[indexInArray][user.id]["progressBar"],
+                                        "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
+                                        "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
+                                        "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
+                                        "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
+                                    }
+                                );
+                            });
+                             });
                         });
                     });
                 }
