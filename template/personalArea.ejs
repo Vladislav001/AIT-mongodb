@@ -1,0 +1,25 @@
+<link rel='stylesheet' href='/css/personalArea.css' />
+
+<% layout('layout/pattern') -%>
+
+<%-partial('./partials/leftVerticalMenu')%>
+
+<section id="content">
+  <div class="content">
+    <div class="content-header">
+      <h1>Welcome</h1>
+      <p><%=user.email%></p>
+    </div>
+
+<% if(user.access_level == 3) { %>
+<%-partial('./partials/personalArea/coach')%>
+   <% }  else if(user.access_level == 2) { %>
+  <%-partial('./partials/personalArea/admin')%>
+  <% }  else if(user.access_level == 1) { %>
+ <%-partial('./partials/personalArea/superAdmin')%>
+<% } %>
+
+</div>
+</section>
+
+<script src="/js/confirmDelete.js"></script>

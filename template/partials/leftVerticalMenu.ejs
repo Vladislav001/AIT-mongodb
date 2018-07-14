@@ -1,0 +1,26 @@
+<link rel='stylesheet' href='/css/leftVerticalMenu.css' />
+
+<section id="sidebar">
+  <div class="white-label">
+
+  </div>
+  <div id="sidebar-nav">
+    <ul>
+      <li id="personalArea"><a href="/personalArea/1">Personal Area</a></li>
+      <li id="developers"><a href="/developers">Developers</a></li>
+      <li><a href="http://app-ait.herokuapp.com/" target="_blank">Old version</a></li>
+      <li><a href="/signout">Logout</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Хотелось бы на стороне becenda, т.к меню левое мб из 10+, либо же качественный js на фронте -->
+<script>
+var url = location.href;
+if(url.indexOf("personalArea") != -1){
+  $("#personalArea").addClass("active");
+}
+if(url.indexOf("developers") != -1){
+  $("#developers").addClass("active");
+}
+</script>
