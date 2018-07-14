@@ -150,7 +150,7 @@
         if (backBtn.classList.contains('none')) newSettings.backBtn = settings.backBtn;
         else newSettings.backBtn = backBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
 
-        progressBarChanger.checked == true ? newSettings.progressBar = true : newSettings.progressBar = false;
+        newSettings.progressBar = progressBarChanger.checked;
 
         if (nextBtn.classList.contains('none')) newSettings.nextBtn = settings.nextBtn;
         else newSettings.nextBtn = nextBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
@@ -163,6 +163,9 @@
         
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
         else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+
+
+        console.log(newSettings);
 
         $.ajax({
             type: 'POST',

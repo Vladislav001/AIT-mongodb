@@ -85,9 +85,7 @@ exports.post = function (req, res) {
     })
     
     settings[indexInArray][req.params.idTag] = req.body;
-    if (req.body.progressBar == 'true')
-    settings[indexInArray][req.params.idTag]['progressBar'] = true;
-    else settings[indexInArray][req.params.idTag]['progressBar'] = false;
+    settings[indexInArray][req.params.idTag]['progressBar'] = JSON.parse(req.body.progressBar);
     
     Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {});
   });
