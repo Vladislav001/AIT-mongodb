@@ -1,0 +1,8 @@
+
+.game .game-header {
+    justify-content: flex-end !important;
+}
+
+#progressBar div {
+    width: 25%;
+}

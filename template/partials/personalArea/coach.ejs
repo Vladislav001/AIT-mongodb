@@ -1,0 +1,108 @@
+<div class="widget-box sample-widget">
+  <div class="widget-header">
+    <h2>My Students</h2>
+    <i class="fa fa-cog"></i>
+  </div>
+  <div class="widget-content">
+    <table class="table">
+      <tr>
+        <th>№</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th class="empty"></th>
+      </tr>
+
+      <tr>
+        <% for (var i=0; i< students.length; i++) { %>
+          <tbody>
+            <tr>
+              <td><%=i+1%></td>
+              <td><a href="/publicProfile/students/id<%=students[i].id%>"><%=students[i].name%></a></td>
+              <td><%=students[i].gender%></td>
+              <td><%=students[i].age%></td>
+              <!-- <form action="/editStudent/id<%=students[i].id%>" method="POST" name="editStudentForm">
+              <td class="edit"><button class="edit-buttons">Edit</button></td>
+            </form> -->
+            <form action="/deleteStudent/id<%=students[i].id%>" method="POST" name="deleteStudentForm">
+              <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+            </form>
+          </tr>
+        </tbody>
+        <% } %>
+      </tr>
+    </table>
+  </div>
+  <%-partial('../../partials/personalArea/pagination')%>
+</div>
+
+<div class="widget-box sample-widget">
+  <div class="widget-header">
+    <h2>New student</h2>
+    <i class="fa fa-cog"></i>
+  </div>
+  <div class="widget-content">
+    <form action="/addNewStudent" method="POST" name="addNewStudentForm" id="myForm">
+
+      <label for="flogin">Login</label>
+      <input type="text" id="flogin" name="login" placeholder="Enter login">
+
+      <label for="fpassword">Password</label>
+      <input type="text" id="fpassword" name="password" placeholder="Create password">
+
+      <label for="fname">Name</label>
+      <input type="text" id="fname" name="name" placeholder="Enter name">
+
+      <label for="fage">Age</label>
+      <input type="number" id="fage" name="age" min="5" max="200" placeholder="Enter age">
+
+      <label for="fgender">Gender</label>
+      <select id="fgender" name="gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Non-binary</option>
+        <option>Non-applicable</option>
+        <option>I prefer not say</option>
+      </select>
+
+      <input type="submit" id="createNewPID" value="Create new student">
+      <div class="help-block">
+        <span class="error"></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+var form = $('form[name="addNewStudentForm"]');
+
+
+form.submit(function(e) {
+  e.preventDefault();
+  var login = $("input[name='login']").val();
+  var password = $("input[name='password']").val();
+  var name = $("input[name='name']").val();
+  var age =$("input[name='age']").val();
+  var gender = $("select[name='gender']").val();
+  var idTag =$("input[name='idTag']").val();
+
+
+  $.ajax({
+    type: "POST",
+    url: "/addNewStudent",
+    data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender}),
+    dataType: "json",
+    contentType: "application/json",
+    statusCode:{
+      200: function(){
+        form.trigger('reset'); // очистить поля формы
+        $('.error', form).html('');
+        window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+      },
+      403: function(){
+        $('.error', form).html('Student already exists with login: ' + login);
+      }
+    }
+  });
+});
+</script>

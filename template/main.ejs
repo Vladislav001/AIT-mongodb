@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="css/main.css">
+
+<% layout('layout/pattern') -%>
+
+<div class="form-modal">
+
+  <div class="form-toggle">
+    <button id="login-toggle" onclick="toggleLogin()">Log in</button>
+    <button id="signup-toggle" onclick="toggleSignup()">Sign up</button>
+  </div>
+
+  <div id="login-form">
+    <form action="/login" method="POST" name="loginForm">
+      <!-- почему то везде именно в name надо username -->
+      <input type="email" name="username" placeholder="Enter email"/>
+      <input type="password" name="password" placeholder="Enter password"/>
+      <button type="submit" class="btn login">Login</button>
+      <p onclick="toggleForgotPassword()">Forgotten password?</p>
+      <div class="help-block">
+        <span class="error"></span>
+      </div>
+    </form>
+  </div>
+
+  <div id="signup-form">
+    <form action="/signup" method="POST" name="signupForm">
+      <input type="email" name="username" placeholder="Enter email"/>
+      <input type="password" name="password" placeholder="Create password"/>
+      <button type="submit" class="btn signup">Create account</button>
+      <!-- <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p> -->
+    </form>
+  </div>
+
+  <div id="forgotPassword-form">
+    <form action="/forgot" method="POST" name="restorePasswordForm">
+      <input type="email" name="email" placeholder="Enter email"/>
+      <button type="submit" class="btn restorePassword">Restore password</button>
+      <div class="help-block">
+        <span class="error"></span>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
+<script src="/js/auth.js"></script>
