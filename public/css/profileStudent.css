@@ -79,23 +79,13 @@
   border-top:none;
   border-radius:4px;
 }
-.section__money_game{
-  display:flex;
-  justify-content:space-around;
-  padding-top:5%;
-  flex-wrap:nowrap;
-}
-.section__discuss{
+
+.section__application{
   display: flex;
   flex-wrap:nowrap;
   justify-content: space-around;
-
 }
 
-.section__money_game p{
-  text-align:center;margin-left:-15%;
-
-}
 .icons{
   display:inline-block;
   padding-right:2%;
@@ -148,7 +138,16 @@
   color:#ddd;
 }
 
-
+.tabcontent .buttonsApplication {
+  margin: 5px;
+  padding: 18px 40px;
+  border: none;
+  background: #279BE4;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 2px;
+}
 
 
 @media only screen and (max-width: 850px){
@@ -171,23 +170,11 @@
     margin-right: auto;
   }
 
-  .section__money_game{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .section__discuss{
+  .section__application{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 
-  }
-  .section__hackathon{
-    display: flex;
-    justify-content:space-around;
-    flex-wrap: wrap;
-    padding:0px;
-    margin:0px;
   }
 }
 
@@ -195,23 +182,11 @@
 @media only screen and (max-width:680px){
   /* for small screen*/
 
-   .section__money_game{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .section__discuss{
+  .section__application{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 
-  }
-  .section__hackathon{
-    display: flex;
-    justify-content:space-around;
-    flex-wrap: wrap;
-    padding:0px;
-    margin:0px;
   }
 }
 @media only screen and (max-width: 550px){
@@ -226,22 +201,10 @@
     font-size:100%;
     cursor:pointer;
   }
-  .section__money_game{
+  .section__application{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-  }
-  .section__discuss{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .section__hackathon{
-    display: flex;
-    justify-content:space-around;
-    flex-wrap: wrap;
-    padding:0px;
-    margin:0px;
   }
   .info-section__table--data td{padding:4%;}
   }
@@ -262,13 +225,13 @@
     text-align: center;
   }
   .section__button{font-size: small;}
-  .section__discuss{
+  .section__application{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     margin-left: 30%;
   }
-  .section__discuss p{margin-right: 50%;}
+  .section__application p{margin-right: 50%;}
   .blog-badges{
     display:flex;
     flex-direction: row;
