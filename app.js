@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var bodyParser = require('body-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
-var dbConfig = require('./db');
+var dbConfig = require('./config').database;
 var mongoose = require('mongoose');
 
 // Connect to DB

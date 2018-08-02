@@ -69,7 +69,7 @@ exports.post = function (req, res) {
   Application.find({ name: 'MoneyGame' }, function (err, application) {
     var settings;
     var indexInArray;
-  
+
     settings = application[0].settings;
     settings.map((item, index) => {
       for (var key in item) {
@@ -79,12 +79,12 @@ exports.post = function (req, res) {
         }
       }
     })
-    
+
     settings[indexInArray][req.params.idTag] = req.body;
     // if (req.body.progressBar == 'true')
     settings[indexInArray][req.params.idTag]['progressBar'] = JSON.parse(req.body.progressBar);
     // else settings[indexInArray][req.params.idTag]['progressBar'] = false;
-    
+
     Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) { });
   });
 }
