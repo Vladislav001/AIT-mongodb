@@ -15,7 +15,7 @@
     var basket = document.getElementById("basket");
 
     var hostName = '<%-host%>';
-   
+
     // changers declaration
     var backBtnChanger = document.getElementById("backBtnChanger");
     var progressBarChanger = document.getElementById("progressBarChanger");
@@ -109,7 +109,7 @@
         if (this.getAttribute('type') == 'checkbox') {
             this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
         }
-            
+
         else {
             var searchId = this.id.toString().replace('Changer', '');
             var elem = document.getElementById(searchId);
@@ -157,10 +157,10 @@
 
         if (againBtn.classList.contains('none')) newSettings.againBtn = settings.againBtn;
         else newSettings.againBtn = againBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-        
+
         if (wallet.classList.contains('none')) newSettings.wallet = settings.wallet;
         else newSettings.wallet = wallet.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-        
+
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
         else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
 

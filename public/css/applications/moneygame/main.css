@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-.container .pagination { 
+.container .pagination {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
@@ -118,7 +118,7 @@
     cursor: pointer;
     background-size: 100% 100%;
     width: 20%;
-    height: 40px;
+    height: 60px;
     border: none;
 }
 
@@ -129,7 +129,7 @@
     position: absolute;
     right: 50%;
     top: 50%;
-    margin-top: -10px; 
+    margin-top: -10px;
     margin-right: -25%;
     z-index: 999;
 }
