@@ -10,7 +10,7 @@ exports.post = function(req, res) {
 
   // Необходимо выполнить последоватеьное удаление - ибо иногда тренер удаляется раньше, чем студенты -> студенты не удалились из БД
   async.waterfall(
-      [
+      [ 
           function(callback) {
             // Удаляем студентов, привязанных к тренерам, которые привязаны к админу
             var deleteStudents =  Admin.find({parent_ID : req.params.idTag},  function(err, coaches) { // находим всех тренеров

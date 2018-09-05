@@ -71,6 +71,7 @@ exports.post = function (req, res) {
     var indexInArray;
 
     settings = application[0].settings;
+    // Выбирает ВСЕХ студентов - очень плохо, думать как переделать
     settings.map((item, index) => {
       for (var key in item) {
         if (key == req.params.idTag) {
