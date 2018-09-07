@@ -27,9 +27,8 @@ exports.post = function(req, res) {
     }
   }, function(err, results) {
 
-    console.log(results.result);
   });
-  //res.redirect('/publicProfile/students/id' + req.params.idTag);
+
 
 
   // var pid_ID =  req.params.idTag;
@@ -60,6 +59,6 @@ exports.post = function(req, res) {
   //     });
   //   });
   // });
-  //
+
   //  res.redirect('/publicProfile/students/id' + req.params.idTag);
 };
