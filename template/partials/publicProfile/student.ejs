@@ -22,7 +22,6 @@
       <div class="info-section__table">
         <table class="info-section__table--data">
           <tbody>
-            <form action="/updateStudent/id<%=student.id%>" method="POST" name="updateStudentForm">
               <tr>
                 <td>Login</td>
                 <td><input type="text" id="flogin" name="login" value="<%=student.login%>"></td>
@@ -80,9 +79,8 @@
                 </td>
                 <tr>
                   <td class="edit-buttons">
-                    <input type="submit" class="edit-buttons" value="Update student">
+                    <input type="submit" id="submitBtn" class="edit-buttons" value="Update student">
                   </td>
-                </form>
                 <td>
                   <form action="/deleteStudent/id<%=student.id%>" method="POST" name="deleteStudentForm">
                     <input type="submit" class="delete-buttons" onclick="return confirmDelete();" value="Delete student">
@@ -124,3 +122,22 @@
 
 
 <script src="/js/profileStudentTabContent.js"></script>
+<script>
+var submitBtn = document.getElementById("submitBtn");
+submitBtn.onclick = function () {
+  var updateStudentData = {};
+
+  updateStudentData.login =  $("input[name='login']").val();
+  updateStudentData.name =  $("input[name='name']").val();
+  updateStudentData.age =  $("input[name='age']").val();
+  updateStudentData.gender = $("select[name='gender']").val();
+
+  $.ajax({
+    type: 'POST',
+    url: '/updateStudent/id<%=student.id%>',
+    dataType: 'json',
+    data: updateStudentData,
+    success: console.log('Data updated'),
+  });
+}
+</script>

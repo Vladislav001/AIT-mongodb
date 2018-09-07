@@ -12,6 +12,7 @@ cloudinary.config({
 
 exports.post = function(req, res) {
 
+  //console.log(req.params.idTag); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
   // Обновим данные конкретнго студента
   Student.updateOne({
     "_id": req.params.idTag
@@ -28,7 +29,7 @@ exports.post = function(req, res) {
 
     console.log(results.result);
   });
-  res.redirect('/publicProfile/students/id' + req.params.idTag);
+  //res.redirect('/publicProfile/students/id' + req.params.idTag);
 
 
   // var pid_ID =  req.params.idTag;
