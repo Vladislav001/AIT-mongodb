@@ -67,7 +67,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-
 //var Application = require('./models/application');
 
 // Application.find({"name": "MoneyGame", "tests.first": "1"}).exec(function(err, application) { , settings: { $in: ["5ae09fdd7f0513193049b939"] }

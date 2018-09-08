@@ -1,8 +1,10 @@
 var Student = require("../../../models/student");
 var Application = require("../../../models/application");
 var express = require("express");
+var countFiles = require('../../../functions/getCountFilesInDirectory');
 
 exports.get = function (req, res) {
+
   // Получим данные о конкретном студенте
   Student.findById(req.params.idTag, function (err, student) {
     Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
@@ -20,11 +22,13 @@ exports.get = function (req, res) {
           }
         })
 
+
         if (indexInArray !== false) {
           res.render("./applications/moneygame/collectionMoney", {
             student: student,
             settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
-            host: req.headers.host
+            host: req.headers.host,
+            countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
           });
         } else {
 
@@ -65,13 +69,15 @@ exports.get = function (req, res) {
   });
 }
 
+
+
 exports.post = function (req, res) {
   Application.find({ name: 'MoneyGame' }, function (err, application) {
     var settings;
     var indexInArray;
 
     settings = application[0].settings;
-    // Выбирает ВСЕХ студентов - очень плохо, думать как переделать
+    // Выбирает ВСЕХ студентов - очень плохо, думать как переделать (знать индекс бы сразу)
     settings.map((item, index) => {
       for (var key in item) {
         if (key == req.params.idTag) {

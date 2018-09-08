@@ -1,6 +1,7 @@
 var Student = require("../../../models/student");
 var Application = require("../../../models/application");
 var express = require("express");
+var countFiles = require('../../../functions/getCountFilesInDirectory');
 
 exports.get = function (req, res) {
   // Получим данные о конкретном студенте
@@ -24,7 +25,8 @@ exports.get = function (req, res) {
           res.render("./applications/moneygame/takeChangee", {
             student: student,
             settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
-            host: req.headers.host
+            host: req.headers.host,
+            countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
           });
         } else {
           // default settings with images's paths
@@ -83,10 +85,10 @@ exports.post = function (req, res) {
         }
       }
     })
-    
+
     settings[indexInArray][req.params.idTag] = req.body;
     settings[indexInArray][req.params.idTag]['progressBar'] = JSON.parse(req.body.progressBar);
-    
+
     Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {});
   });
 }

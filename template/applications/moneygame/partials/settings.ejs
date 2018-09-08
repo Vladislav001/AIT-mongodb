@@ -6,18 +6,18 @@
     </div>
 
     <label>Next/Back buttons
-        <input type="range" min="1" max="3" name="next-back-btn" id="nextBackBtnsChanger">
+        <input type="range" min="1" max="<%=countFiles.nextBack%>" name="next-back-btn" id="nextBackBtnsChanger">
     </label>
 
     <label>Again button
-        <input type="range" min="1" max="3" name="again-btn" id="againBtnChanger">
+        <input type="range" min="1" max="<%=countFiles.againBtn%>" name="again-btn" id="againBtnChanger">
     </label>
 
     <label>Basket
-        <input type="range" min="1" max="3" name="basket" id="basketChanger">
+        <input type="range" min="1" max="3" name="<%=countFiles.basket%>" id="basketChanger">
     </label>
     <label>Wallet
-        <input type="range" min="1" max="3" name="wallet" id="walletChanger">
+        <input type="range" min="1" max="<%=countFiles.wallet%>" name="wallet" id="walletChanger">
     </label>
 
     <input type="submit" id="submitBtn" value="Save settings">
