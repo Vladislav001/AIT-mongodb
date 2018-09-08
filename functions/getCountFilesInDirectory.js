@@ -1,15 +1,19 @@
 const fs = require('fs');
 
-function getCountFilesInDirectory(dir) {
-  // fs.readdir(dir, (err, files) => {
-  //   //console.log(files.length);
-  //   return files.length;
-  // });
+// переделать в асинхрон(как ниже)
+function getCountFilesInDirectory(dir, callback) {
   var files = fs.readdirSync(dir);
   return files.length;
 }
 
-// Вернем кол-во файлов для приложения MoneyGame 
+// function getCountFilesInDirectory(path, callback) {
+//     fs.readdir(path, function (err, content) {
+//         if (err) return callback(err)
+//         callback(null, content)
+//     })
+// }
+
+// Вернем кол-во файлов для приложения MoneyGame
 function getCountFilesInDirectoryMoneyGame() {
   const dirNextBtn = './public/application/applicationImages/MoneyGame/nextBtn';
   const dirBackBtn = './public/application/applicationImages/MoneyGame/backBtn';
