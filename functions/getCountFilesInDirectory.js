@@ -6,13 +6,6 @@ function getCountFilesInDirectory(dir, callback) {
   return files.length;
 }
 
-// function getCountFilesInDirectory(path, callback) {
-//     fs.readdir(path, function (err, content) {
-//         if (err) return callback(err);
-//         callback(content);
-//     })
-// }
-
 // Вернем кол-во файлов для приложения MoneyGame
 function getCountFilesInDirectoryMoneyGame() {
   const dirNextBtn = './public/application/applicationImages/MoneyGame/nextBtn';
@@ -32,10 +25,11 @@ function getCountFilesInDirectoryMoneyGame() {
   var countNextBtn = getCountFilesInDirectory(dirNextBtn);
   var countBackBtn = getCountFilesInDirectory(dirBackBtn);
   if(countNextBtn >= countBackBtn)
-    countFiles.nextBack = countBackBtn;
+  countFiles.nextBack = countBackBtn;
   else
-    countFiles.nextBack = countNextBtn;
-console.log(countFiles.againBtn + " countFiles") ;  return countFiles;
+  countFiles.nextBack = countNextBtn;
+  console.log(countFiles.againBtn + " countFiles") ;
+  return countFiles;
 }
 
 module.exports.getCountFilesInDirectory = getCountFilesInDirectory;

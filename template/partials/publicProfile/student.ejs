@@ -141,8 +141,13 @@ submitBtn.onclick = function () {
     type: 'POST',
     url: '/updateStudent/id<%=student.id%>',
     dataType: 'json',
-    data: updateStudentData,
-    success: alert('Data successfully updated'),
+    data:  updateStudentData,
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data) {
+      alert(data.responseText);
+    }
   });
 }
 </script>

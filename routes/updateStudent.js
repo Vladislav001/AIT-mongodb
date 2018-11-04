@@ -4,9 +4,9 @@ const fs = require('fs');
 const cloudinary = require('cloudinary');
 const config  = require('../config').cloudinary;
 cloudinary.config({
-     cloud_name: config.cloud_name,
-     api_key: config.api_key,
-     api_secret: config.api_secret
+  cloud_name: config.cloud_name,
+  api_key: config.api_key,
+  api_secret: config.api_secret
 });
 
 
@@ -14,20 +14,39 @@ exports.post = function(req, res) {
 
   //console.log(req.params.idTag); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
   // Обновим данные конкретнго студента
-  Student.updateOne({
-    "_id": req.params.idTag
-  }, {
-    $set: {
-      "login": req.body.login,
-      "name": req.body.name,
-      "age": req.body.age,
-      "gender": req.body.gender,
-      //"profile_photo": profilePhotoPath
 
+
+  Student.findOne({ 'login' : req.body.login }, function(err, student) {
+    if (err){
+      res.send("An unexpected error occurred, repeat later.");
+      console.log(err);
     }
-  }, function(err, results) {
-
+    if (student) {
+      res.send('Student already exists with login: ' + req.body.login);
+    } else {
+      Student.updateOne({
+        "_id": req.params.idTag
+      }, {
+        $set: {
+          "login": req.body.login,
+          "name": req.body.name,
+          "age": req.body.age,
+          "gender": req.body.gender,
+          //"profile_photo": profilePhotoPath
+        }
+      }, function(err, results) {
+        if(err){
+          res.send("An unexpected error occurred, repeat later.");
+          console.log(err);
+        } else {
+          res.send("Data successfully updated");
+        }
+      });
+    }
   });
+
+
+
 
 
 
