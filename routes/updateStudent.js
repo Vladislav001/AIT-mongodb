@@ -38,8 +38,6 @@ exports.post = function(req, res) {
         if(err){
           res.send("An unexpected error occurred, repeat later.");
           console.log(err);
-        } else {
-          res.send("Data successfully updated");
         }
       });
     }

@@ -143,7 +143,7 @@ submitBtn.onclick = function () {
     dataType: 'json',
     data:  updateStudentData,
     success: function(data) {
-      console.log(data);
+      alert("Data successfully updated");
     },
     error: function(data) {
       alert(data.responseText);

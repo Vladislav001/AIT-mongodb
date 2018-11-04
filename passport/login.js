@@ -17,17 +17,19 @@ module.exports = function(passport){
       return done(err);
       // Username does not exist, log the error and redirect back
       if (!user){
+        //res.send('Wrong login or password');
         console.log('User Not Found with username ' + email);
         return done(null, false, req.flash('message', 'User Not found.'));
       }
       // User exists but wrong password, log the error
       if (!isValidPassword(user, password)){
+      //  res.send('Wrong login or password');
         console.log('Invalid Password');
         return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
       }
       // User and password both match, return user from done method
       // which will be treated like success
-    
+
       return done(null, user);
     }
   );

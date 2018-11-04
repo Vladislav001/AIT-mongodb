@@ -25,3 +25,17 @@ function toggleForgotPassword(){
     document.getElementById("login-form").style.display="none";
     document.getElementById("forgotPassword-form").style.display="block";
 }
+
+
+// var userData = {};
+//
+// userData.email =  $("input[name='username']").val();
+// userData.password =  $("input[name='password']").val();
+//
+// $.ajax({
+//   type: 'POST',
+//   url: '/login',
+//   dataType: 'json',
+//   data:  userData,
+//
+// });
