@@ -8,8 +8,8 @@ function getCountFilesInDirectory(dir, callback) {
 
 // function getCountFilesInDirectory(path, callback) {
 //     fs.readdir(path, function (err, content) {
-//         if (err) return callback(err)
-//         callback(null, content)
+//         if (err) return callback(err);
+//         callback(content);
 //     })
 // }
 
@@ -22,6 +22,9 @@ function getCountFilesInDirectoryMoneyGame() {
   const dirWallet = './public/application/applicationImages/MoneyGame/wallet';
 
   var countFiles = {};
+  // countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn, function(content) {
+  //       console.log(content.length + " content") ;
+  // });
   countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn);
   countFiles.basket = getCountFilesInDirectory(dirBasket);
   countFiles.wallet = getCountFilesInDirectory(dirWallet);
@@ -32,8 +35,7 @@ function getCountFilesInDirectoryMoneyGame() {
     countFiles.nextBack = countBackBtn;
   else
     countFiles.nextBack = countNextBtn;
-
-  return countFiles;
+console.log(countFiles.againBtn + " countFiles") ;  return countFiles;
 }
 
 module.exports.getCountFilesInDirectory = getCountFilesInDirectory;
