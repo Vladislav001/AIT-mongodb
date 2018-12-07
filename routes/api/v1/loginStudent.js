@@ -14,7 +14,7 @@ exports.post = function(req, res) {
       // if (!isValidPassword) return res.status(401).send({ auth: false, token: null });
       if(student.password != req.body.password ) return res.status(401).send({ auth: false, token: null }); // т.к не шифрую для студентов пароль
       var token = jwt.sign({ id: student._id }, 'supersecret', {
-        expiresIn: 120 // expires in 24 hours
+        expiresIn: 86400 // expires in 24 hours
       });
       res.status(200).send({ auth: true, token: token });
     });
