@@ -17,7 +17,7 @@ if(req.user.access_level == 3) {
       .skip((perPage * page) - perPage)
       .limit(perPage)
       .exec(function(err, students) {
-          Student.find({parent_ID: req.user._id}).count().exec(function(err, count) { // получаем кол-во объектов
+          Student.find({parent_ID: req.user._id}).countDocuments().exec(function(err, count) { // получаем кол-во объектов
               if (err) return next(err)
               res.render('personalArea', {
                   students: students,
@@ -34,7 +34,7 @@ if(req.user.access_level == 3) {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .exec(function(err, coaches) {
-            Admin.find({parent_ID: req.user._id}).count().exec(function(err, count) { // получаем кол-во объектов
+            Admin.find({parent_ID: req.user._id}).countDocuments().exec(function(err, count) { // получаем кол-во объектов
                 if (err) return next(err)
                 res.render('personalArea', {
                     coaches: coaches,
@@ -58,7 +58,7 @@ if(req.user.access_level == 3) {
                   { $or: [ { access_level: 2 }, { parent_ID: {'$exists' : false} } ] },
                   { _id: { $ne: req.user.id } }
                 ] })
-                .count()
+                .countDocuments()
                 .exec(function(err, count) { // получаем кол-во объектов
                 if (err) return next(err)
                 res.render('personalArea', {

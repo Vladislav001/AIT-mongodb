@@ -1,62 +1,66 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var bodyParser = require('body-parser');
-var bodyParser = require('body-parser');
-var flash = require('connect-flash');
-var dbConfig = require('./config').database;
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const dbConfig = require('./config').database;
+const session = require('express-session');
+const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const favicon = require('serve-favicon');
+const passport = require('passport');
 
 // Connect to DB
-mongoose.connect(dbConfig.url);
+mongoose.connect(dbConfig.url, { useNewUrlParser: true });
 
-
-var app = express();
-
-// use ejs-locals for all ejs templates:
-app.engine('ejs', require('ejs-locals'));
+const app = express();
 
 // view engine setup
+app.engine('ejs', require('ejs-locals'));
 app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, 'public/systemImages', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Конфигурация Passport
-var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
+app.use(session({
+  secret: 'codeworkrsecret',
+  saveUninitialized: false,
+  resave: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+ app.use(flash());
 
 // Initialize Passport
-var initPassport = require('./passport/init');
+const initPassport = require('./passport/init');
 initPassport(passport);
 
-var routes = require('./routes/index')(passport);
-app.use(flash());
+const routes = require('./routes/index')(passport);
 app.use('/', routes);
 
 
 // catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   res.render('404'); // добавил сам(в костяке не было)
+//   next(err);
+// });
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  res.render('404'); // добавил сам(в костяке не было)
-  next(err);
-});
+  next(createError(404));
+}); 
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -73,7 +77,7 @@ app.use(function(err, req, res, next) {
 //   console.log(application + ' application'); // [0] т.к массив возвращает мб ключ массива делать не сразу idpid, а id:idpid{...}
 // });
 
- //  тащить все данные(плохо!), да еще структура такая(надо бы без pid_ID)    "settings": { "pid_ID": {  "5b33c950a39dce246490ef83": {
+//  тащить все данные(плохо!), да еще структура такая(надо бы без pid_ID)    "settings": { "pid_ID": {  "5b33c950a39dce246490ef83": {
 //   Application.find({name: "MoneyGame"}).exec(function(err, application) {
 //   console.log(application[0].settings[0].pid_ID["5b33c950a39dce246490ef83"].like + ' application'); // [0] т.к массив возвращает мб ключ массива делать не сразу idpid, а id:idpid{...}
 //   console.log(Array(JSON.stringify ((application[0].settings[0].pid_ID["5b33c950a39dce246490ef83"]))));

@@ -1,8 +1,6 @@
-var Student = require('../../models/student');
-var express = require('express');
-var router = express.Router();
+const Student = require('../../models/student');
+const express = require('express');
  
-
 exports.post = function(req, res, done) {
   Student.findOne({ 'login' : req.body.login }, function(err, user) {
     // In case of any error, return using the done method
@@ -12,8 +10,7 @@ exports.post = function(req, res, done) {
     }
     // already exists
     if (user) {
-      return res.sendStatus(403);
-      res.json('Student already exists with login: ' + req.body.login);
+      return res.status(403).json('Student already exists with login: ' + req.body.login);
     } else {
       var newStudent = new Student();
 
@@ -40,8 +37,8 @@ exports.post = function(req, res, done) {
         return done(null, newStudent);
 
       });
-      return res.sendStatus(200);
-      //  res.redirect('/personalArea/1'); // т.к через ajax, то таблица автоматом обновляется
+     
+       res.redirect('/personalArea/1'); 
     }
   });
 };
