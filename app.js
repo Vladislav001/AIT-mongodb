@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dbConfig = require('./config').database;
 const session = require('express-session');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const favicon = require('serve-favicon');
