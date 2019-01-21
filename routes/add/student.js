@@ -1,12 +1,9 @@
 const Student = require('../../models/student');
-const express = require('express');
  
-exports.post = function(req, res, done) {
+exports.post = function(req, res) {
   Student.findOne({ 'login' : req.body.login }, function(err, user) {
-    // In case of any error, return using the done method
     if (err){
       console.log('Error in SignUp: '+ err);
-      return done(err);
     }
     // already exists
     if (user) {
@@ -32,9 +29,6 @@ exports.post = function(req, res, done) {
           console.log('Error in Saving student: ' + err);
           throw err;
         }
-        console.log('Student Registration succesful');
-
-        return done(null, newStudent);
 
       });
      

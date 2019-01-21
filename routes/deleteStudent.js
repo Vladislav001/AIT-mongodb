@@ -1,7 +1,6 @@
-var Student = require('../models/student');
-var Application = require('../models/application');
-var express = require('express');
-var router = express.Router();
+const Student = require('../models/student');
+const Application = require('../models/application');
+const express = require('express');
 
 exports.post = function (req, res) {
 
@@ -23,14 +22,13 @@ exports.post = function (req, res) {
     //if settings exist, then remove
     if (indexInArray !== false) {
       settings.splice(indexInArray, 1);
-
       Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) { });
     }
 
   });
 
   //removing student from DB
-  Student.remove({ _id: req.params.idTag }, function (err) {
+  Student.deleteOne({ _id: req.params.idTag }, function (err) {
     if (err) return next(err)
   });
 

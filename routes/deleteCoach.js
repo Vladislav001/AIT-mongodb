@@ -1,9 +1,6 @@
-var Coach = require('../models/user');
-var Student = require('../models/student');
-var express = require('express');
-var router = express.Router();
-var async = require('async');
-// переделать бы на https://metanit.com/nosql/mongodb/2.11.php
+const Coach = require('../models/user');
+const Student = require('../models/student');
+const async = require('async');
 
 exports.post = function(req, res) {
 
@@ -12,12 +9,12 @@ exports.post = function(req, res) {
       [
           function(callback) {
             // Удаляем студентов, привязанных к тренеру
-            var deleteStudents = Student.remove({parent_ID : req.params.idTag}, function (err) {});
+            var deleteStudents = Student.deleteMany({parent_ID : req.params.idTag}, function (err) {});
               callback(null, deleteStudents);
           },
           function(deleteStudents, callback) {
             // Удаляем тренера
-              var deleteCoache =   Coach.remove({ _id: req.params.idTag }, function (err) {});
+              var deleteCoache = Coach.deleteOne({ _id: req.params.idTag }, function (err) {});
               callback(null, deleteCoache);
           },
       ],

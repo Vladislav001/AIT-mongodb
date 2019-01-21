@@ -1,10 +1,6 @@
-var Admin = require('../models/user');
-var Student = require('../models/student');
-var express = require('express');
-var router = express.Router();
-var async = require('async');
-// переделать бы на https://metanit.com/nosql/mongodb/2.11.php
-
+const Admin = require('../models/user');
+const Student = require('../models/student');
+const async = require('async');
 
 exports.post = function(req, res) {
 
@@ -23,12 +19,12 @@ exports.post = function(req, res) {
           },
           function(deleteStudents, callback) {
             // Удаляем тренеров, привязанных к админу
-              var deleteCoaches =  Admin.remove({parent_ID : req.params.idTag}, function (err) {});
+              var deleteCoaches =  Admin.removeMany({parent_ID : req.params.idTag}, function (err) {});
               callback(null, deleteCoaches);
           },
           function(deleteCoaches, callback) {
             // Удаляем админа
-              deleteAdmin =   Admin.remove({ _id: req.params.idTag }, function (err) {});
+              deleteAdmin =   Admin.removeOne({ _id: req.params.idTag }, function (err) {});
               callback(null, deleteAdmin);
           }
       ],
