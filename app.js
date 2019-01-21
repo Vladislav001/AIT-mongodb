@@ -3,15 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const dbConfig = require('./config').database;
+const dbConfig = require('./config').database;
 const session = require('express-session');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const favicon = require('serve-favicon');
-const passport = require('passport');
 
 // Connect to DB
-// mongoose.connect(dbConfig.url, { useNewUrlParser: true });
+mongoose.connect(dbConfig.url, { useNewUrlParser: true });
 
 const app = express();
 
