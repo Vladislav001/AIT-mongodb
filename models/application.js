@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var applicationSchema = mongoose.Schema({
+const applicationSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -23,7 +23,7 @@ applicationSchema.virtual('applicationId').get(function(){
     return this._id;
 });
 
-var Application = mongoose.model('Application', applicationSchema);
+let Application = mongoose.model('Application', applicationSchema);
 
 module.exports = Application;
 

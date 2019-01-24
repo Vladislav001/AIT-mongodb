@@ -6,8 +6,8 @@ exports.post = function (req, res) {
 
   //remove settings of student before removing him
   Application.find({ name: 'MoneyGame' }, function (err, application) {
-    var settings;
-    var indexInArray = false;
+    let settings;
+    let indexInArray = false;
 
     settings = application[0].settings;
     settings.map((item, index) => {

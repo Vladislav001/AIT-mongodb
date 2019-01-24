@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Задаем имя коллекции - *в БД оно преобразуется в нижний регистр
 // module.exports = mongoose.model('Trainer',{
@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 // });
 
 
-var trainerSchema = mongoose.Schema({
+const trainerSchema = mongoose.Schema({
     email: {
         type: String,
         required: true
@@ -36,6 +36,6 @@ trainerSchema.virtual('userId').get(function(){
     return this._id;
 });
 
-var User = mongoose.model('Trainer', trainerSchema);
+let User = mongoose.model('Trainer', trainerSchema);
 
 module.exports = User;

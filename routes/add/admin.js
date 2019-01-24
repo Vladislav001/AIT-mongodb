@@ -1,15 +1,11 @@
-var Admin = require('../../models/user');
-var express = require('express');
-var router = express.Router();
-var bCrypt = require('bcrypt-nodejs');
-var sendMail = require('../../functions/sendMail');
+const Admin = require('../../models/user');
+const bCrypt = require('bcrypt-nodejs');
+const sendMail = require('../../functions/sendMail');
 
-exports.post = function(req, res, done) {
+exports.post = function(req, res) {
   Admin.findOne({ 'email' : req.body.email }, function(err, user) {
-    // In case of any error, return using the done method
     if (err){
-      console.log('Error in SignUp: '+ err);
-      return done(err);
+        throw err;
     }
     // already exists
     if (user) {

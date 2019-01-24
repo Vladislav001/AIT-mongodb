@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // переделать в асинхрон(как ниже)
 function getCountFilesInDirectory(dir, callback) {
-  var files = fs.readdirSync(dir);
+  let files = fs.readdirSync(dir);
   return files.length;
 }
 
@@ -14,21 +14,18 @@ function getCountFilesInDirectoryMoneyGame() {
   const dirBasket = './public/application/applicationImages/MoneyGame/basket';
   const dirWallet = './public/application/applicationImages/MoneyGame/wallet';
 
-  var countFiles = {};
-  // countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn, function(content) {
-  //       console.log(content.length + " content") ;
-  // });
+  let countFiles = {};
   countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn);
   countFiles.basket = getCountFilesInDirectory(dirBasket);
   countFiles.wallet = getCountFilesInDirectory(dirWallet);
 
-  var countNextBtn = getCountFilesInDirectory(dirNextBtn);
-  var countBackBtn = getCountFilesInDirectory(dirBackBtn);
+  let countNextBtn = getCountFilesInDirectory(dirNextBtn);
+  let countBackBtn = getCountFilesInDirectory(dirBackBtn);
   if(countNextBtn >= countBackBtn)
   countFiles.nextBack = countBackBtn;
   else
   countFiles.nextBack = countNextBtn;
-  console.log(countFiles.againBtn + " countFiles") ;
+
   return countFiles;
 }
 

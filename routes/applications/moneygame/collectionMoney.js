@@ -1,9 +1,8 @@
 var Student = require("../../../models/student");
 var Application = require("../../../models/application");
-var express = require("express");
 var countFiles = require('../../../functions/getCountFilesInDirectory');
 
-exports.get = function (req, res) {
+exports.get = function (req, res) { 
 
   // Получим данные о конкретном студенте
   Student.findById(req.params.idTag, function (err, student) {

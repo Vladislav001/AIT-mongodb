@@ -13,13 +13,11 @@ cloudinary.config({
 exports.post = function(req, res) {
 
   //console.log(req.params.idTag); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
-  // Обновим данные конкретнго студента
-
 
   Student.findOne({ 'login' : req.body.login }, function(err, student) {
     if (err){
-      res.send("An unexpected error occurred, repeat later.");
-      console.log(err);
+     throw err;
+    //return res.status(500).json("An unexpected error occurred. Please try again later.");
     }
     if (student) {
       res.send('Student already exists with login: ' + req.body.login);
@@ -36,8 +34,8 @@ exports.post = function(req, res) {
         }
       }, function(err, results) {
         if(err){
-          res.send("An unexpected error occurred, repeat later.");
-          console.log(err);
+        //return res.status(500).json("An unexpected error occurred. Please try again later.");
+         throw err;
         } else {
             res.send("Data successfully updated");
         }
