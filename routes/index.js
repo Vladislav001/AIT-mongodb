@@ -84,15 +84,107 @@ module.exports = function (passport) {
 
 
 
- 
 
 
 
+
+  /*-----------------
+      **** API ****
+  *-----------------/
 
   
-  // API
+ /**
+   * @swagger
+   * /api/v1/login/student:
+   *   post:
+   *     tags:
+   *       - ""
+   *     summary: "PID authorization"
+   *     description: ""
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *     - name: "login"
+   *       in: "x-www-form-urlencoded"
+   *       description: "PID login"
+   *       required: true
+   *       type: "string"
+   *     - name: "password"
+   *       in: "x-www-form-urlencoded"
+   *       description: "PID password"
+   *       required: true
+   *       type: "string"
+   *     responses:
+   *       200:  
+   *        description: The PID was successfully authorized
+   *        examples:
+   *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+   *       401:
+   *         description: Invalid data entered
+   *         examples:
+   *           application/json: 
+   *            {  
+   *              errors:
+   *              [
+   *                {
+   *                 "id": 1, "title": Required fields are not filled, "detail": "login, password are required"
+   *                },{
+   *                 "id": 2, "code": password-Invalid, "title": Invalid data entered, "detail": "The number of characters in the password must be from 4 to 7"
+   *                },{
+   *                 "id": 2, "code": login-Invalid, "title": Invalid data entered, "detail": "Incorrectly specified login" 
+   *                },{
+   *                 "id": 2, "code": login-and-password-Invalid, "title": Invalid data entered, "detail": "You entered an incorrect login or password" 
+   *                 }         
+   *              ]
+   *            }
+   *           
+   */
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
+
+  /**
+    * @swagger
+    * /api/v1/information/student:
+    *   post:
+    *     tags:
+    *       - ""
+    *     summary: "Information about PID"
+    *     description: ""
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *     - name: "x-access-token"
+    *       in: "x-www-form-urlencoded"
+    *       description: "PID token"
+    *       required: true
+    *       type: "string"
+    *     responses:
+    *       200:  
+    *        description: Information about PID is successfully received
+    *        examples:
+    *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+    *       401:
+    *         description: Invalid data entered
+    *         examples:
+    *           application/json: 
+    *            {  
+    *              errors:
+    *              [
+    *               {
+    *                "id": 1, "title": Required fields are not filled, "detail": "Empty token value"
+    *                },{
+    *                "id": 2, "code": token-Invalid, "title": Invalid data entered, "detail": "Invalid token entered, or token expired"
+    *                },{
+    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The user with the token entered has been deleted."
+    *                }         
+    *              ]
+    *            }
+    *           
+    */
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
+
+
+
+
   //router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post); пока не нужно
   //router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post); пока не нужно
   router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/getSettings').get);
