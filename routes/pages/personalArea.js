@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Student = require('../models/student');
-const Admin = require('../models/user');
+const Student = require('../../models/student');
+const Admin = require('../../models/user');
 
 router.get('/personalArea/:page', function (req, res) {
 

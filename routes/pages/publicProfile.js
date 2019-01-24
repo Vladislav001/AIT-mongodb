@@ -1,5 +1,5 @@
-const Student = require('../models/student');
-const Admin = require('../models/user');
+const Student = require('../../models/student');
+const Admin = require('../../models/user');
 
 
 exports.get = function (req, res) {
