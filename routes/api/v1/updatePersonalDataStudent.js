@@ -1,6 +1,4 @@
-var Student = require('../../../models/student');
-var express = require('express');
-var router = express.Router();
+const Student = require('../../../models/student');
 
 exports.post = function(req, res) {
   Student.updateOne({

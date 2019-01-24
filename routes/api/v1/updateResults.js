@@ -1,6 +1,4 @@
-var Student = require('../../../models/student');
-var express = require('express');
-var router = express.Router();
+const Student = require('../../../models/student');
 
 exports.post = function(req, res) {
   // После того как данные будут заноситься - проверить, чтобы можно было подтянуть значения + можно добавлять другие сущности (напр result_2)
@@ -13,7 +11,7 @@ exports.post = function(req, res) {
 
   // Формируем путь до рез-ов вопроса в БД
   //var path = "application_1.results." + numberResult + "." + numberQuestion;
-  var path = "application_1.results." + numberResult + "." + numberQuestion;
+  let path = "application_1.results." + numberResult + "." + numberQuestion;
 
   // 1 вариант мб
   Student.updateOne({

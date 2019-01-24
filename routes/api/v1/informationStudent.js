@@ -1,6 +1,4 @@
-var Student = require('../../../models/student');
-var express = require('express');
-var router = express.Router();
+const Student = require('../../../models/student');
 
 exports.get = function(req, res) {
   Student.findById(req.userId, { password: 0 }, function (err, user) {
