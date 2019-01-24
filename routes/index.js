@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const swaggerJSDoc = require('swagger-jsdoc');
 const isAuthenticated = require('../middleware/isAuthenticated');
 const verifyToken = require('../middleware/verifyToken');
 
@@ -59,6 +60,36 @@ module.exports = function (passport) {
 
 
 
+
+
+  // swagger definition
+  const swaggerDefinition = require('../swagger.json');
+
+  // options for the swagger docs
+  const options = {
+    // import swaggerDefinitions
+    swaggerDefinition: swaggerDefinition,
+    // path to the API docs
+    apis: ['./routes/*.js'],
+  };
+
+  // initialize swagger-jsdoc
+  const swaggerSpec = swaggerJSDoc(options);
+
+  // serve swagger
+  router.get('/swagger.json', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+  });
+
+
+
+ 
+
+
+
+
+  
   // API
   router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
   router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);

@@ -1,8 +1,9 @@
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
+
 //Выслать на почту уведомление, потом вынести из , addAdmin (вызов 1 фун-ции везде)
 function sendEmailSuccesRegistration(url, recipient) {
   // указываем данные от почты: логин и пароль
-  var transporter = nodemailer.createTransport({
+  let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: '',
@@ -10,7 +11,7 @@ function sendEmailSuccesRegistration(url, recipient) {
     }
   });
 
-  var mailOptions = {
+  let mailOptions = {
     from: '',
     to: recipient, // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
     subject: 'Registration successful',
