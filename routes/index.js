@@ -153,7 +153,7 @@ module.exports = function (passport) {
     *       - application/json
     *     parameters:
     *     - name: "x-access-token"
-    *       in: "x-www-form-urlencoded"
+    *       in: "header"
     *       description: "PID token"
     *       required: true
     *       type: "string"
@@ -161,7 +161,8 @@ module.exports = function (passport) {
     *       200:  
     *        description: Information about PID is successfully received
     *        examples:
-    *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+    *           application/json: { "id": "5c4573204b457d9e38ff18b7",  "login": "tim.zaitsev123", "name": "Tima", 
+    *           "age": 22, "gender": "male", "caregiver_ID": "5b3e4dd2512813264c6a0925"  }
     *       401:
     *         description: Invalid data entered
     *         examples:
@@ -174,7 +175,7 @@ module.exports = function (passport) {
     *                },{
     *                "id": 2, "code": token-Invalid, "title": Invalid data entered, "detail": "Invalid token entered, or token expired"
     *                },{
-    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The user with the token entered has been deleted."
+    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The PID with the token entered has been deleted."
     *                }         
     *              ]
     *            }
@@ -185,9 +186,53 @@ module.exports = function (passport) {
 
 
 
+  /**
+    * @swagger
+    * /api/v1/applications/moneygame/get/settings:
+    *   post:
+    *     tags:
+    *       - ""
+    *     summary: "Get settings for MoneyGame"
+    *     description: ""
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *     - name: "x-access-token"
+    *       in: "header"
+    *       description: "PID token"
+    *       required: true
+    *       type: "string"
+    *     responses:
+    *       200:  
+    *        description: Information about settings for MoneyGame
+    *        examples:
+    *           application/json: { "progress_bar": true, back_btn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
+    *           "next_btn": "...", "again_btn": "...", "wallet": "...", "basket": "..." }
+    *       401:
+    *         description: Invalid data entered
+    *         examples:
+    *           application/json: 
+    *            {  
+    *              errors:
+    *              [
+    *               {
+    *                "id": 1, "title": Required fields are not filled, "detail": "Empty token value"
+    *                },{
+    *                "id": 2, "code": token-Invalid, "title": Invalid data entered, "detail": "Invalid token entered, or token expired"
+    *                },{
+    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The PID with the token entered has been deleted."
+    *                }         
+    *              ]
+    *            }
+    *           
+    */
+  router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/getSettings').get);
+
+
   //router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post); пока не нужно
   //router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post); пока не нужно
-  router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/getSettings').get);
+
+
 
   return router;
 }
