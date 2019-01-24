@@ -1,7 +1,6 @@
 // Надо подумать как решить такую длинную фигню ../../../.........
-var Student = require('../../../../../models/student');
-var Application = require("../../../../../models/application");
-var express = require('express');
+const Student = require('../../../../../models/student');
+const Application = require("../../../../../models/application");
 
 exports.get = function (req, res) {
   Student.findById(req.userId, { password: 0 }, function (err, user) {
