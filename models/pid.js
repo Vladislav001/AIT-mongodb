@@ -29,7 +29,10 @@ const pidSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    application_1: {
+    money_game: {
+        type: String
+    },
+    application_1: {  // удалится
         type: Object,
         default: {
           results: { // т.к в api уже обращаемся к нему

@@ -47,15 +47,15 @@ module.exports = function (passport) {
   // Applications
 
   // MoneyGame
-  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collection_money').get);
-  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/payment_purchase').get);
-  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selection_goods').get);
-  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/take_changee').get);
+  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/money_game/collection_money').get);
+  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/money_game/payment_purchase').get);
+  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/money_game/selection_goods').get);
+  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/money_game/take_changee').get);
 
-  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collection_money').post);
-  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/payment_purchase').post);
-  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selection_goods').post);
-  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/take_changee').post);
+  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/money_game/collection_money').post);
+  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/money_game/payment_purchase').post);
+  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/money_game/selection_goods').post);
+  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/money_game/take_changee').post);
   // Тут еще post будут - для записи в БД
 
 

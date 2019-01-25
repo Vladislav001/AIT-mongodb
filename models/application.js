@@ -1,3 +1,4 @@
+ // удалится все
 const mongoose = require('mongoose');
 
 const applicationSchema = mongoose.Schema({
