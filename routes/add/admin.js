@@ -27,10 +27,8 @@ exports.post = function(req, res) {
           throw err;
         }
         // Отправим уведомление на почту
-        sendMail.sendEmailSuccesRegistration(req.headers.host, req.body.email);
+        //sendMail.sendEmailSuccesRegistration(req.headers.host, req.body.email);
         console.log('Admin Registration succesful');
-
-        return done(null, newAdmin);
       });
       res.redirect('/personalArea/1');
     }

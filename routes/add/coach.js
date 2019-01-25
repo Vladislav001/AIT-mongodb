@@ -2,12 +2,11 @@ const Caregiver = require('../../models/caregiver');
 const bCrypt = require('bcrypt-nodejs');
 const sendMail = require('../../functions/sendMail');
 
-exports.post = function(req, res, done) {
+exports.post = function(req, res) {
   Caregiver.findOne({ 'email' : req.body.email }, function(err, user) {
     // In case of any error, return using the done method
     if (err){
-      console.log('Error in SignUp: '+ err);
-      return done(err);
+       throw err;
     }
     // already exists
     if (user) {
@@ -35,10 +34,8 @@ exports.post = function(req, res, done) {
           throw err;
         }
         // Отправим уведомление на почту
-        sendMail.sendEmailSuccesRegistration(req.headers.host, req.body.email);
+        //sendMail.sendEmailSuccesRegistration(req.headers.host, req.body.email);
         console.log('Coach Registration succesful');
-
-        return done(null, newCaregiver);
       });
       res.redirect('/personalArea/1');
     }

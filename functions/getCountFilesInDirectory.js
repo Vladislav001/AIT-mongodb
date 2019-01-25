@@ -1,13 +1,13 @@
 const fs = require('fs');
 
 // переделать в асинхрон(как ниже)
-function getCountFilesInDirectory(dir, callback) {
-  let files = fs.readdirSync(dir);
+async function getCountFilesInDirectory(dir) {
+  let files = fs.readdir(dir);
   return files.length;
 }
 
 // Вернем кол-во файлов для приложения MoneyGame
-function getCountFilesInDirectoryMoneyGame() {
+async function getCountFilesInDirectoryMoneyGame() {
   const dirNextBtn = './public/application/applicationImages/MoneyGame/nextBtn';
   const dirBackBtn = './public/application/applicationImages/MoneyGame/backBtn';
   const dirAgainBtn = './public/application/applicationImages/MoneyGame/againBtn';

@@ -3,7 +3,7 @@ const PID = require('../../models/pid');
 exports.post = function(req, res) {
   PID.findOne({ 'login' : req.body.login }, function(err, user) {
     if (err){
-      console.log('Error in SignUp: '+ err);
+     throw err;
     }
     // already exists
     if (user) {

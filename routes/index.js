@@ -40,7 +40,7 @@ module.exports = function (passport) {
 
   router.post('/deleteStudent/id:idTag', require('./delete_pid').post);
   router.post('/deleteAdmin/id:idTag', require('./delete_admin').post);
-  router.post('/deleteCoach/id:idTag', require('./delete_coach').post);
+  router.post('/deleteCoach/id:idTag', require('./delete_caregiver').post);
   router.post('/updateStudent/id:idTag', require('./update_pid').post);
 
 
