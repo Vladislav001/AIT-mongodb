@@ -8,14 +8,14 @@ const verifyToken = require('../middleware/verifyToken');
 module.exports = function (passport) {
 
   router.get('/', require('./pages/main').get);
-  router.get('/personalArea/:page', isAuthenticated, require('./pages/personalArea'));
+  router.get('/personalArea/:page', isAuthenticated, require('./pages/personal_area'));
   // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
   //router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
   // Либо регуляркой мб проверять, либо передалть вообще - но надо понимать кого смотрим
-  router.get('/publicProfile/admins/id:idTag', require('./pages/publicProfile').get);
-  router.get('/publicProfile/coaches/id:idTag', require('./pages/publicProfile').get);
-  router.get('/publicProfile/students/id:idTag', require('./pages/publicProfile').get);
-  router.get('/test_settings/id:idTag', require('./pages/testSettings').get);
+  router.get('/publicProfile/admins/id:idTag', require('./pages/public_profile').get);
+  router.get('/publicProfile/coaches/id:idTag', require('./pages/public_profile').get);
+  router.get('/publicProfile/students/id:idTag', require('./pages/public_profile').get);
+  router.get('/test_settings/id:idTag', require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
   router.post('/signup', passport.authenticate('signup', {
@@ -32,30 +32,30 @@ module.exports = function (passport) {
     req.logout();
     res.redirect('/');
   });
-  router.post('/restorePassword', require('./restorePassword').post);
+  router.post('/restorePassword', require('./restore_password').post);
 
   router.post('/addNewAdmin', require('./add/admin').post);
   router.post('/addNewCoach', require('./add/coach').post);
-  router.post('/addNewStudent', require('./add/student').post);
+  router.post('/addNewStudent', require('./add/pid').post);
 
-  router.post('/deleteStudent/id:idTag', require('./deleteStudent').post);
-  router.post('/deleteAdmin/id:idTag', require('./deleteAdmin').post);
-  router.post('/deleteCoach/id:idTag', require('./deleteCoach').post);
-  router.post('/updateStudent/id:idTag', require('./updateStudent').post);
+  router.post('/deleteStudent/id:idTag', require('./delete_pid').post);
+  router.post('/deleteAdmin/id:idTag', require('./delete_admin').post);
+  router.post('/deleteCoach/id:idTag', require('./delete_coach').post);
+  router.post('/updateStudent/id:idTag', require('./update_pid').post);
 
 
   // Applications
 
   // MoneyGame
-  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collectionMoney').get);
-  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/paymentPurchase').get);
-  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selectionGoods').get);
-  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').get);
+  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collection_money').get);
+  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/payment_purchase').get);
+  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selection_goods').get);
+  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/take_changee').get);
 
-  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collectionMoney').post);
-  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/paymentPurchase').post);
-  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selectionGoods').post);
-  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/takeChangee').post);
+  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/moneygame/collection_money').post);
+  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/moneygame/payment_purchase').post);
+  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/moneygame/selection_goods').post);
+  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/moneygame/take_changee').post);
   // Тут еще post будут - для записи в БД
 
 
@@ -139,7 +139,7 @@ module.exports = function (passport) {
    *            }
    *           
    */
-  router.post('/api/v1/loginStudent', require('./api/v1/loginStudent').post);
+  router.post('/api/v1/loginStudent', require('./api/v1/login_pid').post);
 
   /**
     * @swagger
@@ -181,7 +181,7 @@ module.exports = function (passport) {
     *            }
     *           
     */
-  router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/informationStudent').get);
+  router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/information_pid').get);
 
 
 
@@ -226,7 +226,7 @@ module.exports = function (passport) {
     *            }
     *           
     */
-  router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/getSettings').get);
+  router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/get_settings').get);
 
 
   //router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post); пока не нужно
