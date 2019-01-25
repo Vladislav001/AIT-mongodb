@@ -1,4 +1,4 @@
-const Student = require('../models/student');
+const PID = require('../models/pid');
 const formidable = require('formidable');
 const fs = require('fs');
 const cloudinary = require('cloudinary');
@@ -14,15 +14,15 @@ exports.post = function(req, res) {
 
   //console.log(req.params.idTag); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
 
-  Student.findOne({ 'login' : req.body.login }, function(err, student) {
+  PID.findOne({ 'login' : req.body.login }, function(err, student) {
     if (err){
      throw err;
     //return res.status(500).json("An unexpected error occurred. Please try again later.");
     }
     if (student) {
-      res.send('Student already exists with login: ' + req.body.login);
+      res.send('PID already exists with login: ' + req.body.login);
     } else {
-      Student.updateOne({
+      PID.updateOne({
         "_id": req.params.idTag
       }, {
         $set: {

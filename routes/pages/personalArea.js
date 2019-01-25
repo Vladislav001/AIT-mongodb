@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Student = require('../../models/student');
-const Admin = require('../../models/user');
+const PID = require('../../models/pid');
+const Admin = require('../../models/caregiver');
 
 router.get('/personalArea/:page', function (req, res) {
 
@@ -10,12 +10,12 @@ router.get('/personalArea/:page', function (req, res) {
 
     if (req.user.access_level == 3) {
         // Получим список студентов, привязанных к тренеру
-        Student // получаем объекты
+        PID // получаем объекты
             .find({ parent_ID: req.user._id })
             .skip((perPage * page) - perPage)
             .limit(perPage)
             .exec(function (err, students) {
-                Student.find({ parent_ID: req.user._id }).countDocuments().exec(function (err, count) { // получаем кол-во объектов
+                PID.find({ parent_ID: req.user._id }).countDocuments().exec(function (err, count) { // получаем кол-во объектов
                     if (err) return next(err)
                     res.render('personalArea', {
                         students: students,

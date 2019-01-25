@@ -1,5 +1,5 @@
-const Admin = require('../models/user');
-const Student = require('../models/student');
+const Admin = require('../models/caregiver');
+const PID = require('../models/pid');
 const async = require('async');
 
 exports.post = function(req, res) {
@@ -12,7 +12,7 @@ exports.post = function(req, res) {
             var deleteStudents =  Admin.find({parent_ID : req.params.idTag},  function(err, coaches) { // находим всех тренеров
               if (err) return next(err)
               for(var i = 0; i < coaches.length; i++){
-                  Student.remove({parent_ID : coaches[i]._id}, function (err) {}); // удаляем студентов, с parent_ID конкретного тренера
+                PID.remove({parent_ID : coaches[i]._id}, function (err) {}); // удаляем студентов, с parent_ID конкретного тренера
               }
             });
               callback(null, deleteStudents);

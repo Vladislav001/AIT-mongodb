@@ -1,9 +1,9 @@
-const Student = require('../../models/student');
+const PID = require('../../models/pid');
 
 exports.get = function (req, res) {
 
   // Получим данные о конкретном студенте
-  Student.findById(req.params.idTag, function (err, data) {
+  PID.findById(req.params.idTag, function (err, data) {
     if (err) {
       throw err;
     }

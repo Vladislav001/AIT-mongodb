@@ -1,5 +1,5 @@
-const Coach = require('../models/user');
-const Student = require('../models/student');
+const Coach = require('../models/caregiver');
+const PID = require('../models/pid');
 const async = require('async');
 
 exports.post = function(req, res) {
@@ -9,7 +9,7 @@ exports.post = function(req, res) {
       [
           function(callback) {
             // Удаляем студентов, привязанных к тренеру
-            var deleteStudents = Student.deleteMany({parent_ID : req.params.idTag}, function (err) {});
+            var deleteStudents = PID.deleteMany({parent_ID : req.params.idTag}, function (err) {});
               callback(null, deleteStudents);
           },
           function(deleteStudents, callback) {

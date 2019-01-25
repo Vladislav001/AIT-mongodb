@@ -1,6 +1,5 @@
-const Student = require('../models/student');
+const PID = require('../models/pid');
 const Application = require('../models/application');
-const express = require('express');
 
 exports.post = function (req, res) {
 
@@ -28,7 +27,7 @@ exports.post = function (req, res) {
   });
 
   //removing student from DB
-  Student.deleteOne({ _id: req.params.idTag }, function (err) {
+  PID.deleteOne({ _id: req.params.idTag }, function (err) {
     if (err) return next(err)
   });
 

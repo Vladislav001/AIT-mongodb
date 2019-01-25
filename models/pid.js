@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const studentSchema = mongoose.Schema({
+const pidSchema = mongoose.Schema({
     login: {
         type: String,
         required: true
@@ -39,10 +39,10 @@ const studentSchema = mongoose.Schema({
       },
 });
 
-studentSchema.virtual('userId').get(function(){
+pidSchema.virtual('pidId').get(function(){
     return this._id;
 });
 
-let Student = mongoose.model('Student', studentSchema);
+let PID = mongoose.model('PID', pidSchema);
 
-module.exports = Student;
+module.exports = PID;

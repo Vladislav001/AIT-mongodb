@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
+const Caregiver = require('../models/caregiver');
 const bCrypt = require('bcrypt-nodejs');
 const sendMail = require('../functions/sendMail');
 
@@ -12,7 +12,7 @@ module.exports = function (passport) {
 
       findOrCreateUser = function () {
 
-        User.findOne({ 'email': email }, function (err, user) {
+        Caregiver.findOne({ 'email': email }, function (err, user) {
           if (err) {
             console.log('Error in SignUp: ' + err);
             return done(err);
@@ -23,25 +23,25 @@ module.exports = function (passport) {
             return done(null, false, req.flash('message', 'User Already Exists'));
           } else {
 
-            let newUser = new User();
+            let newCaregiver = new Caregiver();
 
-            newUser.email = email;
-            newUser.password = createHash(password);
+            newCaregiver.email = email;
+            newCaregiver.password = createHash(password);
 
             let currentDate = new Date();
-            newUser.created = currentDate.toUTCString();
+            newCaregiver.created = currentDate.toUTCString();
 
-            newUser.save(function (err) {
+            newCaregiver.save(function (err) {
               if (err) {
                 console.log('Error in Saving user: ' + err);
                 throw err;
               }
               console.log('User Registration succesful');
 
-              // Отправим уведомление на почту
-              sendMail.sendEmailSuccesRegistration(req.headers.host, email);
+              // Отправим уведомление на почту - пока нет необходимости
+              //sendMail.sendEmailSuccesRegistration(req.headers.host, email);
 
-              return done(null, newUser);
+              return done(null, newCaregiver);
             });
           }
         });

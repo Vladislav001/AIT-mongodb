@@ -1,4 +1,4 @@
-const Student = require('../../../models/student');
+const PID = require('../../../models/pid');
 
 exports.post = function(req, res) {
   // После того как данные будут заноситься - проверить, чтобы можно было подтянуть значения + можно добавлять другие сущности (напр result_2)
@@ -14,7 +14,7 @@ exports.post = function(req, res) {
   let path = "application_1.results." + numberResult + "." + numberQuestion;
 
   // 1 вариант мб
-  Student.updateOne({
+  PID.updateOne({
     "_id": req.userId,
   },{
     $set: {

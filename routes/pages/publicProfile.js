@@ -1,5 +1,5 @@
-const Student = require('../../models/student');
-const Admin = require('../../models/user');
+const PID = require('../../models/pid');
+const Admin = require('../../models/caregiver');
 
 
 exports.get = function (req, res) {
@@ -18,7 +18,7 @@ exports.get = function (req, res) {
   if (req.user.access_level == 3) {
 
     // Получим данные о конкретном студенте
-    Student.findById(req.params.idTag, function (err, student) {
+    PID.findById(req.params.idTag, function (err, student) {
 
       res.render('publicProfile', {
         title: 'profileStudent',
@@ -28,9 +28,9 @@ exports.get = function (req, res) {
     });
   } else if (req.user.access_level == 2) {
     // Получим данные о конкретном тренере - его список студентов
-    Student.find({ parent_ID: req.params.idTag }, function (err, students) {
+    PID.find({ parent_ID: req.params.idTag }, function (err, students) {
       // Получим данные о конкретном студенте
-      Student.findById(req.params.idTag, function (err, student) {
+      PID.findById(req.params.idTag, function (err, student) {
         res.render('publicProfile', {
           title: 'profileAdmin',
           user: req.user,
@@ -46,9 +46,9 @@ exports.get = function (req, res) {
     // Получим данные о конкретном админе(НЕ ГЛАВНОМ) - его список тренеров
     Admin.find({ parent_ID: req.params.idTag }, function (err, coaches) {
       // Получим данные о конкретном тренере - его список студентов
-      Student.find({ parent_ID: req.params.idTag }, function (err, students) {
+      PID.find({ parent_ID: req.params.idTag }, function (err, students) {
         // Получим данные о конкретном студенте
-        Student.findById(req.params.idTag, function (err, student) {
+        PID.findById(req.params.idTag, function (err, student) {
           res.render('publicProfile', {
             title: 'profileAdmin',
             user: req.user,

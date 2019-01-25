@@ -1,4 +1,4 @@
-const Admin = require('../../models/user');
+const Admin = require('../../models/caregiver');
 const bCrypt = require('bcrypt-nodejs');
 const sendMail = require('../../functions/sendMail');
 

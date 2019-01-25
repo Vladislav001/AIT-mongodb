@@ -1,8 +1,8 @@
-const Student = require('../../../models/student');
+const PID = require('../../../models/pid');
 const jwt = require('jsonwebtoken');
 
 exports.post = function(req, res) {
-  Student.findOne({ 'login' : req.body.login }, function (err, student) {
+  PID.findOne({ 'login' : req.body.login }, function (err, student) {
       if (err) return res.status(500).send('Error on the server: ' + err);
       if (!student) return res.status(404).send({ auth: false, token: null });
      

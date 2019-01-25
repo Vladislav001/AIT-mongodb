@@ -1,7 +1,7 @@
-const Student = require('../../models/student');
+const PID = require('../../models/pid');
  
 exports.post = function(req, res) {
-  Student.findOne({ 'login' : req.body.login }, function(err, user) {
+  PID.findOne({ 'login' : req.body.login }, function(err, user) {
     if (err){
       console.log('Error in SignUp: '+ err);
     }
@@ -9,22 +9,22 @@ exports.post = function(req, res) {
     if (user) {
       return res.status(403).json('Student already exists with login: ' + req.body.login);
     } else {
-      var newStudent = new Student();
+      var newPID = new PID();
 
-      newStudent.login = req.body.login;
-      newStudent.password = req.body.password;
-      newStudent.name = req.body.name;
-      newStudent.age = req.body.age;
-      newStudent.gender = req.body.gender;
+      newPID.login = req.body.login;
+      newPID.password = req.body.password;
+      newPID.name = req.body.name;
+      newPID.age = req.body.age;
+      newPID.gender = req.body.gender;
       //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
       if(req.user.access_level == 3){
-        newStudent.parent_ID = req.user._id;
+        newPID.parent_ID = req.user._id;
       } else {
-        newStudent.parent_ID = req.body.idTag;
+        newPID.parent_ID = req.body.idTag;
       }
 
       // save the user
-      newStudent.save(function(err) {
+      newPID.save(function(err) {
         if (err){
           console.log('Error in Saving student: ' + err);
           throw err;

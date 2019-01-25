@@ -1,7 +1,7 @@
-const Student = require('../../../models/student');
+const PID = require('../../../models/pid');
 
 exports.post = function(req, res) {
-  Student.updateOne({
+  PID.updateOne({
     "_id": req.userId
   }, {
     $set: {

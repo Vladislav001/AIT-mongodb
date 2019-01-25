@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
-// Задаем имя коллекции - *в БД оно преобразуется в нижний регистр
-// module.exports = mongoose.model('Trainer',{
-//     email: String,
-//     password: String,
-//     date_registration: String
-// });
-
-
-const trainerSchema = mongoose.Schema({
+const caregiverSchema = mongoose.Schema({
     email: {
         type: String,
         required: true
@@ -32,10 +24,10 @@ const trainerSchema = mongoose.Schema({
     },
 });
 
-trainerSchema.virtual('userId').get(function(){
+caregiverSchema.virtual('caregiverId').get(function(){
     return this._id;
 });
 
-let User = mongoose.model('Trainer', trainerSchema);
+let Caregiver = mongoose.model('Caregiver', caregiverSchema);
 
-module.exports = User;
+module.exports = Caregiver;
