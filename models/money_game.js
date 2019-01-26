@@ -6,7 +6,7 @@ const moneyGameSchema = mongoose.Schema({
         required: true
     },
     settings: {
-        type: Array,
+        type: Object,
         required: true
     },
     statistics: {

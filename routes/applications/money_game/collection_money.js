@@ -1,76 +1,30 @@
 const PID = require("../../../models/pid");
-const Application = require("../../../models/application");
+const MoneyGame = require("../../../models/money_game");
 const countFiles = require('../../../functions/getCountFilesInDirectory');
 
-exports.get = function (req, res) { 
+exports.get = async function (req, res) { 
 
-  // Получим данные о конкретном студенте
-  PID.findById(req.params.idTag, function (err, student) {
-    Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
+  try {
 
-      var indexInArray = false; //index in settings array
-      var settings; //settings query
-      if (application) {
-        settings = application[0].settings;
-        settings.map((item, index) => {
-          for (var key in item) {
-            if (key == req.params.idTag) {
-              indexInArray = index;
-              break;
-            }
-          }
-        })
+    let moneyGame = await MoneyGame.findOne({ pid_id: req.params.idTag }, {'settings': 1, _id: 0});
+    let pid = await PID.findOne({ _id: req.params.idTag });
 
-
-        if (indexInArray !== false) {
-          res.render("./applications/moneygame/collectionMoney", {
-            student: student,
-            settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
-            host: req.headers.host,
-            countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
-          });
-        } else {
-
-          // default settings with images's paths
-          var defaultSettings = {
-            [req.params.idTag]: {
-          backBtn: "/applications/money_game/backBtn/1.png",
-          progressBar: false,
-          nextBtn: "/applications/money_game/nextBtn/1.png",
-          againBtn: "/applications/money_game/againBtn/1.png",
-          wallet: "/applications/money_game/wallet/1.png",
-          basket: "/applications/money_game/basket/1.png"
-            }
-          }
-
-          Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
-            Application.find({ name: 'MoneyGame' }, { settings: req.params.idTag }, function (err, application) {
-              indexInArray = false;
-              settings = application[0].settings;
-              settings.map((item, index) => {
-                for (var key in item) {
-                  if (key == req.params.idTag) {
-                    indexInArray = index;
-                    break;
-                  }
-                }
-              })
-              res.render("./applications/moneygame/collectionMoney", {
-                student: student,
-                settings: JSON.stringify(settings[indexInArray][req.params.idTag]),
-                host: req.headers.host
-              });
-            });
-          });
-        }
-      }
+    res.render("./applications/moneygame/collectionMoney", {
+      student: pid,
+      settings: JSON.stringify(moneyGame.settings),
+      host: req.headers.host,
+      countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
     });
-  });
+  } catch (err) {
+    throw err;
+  }
+
 }
 
 
 
-exports.post = function (req, res) {
+exports.post = async function (req, res) {
+  
   Application.find({ name: 'MoneyGame' }, function (err, application) {
     var settings;
     var indexInArray;
