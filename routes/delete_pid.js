@@ -1,36 +1,15 @@
 const PID = require('../models/pid');
-const Application = require('../models/application');
+const MoneyGame = require('../models/money_game');
 
-exports.post = function (req, res) {
+exports.post = async function (req, res) {
+  try {
 
-  //remove settings of student before removing him
-  Application.find({ name: 'MoneyGame' }, function (err, application) {
-    let settings;
-    let indexInArray = false;
+    await MoneyGame.deleteOne({ pid_id: req.params.idTag });
+    await PID.deleteOne({ _id: req.params.idTag });
 
-    settings = application[0].settings;
-    settings.map((item, index) => {
-      for (var key in item) {
-        if (key == req.params.idTag) {
-          indexInArray = index;
-          break;
-        }
-      }
-    })
+    res.redirect('/personalArea/1');
+  } catch (err) {
+    throw err;
+  }
 
-    //if settings exist, then remove
-    if (indexInArray !== false) {
-      settings.splice(indexInArray, 1);
-      Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) { });
-    }
-
-  });
-
-  //removing student from DB
-  PID.deleteOne({ _id: req.params.idTag }, function (err) {
-    if (err) return next(err)
-  });
-
-
-  res.redirect('/personalArea/1');
 };

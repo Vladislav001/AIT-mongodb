@@ -31,12 +31,12 @@ exports.get = function (req, res) {
           // default settings with images's paths
           var defaultSettings = {
             [req.params.idTag]: {
-          backBtn: "/application/applicationImages/MoneyGame/backBtn/1.png",
+          backBtn: "/applications/money_game/backBtn/1.png",
           progressBar: false,
-          nextBtn: "/application/applicationImages/MoneyGame/nextBtn/1.png",
-          againBtn: "/application/applicationImages/MoneyGame/againBtn/1.png",
-          wallet: "/application/applicationImages/MoneyGame/wallet/1.png",
-          basket: "/application/applicationImages/MoneyGame/basket/1.png"
+          nextBtn: "/applications/money_game/nextBtn/1.png",
+          againBtn: "/applications/money_game/againBtn/1.png",
+          wallet: "/applications/money_game/wallet/1.png",
+          basket: "/applications/money_game/basket/1.png"
             }
           }
 

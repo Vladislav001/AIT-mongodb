@@ -8,12 +8,12 @@ const fs = require('fs');
 
 // Вернем кол-во файлов для приложения MoneyGame
  function getCountFilesInDirectoryMoneyGame() {
-  const dirNextBtn = './public/application/applicationImages/MoneyGame/nextBtn';
-  const dirBackBtn = './public/application/applicationImages/MoneyGame/backBtn';
-  const dirAgainBtn = './public/application/applicationImages/MoneyGame/againBtn';
-  const dirBasket = './public/application/applicationImages/MoneyGame/basket';
-  const dirWallet = './public/application/applicationImages/MoneyGame/wallet';
-
+  const dirNextBtn = './public/applications/money_game/nextBtn';
+  const dirBackBtn = './public/applications/money_game/backBtn';
+  const dirAgainBtn = './public/applications/money_game/againBtn';
+  const dirBasket = './public/applications/money_game/basket';
+  const dirWallet = './public/applications/money_game/wallet';
+ 
   let countFiles = {};
   countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn);
   countFiles.basket = getCountFilesInDirectory(dirBasket);

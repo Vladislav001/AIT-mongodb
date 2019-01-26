@@ -12,9 +12,9 @@ const moneyGameSchema = mongoose.Schema({
     statistics: {
         type: Array
     }
-});
+}); 
 
-moneyGameSchema.virtual('moneyGameSchemaId').get(function(){
+moneyGameSchema.virtual('moneyGameId').get(function(){
     return this._id;
 });
 
