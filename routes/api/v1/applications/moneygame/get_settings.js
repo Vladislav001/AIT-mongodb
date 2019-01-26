@@ -1,93 +1,21 @@
-const PID = require('../../../../../models/pid');
-const Application = require("../../../../../models/application");
+const MoneyGame = require("../../../../../models/money_game");
 
-exports.get = function (req, res) {
-  PID.findById(req.userId, { password: 0 }, function (err, user) {
-    if (err) return res.status(500).send('Error on the server: ' + err);
-    if (!user) return res.status(404).send("No user found.");
+exports.get = async function (req, res) {
+  try {
 
-    Application.find({ name: 'MoneyGame' }, { settings: [user.id] }, function (err, application) {
+    let moneyGame = await MoneyGame.findOne({ pid_id: req.userId }, { 'settings': 1, _id: 0 });
 
-      var indexInArray = false; //index in settings array
-      var settings; //settings query
-      if (application) {
-        settings = application[0].settings;
-        settings.map((item, index) => {
-          for (var key in item) {
-            if (key == user.id) {
-              indexInArray = index;
-              break;
-            }
-          }
-        })
-
-        if (indexInArray !== false) {
-          res.status(200).send({
-            "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
-            "progressBar": settings[indexInArray][user.id]["progressBar"],
-            "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
-            "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
-            "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
-            "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
-          });
-        } else {
-
-          // default settings with images's paths
-          var defaultSettings = {
-            [user.id]: {
-              backBtn: "/applications/money_game/backBtn/1.png",
-              progressBar: false,
-              nextBtn: "/applications/money_game/nextBtn/1.png",
-              againBtn: "/applications/money_game/againBtn/1.png",
-              wallet: "/applications/money_game/wallet/1.png",
-              basket: "/applications/money_game/basket/1.png"
-            }
-          }
-
-          Application.findOneAndUpdate({ name: 'MoneyGame' }, { $push: { settings: defaultSettings } }, { safe: true, upsert: true }, function (err, application) {
-            Application.find({ name: 'MoneyGame' }, { settings: [user.id] }, function (err, application) {
-              indexInArray = false;
-              settings = application[0].settings;
-              settings.map((item, index) => {
-                for (var key in item) {
-                  if (key == user.id) {
-                    indexInArray = index;
-                    break;
-                  }
-                }
-              })
-
-              settings[indexInArray][user.id]['progressBar'] = JSON.parse(settings[indexInArray][user.id]['progressBar']);
-
-              Application.update({ name: 'MoneyGame' }, { $set: { settings: settings } }, function (err, data) {
-                Application.find({ name: 'MoneyGame' }, { settings: [user.id] }, function (err, application) {
-                  indexInArray = false;
-                  settings = application[0].settings;
-                  settings.map((item, index) => {
-                    for (var key in item) {
-                      if (key == user.id) {
-                        indexInArray = index;
-                        break;
-                      }
-                    }
-                  })
-
-                  res.status(200).send(
-                    {
-                      "backBtn": req.headers.host + settings[indexInArray][user.id]["backBtn"],
-                      "progressBar": settings[indexInArray][user.id]["progressBar"],
-                      "nextBtn": req.headers.host + settings[indexInArray][user.id]["nextBtn"],
-                      "againBtn": req.headers.host + settings[indexInArray][user.id]["againBtn"],
-                      "wallet": req.headers.host + settings[indexInArray][user.id]["wallet"],
-                      "basket": req.headers.host + settings[indexInArray][user.id]["basket"]
-                    }
-                  );
-                });
-              });
-            });
-          });
-        }
+    res.status(200).send(
+      {
+        "backBtn": req.headers.host + moneyGame.settings.backBtn,
+        "progressBar": moneyGame.settings.progressBar,
+        "nextBtn": req.headers.host + moneyGame.settings.nextBtn,
+        "againBtn": req.headers.host + moneyGame.settings.againBtn,
+        "wallet": req.headers.host + moneyGame.settings.wallet,
+        "basket": req.headers.host + moneyGame.settings.basket,
       }
-    });
-  });
+    );
+  } catch (err) {
+    throw err;
+  }
 }
