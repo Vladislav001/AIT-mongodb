@@ -35,7 +35,7 @@ module.exports = function (passport) {
   router.post('/restorePassword', require('./restore_password').post);
 
   router.post('/addNewAdmin', require('./add/admin').post);
-  router.post('/addNewCoach', require('./add/coach').post);
+  router.post('/addNewCoach', require('./add/caregiver').post);
   router.post('/addNewStudent', require('./add/pid').post);
 
   router.post('/deleteStudent/id:idTag', require('./delete_pid').post);

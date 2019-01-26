@@ -3,12 +3,12 @@ const bCrypt = require('bcrypt-nodejs');
 const sendMail = require('../../functions/sendMail');
 
 exports.post = function(req, res) {
-  Admin.findOne({ 'email' : req.body.email }, function(err, user) {
+  Admin.findOne({ 'email' : req.body.email }, function(err, admin) {
     if (err){
         throw err;
     }
-    // already exists
-    if (user) {
+ 
+    if (admin) {
       console.log('Admin already exists with email: ' + req.body.email);
       res.redirect('/personalArea/1');
 
