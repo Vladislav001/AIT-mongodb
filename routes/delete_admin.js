@@ -1,39 +1,35 @@
-const Admin = require('../models/caregiver');
+const MoneyGame = require('../models/money_game');
 const PID = require('../models/pid');
-const async = require('async');
+const Caregiver = require('../models/caregiver');
 
-exports.post = function(req, res) {
+exports.post = async function (req, res) {
+  try {
+    let caregiverIDs = [];
+    let caregivers = await Caregiver.find({ parent_ID: req.params.idTag }, '_id'); // найти всех тренеров, привязанных к данному админу 
 
-  // Необходимо выполнить последоватеьное удаление - ибо иногда тренер удаляется раньше, чем студенты -> студенты не удалились из БД
-  async.waterfall(
-      [ 
-          function(callback) {
-            // Удаляем студентов, привязанных к тренерам, которые привязаны к админу
-            var deleteStudents =  Admin.find({parent_ID : req.params.idTag},  function(err, coaches) { // находим всех тренеров
-              if (err) return next(err)
-              for(var i = 0; i < coaches.length; i++){
-                PID.remove({parent_ID : coaches[i]._id}, function (err) {}); // удаляем студентов, с parent_ID конкретного тренера
-              }
-            });
-              callback(null, deleteStudents);
-          },
-          function(deleteStudents, callback) {
-            // Удаляем тренеров, привязанных к админу
-              var deleteCoaches =  Admin.removeMany({parent_ID : req.params.idTag}, function (err) {});
-              callback(null, deleteCoaches);
-          },
-          function(deleteCoaches, callback) {
-            // Удаляем админа
-              deleteAdmin =   Admin.removeOne({ _id: req.params.idTag }, function (err) {});
-              callback(null, deleteAdmin);
-          }
-      ],
-      function (err, deleteAdmin) {
-        //  console.log(deleteAdmin);
-          // Node.js and JavaScript Rock!
-      }
-  );
+    // сформируем из обьектов id - массив id
+    caregivers.forEach(caregiver => {
+      caregiverIDs.push(caregiver._id);
+    });
 
-// Удаление всех тренеров и студентов тренеров или же перепривязка
+    let pidIDs = [];
+    let pids = await PID.find({ parent_ID: caregiverIDs }, '_id'); // найти всех PID, привязанных к данным тренерам
+
+    // сформируем из обьектов id - массив id
+    pids.forEach(pid => {
+      pidIDs.push(pid._id);
+    });
+
+    await MoneyGame.deleteMany({ pid_id: pidIDs }) // удалить все зависимые MoneyGame
+    await PID.deleteMany({ parent_ID: caregiverIDs }); // удалим всех зависимых PID
+    await Caregiver.deleteMany({ parent_ID: req.params.idTag }); // удалим всех зависимых тренеров
+    await Caregiver.deleteOne({ _id: req.params.idTag }); // удалим админа
+
+    res.redirect('/personalArea/1');
+  } catch (err) {
+    throw err;
+  }
+
+  // Удаление всех тренеров и студентов тренеров или же перепривязка
   res.redirect('/personalArea/1');
 };
