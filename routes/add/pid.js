@@ -22,7 +22,7 @@ exports.post = function (req, res) {
       if (req.user.access_level == 3) {
         newPID.parent_ID = req.user._id;
       } else {
-        newPID.parent_ID = req.body.idTag;
+        newPID.parent_ID = req.body._id;
       }
 
       let newMoneyGame = new moneyGame();

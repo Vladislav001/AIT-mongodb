@@ -3,11 +3,11 @@ const PID = require('../models/pid');
 
 module.exports = function (req, res, next) {
 
-    // if (req.params._id != undefined) {
-    //     var markerId = req.params._id;
-    // } else if (req.body._id != undefined) {
-    //     var markerId = req.body._id;
-    // }
+    if (req.params._id != undefined) {
+        var caregiverId = req.params._id;
+    } else if (req.body._id != undefined) {
+        var markerId = req.body._id;
+    }
 
     // let userId = req.user._id;
 

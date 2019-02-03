@@ -4,8 +4,8 @@ const MoneyGame = require('../models/money_game');
 exports.post = async function (req, res) {
   try {
 
-    await MoneyGame.deleteOne({ pid_id: req.params.idTag });
-    await PID.deleteOne({ _id: req.params.idTag });
+    await MoneyGame.deleteOne({ pid_id: req.params._id });
+    await PID.deleteOne({ _id: req.params._id });
 
     res.redirect('/personalArea/1');
   } catch (err) {

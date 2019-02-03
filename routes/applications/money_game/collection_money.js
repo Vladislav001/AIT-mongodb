@@ -6,8 +6,8 @@ exports.get = async function (req, res) {
 
   try {
 
-    let moneyGame = await MoneyGame.findOne({ pid_id: req.params.idTag }, { 'settings': 1, _id: 0 });
-    let pid = await PID.findOne({ _id: req.params.idTag });
+    let moneyGame = await MoneyGame.findOne({ pid_id: req.params._id }, { 'settings': 1, _id: 0 });
+    let pid = await PID.findOne({ _id: req.params._id });
 
     res.render("./applications/moneygame/collectionMoney", {
       student: pid,
@@ -36,7 +36,7 @@ exports.post = async function (req, res) {
       basket: req.body.basket
     }
 
-    await MoneyGame.updateOne({ pid_id: req.params.idTag }, {
+    await MoneyGame.updateOne({ pid_id: req.params._id }, {
       $set: {
         settings: objectSettings
       }

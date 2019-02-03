@@ -7,7 +7,7 @@ exports.post = async function (req, res) {
 
   try {
     let pidIDs = [];
-    let pids = await PID.find({ parent_ID: req.params.idTag }, '_id'); // найти всех PID, привязанных к данному тренеру 
+    let pids = await PID.find({ parent_ID: req.params._id }, '_id'); // найти всех PID, привязанных к данному тренеру 
 
     // сформируем из обьектов id - массив id
     pids.forEach(pid => {
@@ -15,8 +15,8 @@ exports.post = async function (req, res) {
     });
 
     await MoneyGame.deleteMany({ pid_id: pidIDs }) // удалить все зависимые MoneyGame
-    await PID.deleteMany({ parent_ID: req.params.idTag }); // удалим PID, привязанных к тренеру
-    await Caregiver.deleteOne({ _id: req.params.idTag }); // удалим тренера
+    await PID.deleteMany({ parent_ID: req.params._id }); // удалим PID, привязанных к тренеру
+    await Caregiver.deleteOne({ _id: req.params._id }); // удалим тренера
 
     res.redirect('/personalArea/1');
   } catch (err) {

@@ -47,7 +47,7 @@
         </div>
         <div class="widget-content">
           <form action="/addNewStudent" method="POST" name="addNewStudentForm">
-            <input  name="idTag" type="hidden" value="<%=idTag%>">
+            <input  name="_id" type="hidden" value="<%=_id%>">
 
             <label for="flogin">Login</label>
             <input type="text" id="flogin" name="login" placeholder="Enter login">
@@ -91,12 +91,12 @@
                  var name = $("input[name='name']").val();
                  var age =$("input[name='age']").val();
                  var gender = $("select[name='gender']").val();
-                 var idTag =$("input[name='idTag']").val();
+                 var _id =$("input[name='_id']").val();
 
                  $.ajax({
                      type: "POST",
                      url: "/addNewStudent",
-                     data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender, idTag:idTag}),
+                     data: JSON.stringify({login: login, password: password, name: name, age: age, gender: gender, _id:_id}),
                      dataType: "json",
                      contentType: "application/json",
                      statusCode:{

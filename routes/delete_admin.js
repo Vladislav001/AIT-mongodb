@@ -5,7 +5,7 @@ const Caregiver = require('../models/caregiver');
 exports.post = async function (req, res) {
   try {
     let caregiverIDs = [];
-    let caregivers = await Caregiver.find({ parent_ID: req.params.idTag }, '_id'); // найти всех тренеров, привязанных к данному админу 
+    let caregivers = await Caregiver.find({ parent_ID: req.params._id }, '_id'); // найти всех тренеров, привязанных к данному админу 
 
     // сформируем из обьектов id - массив id
     caregivers.forEach(caregiver => {
@@ -22,8 +22,8 @@ exports.post = async function (req, res) {
 
     await MoneyGame.deleteMany({ pid_id: pidIDs }) // удалить все зависимые MoneyGame
     await PID.deleteMany({ parent_ID: caregiverIDs }); // удалим всех зависимых PID
-    await Caregiver.deleteMany({ parent_ID: req.params.idTag }); // удалим всех зависимых тренеров
-    await Caregiver.deleteOne({ _id: req.params.idTag }); // удалим админа
+    await Caregiver.deleteMany({ parent_ID: req.params._id }); // удалим всех зависимых тренеров
+    await Caregiver.deleteOne({ _id: req.params._id }); // удалим админа
 
     res.redirect('/personalArea/1');
   } catch (err) {

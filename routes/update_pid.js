@@ -12,7 +12,7 @@ cloudinary.config({
 
 exports.post = function(req, res) {
 
-  //console.log(req.params.idTag); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
+  //console.log(req.params._id); // все ок, НО 2 раза приходят данные(1 норм, 2 - undefined)
 
   PID.findOne({ 'login' : req.body.login }, function(err, student) {
     if (err){
@@ -23,7 +23,7 @@ exports.post = function(req, res) {
       res.send('PID already exists with login: ' + req.body.login);
     } else {
       PID.updateOne({
-        "_id": req.params.idTag
+        "_id": req.params._id
       }, {
         $set: {
           "login": req.body.login,
@@ -48,7 +48,7 @@ exports.post = function(req, res) {
 
 
 
-  // var pid_ID =  req.params.idTag;
+  // var pid_ID =  req.params._id;
   // var form = new formidable.IncomingForm();
   // var profilePhotoPath;
   //
@@ -62,7 +62,7 @@ exports.post = function(req, res) {
   //     //profilePhoto.url.replace(new RegExp('"','g'),"")
   //
   //     Student.updateOne({
-  //       "_id": req.params.idTag
+  //       "_id": req.params._id
   //     }, {
   //       $set: {
   //         "login": req.body.login,
@@ -77,5 +77,5 @@ exports.post = function(req, res) {
   //   });
   // });
 
-  //  res.redirect('/publicProfile/students/id' + req.params.idTag);
+  //  res.redirect('/publicProfile/students/id' + req.params._id);
 };

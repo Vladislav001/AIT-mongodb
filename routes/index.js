@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const swaggerJSDoc = require('swagger-jsdoc');
 const isAuthenticated = require('../middleware/isAuthenticated');
+const isCaregiver = require('../middleware/isCaregiver');
 const verifyToken = require('../middleware/verifyToken');
 
 
@@ -9,13 +10,12 @@ module.exports = function (passport) {
 
   router.get('/', require('./pages/main').get);
   router.get('/personalArea/:page', isAuthenticated, require('./pages/personal_area'));
-  // router.get('/profileStudent', isAuthenticated, require('./profileStudent'));
-  //router.get('/publicProfile/admins/id:idTag', require('./publicProfile').get);
+
   // Либо регуляркой мб проверять, либо передалть вообще - но надо понимать кого смотрим
-  router.get('/publicProfile/admins/id:idTag', require('./pages/public_profile').get);
-  router.get('/publicProfile/coaches/id:idTag', require('./pages/public_profile').get);
-  router.get('/publicProfile/students/id:idTag', require('./pages/public_profile').get);
-  router.get('/test_settings/id:idTag', require('./pages/test_settings').get);
+  router.get('/publicProfile/admins/id:_id', require('./pages/public_profile').get);
+  router.get('/publicProfile/coaches/id:_id', require('./pages/public_profile').get);
+  router.get('/publicProfile/students/id:_id', require('./pages/public_profile').get);
+  router.get('/test_settings/id:_id', require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
   router.post('/signup', passport.authenticate('signup', {
@@ -34,28 +34,28 @@ module.exports = function (passport) {
   });
   router.post('/restorePassword', require('./restore_password').post);
 
-  router.post('/addNewAdmin', require('./add/admin').post);
-  router.post('/addNewCoach', require('./add/caregiver').post);
-  router.post('/addNewStudent', require('./add/pid').post);
+  router.post('/addNewAdmin', isAuthenticated, require('./add/admin').post);
+  router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post);
+  router.post('/addNewStudent', isAuthenticated, require('./add/pid').post);
 
-  router.post('/deleteStudent/id:idTag', require('./delete_pid').post);
-  router.post('/deleteAdmin/id:idTag', require('./delete_admin').post);
-  router.post('/deleteCoach/id:idTag', require('./delete_caregiver').post);
-  router.post('/updateStudent/id:idTag', require('./update_pid').post);
+  router.post('/deleteStudent/id:_id', isAuthenticated, require('./delete_pid').post);
+  router.post('/deleteAdmin/id:_id', isAuthenticated, require('./delete_admin').post);
+  router.post('/deleteCoach/id:_id', isAuthenticated, require('./delete_caregiver').post);
+  router.post('/updateStudent/id:_id', isAuthenticated, isCaregiver, require('./update_pid').post);
 
 
   // Applications
 
   // MoneyGame
-  router.get('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/money_game/collection_money').get);
-  router.get('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/money_game/payment_purchase').get);
-  router.get('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/money_game/selection_goods').get);
-  router.get('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/money_game/take_changee').get);
+  router.get('/customizeMoneyGame/collectionMoney/id:_id', isAuthenticated, require('./applications/money_game/collection_money').get);
+  router.get('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').get);
+  router.get('/customizeMoneyGame/selectionGoods/id:_id', isAuthenticated, require('./applications/money_game/selection_goods').get);
+  router.get('/customizeMoneyGame/takeChangee/id:_id', isAuthenticated, require('./applications/money_game/take_changee').get);
 
-  router.post('/customizeMoneyGame/collectionMoney/id:idTag', require('./applications/money_game/collection_money').post);
-  router.post('/customizeMoneyGame/paymentPurchase/id:idTag', require('./applications/money_game/payment_purchase').post);
-  router.post('/customizeMoneyGame/selectionGoods/id:idTag', require('./applications/money_game/selection_goods').post);
-  router.post('/customizeMoneyGame/takeChangee/id:idTag', require('./applications/money_game/take_changee').post);
+  router.post('/customizeMoneyGame/collectionMoney/id:_id', isAuthenticated, require('./applications/money_game/collection_money').post);
+  router.post('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').post);
+  router.post('/customizeMoneyGame/selectionGoods/id:_id', isAuthenticated, require('./applications/money_game/selection_goods').post);
+  router.post('/customizeMoneyGame/takeChangee/id:_id', isAuthenticated, require('./applications/money_game/take_changee').post);
   // Тут еще post будут - для записи в БД
 
 

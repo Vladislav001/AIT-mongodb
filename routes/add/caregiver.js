@@ -22,7 +22,7 @@ exports.post = function(req, res) {
       if(req.user.access_level == 2){
         newCaregiver.parent_ID = req.user._id;
       } else {
-        newCaregiver.parent_ID = req.body.idTag;
+        newCaregiver.parent_ID = req.body._id;
       }
 
       newCaregiver.access_level = 3;

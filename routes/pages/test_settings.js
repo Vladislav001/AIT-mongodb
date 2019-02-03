@@ -3,7 +3,7 @@ const PID = require('../../models/pid');
 exports.get = function (req, res) {
 
   // Получим данные о конкретном студенте
-  PID.findById(req.params.idTag, function (err, data) {
+  PID.findById(req.params._id, function (err, data) {
     if (err) {
       throw err;
     }
