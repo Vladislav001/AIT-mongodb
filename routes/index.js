@@ -229,9 +229,6 @@ module.exports = function (passport) {
   router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/get_settings').get);
 
 
-  //router.post('/api/v1/updatePersonalDataStudent', verifyToken, require('./api/v1/updatePersonalDataStudent').post); пока не нужно
-  //router.post('/api/v1/updateResults', verifyToken, require('./api/v1/updateResults').post); пока не нужно
-
 
 
   return router;
