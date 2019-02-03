@@ -1,15 +1,48 @@
 const PID = require('../../../models/pid');
 const jwt = require('jsonwebtoken');
+const apiError = require('../../../functions/apierror');
+const constants = require('../../../functions/constants');
 
-exports.post = function(req, res) {
-  PID.findOne({ 'login' : req.body.login }, function (err, student) {
-      if (err) return res.status(500).send('Error on the server: ' + err);
-      if (!student) return res.status(404).send({ auth: false, token: null });
-     
-      if(student.password != req.body.password ) return res.status(401).send({ auth: false, token: null }); // т.к не шифрую для студентов пароль
-      let token = jwt.sign({ id: student._id }, 'supersecret', {
-        expiresIn: 86400 // expires in 24 hours
+exports.post = function (req, res) {
+
+  let login = req.body.login;
+  let password = req.body.password;
+  let errors = [];
+
+  PID.findOne({ 'login': login }, function (err, pid) {
+    if (err) throw err;
+
+    if (!pid) {
+      errors.push(apiError.createError("2", apiError.createInvalidCode('login-and-password'), 'Введены неверные данные', 'Вы ввели неверный login или password'));
+      return res.status(401).json({
+        errors
       });
-      res.status(200).send({ auth: true, token: token });
+    }
+
+    if (pid.password != password) {
+      errors.push(apiError.createError("2", apiError.createInvalidCode('login-and-password'), 'Введены неверные данные', 'Вы ввели неверный login или password'));
+      return res.status(401).json({
+        errors
+      });
+    }
+
+    let token = jwt.sign({ id: pid._id }, constants.SECRET_STRING, {
+      expiresIn: constants.TIME_LIFE_TOKEN
     });
+    
+
+    PID.updateOne({
+      "_id": pid._id
+    }, {
+        $set: {
+          "token": token,
+        }
+      }, function (err, results) {
+        if (err) throw err;
+
+        res.status(200).json({
+          "token": token
+        });
+      });
+  });
 };

@@ -3,7 +3,7 @@ const MoneyGame = require("../../../../../models/money_game");
 exports.get = async function (req, res) {
   try {
 
-    let moneyGame = await MoneyGame.findOne({ pid_id: req.userId }, { 'settings': 1, _id: 0 });
+    let moneyGame = await MoneyGame.findOne({ pid_id: res.pidId }, { 'settings': 1, _id: 0 });
 
     res.status(200).send(
       {

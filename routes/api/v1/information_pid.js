@@ -1,10 +1,10 @@
 const PID = require('../../../models/pid');
 
 exports.get = function(req, res) {
-  PID.findById(req.userId, { password: 0 }, function (err, user) {
+  PID.findById(res.pidId, { password: 0 }, function (err, pid) {
      if (err) return res.status(500).send('Error on the server: ' + err);
-     if (!user) return res.status(404).send("No user found.");
+     if (!pid) return res.status(404).send("PID not found.");
 
-     res.status(200).send(user);
+     res.status(200).send(pid);
    });
 };

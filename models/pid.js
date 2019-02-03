@@ -29,17 +29,12 @@ const pidSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    token: {
+        type: String,
+      },
     money_game: {
         type: String
     },
-    application_1: {  // удалится
-        type: Object,
-        default: {
-          results: { // т.к в api уже обращаемся к нему
-
-          }
-        }
-      },
 });
 
 pidSchema.virtual('pidId').get(function(){
