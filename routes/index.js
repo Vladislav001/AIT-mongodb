@@ -44,8 +44,6 @@ module.exports = function (passport) {
   router.post('/updateStudent/id:_id', isAuthenticated, isCaregiver, require('./update_pid').post);
 
 
-  // Applications
-
   // MoneyGame
   router.get('/customizeMoneyGame/collectionMoney/id:_id', isAuthenticated, require('./applications/money_game/collection_money').get);
   router.get('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').get);
@@ -56,11 +54,9 @@ module.exports = function (passport) {
   router.post('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').post);
   router.post('/customizeMoneyGame/selectionGoods/id:_id', isAuthenticated, require('./applications/money_game/selection_goods').post);
   router.post('/customizeMoneyGame/takeChangee/id:_id', isAuthenticated, require('./applications/money_game/take_changee').post);
-  // Тут еще post будут - для записи в БД
 
 
-
-
+  
 
   // swagger definition
   const swaggerDefinition = require('../swagger.json');
@@ -83,15 +79,9 @@ module.exports = function (passport) {
   });
 
 
-
-
-
-
-
   /*-----------------
       **** API ****
   *-----------------/
-
   
  /**
    * @swagger
