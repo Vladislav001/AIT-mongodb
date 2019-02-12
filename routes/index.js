@@ -85,7 +85,7 @@ module.exports = function (passport) {
   
  /**
    * @swagger
-   * /api/v1/login/student:
+   * /api/v1/login/pid:
    *   post:
    *     tags:
    *       - ""
@@ -129,11 +129,11 @@ module.exports = function (passport) {
    *            }
    *           
    */
-  router.post('/api/v1/loginStudent', require('./api/v1/login_pid').post);
+  router.post('/api/v1/login/pid', require('./api/v1/login_pid').post);
 
   /**
     * @swagger
-    * /api/v1/information/student:
+    * /api/v1/information/pid:
     *   post:
     *     tags:
     *       - ""
@@ -171,7 +171,7 @@ module.exports = function (passport) {
     *            }
     *           
     */
-  router.get('/api/v1/informationStudent', verifyToken, require('./api/v1/information_pid').get);
+  router.post('/api/v1/information/pid', verifyToken, require('./api/v1/information_pid').post);
 
 
 
@@ -216,7 +216,7 @@ module.exports = function (passport) {
     *            }
     *           
     */
-  router.get('/api/v1/applications/moneygame/getSettings', verifyToken, require('./api/v1/applications/moneygame/get_settings').get);
+  router.post('/api/v1/applications/moneygame/get/settings', verifyToken, require('./api/v1/applications/moneygame/get_settings').post);
 
 
 
