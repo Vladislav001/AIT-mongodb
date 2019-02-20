@@ -239,7 +239,7 @@ module.exports = function (passport) {
     *       200:  
     *        description: Information about currency for MoneyGame
     *        examples:
-    *           application/json: { "currency": "euro", "images": [{ "image": "test-ait.herokuapp.com/currency/euro/0,01.png", "count": 0.01 }] }
+    *           application/json: { "currency": "euro", "images": [{ "image": "test-ait.herokuapp.com/system_images/currency/euro/0,01.png", "count": 0.01 }] }
     *       401:
     *         description: Invalid data entered
     *         examples:

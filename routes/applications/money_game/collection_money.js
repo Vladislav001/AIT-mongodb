@@ -13,7 +13,7 @@ exports.get = async function (req, res) {
     let moneyGame = await MoneyGame.findOne({ pid_id: req.params._id }, { 'settings': 1, 'currency': 1, _id: 0 });
     let pid = await PID.findOne({ _id: req.params._id });
 
-    let currencyPath = `./public/currency/${moneyGame.currency}/`;
+    let currencyPath = `./public/system_images/currency/${moneyGame.currency}/`;
     let currencyImages = [];
     
     // возможно переделать на async
