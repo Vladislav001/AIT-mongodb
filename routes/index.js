@@ -219,7 +219,47 @@ module.exports = function (passport) {
   router.post('/api/v1/applications/moneygame/get/settings', verifyToken, require('./api/v1/applications/moneygame/get_settings').post);
 
 
-
+  /**
+    * @swagger
+    * /api/v1/applications/moneygame/get/currency:
+    *   post:
+    *     tags:
+    *       - ""
+    *     summary: "Get currency for MoneyGame"
+    *     description: ""
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *     - name: "x-access-token"
+    *       in: "header"
+    *       description: "PID token"
+    *       required: true
+    *       type: "string"
+    *     responses:
+    *       200:  
+    *        description: Information about currency for MoneyGame
+    *        examples:
+    *           application/json: { "currency": "euro", "images": {"0,01": "test-ait.herokuapp.com/currency/euro/0,01.png",
+    *           "1": "test-ait.herokuapp.com/currency/euro/1.png"} }
+    *       401:
+    *         description: Invalid data entered
+    *         examples:
+    *           application/json: 
+    *            {  
+    *              errors:
+    *              [
+    *               {
+    *                "id": 1, "title": Required fields are not filled, "detail": "Empty token value"
+    *                },{
+    *                "id": 2, "code": token-Invalid, "title": Invalid data entered, "detail": "Invalid token entered, or token expired"
+    *                },{
+    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The PID with the token entered has been deleted."
+    *                }         
+    *              ]
+    *            }
+    *           
+    */
+   router.post('/api/v1/applications/moneygame/get/currency', verifyToken, require('./api/v1/applications/moneygame/get_currency').post);
 
   return router;
 }
