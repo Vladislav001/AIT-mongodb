@@ -38,7 +38,7 @@ exports.get = async function (req, res) {
 exports.post = async function (req, res) {
 
   try {
-console.log(req.body);
+
     let objectSettings = {
       backBtn: req.body.backBtn,
       progressBar: req.body.progressBar,
@@ -48,11 +48,13 @@ console.log(req.body);
       basket: req.body.basket
     }
 
+    let updateData = {
+      settings: objectSettings,
+      currency:  req.body.currency ? req.body.currency : "euro"
+    }
+    
     await MoneyGame.updateOne({ pid_id: req.params._id }, {
-      $set: {
-        settings: objectSettings,
-        currency: req.body.currency
-      }
+      $set: updateData
     });
 
   } catch (err) {
