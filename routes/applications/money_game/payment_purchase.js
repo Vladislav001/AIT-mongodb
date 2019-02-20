@@ -6,12 +6,13 @@ exports.get = async function (req, res) {
 
   try {
 
-    let moneyGame = await MoneyGame.findOne({ pid_id: req.params._id }, { 'settings': 1, _id: 0 });
+    let moneyGame = await MoneyGame.findOne({ pid_id: req.params._id }, { 'settings': 1, 'currency': 1, _id: 0 });
     let pid = await PID.findOne({ _id: req.params._id });
 
     res.render("./applications/moneygame/paymentPurchase", {
       student: pid,
       settings: JSON.stringify(moneyGame.settings),
+      currency: moneyGame.currency,
       host: req.headers.host,
       countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
     });
@@ -37,7 +38,8 @@ exports.post = async function (req, res) {
 
     await MoneyGame.updateOne({ pid_id: req.params._id }, {
       $set: {
-        settings: objectSettings
+        settings: objectSettings,
+        currency: req.body.currency
       }
     });
 

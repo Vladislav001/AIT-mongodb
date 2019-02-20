@@ -18,7 +18,8 @@ exports.post = function (req, res) {
       newPID.name = req.body.name;
       newPID.age = req.body.age;
       newPID.gender = req.body.gender;
-      //Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
+
+      // *Если добавляем из ЛК, то по св-ву авторизованного, а если с публичного профиля - по GET
       if (req.user.access_level == 3) {
         newPID.parent_ID = req.user._id;
       } else {

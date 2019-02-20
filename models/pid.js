@@ -21,10 +21,10 @@ const pidSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    profile_photo: {
-      data: Buffer,
-      contentType: String
-    },
+    // profile_photo: {
+    //   data: Buffer,
+    //   contentType: String
+    // },
     parent_ID: {
         type: String,
         required: true

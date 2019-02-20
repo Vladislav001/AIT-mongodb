@@ -9,6 +9,10 @@ const moneyGameSchema = mongoose.Schema({
         type: Object,
         required: true
     },
+    currency: {
+        type: String,
+        default: "euro"
+    },
     statistics: {
         type: Array
     }

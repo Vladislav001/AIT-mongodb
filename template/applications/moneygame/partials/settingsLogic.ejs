@@ -185,7 +185,6 @@
         if (basket.classList.contains('none')) newSettings.basket = settings.basket;
         else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
 
-
         console.log(newSettings);
 
         $.ajax({
