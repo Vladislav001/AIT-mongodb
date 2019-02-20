@@ -11,7 +11,9 @@ exports.post = async function (req, res) {
         // возможно переделать на async
         fs.readdirSync(currencyPath).forEach(file => {
 
-            let count = file.replace(',', '.');
+            let count = file.split('.')[0];
+            count = count.replace(',', '.');
+            
             let currency = {
                 count: count,
                 image: `${req.headers.host}/system_images/currency/${moneyGame.currency}/${file}`
