@@ -13,13 +13,18 @@ exports.post = async function (req, res) {
 
             let count = file.split('.')[0];
             count = count.replace(',', '.');
-            
+
             let currency = {
                 count: count,
                 image: `${req.headers.host}/system_images/currency/${moneyGame.currency}/${file}`
             }
 
             currencyImages.push(currency);
+        });
+
+        // sort by count
+        currencyImages.sort(function (a, b) {
+            return a.count - b.count
         });
 
         res.status(200).send(
