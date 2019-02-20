@@ -1,8 +1,6 @@
 const PID = require("../../../models/pid");
 const MoneyGame = require("../../../models/money_game");
 const countFiles = require('../../../functions/getCountFilesInDirectory');
-
-
 const fs = require('fs');
 
 
@@ -21,7 +19,7 @@ exports.get = async function (req, res) {
     // возможно переделать на async
     fs.readdirSync(currencyPath).forEach(file => {
       currencyImages.push(`./currency/${file}`);
-    })
+    });
 
     res.render("./applications/moneygame/collectionMoney", {
       student: pid,

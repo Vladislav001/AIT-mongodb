@@ -1,22 +1,32 @@
 const MoneyGame = require("../../../../../models/money_game");
+const fs = require('fs');
 
 exports.post = async function (req, res) {
-  try {
+    try {
 
-    let moneyGame = await MoneyGame.findOne({ pid_id: res.pidId }, { 'currency': 1, _id: 0 });
+        let moneyGame = await MoneyGame.findOne({ pid_id: res.pidId }, { 'currency': 1, _id: 0 });
+        let currencyPath = `./public/currency/${moneyGame.currency}/`;
+        let currencyImages = [];
 
-    res.status(200).send(
-      {
-        "backBtn": req.headers.host + moneyGame.settings.backBtn,
-        "progressBar": moneyGame.settings.progressBar,
-        "nextBtn": req.headers.host + moneyGame.settings.nextBtn,
-        "againBtn": req.headers.host + moneyGame.settings.againBtn,
-        "wallet": req.headers.host + moneyGame.settings.wallet,
-        "basket": req.headers.host + moneyGame.settings.basket,
-      }
-    );
-  } catch (err) {
-    throw err;
-  }
+        // возможно переделать на async
+        fs.readdirSync(currencyPath).forEach(file => {
+
+            let count = file.replace(',', '.');
+            let currency = {
+                count: count,
+                image: `${req.headers.host}/currency/${moneyGame.currency}/${file}`
+            }
+
+            currencyImages.push(currency);
+        });
+
+        res.status(200).send(
+            {
+                "currency": moneyGame.currency,
+                "images": currencyImages
+            }
+        );
+    } catch (err) {
+        throw err;
+    }
 }
-  
