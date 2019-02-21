@@ -15,7 +15,7 @@ exports.post = async function (req, res) {
             count = count.replace(',', '.');
 
             let currency = {
-                count: count,
+                count: Number (count),
                 image: `${req.headers.host}/system_images/currency/${moneyGame.currency}/${file}`
             }
 
