@@ -27,9 +27,9 @@ exports.post = async function (req, res) {
             return a.count - b.count
         });
 
-        res.status(200).send(
-            currencyImages
-        );
+        res.status(200).send({
+            "currency": currencyImages
+        });
     } catch (err) {
         throw err;
     }
