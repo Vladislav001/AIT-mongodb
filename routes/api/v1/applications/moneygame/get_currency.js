@@ -28,10 +28,7 @@ exports.post = async function (req, res) {
         });
 
         res.status(200).send(
-            {
-                "currency": moneyGame.currency,
-                "images": currencyImages
-            }
+            currencyImages
         );
     } catch (err) {
         throw err;
