@@ -11,13 +11,13 @@
                 </div>
                 <div class="container">
                     <div class="pagination">
-                        <a href="/customizeMoneyGame/collectionMoney/id<%=student.id%>" class="a-active">Collection Money</a>
-                        <a href="/customizeMoneyGame/selectionGoods/id<%=student.id%>">Selection Goods</a>
-                        <a href="/customizeMoneyGame/paymentPurchase/id<%=student.id%>">Payment Purchase</a>
-                        <a href="/customizeMoneyGame/takeChangee/id<%=student.id%>">Take Changee</a>
+                        <button class="a-active paginationBtn" id="collectionMoneyBtn">Collection Money</button>
+                        <button class="paginationBtn" id="selectionGoodsBtn">Selection Goods</button>
+                        <button class="paginationBtn" id="paymentPurchaseBtn">Payment Purchase</button>
+                        <button class="paginationBtn" id="takeChangeeBtn">Take Changee</button>
                     </div>
                     <%-partial('./partials/settings')%>
-                        <div class="game">
+                        <div class="game" id="collectionMoney">
                             <div class="game-header">
                                 <img class="nav-btn none" id="backBtn">
                                 <div id="progressBar" class="none" title="Progress Bar"><div></div></div>
@@ -54,10 +54,131 @@
                                 <img id="wallet" title="Wallet">
                                 <img id="basket" class="none">
                             </div>
+                        </div>
+
+                        <!-- --------------------------------- -->
+
+                        <div class="game" id="selectionGoods">
+                            <div class="game-header">
+                                <img class="nav-btn" id="backBtn" title="Back Button">
+                                <div id="progressBar" class="none" title="Progress Bar"><div></div></div>
+                                <img class="nav-btn" id="nextBtn" title="Next Button">
+                                <img class="nav-btn none" id="againBtn">
+                            </div>
+                            <div class="main">
+                                <div class="row">
+                                    <div class="game-block"><img src="/applications/money_game/money/1cents.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/2cents.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/5cents.png"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block"><img src="/applications/money_game/money/10cent.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/20cent.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/50cent.png"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="game-block"><img src="/applications/money_game/money/1euro.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/2euro.png"></div>
+                                </div>
+                                <div class="row hidden">
+                                    <div class="game-block"><img src="/applications/money_game/money/5euro.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/10euro.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/20euro.png"></div>
+                                </div>
+                                <div class="row hidden">
+                                    <div class="game-block"><img src="/applications/money_game/money/50euro.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/100euro.png"></div>
+                                    <div class="game-block"><img src="/applications/money_game/money/200euro.png"></div>
+                                </div>
+                            </div>
+                            <div class="game-footer">
+                                <img id="basket" title="Basket"></div>
+                                <img id="wallet" class="none">
+                            </div>
+
+                            <!-- --------------------------------- -->
+
+                            <div class="game" id="paymentPurchase">
+                                <div class="game-header">
+                                    <img class="nav-btn" id="backBtn" title="Back Button">
+                                    <div id="progressBar" class="none" title="Progress Bar"><div></div></div>
+                                    <img class="nav-btn" id="nextBtn" title="Next Button">
+                                    <img class="nav-btn none" id="againBtn">
+                                </div>
+                                <div class="main">
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/1cents.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/2cents.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/5cents.png"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/10cent.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/20cent.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/50cent.png"></div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="game-block"><img src="/applications/money_game/money/1euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/2euro.png"></div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="game-block"><img src="/applications/money_game/money/5euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/10euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/20euro.png"></div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="game-block"><img src="/applications/money_game/money/50euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/100euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/200euro.png"></div>
+                                    </div>
+                                </div>
+                                <div class="game-footer">
+                                    <img id="wallet" title="Wallet">
+                                    <img id="basket" class="none">
+                                </div>
+                            </div>
+
+                            <!-- --------------------------------- -->
+
+                            <div class="game" id="takeChangee">
+                                <div class="game-header">
+                                    <img class="nav-btn" id="backBtn" title="Back Button">
+                                    <div id="progressBar" class="none" title="Progress Bar"><div></div></div>
+                                    <img class="nav-btn none" id="nextBtn" title="Next Button">
+                                    <img class="nav-btn" id="againBtn" title="Again Button">
+                                </div>
+                                <div class="main">
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/1cents.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/2cents.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/5cents.png"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/10cent.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/20cent.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/50cent.png"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/1euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/2euro.png"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/5euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/10euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/20euro.png"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="game-block"><img src="/applications/money_game/money/50euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/100euro.png"></div>
+                                        <div class="game-block"><img src="/applications/money_game/money/200euro.png"></div>
+                                    </div>
+                                </div>
+                                <div class="game-footer">
+                                    <img id="wallet" title="Wallet">
+                                    <img id="basket" class="none"></div>
+                                </div>
 
                         </div>
                 </div>
-            </div>
         </section>
 
 

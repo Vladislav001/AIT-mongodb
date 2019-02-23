@@ -15,7 +15,7 @@
     flex-wrap: wrap;
 }
 
-.container .pagination a {
+.container .pagination button {
     border-radius: 5px;
     margin: 5px;
     margin-left: 10px;
@@ -23,6 +23,7 @@
     max-width: 160px;
     vertical-align: middle;
     padding: 5px;
+    border: none;
 }
 
 .container .settings {

@@ -1,18 +1,29 @@
 <script defer>
     //path of page declaration
-    var path = window.location.pathname.toString();
-    path = path.replace("/customizeMoneyGame", "").replace(/\/id.*/, "");
+    var path = "collectionMoney";
     //settings from data base
     var settings = '<%-settings%>';
     settings = JSON.parse(settings); //parse to get object
 
 
-    // game elems declaration
+    // game elements declaration
     var progressBar = document.getElementById("progressBar");
     var againBtn = document.getElementById("againBtn");
     var wallet = document.getElementById("wallet");
     var basket = document.getElementById("basket");
- 
+
+    // game views declaration
+    var games = document.getElementsByClassName("game");
+    var [collectionMoney, selectionGoods, paymentPurchase, takeChangee] = [...games];
+
+    // pagination buttons declaration;
+    var collectionMoneyBtn = document.getElementById("collectionMoneyBtn");
+    var selectionGoodsBtn = document.getElementById("selectionGoodsBtn");
+    var paymentPurchaseBtn = document.getElementById("paymentPurchaseBtn");
+    var takeChangeeBtn = document.getElementById("takeChangeeBtn");
+
+    var paginationBtns = [collectionMoneyBtn, selectionGoodsBtn, paymentPurchaseBtn, takeChangeeBtn];
+
     var hostName = '<%-host%>';
 
     // changers declaration
@@ -24,53 +35,22 @@
     var submitBtn = document.getElementById("submitBtn");
 
     // main part
-    switch (path) {
-        case "/collectionMoney":
-            disableChanger(againBtnChanger);
-            disableChanger(basketChanger);
-            ////////////////////////////////////////////
-            nextBtn.src = settings.nextBtn;
-            wallet.src = settings.wallet;
-            break;
+    paginationLogic();
 
-        case "/selectionGoods":
-            disableChanger(againBtnChanger);
-            disableChanger(walletChanger);
-            ////////////////////////////////////////////
-            backBtn.src = settings.backBtn;
-            nextBtn.src = settings.nextBtn;
-            basket.src = settings.basket;
-            break;
+    // listeners of pagination buttons
+    collectionMoneyBtn.addEventListener("click", pageChanger);
+    selectionGoodsBtn.addEventListener("click", pageChanger);
+    paymentPurchaseBtn.addEventListener("click", pageChanger);
+    takeChangeeBtn.addEventListener("click", pageChanger);
 
-        case "/paymentPurchase":
-            disableChanger(againBtnChanger);
-            disableChanger(basketChanger);
-            ////////////////////////////////////////////
-            backBtn.src = settings.backBtn;
-            nextBtn.src = settings.nextBtn;
-            wallet.src = settings.wallet;
-            break;
-
-        case "/takeChangee":
-            disableChanger(basketChanger);
-            ////////////////////////////////////////////
-            backBtn.src = settings.backBtn;
-            againBtn.src = settings.againBtn;
-            wallet.src = settings.wallet;
-            break;
-
-        default:
-            break;
-    }
-
-    //listeners of changers
+    // listeners of changers
     nextBackBtnsChanger.addEventListener('change', changePairElems);
     progressBarChanger.addEventListener('change', changeElem);
     againBtnChanger.addEventListener('change', changeElem);
     walletChanger.addEventListener('change', changeElem);
     basketChanger.addEventListener('change', changeElem);
 
-    //input values from DB
+    // input values from DB
     nextBackBtnsChanger.value = getValue(settings.nextBtn);
     progressBarChanger.checked = settings.progressBar;
     againBtnChanger.value = getValue(settings.againBtn);
@@ -84,18 +64,119 @@
     walletChanger.value = getValue(settings.wallet);
     basketChanger.value = getValue(settings.basket);
 
-
     showFromDB(progressBarChanger);
 
     //end of main part
 
     // function declaration part
-    function disableChanger(elem) {
-        elem.classList.add("disabled");
-        elem.setAttribute("disabled", "disabled");
+    function pageChanger(elem) {
+      paginationBtns.map(item => {
+        item.classList.remove("a-active");
+      })
+      elem.target.classList.add("a-active");
+      switch (elem.target.id) {
+        case "collectionMoneyBtn":
+          path = "collectionMoney";
+          paginationLogic();
+          break;
 
-        var label = elem.parentElement;
-        label.classList.add("disabled");
+        case "selectionGoodsBtn":
+          path = "selectionGoods";
+          paginationLogic();
+          break;
+
+        case "paymentPurchaseBtn":
+          path = "paymentPurchase";
+          paginationLogic();
+          break;
+
+        case "takeChangeeBtn":
+          path = "takeChangee";
+          paginationLogic();
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    function paginationLogic() {
+      hideAllGames();
+
+      // udachi tebe eto ponyat' Vlad
+      [againBtnChanger, basketChanger, walletChanger].map(item => {
+        setDisableChanger(false, item);
+      })
+
+      switch (path) {
+          case "collectionMoney":
+              collectionMoney.style.display = "block";
+
+              setDisableChanger(true, againBtnChanger);
+              setDisableChanger(true, basketChanger);
+              ////////////////////////////////////////////
+              nextBtn.src = settings.nextBtn;
+              wallet.src = settings.wallet;
+              break;
+
+          case "selectionGoods":
+              selectionGoods.style.display = "block";
+
+              setDisableChanger(true, againBtnChanger);
+              setDisableChanger(true, walletChanger);
+              ////////////////////////////////////////////
+              backBtn.src = settings.backBtn;
+              nextBtn.src = settings.nextBtn;
+              basket.src = settings.basket;
+              break;
+
+          case "paymentPurchase":
+              paymentPurchase.style.display = "block";
+
+              setDisableChanger(true, againBtnChanger);
+              setDisableChanger(true, basketChanger);
+              ////////////////////////////////////////////
+              backBtn.src = settings.backBtn;
+              nextBtn.src = settings.nextBtn;
+              wallet.src = settings.wallet;
+              break;
+
+          case "takeChangee":
+              takeChangee.style.display = "block";
+
+              setDisableChanger(true, basketChanger);
+              ////////////////////////////////////////////
+              backBtn.src = settings.backBtn;
+              againBtn.src = settings.againBtn;
+              wallet.src = settings.wallet;
+              break;
+
+          default:
+              break;
+      }
+    }
+
+    function hideAllGames() {
+      for (let game of games)
+        game.style.display = "none";
+    }
+
+    function setDisableChanger(bool, elem) {
+      console.log(bool);
+        if (bool || bool == undefined) {
+          elem.classList.add("disabled");
+          elem.setAttribute("disabled", "disabled");
+
+          var label = elem.parentElement;
+          label.classList.add("disabled");
+        } else {
+          elem.classList.remove("disabled");
+          elem.setAttribute("disabled", "");
+
+          var label = elem.parentElement;
+          label.classList.remove("disabled");
+        }
+
     }
 
     // change alone element
@@ -160,8 +241,7 @@
         var newSettings = {};
 
         // т.к для этой игры всегда есть кнопка вперед/назад
-        if (backBtn.classList.contains('none'))
-        {
+        if (backBtn.classList.contains('none')) {
           var imagePathBackBtn = settings.backBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
           newSettings.backBtn = imagePathBackBtn;
         }
@@ -169,8 +249,7 @@
 
         newSettings.progressBar = progressBarChanger.checked;
 
-        if (nextBtn.classList.contains('none'))
-        {
+        if (nextBtn.classList.contains('none')) {
           var imagePathNextBtn = settings.nextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
           newSettings.nextBtn = imagePathNextBtn;
         }
