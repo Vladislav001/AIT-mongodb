@@ -5,12 +5,13 @@
     var settings = '<%-settings%>';
     settings = JSON.parse(settings); //parse to get object
 
-
     // game elements declaration
-    var progressBar = document.getElementById("progressBar");
-    var againBtn = document.getElementById("againBtn");
-    var wallet = document.getElementById("wallet");
-    var basket = document.getElementById("basket");
+    var progressBars = document.getElementsByClassName("progressBar");
+    var againBtns = document.getElementsByClassName("againBtn");
+    var wallets = document.getElementsByClassName("wallet");
+    var baskets = document.getElementsByClassName("basket");
+    var nextBtns = document.getElementsByClassName("nextBtn");
+    var backBtns = document.getElementsByClassName("backBtn");
 
     // game views declaration
     var games = document.getElementsByClassName("game");
@@ -22,7 +23,12 @@
     var paymentPurchaseBtn = document.getElementById("paymentPurchaseBtn");
     var takeChangeeBtn = document.getElementById("takeChangeeBtn");
 
-    var paginationBtns = [collectionMoneyBtn, selectionGoodsBtn, paymentPurchaseBtn, takeChangeeBtn];
+    var paginationBtns = [
+      collectionMoneyBtn,
+      selectionGoodsBtn,
+      paymentPurchaseBtn,
+      takeChangeeBtn
+    ];
 
     var hostName = '<%-host%>';
 
@@ -33,6 +39,7 @@
     var walletChanger = document.getElementById("walletChanger");
     var basketChanger = document.getElementById("basketChanger");
     var submitBtn = document.getElementById("submitBtn");
+    var fCurrency = document.getElementById("fсurrency");
 
     // main part
     paginationLogic();
@@ -50,22 +57,22 @@
     walletChanger.addEventListener('change', changeElem);
     basketChanger.addEventListener('change', changeElem);
 
-    // input values from DB
+    // set values of changers from DB
     nextBackBtnsChanger.value = getValue(settings.nextBtn);
     progressBarChanger.checked = settings.progressBar;
+
+    settings.progressBar == "true" ?
+    progressBarChanger.checked = true : progressBarChanger.checked = false;
+    
     againBtnChanger.value = getValue(settings.againBtn);
     walletChanger.value = getValue(settings.wallet);
     basketChanger.value = getValue(settings.basket);
 
-    // get values from URLs
-    nextBackBtnsChanger.value = getValue(settings.nextBtn);
-    progressBarChanger.checked = settings.progressBar;
-    againBtnChanger.value = getValue(settings.againBtn);
-    walletChanger.value = getValue(settings.wallet);
-    basketChanger.value = getValue(settings.basket);
-
+    showFromDB(nextBackBtnsChanger);
     showFromDB(progressBarChanger);
-
+    showFromDB(againBtnChanger);
+    showFromDB(walletChanger);
+    showFromDB(basketChanger);
     //end of main part
 
     // function declaration part
@@ -103,7 +110,6 @@
     function paginationLogic() {
       hideAllGames();
 
-      // udachi tebe eto ponyat' Vlad
       [againBtnChanger, basketChanger, walletChanger].map(item => {
         setDisableChanger(false, item);
       })
@@ -114,9 +120,6 @@
 
               setDisableChanger(true, againBtnChanger);
               setDisableChanger(true, basketChanger);
-              ////////////////////////////////////////////
-              nextBtn.src = settings.nextBtn;
-              wallet.src = settings.wallet;
               break;
 
           case "selectionGoods":
@@ -124,36 +127,26 @@
 
               setDisableChanger(true, againBtnChanger);
               setDisableChanger(true, walletChanger);
-              ////////////////////////////////////////////
-              backBtn.src = settings.backBtn;
-              nextBtn.src = settings.nextBtn;
-              basket.src = settings.basket;
               break;
 
           case "paymentPurchase":
               paymentPurchase.style.display = "block";
-
               setDisableChanger(true, againBtnChanger);
               setDisableChanger(true, basketChanger);
-              ////////////////////////////////////////////
-              backBtn.src = settings.backBtn;
-              nextBtn.src = settings.nextBtn;
-              wallet.src = settings.wallet;
               break;
 
           case "takeChangee":
               takeChangee.style.display = "block";
-
               setDisableChanger(true, basketChanger);
-              ////////////////////////////////////////////
-              backBtn.src = settings.backBtn;
-              againBtn.src = settings.againBtn;
-              wallet.src = settings.wallet;
               break;
 
           default:
               break;
       }
+    }
+
+    function tuneUpAllElems() {
+      var elems = []
     }
 
     function hideAllGames() {
@@ -162,7 +155,6 @@
     }
 
     function setDisableChanger(bool, elem) {
-      console.log(bool);
         if (bool || bool == undefined) {
           elem.classList.add("disabled");
           elem.setAttribute("disabled", "disabled");
@@ -171,59 +163,77 @@
           label.classList.add("disabled");
         } else {
           elem.classList.remove("disabled");
-          elem.setAttribute("disabled", "");
+          elem.removeAttribute("disabled");
 
           var label = elem.parentElement;
           label.classList.remove("disabled");
         }
-
     }
 
     // change alone element
-    function changeElem() {
+    function changeElem(changer) {
         if (this.getAttribute('type') == 'checkbox') {
-            this.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
+          for (let progressBar of progressBars)
+              progressBar.classList.toggle("none");
         }
-
         else {
-            var searchId = this.id.toString().replace('Changer', '');
-            var elem = document.getElementById(searchId);
+            var searchClass = this.id.toString().replace('Changer', '');
+            var elems = document.getElementsByClassName(searchClass);
 
-            var imagePath = elem.src;
-            imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
-            elem.src = imagePath;
+            for (let elem of elems) {
+              var imagePath = elem.src;
+              imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
+              elem.src = imagePath;
+            }
         }
     }
 
     // change pair elements
     function changePairElems() {
       if (this.id == "nextBackBtnsChanger") {
-          var imagePathNextBtn = document.getElementById('nextBtn').src;
+          var imagePathNextBtn = nextBtns[0].src;
           imagePathNextBtn = imagePathNextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
-          document.getElementById('nextBtn').src = imagePathNextBtn;
 
-          console.log(imagePathNextBtn + ' imagePathNextBtn');
+          for (let nextBtn of nextBtns)
+            nextBtn.src = imagePathNextBtn;
 
-          var imagePathBackBtn = document.getElementById('backBtn').src;
-
-          console.log(imagePathBackBtn + ' imagePathBackBtn');
+          var imagePathBackBtn = backBtns[0].src;
 
           imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
-          document.getElementById('backBtn').src = imagePathBackBtn;
+
+          for (let backBtn of backBtns)
+            backBtn.src = imagePathBackBtn;
         }
     }
 
+    ////////!!!!!!
     function showFromDB(changer) {
         if (changer.getAttribute('type') == 'checkbox')
-            changer.checked ? progressBar.classList.remove('none') : progressBar.classList.add('none');
+          for (let progressBar of progressBars)
+              if (changer.checked)
+                progressBar.classList.remove("none");
+              else progressBar.classList.add("none");
+        else if (changer.id == "nextBackBtnsChanger") {
+          var imagePath = backBtns[0].src;
+          imagePath = imagePath.replace(/\w.png/, `${changer.value}.png`);
+          for (let backBtn of backBtns) {
+            backBtn.src = imagePath;
+          }
 
+          imagePath = nextBtns[0].src;
+          imagePath = imagePath.replace(/\w.png/, `${changer.value}.png`);
+          for (let nextBtn of nextBtns) {
+            nextBtn.src = imagePath;
+          }
+        }
         else {
-            var searchId = changer.id.toString().replace('Changer', '');
-            var elem = document.getElementById(searchId);
+            var searchClass = changer.id.toString().replace('Changer', '');
+            var elems = document.getElementsByClassName(searchClass);
+            var imagePath = elems[0].src;
+            imagePath = imagePath.replace(/\w.png/, `${changer.value}.png`);
 
-            var imagePath = elem.src;
-            imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
-            elem.src = imagePath;
+            for (let elem of elems)
+              elem.src = imagePath;
         }
     }
 
@@ -232,39 +242,28 @@
         value = value.match(/\d.png/)[0];
         value = value.replace('.png', '');
 
-        // console.log(value);
-
         return parseInt(value);
     }
 
     submitBtn.onclick = function () {
         var newSettings = {};
 
+
         // т.к для этой игры всегда есть кнопка вперед/назад
-        if (backBtn.classList.contains('none')) {
-          var imagePathBackBtn = settings.backBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
-          newSettings.backBtn = imagePathBackBtn;
-        }
-        else newSettings.backBtn = backBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-
+        // back
+        newSettings.backBtn = backBtns[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+        // progress bar
         newSettings.progressBar = progressBarChanger.checked;
-
-        if (nextBtn.classList.contains('none')) {
-          var imagePathNextBtn = settings.nextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
-          newSettings.nextBtn = imagePathNextBtn;
-        }
-        else newSettings.nextBtn = nextBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-
-        if (againBtn.classList.contains('none')) newSettings.againBtn = settings.againBtn;
-        else newSettings.againBtn = againBtn.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-
-        if (wallet.classList.contains('none')) newSettings.wallet = settings.wallet;
-        else newSettings.wallet = wallet.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-
-        if (basket.classList.contains('none')) newSettings.basket = settings.basket;
-        else newSettings.basket = basket.src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
-
-        console.log(newSettings);
+        // next
+        newSettings.nextBtn = nextBtns[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+        // again
+        newSettings.againBtn = againBtns[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+        // wallet
+        newSettings.wallet = wallets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+        // basket
+        newSettings.basket = baskets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+        //
+        newSettings.fCurrency = fCurrency.selectedIndex;
 
         $.ajax({
             type: 'POST',
