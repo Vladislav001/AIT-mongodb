@@ -20,20 +20,24 @@ exports.get = async function (req, res) {
       availableCurrenciesDirs.push(dir);
     });
 
-    // сформируем массив с массивами изображений валют
+    // сформируем массив с обьектами изображений валют
     availableCurrenciesDirs.forEach(currencyDir => {
       let currencyPath = `./public/system_images/currency/${currencyDir}`;
-      allCurrencies[`${currencyDir}`] = [];
+      let currencyObject = {};
+      currencyObject[`${currencyDir}`] = [];
+
       fs.readdirSync(currencyPath).forEach(currencyImage => {
-        allCurrencies[`${currencyDir}`].push(`/system_images/currency/${currencyDir}/${currencyImage}`);
+       currencyObject[`${currencyDir}`].push(`/system_images/currency/${currencyDir}/${currencyImage}`);
       });
+
+      allCurrencies.push(currencyObject);
     });
 
     res.render("./applications/moneygame/collectionMoney", {
-      student: pid,
+      pid: pid,
       settings: JSON.stringify(moneyGame.settings),
       currency: moneyGame.currency,
-      allCurrencies: allCurrencies,
+      allCurrencies: JSON.stringify(allCurrencies),
       host: req.headers.host,
       countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
     });
@@ -42,6 +46,7 @@ exports.get = async function (req, res) {
   }
 
 }
+
 
 exports.post = async function (req, res) {
 

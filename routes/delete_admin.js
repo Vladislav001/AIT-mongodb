@@ -20,6 +20,7 @@ exports.post = async function (req, res) {
       pidIDs.push(pid._id);
     });
 
+    // ПРОТЕСТИТЬ БЕЗ 4-Х await
     await MoneyGame.deleteMany({ pid_id: pidIDs }) // удалить все зависимые MoneyGame
     await PID.deleteMany({ parent_ID: caregiverIDs }); // удалим всех зависимых PID
     await Caregiver.deleteMany({ parent_ID: req.params._id }); // удалим всех зависимых тренеров
