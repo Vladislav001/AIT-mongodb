@@ -45,18 +45,10 @@ module.exports = function (passport) {
 
 
   // MoneyGame
-  router.get('/customizeMoneyGame/collectionMoney/id:_id', isAuthenticated, require('./applications/money_game/collection_money').get);
-  router.get('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').get);
-  router.get('/customizeMoneyGame/selectionGoods/id:_id', isAuthenticated, require('./applications/money_game/selection_goods').get);
-  router.get('/customizeMoneyGame/takeChangee/id:_id', isAuthenticated, require('./applications/money_game/take_changee').get);
-
-  router.post('/customizeMoneyGame/collectionMoney/id:_id', isAuthenticated, require('./applications/money_game/collection_money').post);
-  router.post('/customizeMoneyGame/paymentPurchase/id:_id', isAuthenticated, require('./applications/money_game/payment_purchase').post);
-  router.post('/customizeMoneyGame/selectionGoods/id:_id', isAuthenticated, require('./applications/money_game/selection_goods').post);
-  router.post('/customizeMoneyGame/takeChangee/id:_id', isAuthenticated, require('./applications/money_game/take_changee').post);
+  router.get('/configure/money-game/id:_id', isAuthenticated, require('./applications/money_game/configure').get);
+  router.post('/configure/money-game/id:_id', isAuthenticated, require('./applications/money_game/configure').post);
 
 
-  
 
   // swagger definition
   const swaggerDefinition = require('../swagger.json');

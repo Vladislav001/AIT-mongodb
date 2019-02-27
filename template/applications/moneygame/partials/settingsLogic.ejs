@@ -335,7 +335,7 @@
     newSettings.basket = baskets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // currency
     newSettings.currency = fCurrency.value;
-
+    
     $.ajax({
       type: 'POST',
       url: window.location.pathname,

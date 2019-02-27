@@ -17,3 +17,6 @@
 
   BACKEND:
   1 GET + POST на получение/обновление для МаниГейм
+
+  FRONT+BACKEND:
+  Подобное post('/deleteStudent/id:_id) заменить на post('/delete-pid/id:_id)

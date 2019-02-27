@@ -36,7 +36,7 @@ exports.get = async function (req, res) {
       });
     });
 
-    res.render("./applications/moneygame/collectionMoney", {
+    res.render("./applications/moneygame/configure", {
       pid: pid,
       settings: JSON.stringify(moneyGame.settings),
       currency: moneyGame.currency,
