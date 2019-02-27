@@ -38,7 +38,7 @@ module.exports = function (passport) {
   router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post);
   router.post('/addNewStudent', isAuthenticated, require('./add/pid').post);
 
-  router.post('/deleteStudent/id:_id', isAuthenticated, require('./delete_pid').post);
+  router.post('/delete-pid/id:_id', isAuthenticated, require('./delete_pid').post);
   router.post('/deleteAdmin/id:_id', isAuthenticated, require('./delete_admin').post);
   router.post('/deleteCoach/id:_id', isAuthenticated, require('./delete_caregiver').post);
   router.post('/updateStudent/id:_id', isAuthenticated, isCaregiver, require('./update_pid').post);
