@@ -29,11 +29,23 @@ exports.get = async function (req, res) {
       fs.readdirSync(`${availableCurrencies}${currencyDir}`).forEach(typeCurrency => {
         allCurrencies[`${currencyDir}`][`${typeCurrency}`] = []
 
-        // сформируем массивы для каждого типа
+        // сформируем массивы для каждого типа, и отсортирвем по возрастанию
         fs.readdirSync(`${currencyPath}/${typeCurrency}`).forEach(currency => {
           allCurrencies[`${currencyDir}`][`${typeCurrency}`].push(`/system_images/currency/${currencyDir}/${typeCurrency}/${currency}`);
         });
       });
+
+      // отсортируем для каждого типа по возрастанию
+      for (typeCurrency in allCurrencies[`${currencyDir}`]) {
+        allCurrencies[`${currencyDir}`][`${typeCurrency}`].sort(function (a, b) {
+          let countA = a.split('.')[0];
+          countA = countA.split(`${typeCurrency}/`)[1];
+          let countB = b.split('.')[0];
+          countB = countB.split(`${typeCurrency}/`)[1];
+
+          return countA - countB;
+        });
+      }
     });
 
     res.render("./applications/moneygame/configure", {
