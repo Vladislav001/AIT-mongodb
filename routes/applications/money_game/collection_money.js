@@ -13,35 +13,28 @@ exports.get = async function (req, res) {
 
     let availableCurrencies = `./public/system_images/currency/`;
     let availableCurrenciesDirs = [];
-    let allCurrencies = [];
+    let allCurrencies = {};
 
     // получим название всех папок с валютами 
     fs.readdirSync(availableCurrencies).forEach(dir => {
       availableCurrenciesDirs.push(dir);
     });
-    
-    
 
-    // сформируем массив с обьектами изображений валют (валюта - тип - описание)
+    // пройдемся по папкам валют
     availableCurrenciesDirs.forEach(currencyDir => {
       let currencyPath = `./public/system_images/currency/${currencyDir}`;
+      allCurrencies[`${currencyDir}`] = {};
 
-      // пробегаемся по папкам монеты/банкноты
-      fs.readdirSync(`${availableCurrencies}${currencyDir}`).forEach(typeСurrency => {
-      
-         let currencyObject = {};
-         currencyObject[`${currencyDir}`] = [];
-         currencyObject[`${currencyDir}`][`${typeСurrency}`] = [];
+      // пройдемся по папкам монеты/банкноты
+      fs.readdirSync(`${availableCurrencies}${currencyDir}`).forEach(typeCurrency => {
+        allCurrencies[`${currencyDir}`][`${typeCurrency}`] = []
 
-        fs.readdirSync(`${currencyPath}/${typeСurrency}`).forEach(currencyImage => {
-          currencyObject[`${currencyDir}`][`${typeСurrency}`].push(`/system_images/currency/${currencyDir}/${typeСurrency}/${currencyImage}`);
+        // сформируем массивы для каждого типа
+        fs.readdirSync(`${currencyPath}/${typeCurrency}`).forEach(currency => {
+          allCurrencies[`${currencyDir}`][`${typeCurrency}`].push(`/system_images/currency/${currencyDir}/${typeCurrency}/${currency}`);
         });
-
-         allCurrencies.push(currencyObject);
       });
     });
-
-    console.log(JSON.stringify(allCurrencies))
 
     res.render("./applications/moneygame/collectionMoney", {
       pid: pid,

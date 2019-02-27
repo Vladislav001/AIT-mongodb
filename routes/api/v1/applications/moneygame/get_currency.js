@@ -5,7 +5,7 @@ exports.post = async function (req, res) {
     try {
 
         let moneyGame = await MoneyGame.findOne({ pid_id: res.pidId }, { 'currency': 1, _id: 0 });
-        let currencyPath = `./public/system_images/currency/${moneyGame.currency}/`;
+        let currencyPath = `./public/system_images/currency/${moneyGame.currency}`;
         let currentCurrency = {};
 
         // пройдемся по типам валюты (монеты/банкноты)
@@ -13,7 +13,7 @@ exports.post = async function (req, res) {
             currentCurrency[`${typeCurrency}`] = [];
 
             // сформируем массивы для каждого типа
-            fs.readdirSync(`${currencyPath}${typeCurrency}`).forEach(currency => {
+            fs.readdirSync(`${currencyPath}/${typeCurrency}`).forEach(currency => {
 
                 let count = currency.split('.')[0];
                 count = count.replace(',', '.');
