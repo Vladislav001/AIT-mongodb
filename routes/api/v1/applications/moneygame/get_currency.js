@@ -34,9 +34,9 @@ exports.post = async function (req, res) {
             });
         }
 
-        res.status(200).send({
-            "currency": currentCurrency
-        });
+        res.status(200).send(
+           currentCurrency
+        );
     } catch (err) {
         throw err;
     }
