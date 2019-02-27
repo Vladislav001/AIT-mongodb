@@ -7,8 +7,6 @@
   var currency = '<%-currency%>';
   var allCurrencies = '<%-allCurrencies%>';
   allCurrencies = JSON.parse(allCurrencies);
-  console.log(allCurrencies);
-
 
   // game elements declaration
   var progressBars = document.getElementsByClassName("progressBar");
@@ -47,7 +45,6 @@
   var fCurrency = document.getElementById("fсurrency");
 
   var currencyImages = document.getElementsByClassName("currencyImage");
-  console.log(currencyImages);
 
   // main part
   paginationLogic();
@@ -165,16 +162,70 @@
 
   function changeCurrency(game) {
     var currencyImages = game.getElementsByClassName("currencyImage");
+    var banknotes = allCurrencies[fCurrency.value]["banknotes"];
+    var coins = allCurrencies[fCurrency.value]["coins"];
+
+
     for (let currencyImage of currencyImages) {
       currencyImage.parentElement.classList.add("hidden");
       currencyImage.src = "";
     }
-    console.log(allCurrencies[fCurrency.selectedIndex][`${fCurrency.value}`]);
 
-    allCurrencies[fCurrency.selectedIndex][`${fCurrency.value}`].map((item, index) => {
-      currencyImages[index].src = item;
-      currencyImages[index].parentElement.classList.remove("hidden");
-    })
+
+    switch (game) {
+      case games[0]:
+        for (var i = 0; i < (coins.length + banknotes.length);) {
+          coins.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+          //////////////
+          banknotes.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+        }
+        break;
+
+      case games[1]:
+        for (var i = 0; i < coins.length;) {
+          coins.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+        }
+        break;
+        //
+      case games[2]:
+        for (var i = 0; i < coins.length;) {
+          coins.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+        }
+        break;
+        //
+      case games[3]:
+        for (var i = 0; i < (coins.length + banknotes.length);) {
+          coins.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+          //////////////
+          banknotes.map(item => {
+            currencyImages[i].src = item;
+            currencyImages[i].parentElement.classList.remove("hidden");
+            i++;
+          });
+        }
+        break;
+    }
+
   }
 
   function hideAllGames() {
@@ -217,17 +268,17 @@
 
   // change pair elements
   function changePairElems() {
-      var imagePathNextBtn = nextBtns[0].src;
-      imagePathNextBtn = imagePathNextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
+    var imagePathNextBtn = nextBtns[0].src;
+    imagePathNextBtn = imagePathNextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
 
-      for (let nextBtn of nextBtns)
-        nextBtn.src = imagePathNextBtn;
-      //////////////////////////////////
-      var imagePathBackBtn = backBtns[1].src;
-      imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
+    for (let nextBtn of nextBtns)
+      nextBtn.src = imagePathNextBtn;
+    //////////////////////////////////
+    var imagePathBackBtn = backBtns[1].src;
+    imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
 
-      for (let backBtn of backBtns)
-        backBtn.src = imagePathBackBtn;
+    for (let backBtn of backBtns)
+      backBtn.src = imagePathBackBtn;
   }
 
   function showFromDB(changer) {
@@ -237,18 +288,18 @@
         for (let game of games)
           changeCurrency(game);
         break;
-      //////////////////////////////////
+        //////////////////////////////////
       case progressBarChanger:
         for (let progressBar of progressBars)
           if (changer.checked)
             progressBar.classList.remove("none");
           else progressBar.classList.add("none");
         break;
-      //////////////////////////////////
+        //////////////////////////////////
       case nextBackBtnsChanger:
         changePairElems();
         break;
-      //////////////////////////////////
+        //////////////////////////////////
       default:
         var searchClass = changer.id.toString().replace('Changer', '');
         var elems = document.getElementsByClassName(searchClass);
@@ -257,8 +308,8 @@
 
         for (let elem of elems)
           elem.src = imagePath;
+    }
   }
-}
 
   function getValue(areaFromDb) {
     var value = areaFromDb.toString();
