@@ -6,6 +6,8 @@
   settings = JSON.parse(settings); //parse to get object
   var currency = '<%-currency%>';
   var allCurrencies = '<%-allCurrencies%>';
+  allCurrencies = JSON.parse(allCurrencies);
+  console.log(allCurrencies);
 
 
   // game elements declaration
@@ -44,6 +46,9 @@
   var submitBtn = document.getElementById("submitBtn");
   var fCurrency = document.getElementById("fсurrency");
 
+  var currencyImages = document.getElementsByClassName("currencyImage");
+  console.log(currencyImages);
+
   // main part
   paginationLogic();
 
@@ -53,12 +58,18 @@
   paymentPurchaseBtn.addEventListener("click", pageChanger);
   takeChangeeBtn.addEventListener("click", pageChanger);
 
+  var func;
+
   // listeners of changers
-  nextBackBtnsChanger.addEventListener('change', changePairElems);
-  progressBarChanger.addEventListener('change', changeElem);
-  againBtnChanger.addEventListener('change', changeElem);
-  walletChanger.addEventListener('change', changeElem);
-  basketChanger.addEventListener('change', changeElem);
+  nextBackBtnsChanger.addEventListener("change", changePairElems);
+  progressBarChanger.addEventListener("change", changeElem);
+  againBtnChanger.addEventListener("change", changeElem);
+  walletChanger.addEventListener("change", changeElem);
+  basketChanger.addEventListener("change", changeElem);
+  fCurrency.oninput = function() {
+    for (let game of games)
+      changeCurrency(game);
+  };
 
   // set values of changers from DB
   nextBackBtnsChanger.value = getValue(settings.nextBtn);
@@ -85,7 +96,8 @@
   function pageChanger(elem) {
     paginationBtns.map(item => {
       item.classList.remove("a-active");
-    })
+    });
+
     elem.target.classList.add("a-active");
     switch (elem.target.id) {
       case "collectionMoneyBtn":
@@ -151,6 +163,20 @@
     }
   }
 
+  function changeCurrency(game) {
+    var currencyImages = game.getElementsByClassName("currencyImage");
+    for (let currencyImage of currencyImages) {
+      currencyImage.parentElement.classList.add("hidden");
+      currencyImage.src = "";
+    }
+    console.log(allCurrencies[fCurrency.selectedIndex][`${fCurrency.value}`]);
+
+    allCurrencies[fCurrency.selectedIndex][`${fCurrency.value}`].map((item, index) => {
+      currencyImages[index].src = item;
+      currencyImages[index].parentElement.classList.remove("hidden");
+    })
+  }
+
   function hideAllGames() {
     for (let game of games)
       game.style.display = "none";
@@ -197,7 +223,7 @@
       for (let nextBtn of nextBtns)
         nextBtn.src = imagePathNextBtn;
       //////////////////////////////////
-      var imagePathBackBtn = backBtns[0].src;
+      var imagePathBackBtn = backBtns[1].src;
       imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
 
       for (let backBtn of backBtns)
@@ -208,6 +234,8 @@
     switch (changer) {
       case fCurrency:
         changer.value = currency;
+        for (let game of games)
+          changeCurrency(game);
         break;
       //////////////////////////////////
       case progressBarChanger:
@@ -256,8 +284,6 @@
     newSettings.basket = baskets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // currency
     newSettings.currency = fCurrency.value;
-
-    console.log(newSettings);
 
     $.ajax({
       type: 'POST',

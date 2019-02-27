@@ -197,6 +197,11 @@
     }
 }
 
+.currencyImage {
+  height: 100px;
+  width: auto;
+}
+
 /* Programming styles */
 
 .disabled {
