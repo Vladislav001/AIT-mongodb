@@ -95,9 +95,11 @@
 
 /* Game styles part */
 .container .game {
+    background-image: url("/system_images/ipad.png");
+    background-size: 100% 100%;
     width: calc(60% - 30px);
-    max-width: 500px;
-    padding: 10px;
+    max-width: 600px;
+    padding: 90px 25px 90px 25px;
     margin-right: 10px;
     display: flex;
     flex-direction: column;
@@ -105,7 +107,7 @@
 
 .game .game-header {
     width: calc(100% - 20px);
-    height: 60px;
+    height: 90px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -118,8 +120,8 @@
 .game-header .nav-btn {
     cursor: pointer;
     background-size: 100% 100%;
-    width: 20%;
-    height: 60px;
+    width: auto;
+    height: 80px;
     border: none;
 }
 
