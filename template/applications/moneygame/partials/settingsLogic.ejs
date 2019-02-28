@@ -1,4 +1,9 @@
 <script defer>
+    window.onload = function() {
+      var content = document.getElementById("content");
+      content.classList.remove("none");
+    }
+
   //path of page declaration
   var path = "collectionMoney";
   //settings from data base
@@ -335,7 +340,7 @@
     newSettings.basket = baskets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // currency
     newSettings.currency = fCurrency.value;
-    
+
     $.ajax({
       type: 'POST',
       url: window.location.pathname,
