@@ -158,8 +158,6 @@
     min-height: 70px;
     max-height: 15%;
     height: auto;
-    background: black;
-    border-radius: 5px;
     margin: 2%;
 }
 
@@ -201,6 +199,34 @@
   height: 100px;
   width: auto;
 }
+
+
+#collectionMoney .game .game-header {
+    justify-content: flex-end !important;
+}
+
+#collectionMoney .progressBar div {
+    width: 25%;
+}
+
+#selectionGoods .progressBar div {
+    width: 50%;
+}
+
+#paymentPurchase .progressBar div {
+    width: 75%;
+}
+
+#takeChangee .againBtn {
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+}
+
+#takeChangee .progressBar div {
+    width: 100%;
+}
+
 
 /* Programming styles */
 
