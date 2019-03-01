@@ -1,7 +1,10 @@
 <script defer>
     window.onload = function() {
-      var content = document.getElementById("content");
-      content.classList.remove("none");
+      var preloader = document.getElementById("preloader");
+      preloader.classList.add("none");
+
+      var gamesContainer = document.getElementById("gamesContainer");
+      gamesContainer.classList.remove("none");
     }
 
   //path of page declaration
@@ -60,8 +63,6 @@
   paymentPurchaseBtn.addEventListener("click", pageChanger);
   takeChangeeBtn.addEventListener("click", pageChanger);
 
-  var func;
-
   // listeners of changers
   nextBackBtnsChanger.addEventListener("change", changePairElems);
   progressBarChanger.addEventListener("change", changeElem);
@@ -85,6 +86,7 @@
   basketChanger.value = getValue(settings.basket);
 
   fCurrency.selectedIndex = settings.fCurrency;
+
 
   showFromDB(fCurrency);
   showFromDB(nextBackBtnsChanger);
