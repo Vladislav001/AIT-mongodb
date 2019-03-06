@@ -1,41 +1,48 @@
-function toggleSignup(){
-   document.getElementById("login-toggle").style.backgroundColor="#fff";
-    document.getElementById("login-toggle").style.color="#222";
-    document.getElementById("signup-toggle").style.backgroundColor="#279BE4";
-    document.getElementById("signup-toggle").style.color="#fff";
-    document.getElementById("login-form").style.display="none";
-    document.getElementById("signup-form").style.display="block";
-    document.getElementById("forgotPassword-form").style.display="none";
+window.onload = function() {
+  // declaration part
+  var signUpBtn = document.getElementById("signUpBtn");
+  var signInBtn = document.getElementById("signInBtn");
+  var forgotLink = document.getElementById("forgotLink");
+
+  var signIn = document.getElementById("signIn");
+  var signUp = document.getElementById("signUp");
+  var restore = document.getElementById("restore");
+
+  // function declaration part
+  function paginationLogic() {
+    forgotLink.classList.remove("none");
+
+    switch (this) {
+      case signUpBtn:
+        signInBtn.classList.remove("paginationBtn--active");
+
+        signUp.classList.remove("none");
+        signIn.classList.add("none");
+        restore.classList.add("none");
+
+        this.classList.add("paginationBtn--active");
+        break;
+
+      case signInBtn:
+        signUpBtn.classList.remove("paginationBtn--active");
+
+        signIn.classList.remove("none");
+        signUp.classList.add("none");
+        restore.classList.add("none");
+
+        this.classList.add("paginationBtn--active");
+        break;
+
+      case forgotLink:
+        forgotLink.classList.add("none");
+        restore.classList.remove("none");
+        break;
+    }
+  }
+  // end of declaration part
+
+  // main part
+  signUpBtn.addEventListener("click", paginationLogic);
+  signInBtn.addEventListener("click", paginationLogic);
+  forgotLink.addEventListener("click", paginationLogic);
 }
-
-function toggleLogin(){
-    document.getElementById("login-toggle").style.backgroundColor="#279BE4";
-    document.getElementById("login-toggle").style.color="#fff";
-    document.getElementById("signup-toggle").style.backgroundColor="#fff";
-    document.getElementById("signup-toggle").style.color="#222";
-    document.getElementById("signup-form").style.display="none";
-    document.getElementById("login-form").style.display="block";
-    document.getElementById("forgotPassword-form").style.display="none";
-}
-
-function toggleForgotPassword(){
-    document.getElementById("login-toggle").style.backgroundColor="#fff";
-    document.getElementById("login-toggle").style.color="#222";
-    document.getElementById("signup-form").style.display="none";
-    document.getElementById("login-form").style.display="none";
-    document.getElementById("forgotPassword-form").style.display="block";
-}
-
-
-// var userData = {};
-//
-// userData.email =  $("input[name='username']").val();
-// userData.password =  $("input[name='password']").val();
-//
-// $.ajax({
-//   type: 'POST',
-//   url: '/login',
-//   dataType: 'json',
-//   data:  userData,
-//
-// });

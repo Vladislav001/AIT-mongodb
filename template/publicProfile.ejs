@@ -1,24 +1,20 @@
+<link rel='stylesheet' href='/css/personalArea.css' />
+
 <% layout('layout/pattern') -%>
 
-<%-partial('./partials/leftVerticalMenu')%>
-
-<section id="content">
-  <div class="content">
-    <div class="content-header">
-      <!-- <h1>Profile:</h1> не хочется доп.выборку из бд делать-->
-
-      <p></p>
+<div class="page">
+  <%-partial('./partials/leftVerticalMenu')%>
+  <div class="right-column">
+    <div class="container">
+      <% if(user.access_level == 3) { %>
+      <%-partial('./partials/publicProfile/student')%>
+      <% }  else if(user.access_level == 2) { %>
+      <%-partial('./partials/publicProfile/coach')%>
+      <% }  else if(user.access_level == 1) { %>
+      <%-partial('./partials/publicProfile/admin')%>
+      <% } %>
     </div>
-
-<% if(user.access_level == 3) { %>
-<%-partial('./partials/publicProfile/student')%>
-   <% }  else if(user.access_level == 2) { %>
-  <%-partial('./partials/publicProfile/coach')%>
-  <% }  else if(user.access_level == 1) { %>
- <%-partial('./partials/publicProfile/admin')%>
-<% } %>
-
+  </div>
 </div>
-</section>
 
 <script src="/js/confirmDelete.js"></script>

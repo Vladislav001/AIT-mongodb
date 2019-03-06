@@ -1,11 +1,11 @@
 <script defer>
-    window.onload = function() {
-      var preloader = document.getElementById("preloader");
-      preloader.classList.add("none");
+  window.onload = function() {
+    var preloader = document.getElementById("preloader");
+    preloader.classList.add("none");
 
-      var gamesContainer = document.getElementById("gamesContainer");
-      gamesContainer.classList.remove("none");
-    }
+    var gamesContainer = document.getElementById("gamesContainer");
+    gamesContainer.classList.remove("none");
+  }
 
   //path of page declaration
   var path = "collectionMoney";
@@ -172,12 +172,10 @@
     var banknotes = allCurrencies[fCurrency.value]["banknotes"];
     var coins = allCurrencies[fCurrency.value]["coins"];
 
-
     for (let currencyImage of currencyImages) {
       currencyImage.parentElement.classList.add("hidden");
       currencyImage.src = "";
     }
-
 
     switch (game) {
       case games[0]:
@@ -232,7 +230,6 @@
         }
         break;
     }
-
   }
 
   function hideAllGames() {

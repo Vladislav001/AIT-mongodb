@@ -1,124 +1,41 @@
 <link rel='stylesheet' href='/css/profileStudent.css' />
+<div class="block">
+    <p>Information</p>
+    <form action="/addNewStudent" method="POST" class="modal__form" name="addNewStudentForm">
+              <div class="photo-line">
+                <div class="photo">
+                </div>
+                <input type="file" name="" value="" id="load-photo">
+              </div>
+              <label for="login">Login</label>
+              <input type="email" name="login" value="" required>
+              <label for="login">Name</label>
+              <input type="text" name="name" value="" required>
+              <label for="login">Age</label>
+              <input type="number" name="age" min="5" max="100" required>
+              <label for="fgender">Gender</label>
+              <select name="gender" required>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Non-binary</option>
+                <option>Non-applicable</option>
+                <option>I prefer not say</option>
+              </select>
+              <div class="row">
+                <button type="submit" name="button" id="updateBtn">Update</button>
+                <button type="submit" name="button" id="deleteBtn">Delete</button>
+              </div>
+            </form>
+          </div>
 
+      <!--  -->
 
-<div class="widget-box sample-widget">
-  <div class="widget-content">
-    <div class="public-profile">
-      <img alt="image" src="https://www.w3schools.com/howto/img_avatar.png">
-      <!-- <img src='<%=student.profile_photo%>' alt="Photo profile"> -->
-      <input type="file" name="photo" multiple accept="image/*,image/jpeg">
-    </div>
-
-     <!-- <img src="<%=student.profile_photo%>" alt="Photo profile" style="max-width:100px"> -->
-    <!-- <form action="/updateStudent/id<%=student.id%>" method="post" enctype="multipart/form-data">
-    <input type="file" name="filetoupload"><br>
-    <input type="submit">
-  </form> -->
-
-
-  <div class="widget-content">
-    <div class="section">
-      <h2 class="info-section"><a href="#">Information</a></h2>
-      <div class="info-section__table">
-        <table class="info-section__table--data">
-          <tbody>
-              <tr>
-                <td>Login</td>
-                <td><input type="text" id="flogin" name="login" value="<%=student.login%>" required></td>
-              </tr>
-              <tr>
-                <td>Name</td>
-                <td><input type="text" id="fname" name="name" value="<%=student.name%>" required></td>
-              </tr>
-              <tr>
-                <td>Age</td>
-                <td><input type="number" id="fage" name="age" min="5" max="200" value="<%=student.age%>" required></td>
-              </tr>
-              <tr>
-                <td>Gender</td>
-                <td>
-                  <select id="fgender" name="gender" required>
-                    <% switch (student.gender) {
-                      case "Male": %>
-                      <OPTION><%=student.gender%></OPTION>
-                      <OPTION>Female</OPTION>
-                      <OPTION>Non-binary</OPTION>
-                      <OPTION>Not-applicable</OPTION>
-                      <OPTION>I prefer not say</OPTION>
-                      <% break;%> <%
-                      case "Female": %>
-                      <OPTION><%=student.gender%></OPTION>
-                      <OPTION>Male</OPTION>
-                      <OPTION>Non-binary</OPTION>
-                      <OPTION>Not-applicable</OPTION>
-                      <OPTION>I prefer not say</OPTION>
-                      <% break;%> <%
-                      case "Non-binary": %>
-                      <OPTION><%=student.gender%></OPTION>
-                      <OPTION>Male</OPTION>
-                      <OPTION>Female</OPTION>
-                      <OPTION>Not-applicable</OPTION>
-                      <OPTION>I prefer not say</OPTION>
-                      <% break;%> <%
-                      case "Not-applicable": %>
-                      <OPTION><%=student.gender%></OPTION>
-                      <OPTION>Male</OPTION>
-                      <OPTION>Female</OPTION>
-                      <OPTION>Non-binary</OPTION>
-                      <OPTION>I prefer not say</OPTION>
-                      <% break;%> <%
-                      case "I prefer not say": %>
-                      <OPTION><%=student.gender%></OPTION>
-                      <OPTION>Male</OPTION>
-                      <OPTION>Female</OPTION>
-                      <OPTION>Non-binary</OPTION>
-                      <OPTION>Not-applicable</OPTION>
-                      <% break;%> <%
-                    } %>
-                  </select>
-                </td>
-                <tr>
-                  <td class="edit-buttons">
-                    <input type="submit" id="submitBtn" class="edit-buttons" value="Update student">
-                  </td>
-                <td>
-                  <form action="/delete-pid/id<%=student.id%>" method="POST" name="deleteStudentForm">
-                    <input type="submit" class="delete-buttons" onclick="return confirmDelete();" value="Delete student">
-                  </form>
-                </td>
-              </tr>
-            </tr>
-          </tbody>
-        </table>
+      <div class="block apps">
+            <p>Applications</p>
+            <button type="button" name="button">MoneyGame</button>
+            <button type="button" name="button">AIT</button>
+            <button type="button" name="button">Third</button>
       </div>
-
-      <h2 class="section__heading">Applications</h2>
-      <div class="section__button">
-        <button class="tablinks" onclick="openTest(event, 'MoneyGame')">MoneyGame</button>
-        <button class="tablinks" onclick="openTest(event, 'AIT')">AIT</button>
-        <button class="tablinks" onclick="openTest(event, 'Third')">Third</button>
-      </div>
-      <div id="MoneyGame" class="tabcontent">
-        <div class="section__application">
-          <a href="/configure/money-game/id<%=student.id%>"><button type="submit" class="buttonsApplication">Configure the interface</button></a>
-        </div>
-      </div>
-      <div id="AIT" class="tabcontent">
-        <div class="section__application">
-          <a href="/test_settings/id<%=student.id%>"><button type="submit" class="buttonsApplication">Configure the interface</button></a>
-        </div>
-      </div>
-      <div id="Third" class="tabcontent">
-        <div class="section__application">
-          <a href="#"><button type="submit" class="buttonsApplication">First button</button></a>
-          <a href="#"><button type="submit" class="buttonsApplication">Second button</button></a>
-          <a href="#"><button type="submit" class="buttonsApplication">Third button</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 
 
 <script src="/js/profileStudentTabContent.js"></script>

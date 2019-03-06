@@ -1,47 +1,51 @@
-<link rel="stylesheet" href="css/main.css">
+</html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/normalize.css">
+  <script src="/js/auth.js">
+  </script>
+  <title></title>
+</head>
 
-<% layout('layout/pattern') -%>
+<body>
+  <div class="modal">
+    <div class="modal__pagination">
+      <button type="button" name="button" class="paginationBtn paginationBtn--active" id="signInBtn">Sign In</button>
+      <button type="button" name="button" class="paginationBtn" id="signUpBtn">Sign Up</button>
+    </div>
+    <form class="modal__form" id="signIn" action="/login" method="POST" name="loginForm">
+      <label for="login">E-mail</label>
+      <input type="email" name="username" value="" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" required>
 
-<div class="form-modal">
+      <button type="submit" name="button">Sign In</button>
+      <p id="forgotLink">
+        Forgot your password?
+      </p>
+    </form>
+    <!--  -->
+    <form class="modal__form none" id="restore" action="/forgot" method="POST" name="restorePasswordForm">
+      <label for="login">E-mail</label>
+      <input type="email" name="username" value="" required>
 
-  <div class="form-toggle">
-    <button id="login-toggle" onclick="toggleLogin()">Log in</button>
-    <button id="signup-toggle" onclick="toggleSignup()">Sign up</button>
-  </div>
+      <button type="submit" name="button">Restore</button>
+    </form>
+    <!--  -->
+    <form class="modal__form none" id="signUp" action="/signUp" method="POST" name="signupForm">
+      <label for="login">E-mail</label>
+      <input type="email" name="username" value="" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" required>
 
-  <div id="login-form">
-    <form action="/login" method="POST" name="loginForm">
-      <!-- почему то везде именно в name надо username -->
-      <input type="email" name="username" placeholder="Enter email"/>
-      <input type="password" name="password" placeholder="Enter password"/>
-      <button type="submit" class="btn login">Login</button>
-      <!-- <p onclick="toggleForgotPassword()">Forgotten password?</p> -->
-      <div class="help-block">
-        <span class="error"></span>
-      </div>
+      <button type="submit" name="button">Sign up</button>
     </form>
   </div>
+</body>
 
-  <div id="signup-form">
-    <form action="/signup" method="POST" name="signupForm">
-      <input type="email" name="username" placeholder="Enter email"/>
-      <input type="password" name="password" placeholder="Create password"/>
-      <button type="submit" class="btn signup">Create account</button>
-      <!-- <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p> -->
-    </form>
-  </div>
-
-  <div id="forgotPassword-form">
-    <form action="/forgot" method="POST" name="restorePasswordForm">
-      <input type="email" name="email" placeholder="Enter email"/>
-      <button type="submit" class="btn restorePassword">Restore password</button>
-      <div class="help-block">
-        <span class="error"></span>
-      </div>
-    </form>
-  </div>
-
-</div>
-
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
-<script src="/js/auth.js"></script>
+</html>

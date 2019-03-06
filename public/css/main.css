@@ -1,155 +1,182 @@
-/* https://codepen.io/h26k2/pen/GyBevz?depth=everything&order=popularity&page=3&q=responsive+login&show_forks=false */
+/*
+размеры
+отступы
+позиционирование
+стилизация
+ */
 
-*{
-    font-family: 'quicksand',Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+ body {
+   min-width: 360px;
+   margin: 0;
+   padding: 0;
+   font-family: Roboto, sans-serif;
+   color: rgb(83, 83, 83);
+   background-image: url("../background.jpeg");
+   background-size: 100% 100%;
+   /* background: rgba(37, 160, 205, 0.5); */
+
+   /* rgba(99, 170, 236, 0.77); */
+ }
+
+ @media screen and (max-width: 500px) {
+   body {
+     background-size: 100 100%;
+   }
+ }
+
+ input:focus, button:focus {
+   outline: none;
+ }
+
+.modal {
+  width: 90%;
+  max-width: 400px;
+  min-height: 345px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
 }
 
-.form-modal{
-    position:relative;
-    width:450px;
-    height:auto;
-    margin-top:4em;
-    left:50%;
-    transform:translateX(-50%);
-    background:#fff;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow:0 3px 20px 0px rgba(0, 0, 0, 0.1)
+.modal .modal__pagination {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.form-modal button{
-    cursor: pointer;
-    position: relative;
-    text-transform: capitalize;
-    font-size:1em;
-    z-index: 2;
-    outline: none;
-    background:#fff;
-    transition:0.2s;
+.paginationBtn {
+  width: 50%;
+  padding: 20px 10px 20px 10px;
+  background-color: rgb(240, 240, 240);
+  color: inherit;
+  border: none;
+  transition: all;
+  transition-duration: .5s;
+  cursor: pointer;
 }
 
-.form-modal .btn{
-    border-radius: 20px;
-    border:none;
-    font-weight: bold;
-    font-size:1.2em;
-    padding:0.8em 1em 0.8em 1em!important;
-    transition:0.5s;
-    border:1px solid #ebebeb;
-    margin-bottom:0.5em;
-    margin-top:0.5em;
+.paginationBtn--active {
+  background-color: rgb(42, 95, 129);
+  color: white;
+  border: none;
+  transition: all;
+  transition-duration: .5s;
 }
 
-.form-modal .login , .form-modal .signup, .form-modal .restorePassword{
-    background: #279BE4;
-    color:#fff;
+.modal .modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation-name: fadeIn;
+  animation-duration: 1s;
 }
 
-.form-modal .login:hover , .form-modal .signup:hover, .form-modal .restorePassword:hover{
-    background:#2962FF;
+.modal__form input {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 300px;
+  padding: 5px;
+  margin-bottom: 20px;
+  background-color: rgb(240, 240, 240);
+  border: none;
+  transition: all;
+  transition-duration: .3s;
 }
 
-.form-toggle{
-    position: relative;
-    width:100%;
-    height:auto;
+.modal__form input:focus {
+  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  outline: none;
+  transition: all;
+  transition-duration: .3s;
 }
 
-.form-toggle button{
-    width:50%;
-    float:left;
-    padding:1.5em;
-    margin-bottom:1.5em;
-    border:none;
-    transition: 0.2s;
-    font-size:1.1em;
-    font-weight: bold;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+.modal__form label {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 5px;
+  text-align: left;
 }
 
-.form-toggle button:nth-child(1){
-    border-bottom-right-radius: 20px;
+.modal__form #forgotLink {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  font-size: 10pt;
+  text-decoration: underline;
+  color: rgb(42, 95, 129);
+  cursor: pointer;
 }
 
-.form-toggle button:nth-child(2){
-    border-bottom-left-radius: 20px;
+.modal__form button {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: rgb(42, 95, 129);
+  color: white;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  transition: all;
+  transition-duration: .5s;
+  cursor: pointer;
 }
 
-#login-toggle{
-    background: #279BE4;
-    color:#ffff;
+.modal__form button:hover {
+  background-color: rgb(240, 240, 240);
+  color: rgb(42, 95, 129);
+  box-shadow: none;
+  transition: all;
+  transition-duration: .5s;
 }
 
-.form-modal form{
-    position: relative;
-    width:90%;
-    height:auto;
-    left:50%;
-    transform:translateX(-50%);
+#restore {
+  padding-top: 30px;
+  margin-bottom: 0;
+  background-color: rgb(240, 240, 240);
 }
 
-#login-form , #signup-form, forgotPassword-form{
-    position:relative;
-    width:100%;
-    height:auto;
-    padding-bottom:1em;
+#restore input {
+  background-color: white;
 }
 
-#signup-form{
+#restore button:hover {
+  background-color: white;
+}
+
+/*  */
+.none {
+  display: none!important;
+  transition: all;
+  transition-duration: .5s;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
     display: none;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
 }
 
-#forgotPassword-form{
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
     display: none;
-}
-
-#login-form button , #signup-form button,  #forgotPassword-form button{
-    width:100%;
-    margin-top:0.5em;
-    padding:0.6em;
-}
-
-.form-modal input{
-    position: relative;
-    width:100%;
-    font-size:1em;
-    padding:1.2em 1.7em 1.2em 1.7em;
-    margin-top:0.6em;
-    margin-bottom:0.6em;
-    border-radius: 20px;
-    border:none;
-    background:#ebebeb;
-    outline:none;
-    font-weight: bold;
-    transition:0.4s;
-}
-
-.form-modal input:focus , .form-modal input:active{
-    transform:scaleX(1.02);
-}
-
-.form-modal input::-webkit-input-placeholder{
-    color:#222;
-}
-
-.form-modal p{
-    font-size:16px;
-    font-weight: bold;
-    color:#279BE4;
-    text-decoration: none;
-    transition:0.2s;
-}
-
-
-.-box-sd-effect:hover{
-    box-shadow: 0 4px 8px hsla(210,2%,84%,.2);
-}
-
-@media only screen and (max-width:500px){
-    .form-modal{
-        width:100%;
-    }
+  }
 }
