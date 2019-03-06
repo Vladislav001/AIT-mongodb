@@ -77,6 +77,26 @@ module.exports = function (passport) {
   
  /**
    * @swagger
+   * /api/v1/login/get-pictograms:
+   *   get:
+   *     tags:
+   *       - ""
+   *     summary: "Get pictograms for PID authorization"
+   *     description: ""
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:  
+   *        description: Pictograms successfully received
+   *        examples:
+   *           application/json: [ {"value": "_1_", "image": "test-ait.herokuapp.com/system_images/pictograms/1.png" },
+   *            {"value": "_12_", "image": "test-ait.herokuapp.com/system_images/pictograms/12.png" } ]
+   *            
+   */ 
+  router.get('/api/v1/login/get-pictograms', require('./api/v1/login/get_pictograms').get);
+
+ /**
+   * @swagger
    * /api/v1/login/pid:
    *   post:
    *     tags:
@@ -121,7 +141,7 @@ module.exports = function (passport) {
    *            }
    *           
    */
-  router.post('/api/v1/login/pid', require('./api/v1/login_pid').post);
+  router.post('/api/v1/login/pid', require('./api/v1/login/login_pid').post);
 
   /**
     * @swagger
