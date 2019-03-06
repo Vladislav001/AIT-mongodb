@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const PID = require('../../models/pid');
 const Admin = require('../../models/caregiver');
+const pictogram = require('../../functions/pictograms');
 
 router.get('/personalArea/:page', function (req, res) {
 
@@ -9,6 +10,8 @@ router.get('/personalArea/:page', function (req, res) {
     const page = req.params.page || 1;
 
     if (req.user.access_level == 3) {
+        let pictograms = pictogram.getLoginPictograms(req);
+  
         // Получим список студентов, привязанных к тренеру
         PID // получаем объекты
             .find({ parent_ID: req.user._id })
@@ -21,6 +24,7 @@ router.get('/personalArea/:page', function (req, res) {
                         students: pids,
                         current: page, 
                         pages: Math.ceil(count / perPage),
+                        pictograms: pictograms,
                         user: req.user,
                     })
                 })

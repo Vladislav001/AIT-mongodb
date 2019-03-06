@@ -1,6 +1,6 @@
 const PID = require('../../models/pid');
 const Admin = require('../../models/caregiver');
-
+const pictogram = require('../../functions/pictograms');
 
 exports.get = function (req, res) {
 
@@ -15,6 +15,9 @@ exports.get = function (req, res) {
     publicPage = "students";
   }
 
+  let pictograms = pictogram.getLoginPictograms(req, );
+  
+
   if (req.user.access_level == 3) {
 
     // Получим данные о конкретном студенте
@@ -23,7 +26,8 @@ exports.get = function (req, res) {
       res.render('publicProfile', {
         title: 'profileStudent',
         user: req.user,
-        student: pid
+        student: pid,
+        pictograms:pictograms
       });
     });
   } else if (req.user.access_level == 2) {
@@ -38,7 +42,8 @@ exports.get = function (req, res) {
           publicPage: publicPage,
           _id: req.params._id,
           students: pids,
-          student: pid
+          student: pid,
+          pictograms:pictograms
         });
       });
     });
@@ -58,7 +63,8 @@ exports.get = function (req, res) {
             _id: req.params._id,
             coaches: coaches,
             students: pids,
-            student: pid
+            student: pid,
+            pictograms:pictograms
           });
         });
       });

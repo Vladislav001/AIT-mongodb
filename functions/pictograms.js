@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function getLoginPictograms(req) {
+function getLoginPictograms(req, jsonStringify = true) {
     let pictogramsPath = `./public/system_images/pictograms/login`;
     let pictograms = [];
 
@@ -15,9 +15,14 @@ function getLoginPictograms(req) {
 
         pictograms.push(pictogramObject);
     });
-  
-    return pictograms;
-  }
+
+    if (jsonStringify) {
+        return JSON.stringify(pictograms);
+    } else {
+        return pictograms;
+    }
+
+}
 
 
 module.exports.getLoginPictograms = getLoginPictograms;
