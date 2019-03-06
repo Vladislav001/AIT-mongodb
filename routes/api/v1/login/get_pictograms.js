@@ -1,6 +1,4 @@
 const fs = require('fs');
-const apiError = require('../../../../functions/apierror');
-const constants = require('../../../../functions/constants');
 
 exports.get = function (req, res) {
     try {

@@ -14,11 +14,11 @@ router.get('/personalArea/:page', function (req, res) {
             .find({ parent_ID: req.user._id })
             .skip((perPage * page) - perPage)
             .limit(perPage)
-            .exec(function (err, students) {
+            .exec(function (err, pids) {
                 PID.find({ parent_ID: req.user._id }).countDocuments().exec(function (err, count) { // получаем кол-во объектов
                     if (err) return next(err)
                     res.render('personalArea', {
-                        students: students,
+                        students: pids,
                         current: page, 
                         pages: Math.ceil(count / perPage),
                         user: req.user,
