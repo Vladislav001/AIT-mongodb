@@ -16,6 +16,16 @@ function getLoginPictograms(req, jsonStringify = true) {
         pictograms.push(pictogramObject);
     });
 
+
+    // отсортируем массив
+    pictograms.sort(function (a, b) {
+        let valueA = a['value'].replace(/_/g, "");
+        let valueB = b['value'].replace(/_/g, "");
+
+       return valueA - valueB;
+    });
+
+
     if (jsonStringify) {
         return JSON.stringify(pictograms);
     } else {
