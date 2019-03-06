@@ -77,6 +77,43 @@ module.exports = function (passport) {
   
  /**
    * @swagger
+   * /api/v1/login/get-pictograms:
+   *   get:
+   *     tags:
+   *       - ""
+   *     summary: "Get pictograms for PID authorization"
+   *     description: ""
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:  
+   *        description: The PID was successfully authorized
+   *        examples:
+   *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+   *       401:
+   *         description: Invalid data entered
+   *         examples:
+   *           application/json: 
+   *            {  
+   *              errors:
+   *              [
+   *                {
+   *                 "id": 1, "title": Required fields are not filled, "detail": "login, password are required"
+   *                },{
+   *                 "id": 2, "code": password-Invalid, "title": Invalid data entered, "detail": "The number of characters in the password must be from 4 to 7"
+   *                },{
+   *                 "id": 2, "code": login-Invalid, "title": Invalid data entered, "detail": "Incorrectly specified login" 
+   *                },{
+   *                 "id": 2, "code": login-and-password-Invalid, "title": Invalid data entered, "detail": "You entered an incorrect login or password" 
+   *                 }         
+   *              ]
+   *            }
+   *            
+   */ 
+  router.get('/api/v1/login/get-pictograms', require('./api/v1/login/get_pictograms').get);
+
+ /**
+   * @swagger
    * /api/v1/login/pid:
    *   post:
    *     tags:
@@ -121,7 +158,7 @@ module.exports = function (passport) {
    *            }
    *           
    */
-  router.post('/api/v1/login/pid', require('./api/v1/login_pid').post);
+  router.post('/api/v1/login/pid', require('./api/v1/login/login_pid').post);
 
   /**
     * @swagger

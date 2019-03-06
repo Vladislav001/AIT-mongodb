@@ -1,7 +1,7 @@
-const PID = require('../../../models/pid');
+const PID = require('../../../../models/pid');
 const jwt = require('jsonwebtoken');
-const apiError = require('../../../functions/apierror');
-const constants = require('../../../functions/constants');
+const apiError = require('../../../../functions/apierror');
+const constants = require('../../../../functions/constants');
 
 exports.post = function (req, res) {
 
