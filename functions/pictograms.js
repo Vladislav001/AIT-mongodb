@@ -16,7 +16,6 @@ function getLoginPictograms(req, jsonStringify = true) {
         pictograms.push(pictogramObject);
     });
 
-
     // отсортируем массив
     pictograms.sort(function (a, b) {
         let valueA = a['value'].replace(/_/g, "");
@@ -24,7 +23,6 @@ function getLoginPictograms(req, jsonStringify = true) {
 
        return valueA - valueB;
     });
-
 
     if (jsonStringify) {
         return JSON.stringify(pictograms);
