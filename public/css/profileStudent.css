@@ -2,6 +2,7 @@
   --main-font-family: Roboto, sans-serif;
   --main-text-color: rgb(83, 83, 83);
   --skyblue-color: rgb(42, 95, 129);
+  --lightgrey: rgb(240, 240, 240);
   --box-shadow-outset: 4px 4px 0px 0px rgba(0, 0, 0, .25);
   --box-shadow-inset: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
 }
@@ -135,7 +136,7 @@ header .container {
   width: 100px;
   height: 100px;
   background-color: orange;
-  background-image: url("../no-photo.jpg");
+  background-image: url("/system_images/no-photo.jpg");
   background-size: 100% 100%;
   box-shadow: var(--box-shadow-outset);
 }
@@ -238,11 +239,11 @@ header .container {
   padding-bottom: 20px;
 }
 
-.apps button {
+.apps  .apps_buttonList {
   width: 100%;
-  max-width: 200px;
+  max-width: 400px;
   padding: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: none;
   background-color: rgb(42, 95, 129);
   color: white;
@@ -252,7 +253,42 @@ header .container {
   cursor: pointer;
 }
 
-.apps button:hover {
+.apps .apps_buttonList:hover {
+  background-color: rgb(240, 240, 240);
+  color: rgb(42, 95, 129);
+  box-shadow: none;
+  transition: all;
+  transition-duration: .5s;
+}
+
+.apps_links {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  padding: 10px 0 10px 0;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: var(--lightgrey);
+}
+
+.apps_links a {
+  width: 30%;
+  max-width: 400px;
+  padding: 5px;
+  border: none;
+  background-color: grey;
+  color: white;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  transition: all;
+  transition-duration: .5s;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.apps_links a:hover {
   background-color: rgb(240, 240, 240);
   color: rgb(42, 95, 129);
   box-shadow: none;
@@ -384,4 +420,9 @@ header .container {
 
 .row button:last-child:hover {
   color: rgb(219, 63, 42);;
+}
+
+/* programming styles */
+.none {
+  display: none;
 }

@@ -1,70 +1,100 @@
 <link rel='stylesheet' href='/css/profileStudent.css' />
 <div class="block">
-    <p>Information</p>
-    <form action="/addNewStudent" method="POST" class="modal__form" name="addNewStudentForm">
-              <div class="photo-line">
-                <div class="photo">
-                </div>
-                <input type="file" name="" value="" id="load-photo">
-              </div>
-              <label for="login">Login</label>
-              <input type="email" name="login" value="" required>
-              <label for="login">Name</label>
-              <input type="text" name="name" value="" required>
-              <label for="login">Age</label>
-              <input type="number" name="age" min="5" max="100" required>
-              <label for="fgender">Gender</label>
-              <select name="gender" required>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Non-binary</option>
-                <option>Non-applicable</option>
-                <option>I prefer not say</option>
-              </select>
-              <div class="row">
-                <button type="submit" name="button" id="updateBtn">Update</button>
-                <button type="submit" name="button" id="deleteBtn">Delete</button>
-              </div>
-            </form>
-          </div>
-
-      <!--  -->
-
-      <div class="block apps">
-            <p>Applications</p>
-            <button type="button" name="button">MoneyGame</button>
-            <button type="button" name="button">AIT</button>
-            <button type="button" name="button">Third</button>
+  <p>Information</p>
+  <form class="modal__form" name="addNewStudentForm">
+    <div class="photo-line">
+      <div class="photo">
       </div>
+      <input type="file" name="" value="" id="load-photo">
+    </div>
+    <label for="login">Login</label>
+    <input type="email" name="login" value="<%=student.login%>" required>
+    <label for="login">Name</label>
+    <input type="text" name="name" value="<%=student.name%>" required>
+    <label for="login">Age</label>
+    <input type="number" name="age" min="5" max="100" value="<%=student.age%>" required>
+    <label for="fgender">Gender</label>
+    <select name="gender" required value="<%=student.gender%>">
+      <option>Male</option>
+      <option>Female</option>
+      <option>Non-binary</option>
+      <option>Non-applicable</option>
+      <option>I prefer not say</option>
+    </select>
+    <div class="row">
+      <button type="button" name="button" id="updateBtn">Update</button>
+      <form action="/delete-pid/id<%=student.id%>" method="POST" name="deleteStudentForm">
+        <button type="submit" id="deleteBtn" onclick="return confirmDelete();" value="Delete student">
+          Delete
+        </button>
+      </form>
+    </div>
+  </form>
+</div>
+
+<!--  -->
+
+<div class="block apps">
+  <p>Applications</p>
+  <button type="button" name="button" class="apps_buttonList">MoneyGame</button>
+  <div id="MoneyGame" class="apps_links none">
+    <a href="/configure/money-game/id<%=student.id%>">Configure the interface</a>
+  </div>
+  <!--  -->
+  <button type="button" name="button" class="apps_buttonList">AIT</button>
+  <div id="AIT" class="apps_links none">
+    <a href="/test_settings/id<%=student.id%>">Configure the interface</a>
+  </div>
+  <!--  -->
+  <button type="button" name="button" class="apps_buttonList">Third</button>
+  <div id="Third" class="apps_links none">
+    <a href="#">First button</a>
+    <a href="#">Second button</a>
+    <a href="#">Third button</a>
+  </div>
+</div>
 
 
 <script src="/js/profileStudentTabContent.js"></script>
 <script>
+  var appsButtons = document.querySelectorAll(".apps_buttonList");
+  var apps_links = document.querySelectorAll(".apps_links");
 
-var submitBtn = document.getElementById("submitBtn");
-submitBtn.onclick = function () {
-  var updateStudentData = {};
+  function onListButtonClick(elem) {
+    for (let link of apps_links)
+      link.classList.add("none");
 
-  updateStudentData.login =  $("input[name='login']").val();
-  updateStudentData.name =  $("input[name='name']").val();
-  updateStudentData.age =  $("input[name='age']").val();
-  updateStudentData.gender = $("select[name='gender']").val();
-  //updateStudentData.photo = $("input[name='photo']").val();
-  // var fd = new FormData;
-  // updateStudentData.photo = fd.append('img', $("input[name='photo']").prop('files')[0]);
-  // console.log(fd.append('img', $("input[name='photo']").prop('files')[0]));
+    document.getElementById(`${elem.target.innerText}`).classList.remove("none");
+  }
 
-  $.ajax({
-    type: 'POST',
-    url: '/updateStudent/id<%=student.id%>',
-    dataType: 'json',
-    data:  updateStudentData,
-    success: function(data) {
-      alert(data.responseText);
-    },
-    error: function(data) {
-      alert(data.responseText);
-    }
-  });
-}
+for (let button of appsButtons)
+  button.addEventListener("click", onListButtonClick);
+
+  var updateBtn = document.getElementById("updateBtn");
+  updateBtn.onclick = function() {
+
+    var updateStudentData = {};
+
+    updateStudentData.login = document.querySelector("input[name='login']").value;
+    updateStudentData.name = document.querySelector("input[name='name']").value;
+    updateStudentData.age = document.querySelector("input[name='age']").value;
+    updateStudentData.gender = document.querySelector("select[name='gender']").value;
+    //updateStudentData.photo = $("input[name='photo']").val();
+    // var fd = new FormData;
+    // updateStudentData.photo = fd.append('img', $("input[name='photo']").prop('files')[0]);
+    // console.log(fd.append('img', $("input[name='photo']").prop('files')[0]));
+
+    $.ajax({
+      type: 'POST',
+      url: '/updateStudent/id<%=student.id%>',
+      dataType: 'json',
+      data: updateStudentData,
+      success: function(data) {
+        alert(data.responseText);
+      },
+      error: function(data) {
+        alert(data.responseText);
+      }
+    });
+  }
 </script>

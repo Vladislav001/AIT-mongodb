@@ -157,7 +157,7 @@ table .info:hover {
   transition-duration: .5s;
 }
 
-table .info:hover form .deleteBtn {
+table .info:hover .deleteBtn {
   display: block;
 }
 
@@ -272,13 +272,18 @@ table .info:hover a {
     width: 100%;
   }
 
+  .right-column .container {
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+  }
+
   .block {
     max-width: 550px;
     width: 100%;
     margin-bottom: 20px;
-    padding: 0 10px 0 10px; */
     margin-left: auto;
     margin-right: auto;
+    padding: 0 10px 0 10px;
     box-sizing: border-box;
   }
 

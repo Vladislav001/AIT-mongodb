@@ -6,13 +6,16 @@
  */
 
  body {
+   width: 100vw;
+   height: 100vh;
    min-width: 360px;
    margin: 0;
    padding: 0;
    font-family: Roboto, sans-serif;
    color: rgb(83, 83, 83);
-   background-image: url("../background.jpeg");
+   background-image: url("/system_images/background.jpeg");
    background-size: 100% 100%;
+   background-repeat: no-repeat;
    /* background: rgba(37, 160, 205, 0.5); */
 
    /* rgba(99, 170, 236, 0.77); */
