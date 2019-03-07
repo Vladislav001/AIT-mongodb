@@ -93,9 +93,6 @@
 }
 
 /* Game styles part */
-#gamesContainer {
-  width: 700px;
-}
 .container .game {
   background-image: url("/system_images/ipad.png");
   background-size: 100% 100%;
