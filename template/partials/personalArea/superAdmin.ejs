@@ -5,12 +5,13 @@
         <th>№</th>
         <th>Email</th>
         <th>Position</th>
+        <th></th>
       </tr>
       <!--  -->
       <tr>
         <% for (var i=0; i< admins.length; i++) { %>
           <tbody>
-            <tr>
+            <tr class="info">
               <td><%=i+1%></td>
               <% if(admins[i].access_level == 2) { %>
                 <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
@@ -20,7 +21,7 @@
                 </form>
                 <% }  else { %>
                   <td><a href="/publicProfile/coaches/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
-                  <td>Parent</td>
+                  <td >Parent</td>
                   <form action="/deleteCoach/id<%=admins[i].id%>" method="POST" name="deleteCoachForm">
                     <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
                   </form>
@@ -30,12 +31,11 @@
               <% } %>
             </tr>
           </table>
-        <%-partial('../../partials/personalArea/pagination')%>
       </div>
 
       <div class="block">
-          <h2>Create new administrator</h2>
-          <form action="/addNewAdmin" method="POST" name="addNewAdminForm">
+          <p>Create new administrator</p>
+          <form action="/addNewAdmin" method="POST" name="addNewAdminForm" class="modal__form">
             <span class="error"></span>
             <label for="login">Login</label>
             <input type="email" name="email" value="" required>

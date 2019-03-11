@@ -39,7 +39,6 @@
       <% } %>
     </tr>
   </table>
-  <%-partial('../../partials/personalArea/pagination')%>
   <% } %>
 </div>
 
@@ -66,8 +65,7 @@
     <button type="submit" name="button">Create</button>
   </form>
 </div>
-<% }  else if(publicPage == 'students') { %>
-<%-partial('../../partials/publicProfile/student')%>
+<% }  else if (publicPage == 'students') { %>
 <% } %>
 
 <script>
