@@ -1,20 +1,16 @@
-<% if(publicPage == 'coaches') { %>
-<link rel='stylesheet' href='/css/personalArea.css' />
-
 <div class="block">
-  <p>Students</p>
-  <% if(students.length > 0) { %>
-  <table class="table__headRow">
-    <tr>
-      <th>№</th>
+  <p>My students</p>
+  <table border="0">
+    <tr class="table__headRow">
+      <th>#</th>
       <th>Name</th>
       <th>Gender</th>
       <th>Age</th>
-      <th class="empty"></th>
+      <th></th>
     </tr>
     <!--  -->
     <tr>
-      <% for (var i=0; i<lengthStudents; i++) { %>
+      <% for (var i=0; i< students.length; i++) { %>
       <tbody>
         <tr class="info">
           <td>
@@ -39,7 +35,6 @@
       <% } %>
     </tr>
   </table>
-  <% } %>
 </div>
 
 <div class="block">
@@ -65,9 +60,6 @@
     <button type="submit" name="button">Create</button>
   </form>
 </div>
-<% }  else if(publicPage == 'students') { %>
-<%-partial('../../partials/publicProfile/student')%>
-<% } %>
 
 <script>
   var form = $('form[name="addNewStudentForm"]');
@@ -83,8 +75,6 @@
     newStudent.age = $("input[name='age']").val();
     newStudent.gender = $("select[name='gender']").val();
     newStudent._id = "<%=_id%>";
-
-    console.log(newStudent);
 
     $.ajax({
       type: "POST",
