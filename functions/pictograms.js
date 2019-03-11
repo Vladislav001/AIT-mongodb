@@ -7,9 +7,9 @@ function getLoginPictograms(req, jsonStringify = true) {
     // пройдемся по всем пиктограммам и сформируем массив объектов
     fs.readdirSync(pictogramsPath).forEach(pictogram => {
         let pictogramValue = pictogram.split('.')[0];
-        
+
         let pictogramObject = {
-            value: `_${pictogramValue}`,
+            value: `_${pictogramValue}_`,
             image: `${req.headers.host}/system_images/pictograms/login/${pictogram}`
         }
 
