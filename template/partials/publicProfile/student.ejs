@@ -54,25 +54,21 @@
   </div>
 </div>
 
+
+<script src="/js/profileStudentTabContent.js"></script>
 <script>
   var appsButtons = document.querySelectorAll(".apps_buttonList");
   var apps_links = document.querySelectorAll(".apps_links");
-
   function onListButtonClick(elem) {
     for (let link of apps_links)
       link.classList.add("none");
-
     document.getElementById(`${elem.target.innerText}`).classList.remove("none");
   }
-
   for (let button of appsButtons)
     button.addEventListener("click", onListButtonClick);
-
   var updateBtn = document.getElementById("updateBtn");
   updateBtn.onclick = function() {
-
     var updateStudentData = {};
-
     updateStudentData.login = document.querySelector("input[name='login']").value;
     updateStudentData.name = document.querySelector("input[name='name']").value;
     updateStudentData.age = document.querySelector("input[name='age']").value;
@@ -81,7 +77,6 @@
     // var fd = new FormData;
     // updateStudentData.photo = fd.append('img', $("input[name='photo']").prop('files')[0]);
     // console.log(fd.append('img', $("input[name='photo']").prop('files')[0]));
-
     $.ajax({
       type: 'POST',
       url: '/updateStudent/id<%=student.id%>',
@@ -96,16 +91,3 @@
     });
   }
 </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-<script>
-
-  </script>
-=======
->>>>>>> parent of d1e652e... На странице апдейта пида - присылаю массив  картинок текущего логина и пароля + рефактор кода
-=======
->>>>>>> parent of d1e652e... На странице апдейта пида - присылаю массив  картинок текущего логина и пароля + рефактор кода
-=======
->>>>>>> parent of d1e652e... На странице апдейта пида - присылаю массив  картинок текущего логина и пароля + рефактор кода
