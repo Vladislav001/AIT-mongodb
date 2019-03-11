@@ -89,8 +89,8 @@ module.exports = function (passport) {
    *       200:  
    *        description: Pictograms successfully received
    *        examples:
-   *           application/json: {"pictograms": [ {"value": "_1_", "image": "test-ait.herokuapp.com/system_images/pictograms/1.png" },
-   *            {"value": "_12_", "image": "test-ait.herokuapp.com/system_images/pictograms/12.png" } ] }
+   *           application/json: {"pictograms": [ {"value": "_1", "image": "test-ait.herokuapp.com/system_images/pictograms/1.png" },
+   *            {"value": "_12", "image": "test-ait.herokuapp.com/system_images/pictograms/12.png" } ] }
    *            
    */ 
   router.get('/api/v1/login/get-pictograms', require('./api/v1/login/get_pictograms').get);

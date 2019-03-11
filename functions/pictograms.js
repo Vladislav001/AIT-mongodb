@@ -9,7 +9,7 @@ function getLoginPictograms(req, jsonStringify = true) {
         let pictogramValue = pictogram.split('.')[0];
 
         let pictogramObject = {
-            value: `_${pictogramValue}_`,
+            value: `_${pictogramValue}`,
             image: `${req.headers.host}/system_images/pictograms/login/${pictogram}`
         }
 
