@@ -7,9 +7,9 @@
   <div class="right-column">
     <div class="container">
       <% if(user.access_level == 3) { %>
-      <%-partial('../partials/publicProfile/coach')%>
+      <%-partial('../../partials/publicProfile/coach')%>
          <% }  else if(user.access_level == 2) { %>
-        <%-partial('../partials/publicProfile/admin')%>
+        <%-partial('../../partials/publicProfile/admin')%>
         <% }  else if(user.access_level == 1) { %>
        <%-partial('./partials/personalArea/superAdmin')%>
       <% } %>
