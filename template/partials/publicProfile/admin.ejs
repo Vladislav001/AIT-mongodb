@@ -1,7 +1,6 @@
-<% if(publicPage == 'admins') { %>
-<!-- Пока такая костылина, т.к стили кабинета переопределяют стили в профили студента-->
 <link rel='stylesheet' href='/css/personalArea.css' />
 
+<div class="block">
 <p>My coaches</p>
 <table border="0">
   <tr class="table__headRow">
@@ -40,8 +39,3 @@
     <button type="submit" name="button">Create</button>
   </form>
 </div>
-<% }  else if(publicPage == 'coaches') { %>
-<%-partial('../../partials/publicProfile/coach')%>
-<% } else if(publicPage == 'students'){ %>
-<%-partial('../../partials/publicProfile/student')%>
-<% } %>
