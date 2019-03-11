@@ -35,6 +35,7 @@
       <% } %>
     </tr>
   </table>
+   <%-partial('../pagination')%>
 </div>
 
 <div class="block">
@@ -74,7 +75,6 @@
     newStudent.name = $("input[name='name']").val();
     newStudent.age = $("input[name='age']").val();
     newStudent.gender = $("select[name='gender']").val();
-    newStudent._id = "<%=user._id%>";
 
     $.ajax({
       type: "POST",
