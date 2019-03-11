@@ -5,12 +5,13 @@
         <th>№</th>
         <th>Email</th>
         <th>Position</th>
+        <th></th>
       </tr>
       <!--  -->
       <tr>
         <% for (var i=0; i< admins.length; i++) { %>
           <tbody>
-            <tr>
+            <tr class="info"> 
               <td><%=i+1%></td>
               <% if(admins[i].access_level == 2) { %>
                 <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
