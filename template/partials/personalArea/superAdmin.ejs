@@ -1,16 +1,12 @@
-<div class="widget-box sample-widget">
-  <div class="widget-header">
-    <h2>Administrators and parents</h2>
-    <i class="fa fa-cog"></i>
-  </div>
-  <div class="widget-content">
-    <table class="table">
-      <tr>
+    <div class="block">
+    <p>Administrators and parents</p>
+    <table border="0">
+      <tr class="table__headRow">
         <th>№</th>
         <th>Email</th>
         <th>Position</th>
       </tr>
-
+      <!--  -->
       <tr>
         <% for (var i=0; i< admins.length; i++) { %>
           <tbody>
@@ -20,13 +16,13 @@
                 <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
                 <td>Administrator</td>
                 <form action="/deleteAdmin/id<%=admins[i].id%>" method="POST" name="deleteAdminForm">
-                  <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+                  <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
                 </form>
                 <% }  else { %>
                   <td><a href="/publicProfile/coaches/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
                   <td>Parent</td>
                   <form action="/deleteCoach/id<%=admins[i].id%>" method="POST" name="deleteCoachForm">
-                    <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+                    <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
                   </form>
                   <% } %>
                 </tr>
@@ -34,26 +30,17 @@
               <% } %>
             </tr>
           </table>
-        </div>
         <%-partial('../../partials/personalArea/pagination')%>
       </div>
 
-      <div class="widget-box sample-widget">
-        <div class="widget-header">
-          <h2>New administrator</h2>
-          <i class="fa fa-cog"></i>
-        </div>
-        <div class="widget-content">
+      <div class="block">
+          <h2>Create new administrator</h2>
           <form action="/addNewAdmin" method="POST" name="addNewAdminForm">
-
-            <label for="femail">Email</label>
-            <input type="email" id="femail" name="email" placeholder="Enter email">
-
-            <label for="fpassword">Password</label>
-            <input type="text" id="fpassword" name="password" placeholder="Create password">
-
-            <input type="submit" value="Create new administrator">
-            <span class="help-block error"></span>
+            <span class="error"></span>
+            <label for="login">Login</label>
+            <input type="email" name="email" value="" required>
+            <label for="login">Password</label>
+            <input type="password" name="password" value="" required>
+            <button type="submit" name="button">Create</button>
           </form>
-        </div>
       </div>

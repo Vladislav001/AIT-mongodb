@@ -16,9 +16,6 @@
    background-image: url("/system_images/background.jpeg");
    background-size: 100% 100%;
    background-repeat: no-repeat;
-   /* background: rgba(37, 160, 205, 0.5); */
-
-   /* rgba(99, 170, 236, 0.77); */
  }
 
  @media screen and (max-width: 500px) {

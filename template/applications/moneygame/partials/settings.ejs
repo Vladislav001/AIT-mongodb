@@ -1,9 +1,9 @@
-<div class="settings">
-    <h2>Settings</h2>
+<div class="modal__form block">
+    <p>Settings</p>
 
-    <div class="first-label">Progress bar
+    <label for="progressBar">Progress bar
         <input type="checkbox" name="progressBar" id="progressBarChanger">
-    </div>
+    </label>
 
     <label>Next/Back buttons
         <input type="range" min="1" max="<%=countFiles.nextBack%>" name="next-back-btn" id="nextBackBtnsChanger">
@@ -29,5 +29,7 @@
     </select>
     <br>
 
-    <input type="submit" id="submitBtn" value="Save settings">
+    <button type="submit" id="submitBtn">
+      Save settings
+    </button>
 </div>

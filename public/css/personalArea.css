@@ -198,7 +198,8 @@ table .info:hover a {
   transition-duration: .3s;
 }
 
-.modal__form input:focus, .modal__form select:focus {
+.modal__form input[type="text"]:focus, .modal__form input[type="password"]:focus,
+.modal__form input[type="email"]:focus, .modal__form input[type="number"]:focus, .modal__form select:focus {
   box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
   outline: none;
   transition: all;

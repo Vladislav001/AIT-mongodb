@@ -8,13 +8,13 @@
       <input type="file" name="" value="" id="load-photo">
     </div>
     <label for="login">Login</label>
-    <input type="email" name="login" value="<%=student.login%>" required>
-    <label for="login">Name</label>
+    <input type="text" name="login" value="<%=student.login%>" required>
+    <label for="name">Name</label>
     <input type="text" name="name" value="<%=student.name%>" required>
-    <label for="login">Age</label>
+    <label for="age">Age</label>
     <input type="number" name="age" min="5" max="100" value="<%=student.age%>" required>
     <label for="fgender">Gender</label>
-    <select name="gender" required value="<%=student.gender%>">
+    <select name="gender" value="<%=student.gender%>" required>
       <option>Male</option>
       <option>Female</option>
       <option>Non-binary</option>
@@ -67,8 +67,8 @@
     document.getElementById(`${elem.target.innerText}`).classList.remove("none");
   }
 
-for (let button of appsButtons)
-  button.addEventListener("click", onListButtonClick);
+  for (let button of appsButtons)
+    button.addEventListener("click", onListButtonClick);
 
   var updateBtn = document.getElementById("updateBtn");
   updateBtn.onclick = function() {

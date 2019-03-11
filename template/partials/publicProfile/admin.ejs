@@ -1,64 +1,48 @@
 <% if(publicPage == 'admins') { %>
-  <!-- Пока такая костылина, т.к стили кабинета переопределяют стили в профили студента-->
-  <link rel='stylesheet' href='/css/personalArea.css' />
+<!-- Пока такая костылина, т.к стили кабинета переопределяют стили в профили студента-->
+<link rel='stylesheet' href='/css/personalArea.css' />
 
-  <div class="widget-box sample-widget">
-    <div class="widget-header">
-      <h2>Coaches</h2>
-      <i class="fa fa-cog"></i>
-    </div>
-      <% if(coaches.length > 0) { %>
-    <div class="widget-content">
-      <table class="table">
-        <tr>
-          <th>№</th>
-          <th>Email</th>
-          <th class="empty"></th>
-        </tr>
-
-        <tr>
-          <% for (var i=0; i<lengthCoaches; i++) { %>
-            <tbody>
-              <tr>
-                <td><%=i+1%></td>
-                <td><a href="/publicProfile/coaches/id<%=coaches[i].id%>"><%=coaches[i].email%></a></td>
-                <!-- <form action="/editStudent/id<%=coaches[i].id%>" method="POST" name="editStudentForm">
-                  <td class="edit"><button class="edit-buttons">Edit</button></td>
-                </form> -->
-                <form action="/deleteCoach/id<%=coaches[i].id%>" method="POST" name="deleteCoachForm">
-                  <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
-                </form>
-              </tr>
-            </tbody>
-            <% } %>
-          </tr>
-        </table>
-      </div>
-        <% } %>
-    </div>
-
-    <div class="widget-box sample-widget">
-      <div class="widget-header">
-        <h2>New coach</h2>
-        <i class="fa fa-cog"></i>
-      </div>
-      <div class="widget-content">
-        <form action="/addNewCoach" method="POST" name="addNewCoachForm">
-          <input  name="_id" type="hidden" value="<%=_id%>">
-
-          <label for="femail">Email</label>
-          <input type="email" id="femail" name="email" placeholder="Enter email">
-
-          <label for="fpassword">Password</label>
-          <input type="text" id="fpassword" name="password" placeholder="Create password">
-
-          <input type="submit" value="Create new coach">
-          <span class="help-block error"></span>
+<p>My coaches</p>
+<table border="0">
+  <tr class="table__headRow">
+    <th>№</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <!--  -->
+  <tr>
+    <% for (var i=0; i< coaches.length; i++) { %>
+    <tbody>
+      <tr class="info">
+        <td>
+          <%=i+1%>
+        </td>
+        <td><a href="/publicProfile/coaches/id<%=coaches[i].id%>">
+            <%=coaches[i].email%></a></td>
+        <form action="/deleteCoach/id<%=coaches[i].id%>" method="POST" name="deleteCoachForm">
+          <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
         </form>
-      </div>
-    </div>
-   <% }  else if(publicPage == 'coaches') { %>
-        <%-partial('../../partials/publicProfile/coach')%>
-  <% } else if(publicPage == 'students'){ %>
-        <%-partial('../../partials/publicProfile/student')%>
+      </tr>
+    </tbody>
     <% } %>
+  </tr>
+</table>
+<%-partial('../../partials/personalArea/pagination')%>
+</div>
+
+<div class="block">
+  <p>Create new coach</p>
+  <form action="/addNewCoach" method="POST" class="modal__form" name="addNewCoachForm">
+    <span class="error"></span>
+    <label for="login">Login</label>
+    <input type="email" name="email" value="" required>
+    <label for="login">Password</label>
+    <input type="password" name="password" value="" required>
+    <button type="submit" name="button">Create</button>
+  </form>
+</div>
+<% }  else if(publicPage == 'coaches') { %>
+<%-partial('../../partials/publicProfile/coach')%>
+<% } else if(publicPage == 'students'){ %>
+<%-partial('../../partials/publicProfile/student')%>
+<% } %>

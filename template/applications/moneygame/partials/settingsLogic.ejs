@@ -1,18 +1,11 @@
 <script defer>
-<<<<<<< HEAD
-  window.onload = function() {
-    var preloader = document.getElementById("preloader");
-    preloader.classList.add("none");
-
-    var gamesContainer = document.getElementById("gamesContainer");
-    gamesContainer.classList.remove("none");
-  }
-=======
-    window.onload = function() {
-      var content = document.getElementById("content");
-      content.classList.remove("none");
-    }
->>>>>>> parent of bed4e6f... Добавил прелоадер
+    // window.onload = function() {
+    //   var preloader = document.getElementById("preloader");
+    //   preloader.classList.add("none");
+    //
+    //   var gamesContainer = document.getElementById("gamesContainer");
+    //   gamesContainer.classList.remove("none");
+    // }
 
   //path of page declaration
   var path = "collectionMoney";
@@ -70,8 +63,6 @@
   paymentPurchaseBtn.addEventListener("click", pageChanger);
   takeChangeeBtn.addEventListener("click", pageChanger);
 
-  var func;
-
   // listeners of changers
   nextBackBtnsChanger.addEventListener("change", changePairElems);
   progressBarChanger.addEventListener("change", changeElem);
@@ -95,6 +86,7 @@
   basketChanger.value = getValue(settings.basket);
 
   fCurrency.selectedIndex = settings.fCurrency;
+
 
   showFromDB(fCurrency);
   showFromDB(nextBackBtnsChanger);
@@ -180,10 +172,12 @@
     var banknotes = allCurrencies[fCurrency.value]["banknotes"];
     var coins = allCurrencies[fCurrency.value]["coins"];
 
+
     for (let currencyImage of currencyImages) {
       currencyImage.parentElement.classList.add("hidden");
       currencyImage.src = "";
     }
+
 
     switch (game) {
       case games[0]:
@@ -238,6 +232,7 @@
         }
         break;
     }
+
   }
 
   function hideAllGames() {

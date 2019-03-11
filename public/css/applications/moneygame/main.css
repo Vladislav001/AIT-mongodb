@@ -1,32 +1,9 @@
-.container {
-  width: 100%;
-  float: left;
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
+#progressBarChanger {
+  width: auto;
+  margin-left: 20px;
 }
 
-.container .pagination {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.container .pagination button {
-  border-radius: 5px;
-  margin: 5px;
-  margin-left: 10px;
-  width: 20%;
-  max-width: 160px;
-  vertical-align: middle;
-  padding: 5px;
-  border: none;
-}
-
-.container .settings {
+.settings {
   width: calc(40% - 20px);
   max-width: 350px;
   min-width: 200px;
@@ -35,62 +12,33 @@
   flex-direction: column;
 }
 
-.container .settings h2, .container .pagination a {
-  font-weight: normal;
-  font-size: 12pt;
-  text-align: center;
-  padding: 10px;
-}
-
-.container .pagination a, .container .pagination a:visited {
-  color: black;
-}
-
-.a-active, .a-active:visited {
-  background: #279BE4;
-  color: white !important;
-}
-
-.container .settings h2 {
-  background: #279BE4;
-  color: white;
-  margin-top: 0;
-}
-
-.container .settings label {
-  font-weight: bold;
+.pagination {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  width: 600px;
 }
 
-.container .settings input {
-  margin-bottom: 20px;
-}
+.paginationBtn {
 
-/* For checkbox row visibility (looks better, then column) */
-.first-label {
-  flex-direction: row !important;
+  padding: 5px;
   margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  font-weight: bold;
-  cursor: default;
-}
-
-.first-label input {
-  margin-left: 20px;
-  margin-bottom: 0;
-}
-
-#submitBtn {
-  background: #279BE4;
-  color: white;
-  padding: 10px;
   border: none;
-  border-radius: 5px;
-  font-size: 12pt;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-color: rgb(42, 95, 129);
+  color: white;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  transition: all;
+  transition-duration: .5s;
+  cursor: pointer;
 }
+
+.paginationBtn:hover, .a-active {
+  background-color: rgb(240, 240, 240);
+  color: rgb(42, 95, 129);
+  box-shadow: none;
+  transition: all;
+  transition-duration: .5s;
+}
+
 
 /* Game styles part */
 .container .game {
@@ -164,6 +112,7 @@
 .game .main .row .game-block img {
   height: 100%;
   width: auto;
+  max-width: 100px;
   display: block;
   margin: 0 auto;
 }
