@@ -84,8 +84,6 @@
     newStudent.gender = $("select[name='gender']").val();
     newStudent._id = "<%=_id%>";
 
-    console.log(newStudent);
-
     $.ajax({
       type: "POST",
       url: "/addNewStudent",
