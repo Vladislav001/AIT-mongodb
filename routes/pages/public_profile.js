@@ -39,7 +39,7 @@ exports.get = async function (req, res) {
     let pids = await PID.find({ parent_ID: req.params._id });
     // Получим данные о конкретном студенте
     let pid = await PID.findById(req.params._id);
-   
+    
     res.render('publicProfile', {
       user: req.user,
       lengthStudents: pids.length,
@@ -48,9 +48,9 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid): ''
+      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid) : ''
     });
-
+ 
 
   } else if (req.user.access_level == 1) {
     // Получим данные о конкретном админе(НЕ ГЛАВНОМ) - его список тренеров
@@ -70,7 +70,7 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid): ''
+      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid) : ''
     });
   }
 };
