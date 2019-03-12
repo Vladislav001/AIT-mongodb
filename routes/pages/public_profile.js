@@ -26,7 +26,7 @@ exports.get = async function (req, res) {
   if (req.user.access_level == 3) {
     // Получим данные о конкретном студенте
     let pid = await PID.findById(req.params._id)
-
+    
     res.render('publicProfile', {
       user: req.user,
       student: pid,
@@ -47,7 +47,8 @@ exports.get = async function (req, res) {
       _id: req.params._id,
       students: pids,
       student: pid,
-      pictograms: pictograms
+      pictograms: pictograms,
+      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
     });
 
 
@@ -68,7 +69,8 @@ exports.get = async function (req, res) {
       coaches: caregivers,
       students: pids,
       student: pid,
-      pictograms: pictograms
+      pictograms: pictograms,
+      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
     });
   }
 };
