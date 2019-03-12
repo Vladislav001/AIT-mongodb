@@ -3,7 +3,11 @@ const Admin = require('../../models/caregiver');
 const pictogram = require('../../functions/pictograms');
 const fs = require('fs');
 
-exports.get = function (req, res) {
+
+exports.get = async function (req, res) {
+
+  //const perPage = 1; // сколько записей отображать
+  //const page = req.params.page || 1;
 
   // Как-то же надо проверять кого смотрим - ИСПРАВИТЬ ПО НОРМУ
   let publicPage;
@@ -15,73 +19,59 @@ exports.get = function (req, res) {
   } else if (url.indexOf("students") != -1) {
     publicPage = "students";
   }
+  
 
   let pictograms = pictogram.getLoginPictograms(req);
 
-
   if (req.user.access_level == 3) {
-
     // Получим данные о конкретном студенте
-    PID.findById(req.params._id, function (err, pid) {
+    let pid = await PID.findById(req.params._id)
 
-
-      getPictogramsForPidLoginAndPassword(pid);
-
-      res.render('publicProfile', {
-        title: 'profileStudent',
-        user: req.user,
-        student: pid,
-        pictograms: pictograms,
-        currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
-      });
+    res.render('publicProfile', {
+      user: req.user,
+      student: pid,
+      pictograms: pictograms,
+      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
     });
+
   } else if (req.user.access_level == 2) {
     // Получим данные о конкретном тренере - его список студентов
-    PID.find({ parent_ID: req.params._id }, function (err, pids) {
-      // Получим данные о конкретном студенте
-      PID.findById(req.params._id, function (err, pid) {
-
-        res.render('publicProfile', {
-          title: 'profileAdmin',
-          user: req.user,
-          lengthStudents: pids.length,
-          publicPage: publicPage,
-          _id: req.params._id,
-          students: pids,
-          student: pid,
-          pictograms: pictograms
-        });
-      });
+    let pids = await PID.find({ parent_ID: req.params._id });
+    // Получим данные о конкретном студенте
+    let pid = await PID.findById(req.params._id);
+   
+    res.render('publicProfile', {
+      user: req.user,
+      lengthStudents: pids.length,
+      publicPage: publicPage,
+      _id: req.params._id,
+      students: pids,
+      student: pid,
+      pictograms: pictograms
     });
+
+
   } else if (req.user.access_level == 1) {
     // Получим данные о конкретном админе(НЕ ГЛАВНОМ) - его список тренеров
-    Admin.find({ parent_ID: req.params._id }, function (err, coaches) {
-      // Получим данные о конкретном тренере - его список студентов
-      PID.find({ parent_ID: req.params._id }, function (err, pids) {
-        // Получим данные о конкретном студенте
-        PID.findById(req.params._id, function (err, pid) {
+    let caregivers = await Admin.find({ parent_ID: req.params._id });
+    // Получим данные о конкретном тренере - его список студентов
+    let pids = await PID.find({ parent_ID: req.params._id });
+    // Получим данные о конкретном студенте
+    let pid = await PID.findById(req.params._id);
 
-          console.log(pid)
-
-          res.render('publicProfile', {
-            title: 'profileAdmin',
-            user: req.user,
-            lengthCoaches: coaches.length,
-            lengthStudents: pids.length,
-            publicPage: publicPage,
-            _id: req.params._id,
-            coaches: coaches,
-            students: pids,
-            student: pid,
-            pictograms: pictograms
-          });
-        });
-      });
+    res.render('publicProfile', {
+      user: req.user,
+      lengthCoaches: caregivers.length,
+      lengthStudents: pids.length,
+      publicPage: publicPage,
+      _id: req.params._id,
+      coaches: caregivers,
+      students: pids,
+      student: pid,
+      pictograms: pictograms
     });
   }
-
 };
-
 
 
 function getPictogramsForPidLoginAndPassword(pid) {
