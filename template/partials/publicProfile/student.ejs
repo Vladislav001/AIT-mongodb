@@ -321,7 +321,6 @@
 <script type="text/javascript" defer>
     var pictograms = <%-pictograms%>;
     var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
-    console.log(currentPidLoginAndPassword);
 
     var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
     var pictogramsValues = document.querySelectorAll(".pictograms__values");
@@ -340,16 +339,37 @@
       for (let pictogram of pictogramsValues) {
         var fields = pictogram.querySelectorAll(".pictograms__values__field__image");
 
+
         for (let i = 0; i < fields.length; i++) {
           fields[i].src = (pictograms[i].image).replace(/localhost/, "");
         }
-
         var values = pictogram.querySelectorAll(".pictograms__values__field__value");
 
         for (let i = 0; i < values.length; i++) {
           values[i].innerText = (pictograms[i].value);
         }
       }
+    }
+
+    function getValuesFromDB() {
+      if (!currentPidLoginAndPassword.LOGIN.length)
+      document.getElementById("login").innerText = "";
+
+      if (!currentPidLoginAndPassword.PASSWORD.length)
+      document.getElementById("password").innerText = "";
+
+      var pictograms = document.querySelectorAll(".pictograms");
+
+      var loginInputs = pictograms[0].querySelectorAll(".pictograms__input__field");
+      var passwordInputs = pictograms[1].querySelectorAll(".pictograms__input__field");
+
+      currentPidLoginAndPassword.LOGIN.map((item, index) => {
+        loginInputs[index].src = item;
+      })
+
+      currentPidLoginAndPassword.PASSWORD.map((item, index) => {
+        loginInputs[index].src = item;
+      })
     }
 
     function onPictogramClick(elem) {
@@ -393,4 +413,5 @@
     }
 
     getImagesFromDB();
+    getValuesFromDB();
 </script>
