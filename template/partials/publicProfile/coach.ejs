@@ -110,11 +110,11 @@
     <div class="pictograms">
       <p class="pictograms__state" id="login"></p>
       <div class="pictograms__inputs">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
+        <img class="pictograms__input__field" src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
         <input type="button" class="pictograms__input__delete" value="&#10006;">
       </div>
       <div class="pictograms__values">
@@ -190,11 +190,11 @@
     <div class="pictograms">
       <p class="pictograms__state" id="password"></p>
       <div class="pictograms__inputs">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
-        <img class="pictograms__input__field">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
+        <img class="pictograms__input__field"  src="/system_images/white.jpg">
         <input type="button" class="pictograms__input__delete" value="&#10006;">
       </div>
       <div class="pictograms__values">
@@ -320,8 +320,6 @@
 </script>
 
 <script type="text/javascript" defer>
-    var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
-    console.log(currentPidLoginAndPassword);
     var pictograms = <%-pictograms%>;
     var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
     var pictogramsValues = document.querySelectorAll(".pictograms__values");
@@ -341,7 +339,7 @@
         var fields = pictogram.querySelectorAll(".pictograms__values__field__image");
 
         for (let i = 0; i < fields.length; i++) {
-          fields[i].src = (pictograms[i].image).replace(/localhost/, "");
+            fields[i].src = (pictograms[i].image).replace(/localhost/, "");
         }
 
         var values = pictogram.querySelectorAll(".pictograms__values__field__value");
@@ -387,7 +385,7 @@
         if (state.innerText.length == 0) return;
 
         var images = pictogram.querySelectorAll(".pictograms__input__field");
-        images[state.innerText.match(/\_\d+/g).length - 1].src = "";
+        images[state.innerText.match(/\_\d+/g).length - 1].src = "/system_images/white.jpg";
         state.innerText = state.innerText.replace(/(\_\d+)$/, "");
       }
     }
