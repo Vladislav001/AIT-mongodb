@@ -48,7 +48,7 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
+      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid): ''
     });
 
 
@@ -70,7 +70,7 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
+      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid): ''
     });
   }
 };
