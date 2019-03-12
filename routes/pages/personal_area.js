@@ -6,7 +6,7 @@ const pictogram = require('../../functions/pictograms');
 
 router.get('/personalArea/:page', async function (req, res) {
 
-    const perPage = 1; // сколько человек отображать
+    const perPage = 10; // сколько записей отображать
     const page = req.params.page || 1;
 
     try {
