@@ -147,7 +147,7 @@
       </div>
     </div>
 
-    <label for="login">Password</label>
+    <label for="password">Password</label>
 
     <div class="pictograms">
       <p class="pictograms__state" id="password"><%=student.password%></p>
@@ -321,6 +321,7 @@
 <script type="text/javascript" defer>
     var pictograms = <%-pictograms%>;
     var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
+    console.log(currentPidLoginAndPassword);
 
     var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
     var pictogramsValues = document.querySelectorAll(".pictograms__values");
@@ -360,7 +361,10 @@
 
       var pictograms = document.querySelectorAll(".pictograms");
 
+      console.log(pictograms);
+
       var loginInputs = pictograms[0].querySelectorAll(".pictograms__input__field");
+      console.log(loginInputs);
       var passwordInputs = pictograms[1].querySelectorAll(".pictograms__input__field");
 
       currentPidLoginAndPassword.LOGIN.map((item, index) => {
@@ -368,7 +372,7 @@
       })
 
       currentPidLoginAndPassword.PASSWORD.map((item, index) => {
-        loginInputs[index].src = item;
+        passwordInputs[index].src = item;
       })
     }
 
