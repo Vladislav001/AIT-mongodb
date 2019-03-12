@@ -4,14 +4,34 @@ const PID = require('../../models/pid');
 const Admin = require('../../models/caregiver');
 const pictogram = require('../../functions/pictograms');
 
-router.get('/personalArea/:page', function (req, res) {
+router.get('/personalArea/:page', async function (req, res) {
 
     const perPage = 10; // сколько человек отображать
     const page = req.params.page || 1;
 
+    // Протестить когда будет подключение к монге
+    // try {
+    //     if (req.user.access_level == 3) {
+
+    //         let pictograms = pictogram.getLoginPictograms(req);
+    //         let pids = await PID.find({ parent_ID: req.user._id }).skip((perPage * page) - perPage).limit(perPage).exec();
+    //         let count = await PID.find({ parent_ID: req.user._id }).countDocuments().exec();
+    //         res.render('personalArea', {
+    //             students: pids,
+    //             current: page,
+    //             pages: Math.ceil(count / perPage),
+    //             pictograms: pictograms,
+    //             user: req.user,
+    //         })
+    //     }
+    // } catch (err) {
+    //     throw err;
+    // }
+
+
     if (req.user.access_level == 3) {
         let pictograms = pictogram.getLoginPictograms(req);
-  
+
         // Получим список студентов, привязанных к тренеру
         PID // получаем объекты
             .find({ parent_ID: req.user._id })
@@ -22,7 +42,7 @@ router.get('/personalArea/:page', function (req, res) {
                     if (err) return next(err)
                     res.render('personalArea', {
                         students: pids,
-                        current: page, 
+                        current: page,
                         pages: Math.ceil(count / perPage),
                         pictograms: pictograms,
                         user: req.user,
