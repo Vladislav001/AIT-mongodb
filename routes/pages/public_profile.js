@@ -3,7 +3,11 @@ const Admin = require('../../models/caregiver');
 const pictogram = require('../../functions/pictograms');
 const fs = require('fs');
 
+
 exports.get = async function (req, res) {
+
+  //const perPage = 1; // сколько записей отображать
+  //const page = req.params.page || 1;
 
   // Как-то же надо проверять кого смотрим - ИСПРАВИТЬ ПО НОРМУ
   let publicPage;
@@ -15,6 +19,7 @@ exports.get = async function (req, res) {
   } else if (url.indexOf("students") != -1) {
     publicPage = "students";
   }
+  
 
   let pictograms = pictogram.getLoginPictograms(req);
 
@@ -23,7 +28,6 @@ exports.get = async function (req, res) {
     let pid = await PID.findById(req.params._id)
 
     res.render('publicProfile', {
-      title: 'profileStudent',
       user: req.user,
       student: pid,
       pictograms: pictograms,
@@ -32,12 +36,11 @@ exports.get = async function (req, res) {
 
   } else if (req.user.access_level == 2) {
     // Получим данные о конкретном тренере - его список студентов
-    let pids = await PID.find({ parent_ID: req.params._id })
+    let pids = await PID.find({ parent_ID: req.params._id });
     // Получим данные о конкретном студенте
-    let pid = await PID.findById(req.params._id)
-
+    let pid = await PID.findById(req.params._id);
+   
     res.render('publicProfile', {
-      title: 'profileAdmin',
       user: req.user,
       lengthStudents: pids.length,
       publicPage: publicPage,
@@ -57,7 +60,6 @@ exports.get = async function (req, res) {
     let pid = await PID.findById(req.params._id);
 
     res.render('publicProfile', {
-      title: 'profileAdmin',
       user: req.user,
       lengthCoaches: caregivers.length,
       lengthStudents: pids.length,
@@ -68,11 +70,8 @@ exports.get = async function (req, res) {
       student: pid,
       pictograms: pictograms
     });
-
   }
-
 };
-
 
 
 function getPictogramsForPidLoginAndPassword(pid) {
