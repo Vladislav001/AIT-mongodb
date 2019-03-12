@@ -42,14 +42,229 @@
   <% } %>
 </div>
 
+<style>
+  .pictograms {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .pictograms__inputs {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pictograms__input__field,  .pictograms__input__delete {
+    width: calc(100%/6 - 5px)!important;
+    min-width: calc(100%/6 - 5px)!important;
+    height: 60px;
+    min-height: 60px;
+    margin-bottom: 0!important;
+  }
+
+  .pictograms__input__delete {
+    font-size: 25pt;
+    color: rgb(228, 80, 60);
+  }
+
+  .pictograms__values {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 190px;
+    overflow-y: scroll;
+  }
+
+  .pictograms__values__field {
+    width: calc(100%/4 - 5px);
+    height: 95px;
+    margin-bottom: 5px;
+    background-color: grey;
+  }
+
+  .pictograms__values__field__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pictograms__values__field__value {
+    display: none;
+  }
+
+  .pictograms__state {
+    display: none;
+  }
+</style>
+
 <div class="block">
   <p>Create new student</p>
   <form action="/addNewStudent" method="POST" class="modal__form" name="addNewStudentForm">
     <span class="error"></span>
     <label for="login">Login</label>
-    <input type="email" name="login" value="" required>
+
+    <div class="pictograms">
+      <p class="pictograms__state" id="login"></p>
+      <div class="pictograms__inputs">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <input type="button" class="pictograms__input__delete" value="&#10006;">
+      </div>
+      <div class="pictograms__values">
+        <div class="pictograms__values__field" onclick="onPictogramClick">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+      </div>
+    </div>
+
     <label for="login">Password</label>
-    <input type="password" name="password" value="" required>
+
+    <div class="pictograms">
+      <p class="pictograms__state" id="password"></p>
+      <div class="pictograms__inputs">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <img class="pictograms__input__field">
+        <input type="button" class="pictograms__input__delete" value="&#10006;">
+      </div>
+      <div class="pictograms__values">
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+        <div class="pictograms__values__field">
+            <img class="pictograms__values__field__image">
+            <p class="pictograms__values__field__value"></p>
+        </div>
+      </div>
+    </div>
+
     <label for="login">Name</label>
     <input type="text" name="name" value="" required>
     <label for="login">Age</label>
@@ -77,8 +292,8 @@
 
     var newStudent = {};
 
-    newStudent.login = $("input[name='login']").val();
-    newStudent.password = $("input[name='password']").val();
+    newStudent.login = document.getElementById("login").innerText;
+    newStudent.password = document.getElementById("password").innerText;
     newStudent.name = $("input[name='name']").val();
     newStudent.age = $("input[name='age']").val();
     newStudent.gender = $("select[name='gender']").val();
@@ -102,4 +317,80 @@
       }
     });
   });
+</script>
+
+<script type="text/javascript" defer>
+    var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
+    console.log(currentPidLoginAndPassword);
+    var pictograms = <%-pictograms%>;
+    var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
+    var pictogramsValues = document.querySelectorAll(".pictograms__values");
+
+    var pictogramsBtns = document.querySelectorAll(".pictograms__values__field");
+    var deleteBtns = document.querySelectorAll(".pictograms__input__delete");
+
+    // adding listeners part
+    for (let pictogram of pictogramsBtns)
+      pictogram.addEventListener("click", onPictogramClick);
+
+    for (let deleteBtn of deleteBtns)
+      deleteBtn.addEventListener("click", onPictogramClick);
+
+    function getImagesFromDB() {
+      for (let pictogram of pictogramsValues) {
+        var fields = pictogram.querySelectorAll(".pictograms__values__field__image");
+
+        for (let i = 0; i < fields.length; i++) {
+          fields[i].src = (pictograms[i].image).replace(/localhost/, "");
+        }
+
+        var values = pictogram.querySelectorAll(".pictograms__values__field__value");
+
+        for (let i = 0; i < values.length; i++) {
+          values[i].innerText = (pictograms[i].value);
+        }
+      }
+    }
+
+    function onPictogramClick(elem) {
+      var pictogram = elem.target.parentElement;
+      var container = pictogram.parentElement.parentElement;
+      var state = container.querySelector(".pictograms__state");
+      var inputs = container.querySelectorAll(".pictograms__input__field");
+
+      switch(elem.target.className) {
+        case "pictograms__input__delete":
+          handleDeleteBtnClick();
+          break;
+
+        case "pictograms__values__field__image":
+          handlePictogramClick();
+          break;
+      }
+      // /////////////////////////////////
+      function handlePictogramClick() {
+        var imagePath = pictogram.querySelector(".pictograms__values__field__image").src;
+        var value = pictogram.querySelector(".pictograms__values__field__value").innerText;
+
+        if (state.innerText.length > 0 && state.innerText.match(/\_\d+/g).length == 5) return;
+        state.innerText = state.innerText + value;
+
+        var matches = state.innerText.match(/\_\d+/g);
+        inputs[matches.length - 1].src = imagePath;
+      }
+
+      function handleDeleteBtnClick() {
+        var container = pictogram.parentElement;
+        var state = container.querySelector(".pictograms__state");
+        var inputs = container.querySelectorAll(".pictograms__input__field");
+
+        if (state.innerText.length == 0) return;
+
+        var images = pictogram.querySelectorAll(".pictograms__input__field");
+        images[state.innerText.match(/\_\d+/g).length - 1].src = "";
+        state.innerText = state.innerText.replace(/(\_\d+)$/, "");
+      }
+    }
+
+    getImagesFromDB();
 </script>
