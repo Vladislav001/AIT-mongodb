@@ -4,12 +4,12 @@ const PID = require('../../models/pid');
 const Admin = require('../../models/caregiver');
 const pictogram = require('../../functions/pictograms');
 
-router.get('/personalArea/:page', async function (req, res) {
+router.get('/personalArea/:page', function (req, res) {
 
     const perPage = 10; // сколько человек отображать
     const page = req.params.page || 1;
 
-    // Протестить когда будет подключение к монге
+    // Протестить когда будет подключение к монге 
     // try {
     //     if (req.user.access_level == 3) {
 
