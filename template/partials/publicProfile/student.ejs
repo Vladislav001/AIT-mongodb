@@ -322,6 +322,8 @@
     var pictograms = <%-pictograms%>;
     var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
 
+    console.log(currentPidLoginAndPassword);
+
     var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
     var pictogramsValues = document.querySelectorAll(".pictograms__values");
 
@@ -368,7 +370,7 @@
       })
 
       currentPidLoginAndPassword.PASSWORD.map((item, index) => {
-        loginInputs[index].src = item;
+        passwordInputs[index].src = item;
       })
     }
 
