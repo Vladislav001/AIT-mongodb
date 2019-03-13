@@ -100,7 +100,6 @@ function getPictogramsForPidLoginAndPassword(pid) {
 
       if (value == pictogramValue) {
         loginAndPasswordPictograms['LOGIN'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
-        return;
       }
     });
   });
@@ -112,7 +111,6 @@ function getPictogramsForPidLoginAndPassword(pid) {
 
       if (value == pictogramValue) {
         loginAndPasswordPictograms['PASSWORD'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
-        return;
       }
     });
   });
