@@ -12,7 +12,7 @@ exports.post = async function (req, res) {
   try {
 
     let pid;
-
+    console.log(req.body)
     if (req.body.login != undefined) {
       pid = await PID.findOne({ 'login': req.body.login });
     }

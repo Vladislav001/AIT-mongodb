@@ -19,14 +19,14 @@ exports.get = async function (req, res) {
   } else if (url.indexOf("students") != -1) {
     publicPage = "students";
   }
-  
+
 
   let pictograms = pictogram.getLoginPictograms(req);
 
   if (req.user.access_level == 3) {
     // Получим данные о конкретном студенте
     let pid = await PID.findById(req.params._id)
-    
+
     res.render('publicProfile', {
       user: req.user,
       student: pid,
@@ -39,7 +39,7 @@ exports.get = async function (req, res) {
     let pids = await PID.find({ parent_ID: req.params._id });
     // Получим данные о конкретном студенте
     let pid = await PID.findById(req.params._id);
-    
+
     res.render('publicProfile', {
       user: req.user,
       lengthStudents: pids.length,
@@ -50,7 +50,7 @@ exports.get = async function (req, res) {
       pictograms: pictograms,
       currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid) : ''
     });
- 
+
 
   } else if (req.user.access_level == 1) {
     // Получим данные о конкретном админе(НЕ ГЛАВНОМ) - его список тренеров
@@ -93,21 +93,28 @@ function getPictogramsForPidLoginAndPassword(pid) {
   loginAndPasswordPictograms['PASSWORD'] = [];
 
   // занесем в массив, предварительно узнав расширение
-  fs.readdirSync(pictogramsPath).forEach(pictogram => {
+  currentLoginPictograms.forEach(value => {
+    fs.readdirSync(pictogramsPath).forEach(pictogram => {
+      let pictogramValue = pictogram.split('.')[0];
+      let pictogramExtension = pictogram.split('.')[1];
 
-    let pictogramValue = pictogram.split('.')[0];
-    let pictogramExtension = pictogram.split('.')[1];
+      if (value == pictogramValue) {
+        loginAndPasswordPictograms['LOGIN'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
+        return;
+      }
+    });
+  });
 
-    if (currentLoginPictograms.indexOf(pictogramValue) != -1) {
-      let position = currentLoginPictograms.indexOf(pictogramValue);
-      loginAndPasswordPictograms['LOGIN'][position] = `/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`;
-    }
+  currentPasswordPictograms.forEach(value => {
+    fs.readdirSync(pictogramsPath).forEach(pictogram => {
+      let pictogramValue = pictogram.split('.')[0];
+      let pictogramExtension = pictogram.split('.')[1];
 
-    if (currentPasswordPictograms.indexOf(pictogramValue) != -1) {
-      let position = currentPasswordPictograms.indexOf(pictogramValue);
-      loginAndPasswordPictograms['PASSWORD'][position] = `/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`;
-    }
-
+      if (value == pictogramValue) {
+        loginAndPasswordPictograms['PASSWORD'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
+        return;
+      }
+    });
   });
 
   return JSON.stringify(loginAndPasswordPictograms);
