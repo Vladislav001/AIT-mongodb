@@ -32,5 +32,48 @@ function getLoginPictograms(req, jsonStringify = true) {
 
 }
 
+function getPictogramsForPidLoginAndPassword(pid) {
+    let pictogramsPath = `./public/system_images/pictograms/login`;
+    let currentLoginPictograms = [];
+    let currentPasswordPictograms = [];
+  
+    // распарсим логин и пароль по каждой пиктограмме
+    currentLoginPictograms = pid.login.split('_');
+    currentLoginPictograms.shift(); // т.к первый символ всегда с "_"
+    currentPasswordPictograms = pid.password.split('_');
+    currentPasswordPictograms.shift();
+  
+    // сформируем массив картинок для логина и пароля
+    let loginAndPasswordPictograms = {};
+    loginAndPasswordPictograms['LOGIN'] = [];
+    loginAndPasswordPictograms['PASSWORD'] = [];
+  
+    // занесем в массив, предварительно узнав расширение
+    currentLoginPictograms.forEach(value => {
+      fs.readdirSync(pictogramsPath).forEach(pictogram => {
+        let pictogramValue = pictogram.split('.')[0];
+        let pictogramExtension = pictogram.split('.')[1];
+  
+        if (value == pictogramValue) {
+          loginAndPasswordPictograms['LOGIN'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
+        }
+      });
+    });
+  
+    currentPasswordPictograms.forEach(value => {
+      fs.readdirSync(pictogramsPath).forEach(pictogram => {
+        let pictogramValue = pictogram.split('.')[0];
+        let pictogramExtension = pictogram.split('.')[1];
+  
+        if (value == pictogramValue) {
+          loginAndPasswordPictograms['PASSWORD'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
+        }
+      });
+    });
+  
+    return JSON.stringify(loginAndPasswordPictograms);
+  }
+
 
 module.exports.getLoginPictograms = getLoginPictograms;
+module.exports.getPictogramsForPidLoginAndPassword = getPictogramsForPidLoginAndPassword;

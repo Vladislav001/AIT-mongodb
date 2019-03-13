@@ -1,8 +1,6 @@
 const PID = require('../../models/pid');
 const Admin = require('../../models/caregiver');
 const pictogram = require('../../functions/pictograms');
-const fs = require('fs');
-
 
 exports.get = async function (req, res) {
 
@@ -31,7 +29,7 @@ exports.get = async function (req, res) {
       user: req.user,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: getPictogramsForPidLoginAndPassword(pid)
+      currentPidLoginAndPassword: pictogram.getPictogramsForPidLoginAndPassword(pid)
     });
 
   } else if (req.user.access_level == 2) {
@@ -48,7 +46,7 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid) : ''
+      currentPidLoginAndPassword: pid ? pictogram.getPictogramsForPidLoginAndPassword(pid) : ''
     });
 
 
@@ -70,50 +68,7 @@ exports.get = async function (req, res) {
       students: pids,
       student: pid,
       pictograms: pictograms,
-      currentPidLoginAndPassword: pid ? getPictogramsForPidLoginAndPassword(pid) : ''
+      currentPidLoginAndPassword: pid ? pictogram.getPictogramsForPidLoginAndPassword(pid) : ''
     });
   }
 };
-
-
-function getPictogramsForPidLoginAndPassword(pid) {
-  let pictogramsPath = `./public/system_images/pictograms/login`;
-  let currentLoginPictograms = [];
-  let currentPasswordPictograms = [];
-
-  // распарсим логин и пароль по каждой пиктограмме
-  currentLoginPictograms = pid.login.split('_');
-  currentLoginPictograms.shift(); // т.к первый символ всегда с "_"
-  currentPasswordPictograms = pid.password.split('_');
-  currentPasswordPictograms.shift();
-
-  // сформируем массив картинок для логина и пароля
-  let loginAndPasswordPictograms = {};
-  loginAndPasswordPictograms['LOGIN'] = [];
-  loginAndPasswordPictograms['PASSWORD'] = [];
-
-  // занесем в массив, предварительно узнав расширение
-  currentLoginPictograms.forEach(value => {
-    fs.readdirSync(pictogramsPath).forEach(pictogram => {
-      let pictogramValue = pictogram.split('.')[0];
-      let pictogramExtension = pictogram.split('.')[1];
-
-      if (value == pictogramValue) {
-        loginAndPasswordPictograms['LOGIN'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
-      }
-    });
-  });
-
-  currentPasswordPictograms.forEach(value => {
-    fs.readdirSync(pictogramsPath).forEach(pictogram => {
-      let pictogramValue = pictogram.split('.')[0];
-      let pictogramExtension = pictogram.split('.')[1];
-
-      if (value == pictogramValue) {
-        loginAndPasswordPictograms['PASSWORD'].push(`/system_images/pictograms/login/${pictogramValue}.${pictogramExtension}`);
-      }
-    });
-  });
-
-  return JSON.stringify(loginAndPasswordPictograms);
-}
