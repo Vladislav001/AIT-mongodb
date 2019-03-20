@@ -9,7 +9,7 @@
       <input type="file" name="" value="" id="load-photo">
     </div>
 
-    <%-partial('./partials/pictograms')%>
+    <%-partial('../pictograms')%>
 
     <label for="name">Name</label>
     <input type="text" name="name" value="<%=student.name%>" required>
@@ -55,8 +55,6 @@
     <a href="#">Third button</a>
   </div>
 </div>
-
-<!-- currentPidLoginAndPassword -->
 
 <script>
   var appsButtons = document.querySelectorAll(".apps_buttonList");
@@ -108,36 +106,6 @@
 
     console.log(currentPidLoginAndPassword);
 
-    var pictogramsInputs = document.querySelectorAll(".pictograms__inputs");
-    var pictogramsValues = document.querySelectorAll(".pictograms__values");
-
-    var pictogramsBtns = document.querySelectorAll(".pictograms__values__field");
-    var deleteBtns = document.querySelectorAll(".pictograms__input__delete");
-
-    // adding listeners part
-    for (let pictogram of pictogramsBtns)
-      pictogram.addEventListener("click", onPictogramClick);
-
-    for (let deleteBtn of deleteBtns)
-      deleteBtn.addEventListener("click", onPictogramClick);
-
-    function getImagesFromDB() {
-      for (let pictogram of pictogramsValues) {
-        var fields = pictogram.querySelectorAll(".pictograms__values__field__image");
-
-
-        for (let i = 0; i < fields.length; i++) {
-          fields[i].src = (pictograms[i].image).replace(/localhost/, "");
-        }
-        var values = pictogram.querySelectorAll(".pictograms__values__field__value");
-
-        for (let i = 0; i < values.length; i++) {
-          values[i].innerText = (pictograms[i].value);
-        }
-      }
-    }
-
-    function getValuesFromDB() {
       if (!currentPidLoginAndPassword.LOGIN.length)
       document.getElementById("login").innerText = "";
 
@@ -147,57 +115,22 @@
       var pictograms = document.querySelectorAll(".pictograms");
 
       var loginInputs = pictograms[0].querySelectorAll(".pictograms__input__field");
+      console.log(loginInputs);
       var passwordInputs = pictograms[1].querySelectorAll(".pictograms__input__field");
 
       currentPidLoginAndPassword.LOGIN.map((item, index) => {
+        if (loginInputs[index] == undefined) return;
         loginInputs[index].src = item;
-      })
+      });
 
       currentPidLoginAndPassword.PASSWORD.map((item, index) => {
+        if (passwordInputs[index] == undefined) return;
         passwordInputs[index].src = item;
-      })
-    }
+      });
 
-    function onPictogramClick(elem) {
-      var pictogram = elem.target.parentElement;
-      var container = pictogram.parentElement.parentElement;
-      var state = container.querySelector(".pictograms__state");
-      var inputs = container.querySelectorAll(".pictograms__input__field");
+      document.querySelector("#login").innerText = "<%=student.login%>".replace(/\s+/g, "");
+      document.querySelector("#password").innerText = "<%=student.password%>".replace(/\s+/g, "");
 
-      switch(elem.target.className) {
-        case "pictograms__input__delete":
-          handleDeleteBtnClick();
-          break;
+      console.log(document.querySelector("#login").innerText);
 
-        case "pictograms__values__field__image":
-          handlePictogramClick();
-          break;
-      }
-      // /////////////////////////////////
-      function handlePictogramClick() {
-        var imagePath = pictogram.querySelector(".pictograms__values__field__image").src;
-        var value = pictogram.querySelector(".pictograms__values__field__value").innerText;
-
-        if (state.innerText.length > 0 && state.innerText.match(/\_\d+/g).length == 5) return;
-        state.innerText = state.innerText + value;
-
-        var matches = state.innerText.match(/\_\d+/g);
-        inputs[matches.length - 1].src = imagePath;
-      }
-
-      function handleDeleteBtnClick() {
-        var container = pictogram.parentElement;
-        var state = container.querySelector(".pictograms__state");
-        var inputs = container.querySelectorAll(".pictograms__input__field");
-
-        if (state.innerText.length == 0) return;
-
-        var images = pictogram.querySelectorAll(".pictograms__input__field");
-        images[state.innerText.match(/\_\d+/g).length - 1].src = "/system_images/white.jpg";
-        state.innerText = state.innerText.replace(/(\_\d+)$/, "");
-      }
-    }
-
-    getImagesFromDB();
-    getValuesFromDB();
 </script>
