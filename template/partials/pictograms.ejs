@@ -94,7 +94,7 @@
     <div class="pictograms__values__field" onclick="onPictogramClick">
       <img class="pictograms__values__field__image" src="<%-JSON.parse(pictograms)[i].image%>">
       <p class="pictograms__values__field__value">
-        <%-JSON.parse(pictograms)[i].value%>
+        <%-JSON.parse(pictograms)[i].value.replace(/\s+/g, "")%>
       </p>
     </div>
     <% } %>
@@ -150,7 +150,7 @@
     // /////////////////////////////////
     function handlePictogramClick() {
       var imagePath = pictogram.querySelector(".pictograms__values__field__image").src;
-      var value = pictogram.querySelector(".pictograms__values__field__value").innerText;
+      var value = pictogram.querySelector(".pictograms__values__field__value").innerText.replace(/\s+/g, "");
 
       if (state.innerText.length > 0 && state.innerText.match(/\_\d+/g).length == 4) return;
       state.innerText = state.innerText + value;

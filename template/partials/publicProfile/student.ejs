@@ -104,8 +104,6 @@
     var pictograms = <%-pictograms%>;
     var currentPidLoginAndPassword = <%-currentPidLoginAndPassword%>;
 
-    console.log(currentPidLoginAndPassword);
-
       if (!currentPidLoginAndPassword.LOGIN.length)
       document.getElementById("login").innerText = "";
 
@@ -115,7 +113,6 @@
       var pictograms = document.querySelectorAll(".pictograms");
 
       var loginInputs = pictograms[0].querySelectorAll(".pictograms__input__field");
-      console.log(loginInputs);
       var passwordInputs = pictograms[1].querySelectorAll(".pictograms__input__field");
 
       currentPidLoginAndPassword.LOGIN.map((item, index) => {
@@ -130,7 +127,5 @@
 
       document.querySelector("#login").innerText = "<%=student.login%>".replace(/\s+/g, "");
       document.querySelector("#password").innerText = "<%=student.password%>".replace(/\s+/g, "");
-
-      console.log(document.querySelector("#login").innerText);
 
 </script>
