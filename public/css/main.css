@@ -16,6 +16,8 @@
    background-image: url("/system_images/background.jpeg");
    background-size: 100% 100%;
    background-repeat: no-repeat;
+   overflow-x: hidden;
+   overflow-y: hidden;
  }
 
  @media screen and (max-width: 500px) {
