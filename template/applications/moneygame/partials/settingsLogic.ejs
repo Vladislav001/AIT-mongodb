@@ -1,12 +1,4 @@
 <script defer>
-    // window.onload = function() {
-    //   var preloader = document.getElementById("preloader");
-    //   preloader.classList.add("none");
-    //
-    //   var gamesContainer = document.getElementById("gamesContainer");
-    //   gamesContainer.classList.remove("none");
-    // }
-
   //path of page declaration
   var path = "collectionMoney";
   //settings from data base
@@ -27,6 +19,13 @@
   // game views declaration
   var games = document.getElementsByClassName("game");
   var [collectionMoney, selectionGoods, paymentPurchase, takeChangee] = [...games];
+
+  window.onload = function() {
+    var preloader = document.getElementById("preloader");
+    preloader.classList.add("none");
+
+    paginationLogic();
+  }
 
   // pagination buttons declaration;
   var collectionMoneyBtn = document.getElementById("collectionMoneyBtn");
@@ -53,9 +52,6 @@
   var fCurrency = document.getElementById("fсurrency");
 
   var currencyImages = document.getElementsByClassName("currencyImage");
-
-  // main part
-  paginationLogic();
 
   // listeners of pagination buttons
   collectionMoneyBtn.addEventListener("click", pageChanger);
