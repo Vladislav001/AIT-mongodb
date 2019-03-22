@@ -22,6 +22,7 @@ button:focus {
 .page {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   width: 100%;
   height: 100%;
   min-width: 400px;
@@ -32,6 +33,7 @@ button:focus {
 .right-column {
   width: calc(100% - 220px);
   max-width: 1000px;
+  margin-left: 220px;
 }
 
 .nav-bar {
@@ -42,6 +44,7 @@ button:focus {
   background-color: rgb(173, 173, 173);
   border-top: 4px solid rgba(0, 0, 0, .25);
   box-shadow: var(--box-shadow-outset);
+  position: fixed;
 }
 
 header {
@@ -51,6 +54,9 @@ header {
   margin-right: auto;
   background-color: var(--skyblue-color);
   box-shadow: var(--box-shadow-outset);
+  height: 50px;
+  position: fixed;
+  top: 0;
 }
 
 header .link {
@@ -75,7 +81,7 @@ header .container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  /* margin-left: 220px; */
+  align-items: center;
 }
 
 .container {
@@ -271,6 +277,7 @@ table .info:hover a {
 
   .right-column {
     width: 100%;
+    margin-left: 0;
   }
 
   .right-column .container {
