@@ -1,3 +1,4 @@
+
 <script defer>
   //path of page declaration
   var path = "collectionMoney";
@@ -19,13 +20,6 @@
   // game views declaration
   var games = document.getElementsByClassName("game");
   var [collectionMoney, selectionGoods, paymentPurchase, takeChangee] = [...games];
-
-  window.onload = function() {
-    var preloader = document.getElementById("preloader");
-    preloader.classList.add("none");
-
-    paginationLogic();
-  }
 
   // pagination buttons declaration;
   var collectionMoneyBtn = document.getElementById("collectionMoneyBtn");
@@ -134,27 +128,27 @@
 
     switch (path) {
       case "collectionMoney":
-        collectionMoney.style.display = "block";
+        collectionMoney.classList.remove("none");
 
         setDisableChanger(true, againBtnChanger);
         setDisableChanger(true, basketChanger);
         break;
 
       case "selectionGoods":
-        selectionGoods.style.display = "block";
+        selectionGoods.classList.remove("none");
 
         setDisableChanger(true, againBtnChanger);
         setDisableChanger(true, walletChanger);
         break;
 
       case "paymentPurchase":
-        paymentPurchase.style.display = "block";
+        paymentPurchase.classList.remove("none");
         setDisableChanger(true, againBtnChanger);
         setDisableChanger(true, basketChanger);
         break;
 
       case "takeChangee":
-        takeChangee.style.display = "block";
+        takeChangee.classList.remove("none");
         setDisableChanger(true, basketChanger);
         break;
 
@@ -233,7 +227,7 @@
 
   function hideAllGames() {
     for (let game of games)
-      game.style.display = "none";
+      game.classList.add("none");
   }
 
   function setDisableChanger(bool, elem) {
@@ -346,5 +340,13 @@
       data: newSettings,
       success: console.log('Settings Saved'),
     });
+  }
+</script>
+
+<script>
+  window.onload = function() {
+    var preloader = document.getElementById("preloader");
+      preloader.classList.add("none");
+      paginationLogic();
   }
 </script>
