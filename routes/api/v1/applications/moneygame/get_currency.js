@@ -34,6 +34,9 @@ exports.post = async function (req, res) {
             });
         }
 
+        // задеплоить после MPI 
+        //currentCurrency.currency = moneyGame.currency;
+
         res.status(200).send(
            currentCurrency
         );
