@@ -1,2 +1,112 @@
+<style>
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linksContainer .link {
+    width: 80%;
+    padding: 5px;
+    margin: 0 auto 10px auto;
+    background-color: rgb(42, 95, 129);
+    color: white;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+    transition: all;
+    transition-duration: .5s;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .linksContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition-duration: .5s;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+  }
+
+  .nav-linksContainer .link:hover {
+    background-color: rgb(240, 240, 240);
+    color: rgb(42, 95, 129);
+    box-shadow: none;
+    transition: all;
+    transition-duration: .5s;
+  }
+
+  #seeMore {
+    margin: 10px;
+    color: rgb(42, 95, 129);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #seeMore span {
+    margin-left: 5px;
+    display: block;
+    font-size: 8pt;
+    transition: all;
+    transition-duration: .5s;
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+
+  .none {
+    display: none!important;
+    transition: all;
+    transition-duration: .5s;
+    animation-name: fadeOut;
+    animation-duration: 1s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      display: none;
+    }
+    100% {
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      display: block;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+</style>
+
 <section class="nav-bar">
+  <button type="button" name="button" id="seeMore">For developers <span>&#9660;</span></button>
+  <div class="linksContainer none">
+    <a class="link" href="/developers/">Developers</a>
+    <a class="link" href="/api-docs/">API documents</a>
+  </div>
+
 </section>
+
+<script defer>
+  var seeMore = document.querySelector("#seeMore");
+  var row = seeMore.querySelector("span");
+  var linksContainer = document.querySelector(".linksContainer");
+  var downRow = "&#9650;";
+  var upRow = "&#9660;";
+
+  function onSeeMoreClick(elem) {
+    row.classList.toggle("rotate");
+    linksContainer.classList.toggle("none");
+  }
+
+  seeMore.addEventListener("click", onSeeMoreClick);
+
+</script>
