@@ -1,3 +1,27 @@
+<script>
+  window.onload = function() {
+    var preloader = document.getElementById("preloader");
+    preloader.classList.add("none");
+    paginationLogic();
+  }
+
+  function showPreloader() {
+    var preloader = document.getElementById("preloader");
+    hideAllGames();
+    preloader.classList.remove("none");
+
+    // window.onload = function() {
+    //   preloader.classList.add("none");
+    //   paginationLogic();
+    // }
+
+    setTimeout(function() {
+      preloader.classList.add("none");
+      paginationLogic();
+    }, 300);
+
+  }
+</script>
 
 <script defer>
   //path of page declaration
@@ -20,6 +44,9 @@
   // game views declaration
   var games = document.getElementsByClassName("game");
   var [collectionMoney, selectionGoods, paymentPurchase, takeChangee] = [...games];
+
+  for (let game of games)
+    game.addEventListener("load", showPreloader);
 
   // pagination buttons declaration;
   var collectionMoneyBtn = document.getElementById("collectionMoneyBtn");
@@ -223,6 +250,7 @@
         break;
     }
 
+    showPreloader();
   }
 
   function hideAllGames() {
@@ -261,6 +289,8 @@
         elem.src = imagePath;
       }
     }
+
+    showPreloader();
   }
 
   // change pair elements
@@ -276,6 +306,8 @@
 
     for (let backBtn of backBtns)
       backBtn.src = imagePathBackBtn;
+
+    showPreloader();
   }
 
   function showFromDB(changer) {
@@ -340,13 +372,5 @@
       data: newSettings,
       success: console.log('Settings Saved'),
     });
-  }
-</script>
-
-<script>
-  window.onload = function() {
-    var preloader = document.getElementById("preloader");
-      preloader.classList.add("none");
-      paginationLogic();
   }
 </script>
