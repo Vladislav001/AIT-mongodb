@@ -71,6 +71,15 @@
   border: none;
 }
 
+.smileFace {
+  background-image: url("/system_images/smile.jpg");
+  background-size: 100%, 100%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: calc(50% - 25px);
+}
+
 .progressBar {
   width: 90%;
   height: 15px;
