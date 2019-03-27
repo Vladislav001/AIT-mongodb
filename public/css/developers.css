@@ -104,154 +104,31 @@ header .container {
   margin-top: 20px;
   box-shadow: var(--box-shadow-outset);
   background-color: white;
-}
-
-.block p {
-  width: 100%;
-  padding: 15px 10px 15px 10px;
-  margin: 0;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  text-align: center;
-  background-color: rgb(240, 240, 240);
-}
-
-.block table {
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  border-width: 0;
-  max-width: 485px;
-  width: 95%;
-  border-spacing: 0;
-  text-align: center;
-  cursor: pointer;
-}
-
-table .info {
-  transition: all;
-  transition-duration: .5s;
-}
-
-table .table__headRow {
-  width: 100%;
-  background-color: rgb(240, 240, 240);
-}
-
-table th {
-  padding: 5px;
-  border-bottom: 2px solid rgb(173, 173, 173);
-}
-
-table td {
-  min-width: 70px;
-  height: 35px;
-  padding: 5px;
-}
-
-table a {
-  color: var(--skyblue-color);
-  transition: all;
-  transition-duration: .5s;
-}
-
-table .info:hover {
-  box-shadow: var(--box-shadow-outset);
-  background-color: rgb(240, 240, 240);
-  transition: all;
-  transition-duration: .5s;
-}
-
-table .info:hover .deleteBtn {
-  display: block;
-}
-
-table .info:hover a {
-  font-weight: bold;
-}
-
-.deleteBtn {
-  margin-right: auto;
-  margin-left: auto;
-  color: rgb(219, 63, 42);
-  background: none;
-  border: none;
-  display: none;
-  cursor: pointer;
-}
-
-/*  */
-
-.modal__form {
-  width: 95%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-}
 
-.modal__form input {
+}
+.block .name {
   width: 100%;
+  padding: 10px;
+  margin: 0;
   box-sizing: border-box;
-  max-width: 400px;
-  padding: 5px;
-  margin-bottom: 20px;
-  background-color: rgb(240, 240, 240);
-  border: none;
-  transition: all;
-  transition-duration: .3s;
+  text-align: center;
+  font-size: 16pt;
 }
 
-.modal__form input[type="text"]:focus, .modal__form input[type="password"]:focus,
-.modal__form input[type="email"]:focus, .modal__form input[type="number"]:focus, .modal__form select:focus {
-  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
-  outline: none;
-  transition: all;
-  transition-duration: .3s;
+.block .photo {
+  width: 350px;
+  height: 350px;
+  margin: 10px auto;
+  background-color: grey;
 }
 
-.modal__form select {
-  width: 100%;
-  max-width: 400px;
-  height: 28px;
-  margin-bottom: 20px;
-  border: none;
-  background-color: rgb(240, 240, 240);
-  color: var(--main-text-color);
-  border-radius: none!important;
+.block .position {
+  margin: 0 0 10px 0;
+  text-align: center;
 }
 
-.modal__form label {
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 5px;
-  text-align: left;
-}
-
-.modal__form button {
-  width: 100%;
-  max-width: 400px;
-  padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  border: none;
-  background-color: rgb(42, 95, 129);
-  color: white;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
-  transition: all;
-  transition-duration: .5s;
-  cursor: pointer;
-}
-
-.modal__form button:hover {
-  background-color: rgb(240, 240, 240);
-  color: rgb(42, 95, 129);
-  box-shadow: none;
-  transition: all;
-  transition-duration: .5s;
-}
 
 @media screen and (max-width: 1100px) {
   header .container {
