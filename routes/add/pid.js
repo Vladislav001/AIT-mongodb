@@ -9,7 +9,7 @@ exports.post = function (req, res) {
     }
 
     if (pid) {
-      return res.status(403).json('PID already exists with login: ' + req.body.login);
+      return res.status(403).json('PID already exists with this login');
     } else {
       let newPID = new PID();
 
