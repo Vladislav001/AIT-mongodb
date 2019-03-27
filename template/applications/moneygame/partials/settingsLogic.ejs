@@ -10,16 +10,10 @@
     hideAllGames();
     preloader.classList.remove("none");
 
-    // window.onload = function() {
-    //   preloader.classList.add("none");
-    //   paginationLogic();
-    // }
-
     setTimeout(function() {
       preloader.classList.add("none");
       paginationLogic();
-    }, 300);
-
+    }, navigator.connection.downlink * 30);
   }
 </script>
 
