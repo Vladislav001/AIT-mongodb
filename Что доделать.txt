@@ -16,6 +16,39 @@
 
   BACKEND:
   1) public_profile.js отрефакторить (т.к много лишних раз пробегаемся для loginAndPasswordPictograms)
+  2) восстановлениие пароля
+  3) логин и пароль тренера через ajax
+
+    // router.post('/signup', function (req, res, next) { 
+  //   passport.authenticate('signup',
+  //   {
+  //     successRedirect: '/personalArea/1',
+  //     failureRedirect: '/',
+  //     failureFlash: true
+  //   }, 
+  //   function (error, user, info) {
+  //     //console.log(info); 
+  //    // console.log( typeof(req.flash(info)));
+  //     if (req.flash(info) != undefined)
+  //        res.status(400).send('User already exists with this email');
+  //   })(req, res, next); 
+  // });
+
+  // router.post('/login', function (req, res, next) { 
+  //   passport.authenticate('login',
+  //   {
+  //     successRedirect: '/personalArea/1',
+  //     failureRedirect: '/',
+  //     failureFlash: true
+  //   }, 
+  //   function (error, user, info) {
+  //   //   console.log(info);
+  //   //   //console.log(info);
+  //   //  // console.log( typeof(req.flash(info)));
+  //   //   if (req.flash(info) != undefined) 
+  //   //      res.status(400).send('Invalid login or password');
+  //   })(req, res, next); 
+  // });
 
   FRONT+BACKEND:
   Подобное post('/deleteStudent/id:_id) заменить на post('/delete-pid/id:_id)
