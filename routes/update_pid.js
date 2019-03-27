@@ -18,7 +18,7 @@ exports.post = async function (req, res) {
     }
 
     if (pid != undefined) {
-      res.send('PID already exists with login: ' + req.body.login);
+      res.send('PID already exists with this login');
     } else {
       let updateObject = req.body;
       await PID.updateOne({ "_id": req.params._id }, { $set: updateObject });

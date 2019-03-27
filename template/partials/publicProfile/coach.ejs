@@ -98,7 +98,7 @@
           window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
         },
         403: function() {
-          $('.error', form).html('Student already exists with login: ' + login);
+          $('.error', form).html('PID already exists with this login');
         }
       }
     });
