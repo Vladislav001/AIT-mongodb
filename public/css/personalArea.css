@@ -305,7 +305,7 @@ table .info:hover a {
   }
 
   .nav-bar {
-    display: none;
+    display: none!important;
   }
 
   .page {

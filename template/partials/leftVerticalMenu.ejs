@@ -4,7 +4,15 @@
     flex-direction: column;
   }
 
-  .linksContainer .link {
+  .nav-bar__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 100px;
+  }
+
+  .nav-bar .link {
     width: 80%;
     padding: 5px;
     margin: 0 auto 10px auto;
@@ -27,7 +35,7 @@
     animation-duration: 1s;
   }
 
-  .nav-linksContainer .link:hover {
+  .nav-bar .link:hover {
     background-color: rgb(240, 240, 240);
     color: rgb(42, 95, 129);
     box-shadow: none;
@@ -41,6 +49,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   #seeMore span {
@@ -55,8 +64,8 @@
     transform: rotate(180deg);
   }
 
-  .none {
-    display: none!important;
+  .hidden {
+    visibility: hidden!important;
     transition: all;
     transition-duration: .5s;
     animation-name: fadeOut;
@@ -66,7 +75,7 @@
   @keyframes fadeIn {
     0% {
       opacity: 0;
-      display: none;
+      visibility: hidden;
     }
     100% {
       opacity: 1;
@@ -81,18 +90,21 @@
     }
     100% {
       opacity: 0;
-      display: none;
+      visibility: hidden;
     }
   }
 </style>
 
 <section class="nav-bar">
-  <button type="button" name="button" id="seeMore">For developers <span>&#9660;</span></button>
-  <div class="linksContainer none">
+  <div class="nav-bar__container">
+    <a class="link" href="">User manual</a>
     <a class="link" href="/developers/">Developers</a>
-    <a class="link" href="/api-docs/">API documents</a>
+    <div id="seeMore">For developers <span>&#9660;</span></div>
+    <div class="linksContainer hidden">
+      <a class="link" href="/api-docs/" target="_blank">API documents</a>
+      <a class="link" href="">Programmer manual</a>
+    </div>
   </div>
-
 </section>
 
 <script defer>
@@ -104,9 +116,8 @@
 
   function onSeeMoreClick(elem) {
     row.classList.toggle("rotate");
-    linksContainer.classList.toggle("none");
+    linksContainer.classList.toggle("hidden");
   }
 
   seeMore.addEventListener("click", onSeeMoreClick);
-
 </script>

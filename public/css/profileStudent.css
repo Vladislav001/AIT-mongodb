@@ -341,7 +341,7 @@ header .container {
   }
 
   .nav-bar {
-    display: none;
+    display: none!important;
   }
 
   .page {
