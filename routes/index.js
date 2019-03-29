@@ -254,7 +254,8 @@ module.exports = function (passport) {
     *           application/json: { 
     *           banknotes: [{ "count": 5, "image": "test-ait.herokuapp.com/system_images/currency/euro/banknotes/5.png" },
     *           { "count": 10, "image": "test-ait.herokuapp.com/system_images/currency/euro/banknotes/10.png" }],
-    *           coins: [{ "count": 0.01, "image": "test-ait.herokuapp.com/system_images/currency/euro/coins/0,01.png" }]  
+    *           coins: [{ "count": 0.01, "image": "test-ait.herokuapp.com/system_images/currency/euro/coins/0,01.png" }], 
+    *           currency: "euro"  
     *           }
     *       401:
     *         description: Invalid data entered
