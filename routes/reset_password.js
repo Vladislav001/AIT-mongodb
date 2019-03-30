@@ -26,6 +26,7 @@ exports.post = async function (req, res) {
                 };
                 sendMail.sendEmailRestorePassword(mailData);
 
+                return res.status(200).json('Password successfully changed');
             } else {
                 return res.status(422).send({
                     message: 'Passwords do not match'

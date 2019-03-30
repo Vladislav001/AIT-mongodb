@@ -2,7 +2,6 @@ const Caregiver = require('../models/caregiver');
 const crypto = require('crypto');
 const sendMail = require('../functions/sendMail');
 const constants = require('../functions/constants');
-// https://www.codementor.io/olatundegaruba/password-reset-using-jwt-ag2pmlck0
 
 exports.post = async function (req, res) {
     try {
@@ -10,7 +9,7 @@ exports.post = async function (req, res) {
 
         if (caregiver) {
             const token = await generateToken();
-            let updateCaregiver = await Caregiver.findOneAndUpdate({ _id: caregiver._id },
+            await Caregiver.findOneAndUpdate({ _id: caregiver._id },
                 { $set: { reset_password_token: token, reset_password_expires: Date.now() + 86400000 } },
                 { upsert: true, new: true }
             );
@@ -22,6 +21,8 @@ exports.post = async function (req, res) {
                 html: `You requested for a password reset, kindly use this <a href="${constants.PROTOCOL}${req.headers['host']}/reset_password?token=${token}">link</a> to reset your password`
             };
             sendMail.sendEmailRestorePassword(mailData);
+
+            return res.status(200).json('Password recovery information sent to email');
         } else {
             return 'Caregiver not found'
         }

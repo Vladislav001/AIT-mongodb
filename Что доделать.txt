@@ -16,7 +16,7 @@
 
   BACKEND:
   1) public_profile.js отрефакторить (т.к много лишних раз пробегаемся для loginAndPasswordPictograms)
-  2) восстановлениие пароля
+  2) восстановлениие пароля - рефактор кода, обработка ошибок https://www.codementor.io/olatundegaruba/password-reset-using-jwt-ag2pmlck0
   3) логин и пароль тренера через ajax
 
     // router.post('/signup', function (req, res, next) { 
