@@ -32,7 +32,11 @@ module.exports = function (passport) {
     req.logout();
     res.redirect('/');
   });
-  router.post('/restorePassword', require('./restore_password').post);
+
+  //router.post('/restore-password', require('./restore_password').post);
+  router.post('/forgot_password', require('./forgot_password').post);
+  router.post('/reset_password', require('./reset_password').post);
+  router.get('/reset_password', require('./reset_password').get);
 
   router.post('/addNewAdmin', isAuthenticated, require('./add/admin').post);
   router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post);
