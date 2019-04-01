@@ -9,12 +9,12 @@ exports.post = async function (req, res) {
             reset_password_token: req.body.token, reset_password_expires: {
                 $gt: Date.now()
             }
-        });
-
+        });  
+console.log(req.body.newPassword.length)
         if (caregiver) {
-            if (req.body.newPassword === req.body.verifyPassword) {
+            if (req.body.newPassword === req.body.verifyPassword && req.body.newPassword.length > 0) {
 
-                let updateCaregiver = await Caregiver.findOneAndUpdate({ _id: caregiver._id },
+                await Caregiver.findOneAndUpdate({ _id: caregiver._id },
                     { $set: { password: createHash(req.body.newPassword), reset_password_token: undefined, reset_password_expires: undefined } });
 
                 let mailData = {
@@ -28,10 +28,10 @@ exports.post = async function (req, res) {
 
                 return res.status(200).json('Password successfully changed');
             } else {
-                return res.status(422).send('Passwords do not match');
+                return res.status(422).json('Passwords do not match or are empty');
             }
         } else {
-            return res.status(400).send('Password reset token is invalid or has expired.');
+            return res.status(400).json('Password reset token is invalid or has expired.');
         }
 
     } catch (err) {
