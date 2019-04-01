@@ -1,5 +1,7 @@
 <link rel='stylesheet' href='/css/profileStudent.css' />
 
+<%-partial('../confirm.ejs')%>
+
 <div class="block">
   <p>Information</p>
   <form class="modal__form" name="addNewStudentForm">
@@ -26,11 +28,9 @@
     <div class="row">
       <button type="button" name="button" id="updateBtn">Update</button>
       </form>
-      <form action="/delete-pid/id<%=student.id%>" method="POST" name="deleteStudentForm">
-        <button type="submit" id="deleteBtn" onclick="return confirmDelete();" value="Delete student">
+        <button type="button" id="deleteBtn" onclick="toggleConfirm()" value="/delete-pid/id<%=student.id%>">
           Delete
         </button>
-      </form>
     </div>
 </div>
 
@@ -125,5 +125,9 @@
 
       document.querySelector("#login").innerText = "<%=student.login%>".replace(/\s+/g, "");
       document.querySelector("#password").innerText = "<%=student.password%>".replace(/\s+/g, "");
+</script>
+
+<script>
+
 
 </script>

@@ -1,3 +1,5 @@
+<%-partial('../confirm.ejs')%>
+
     <div class="block">
     <p>Administrators and parents</p>
     <table border="0">
@@ -16,15 +18,11 @@
               <% if(admins[i].access_level == 2) { %>
                 <td><a href="/publicProfile/admins/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
                 <td>Administrator</td>
-                <form action="/deleteAdmin/id<%=admins[i].id%>" method="POST" name="deleteAdminForm">
-                  <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
-                </form>
+                  <td class="delete"><button class="deleteBtn"  value="/deleteAdmin/id<%=admins[i].id%>" onclick="toggleConfirm()">Delete</button></td>
                 <% }  else { %>
                   <td><a href="/publicProfile/coaches/id<%=admins[i].id%>"><%=admins[i].email%></a></td>
                   <td>Parent</td>
-                  <form action="/deleteCoach/id<%=admins[i].id%>" method="POST" name="deleteCoachForm">
-                    <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
-                  </form>
+                  <td class="delete"><button class="deleteBtn"  value="/deleteAdmin/id<%=admins[i].id%>" onclick="toggleConfirm()">Delete</button></td>
                   <% } %>
                 </tr>
               </tbody>

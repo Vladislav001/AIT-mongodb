@@ -218,7 +218,7 @@ header .container {
   transition-duration: .5s;
 }
 
-.row button, form {
+.row button {
   width: calc(50% - 10px);
 }
 
@@ -232,7 +232,6 @@ header .container {
 
 .row #deleteBtn {
   background-color: rgb(219, 63, 42);
-  width: 100%;
 }
 
 .row #deleteBtn:hover {

@@ -1,6 +1,8 @@
 <% if(publicPage == 'coaches') { %>
 <link rel='stylesheet' href='/css/personalArea.css' />
 
+<%-partial('../confirm.ejs')%>
+
 <div class="block">
   <p>Students</p>
   <% if(students.length > 0) { %>
@@ -31,9 +33,7 @@
           <td>
             <%=students[i].age%>
           </td>
-          <form action="/delete-pid/id<%=students[i].id%>" method="POST" name="deleteStudentForm">
-            <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
-          </form>
+          <td class="delete"><button class="deleteBtn"  value="/delete-pid/id<%=students[i].id%>" onclick="toggleConfirm()">Delete</button></td>
         </tr>
       </tbody>
       <% } %>

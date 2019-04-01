@@ -2,6 +2,8 @@
 <!-- Пока такая костылина, т.к стили кабинета переопределяют стили в профили студента-->
 <link rel='stylesheet' href='/css/personalArea.css' />
 
+<%-partial('../confirm.ejs')%>
+
 <div class="block">
 <p>My coaches</p>
 <table border="0">
@@ -20,9 +22,7 @@
         </td>
         <td><a href="/publicProfile/coaches/id<%=coaches[i].id%>">
             <%=coaches[i].email%></a></td>
-        <form action="/deleteCoach/id<%=coaches[i].id%>" method="POST" name="deleteCoachForm">
-          <td class="delete"><button class="deleteBtn" onclick="return confirmDelete();">Delete</button></td>
-        </form>
+          <td class="delete"><button class="deleteBtn"  value="/deleteCoach/id<%=coaches[i].id%>" onclick="toggleConfirm()">Delete</button></td>
       </tr>
     </tbody>
     <% } %>

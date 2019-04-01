@@ -5,6 +5,8 @@
   background-color: rgba(0, 0, 0, .7);
   z-index: 99999;
   top: 0;
+  left: 0;
+  right: 0;
 }
 
 .confirm .confirm__container {
@@ -54,11 +56,11 @@
 }
 
 #cancel {
-  background-color: rgb(245, 100, 47);
+  background-color: rgb(228, 80, 60);
 }
 
 #cancel:hover {
-  color: rgb(245, 100, 47);
+  color: rgb(228, 80, 60);
   background-color: white;
   transition: all;
   transition-duration: .5s;
