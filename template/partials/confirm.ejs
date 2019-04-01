@@ -32,8 +32,15 @@
   }
 
   function onAcceptBtnClick() {
-    $.post(action);
-    rowInfo.classList.add("none");
+    $.post(action, function() {
+      if (rowInfo.classList.contains("info"))
+        rowInfo.classList.add("none");
+      else {
+        window.location.href = "/personalArea/1";
+        console.log("click");
+      }
+    });
+
     toggleConfirm();
   }
 
