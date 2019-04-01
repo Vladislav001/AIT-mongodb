@@ -28,14 +28,10 @@ exports.post = async function (req, res) {
 
                 return res.status(200).json('Password successfully changed');
             } else {
-                return res.status(422).send({
-                    message: 'Passwords do not match'
-                });
+                return res.status(422).send('Passwords do not match');
             }
         } else {
-            return res.status(400).send({
-                message: 'Password reset token is invalid or has expired.'
-            });
+            return res.status(400).send('Password reset token is invalid or has expired.');
         }
 
     } catch (err) {
