@@ -92,12 +92,8 @@
       url: '/updateStudent/id<%=student.id%>',
       dataType: 'json',
       data: updateStudentData,
-      success: function(data) {
-        alert(data.responseText);
-      },
-      error: function(data) {
-        alert(data.responseText);
-      }
+      success: data => alert(data.responseText),
+      error: data => alert(data.responseText)
     });
   }
 </script>
