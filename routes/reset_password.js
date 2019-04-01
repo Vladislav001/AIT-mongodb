@@ -10,7 +10,7 @@ exports.post = async function (req, res) {
                 $gt: Date.now()
             }
         });  
-console.log(req.body.newPassword.length)
+
         if (caregiver) {
             if (req.body.newPassword === req.body.verifyPassword && req.body.newPassword.length > 0) {
 
