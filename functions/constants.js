@@ -12,4 +12,13 @@ module.exports = Object.freeze({
         wallet: "/applications/money_game/wallet/1.png",
         basket: "/applications/money_game/basket/1.png"
     }, 
+    MONEY_GAME_SECOND_SETTINGS: {
+        backBtn: "/applications/money_game_second/backBtn/1.png",
+        progressBar: false,
+        nextBtn: "/applications/money_game_second/nextBtn/1.png",
+        againBtn: "/applications/money_game_second/againBtn/1.png",
+        wallet: "/applications/money_game_second/wallet/1.png",
+        basket: "/applications/money_game_second/basket/1.png",
+        background_color: "#fff"
+    }, 
 });

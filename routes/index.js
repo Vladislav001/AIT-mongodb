@@ -52,6 +52,9 @@ module.exports = function (passport) {
   router.get('/configure/money-game/id:_id', isAuthenticated, require('./applications/money_game/configure').get);
   router.post('/configure/money-game/id:_id', isAuthenticated, require('./applications/money_game/configure').post);
 
+ // MoneyGame Second
+  router.get('/configure/money-game-second/id:_id', isAuthenticated, require('./applications/money_game_second/configure').get);
+  router.post('/configure/money-game-second/id:_id', isAuthenticated, require('./applications/money_game_second/configure').post);
 
 
   // swagger definition
@@ -280,6 +283,54 @@ module.exports = function (passport) {
     *           
     */
    router.post('/api/v1/applications/moneygame/get/currency', verifyToken, require('./api/v1/applications/moneygame/get_currency').post);
+
+
+
+
+
+
+  /**
+    * @swagger
+    * /api/v1/applications/moneygame-second/get/settings:
+    *   post:
+    *     tags:
+    *       - ""
+    *     summary: "Get settings for MoneyGame Second"
+    *     description: ""
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *     - name: "x-access-token"
+    *       in: "header"
+    *       description: "PID token"
+    *       required: true
+    *       type: "string"
+    *     responses:
+    *       200:  
+    *        description: Information about settings for MoneyGame
+    *        examples:
+    *           application/json: { "progress_bar": true, back_btn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
+    *           "next_btn": "...", "again_btn": "...", "wallet": "...", "basket": "..." }
+    *       401:
+    *         description: Invalid data entered
+    *         examples:
+    *           application/json: 
+    *            {  
+    *              errors:
+    *              [
+    *               {
+    *                "id": 1, "title": Required fields are not filled, "detail": "Empty token value"
+    *                },{
+    *                "id": 2, "code": token-Invalid, "title": Invalid data entered, "detail": "Invalid token entered, or token expired"
+    *                },{
+    *                "id": 2, "token": token-Invalid, "title": Invalid data entered, "detail": "The PID with the token entered has been deleted."
+    *                }         
+    *              ]
+    *            }
+    *           
+    */
+   router.post('/api/v1/applications/moneygame-second/get/settings', verifyToken, require('./api/v1/applications/moneygame_second/get_settings').post);
+
 
   return router;
 }
