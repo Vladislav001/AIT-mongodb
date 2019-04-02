@@ -1,6 +1,7 @@
 const PID = require('../../models/pid');
 const moneyGame = require('../../models/money_game');
 const constants = require('../../functions/constants');
+const moneyGameSecond = require('../../models/money_game_second');
 
 exports.post = function (req, res) {
   PID.findOne({ 'login': req.body.login }, function (err, pid) {
@@ -30,6 +31,10 @@ exports.post = function (req, res) {
       newMoneyGame.pid_id = newPID._id;
       newMoneyGame.settings = constants.MONEY_GAME_SETTINGS;
 
+      let newMoneyGameSecond = new moneyGameSecond();
+      newMoneyGameSecond.pid_id = newPID._id;
+      newMoneyGameSecond.settings = constants.MONEY_GAME_SECOND_SETTINGS;
+
         newPID.save(function (err) {
           if (err) {
             throw err;
@@ -38,6 +43,11 @@ exports.post = function (req, res) {
             if (err) {
               throw err;
             }
+            newMoneyGameSecond.save(function (err) {
+              if (err) {
+                throw err;
+              }
+            });
           });
         });
 
