@@ -34,7 +34,41 @@
   animation-duration: 1s;
 }
 
-.nav-bar .nav-bar .link:hover {
+.rotate {
+  transform: rotate(180deg);
+}
+
+.hidden {
+  visibility: hidden!important;
+  transition: all;
+  transition-duration: .5s;
+  animation-name: fadeOut;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.nav-bar .link:hover {
   background-color: rgb(240, 240, 240);
   color: rgb(42, 95, 129);
   box-shadow: none;
@@ -149,38 +183,4 @@
 
 .none {
   display: none!important;
-}
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-.hidden {
-  visibility: hidden!important;
-  transition: all;
-  transition-duration: .5s;
-  animation-name: fadeOut;
-  animation-duration: 1s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    opacity: 1;
-    display: block;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    display: block;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
 }
