@@ -18,7 +18,7 @@
     <a class="link" href="/system_documents/Website_User_Manual.pdf" target="blank">User manual</a>
     <a class="link" href="/developers/">Developers</a>
     <div id="seeMoreMobile">For developers <span>&#9660;</span></div>
-    <div class="linksContainer none">
+    <div class="linksContainer none linksContainer--mobile">
       <a class="link" href="/api-docs/" target="_blank">API documents</a>
       <a class="link" href="/system_documents/Website_Programmer_Manual.pdf" target="blank">Programmer manual</a>
     </div>
@@ -26,11 +26,10 @@
 </section>
 
 <script defer>
-  var seeMore = document.querySelector("#seeMore");
-  var row = seeMore.querySelector("span");
-  var linksContainer = document.querySelector(".linksContainer");
-  var downRow = "&#9650;";
-  var upRow = "&#9660;";
+  let seeMore = document.querySelector("#seeMore");
+  let row = seeMore.querySelector("span");
+  let linksContainer = document.querySelector(".nav-bar .linksContainer");
+
 
   function onSeeMoreClick(elem) {
     row.classList.toggle("rotate");
@@ -41,13 +40,13 @@
 </script>
 
 <script defer>
-  var seeMoreMobile = document.querySelector("#seeMoreMobile");
-  var row = seeMoreMobile.querySelector("span");
-  var linksContainer = document.querySelectorAll(".linksContainer")[1];
+  let seeMoreMobile = document.querySelector("#seeMoreMobile");
+  let rowMobile = seeMoreMobile.querySelector("span");
+  let linksContainerMobile = document.querySelector(".linksContainer--mobile");
 
   function onSeeMoreMobileClick(elem) {
-    row.classList.toggle("rotate");
-    linksContainer.classList.toggle("none");
+    rowMobile.classList.toggle("rotate");
+    linksContainerMobile.classList.toggle("none");
   }
 
   seeMoreMobile.addEventListener("click", onSeeMoreMobileClick);
