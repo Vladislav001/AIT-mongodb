@@ -13,7 +13,12 @@ exports.post = async function (req, res) {
         "againBtn": req.headers.host + moneyGame.settings.againBtn,
         "wallet": req.headers.host + moneyGame.settings.wallet,
         "basket": req.headers.host + moneyGame.settings.basket,
-        "background_color": req.headers.host + moneyGame.settings.color_background
+
+        "correctChoise": req.headers.host + moneyGame.settings.correctChoise,
+        "incorrectСhoice": req.headers.host + moneyGame.settings.incorrectСhoice,
+        "textChoise": moneyGame.settings.textChoise,
+        "showTextChoise": moneyGame.settings.showTextChoise, 
+        "backgroundColor": moneyGame.settings.backgroundColor
       }
     );
   } catch (err) {

@@ -19,6 +19,11 @@ module.exports = Object.freeze({
         againBtn: "/applications/money_game_second/againBtn/1.png",
         wallet: "/applications/money_game_second/wallet/1.png",
         basket: "/applications/money_game_second/basket/1.png",
-        background_color: "#fff"
+
+        correctChoise: "/applications/money_game_second/correctChoise/1.png",
+        incorrectСhoice: "/applications/money_game_second/incorrectСhoice/1.png",
+        textChoise: "Some text",
+        showTextChoise: false,
+        backgroundColor: "#fff"
     }, 
 });

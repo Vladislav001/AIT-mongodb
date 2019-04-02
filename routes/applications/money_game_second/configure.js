@@ -35,7 +35,12 @@ exports.post = async function (req, res) {
       againBtn: req.body.againBtn,
       wallet: req.body.wallet,
       basket: req.body.basket,
-      background_color: req.body.background_color
+
+      correctChoise :req.body.correctChoise,
+      incorrectСhoice: req.body.incorrectСhoice,
+      textChoise: req.body.textChoise,
+      showTextChoise: req.body.showTextChoise,
+      backgroundColor: req.body.backgroundColor,
     }
 
     let updateData = {

@@ -215,8 +215,8 @@ module.exports = function (passport) {
     *       200:  
     *        description: Information about settings for MoneyGame
     *        examples:
-    *           application/json: { "progress_bar": true, back_btn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
-    *           "next_btn": "...", "again_btn": "...", "wallet": "...", "basket": "..." }
+    *           application/json: { "progressBar": true, backBtn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
+    *           "nextBtn": "...", "againBtn": "...", "wallet": "...", "basket": "..." }
     *       401:
     *         description: Invalid data entered
     *         examples:
@@ -309,8 +309,9 @@ module.exports = function (passport) {
     *       200:  
     *        description: Information about settings for MoneyGame
     *        examples:
-    *           application/json: { "progress_bar": true, back_btn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
-    *           "next_btn": "...", "again_btn": "...", "wallet": "...", "basket": "..." }
+    *           application/json: { "progressBar": true, backBtn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
+    *           "nextBtn": "...", "againBtn": "...", "wallet": "...", "basket": "...", "correctChoise": "...", "incorrectChoice": "...",
+    *           "textChoise": "OK", "showTextChoise": false, "backgroundColor": "#fff" }
     *       401:
     *         description: Invalid data entered
     *         examples:
