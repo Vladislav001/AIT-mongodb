@@ -5,31 +5,31 @@ function getCountFilesInDirectory(dir) {
   return files.length;
 }
 
-// Вернем кол-во файлов для приложения MoneyGame
-function getCountFilesInDirectoryMoneyGame() {
-  const dirNextBtn = './public/applications/money_game/nextBtn';
-  const dirBackBtn = './public/applications/money_game/backBtn';
-  const dirAgainBtn = './public/applications/money_game/againBtn';
-  const dirBasket = './public/applications/money_game/basket';
-  const dirWallet = './public/applications/money_game/wallet';
-
+// Вернем кол-во файлов для приложения
+function getCountFilesInDirectoryApplication(dirApplication, dirsPaired, pairName) {
+  const applicationPath = `./public/applications/${dirApplication}`;
   let countFiles = {};
-  countFiles.againBtn = getCountFilesInDirectory(dirAgainBtn);
-  countFiles.basket = getCountFilesInDirectory(dirBasket);
-  countFiles.wallet = getCountFilesInDirectory(dirWallet);
 
-  let countNextBtn = getCountFilesInDirectory(dirNextBtn);
-  let countBackBtn = getCountFilesInDirectory(dirBackBtn);
+  fs.readdirSync(applicationPath).forEach(elementDir => {
+    countFiles[elementDir] = getCountFilesInDirectory(`${applicationPath}/${elementDir}`);
+  });
 
-  if (countNextBtn >= countBackBtn) {
-    countFiles.nextBack = countBackBtn;
-  }
-  else {
-    countFiles.nextBack = countNextBtn;
-  }
+  // Т.к для пары мб в разных папках разное кол-во файлов, то возьмем min значение  
+  dirsPaired.forEach(function (pair) {
+    if (countFiles[pair[0]] >= countFiles[pair[1]]) {
+      countFiles[pairName] = countFiles[pair[1]];
+    } else {
+      countFiles[pairName] = countFiles[pair[0]];
+    }
+
+    // удалим неиспользумые св-ва (т.к пара образовалась)
+    delete countFiles[pair[0]];
+    delete countFiles[pair[1]];
+  });
 
 
+  console.log(countFiles)
   return countFiles;
 }
 
-module.exports.getCountFilesInDirectoryMoneyGame = getCountFilesInDirectoryMoneyGame;
+module.exports.getCountFilesInDirectoryApplication = getCountFilesInDirectoryApplication;
