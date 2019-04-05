@@ -1,16 +1,24 @@
 <div class="modal__form block">
     <p>Settings</p>
 
-    <label for="progressBar">Progress bar
+    <label for="progressBar" class="labelCheckBox">Progress bar
         <input type="checkbox" name="progressBar" id="progressBarChanger">
+    </label>
+
+    <label for="textChanger" class="labelCheckBox">Show text
+        <input type="checkbox" name="textChanger" id="textChanger">
     </label>
 
     <label>Next/Back buttons
         <input type="range" min="1" max="<%=countFiles.nextBack%>" name="next-back-btn" id="nextBackBtnsChanger">
     </label>
 
-    <label>Background color
+    <label>Background color <br />
       <input type="color" name="" id="colorChanger">
+    </label>
+
+    <label>Smiley face
+        <input type="range" min="1" max="<%=countFiles.smileyFace%>" name="smileyFace" id="smileyFaceChanger">
     </label>
 
     <label>Again button
