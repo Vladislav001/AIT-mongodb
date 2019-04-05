@@ -53,7 +53,7 @@ exports.get = async function (req, res) {
       host: req.headers.host,
       currency: moneyGame.currency,
       allCurrencies: JSON.stringify(allCurrencies),
-      countFiles: countFiles.getCountFilesInDirectoryMoneyGame()
+      countFiles: countFiles.getCountFilesInDirectoryApplication('money_game_second', [['nextBtn', 'backBtn']], ['nextBack'])
     });
   } catch (err) {
     throw err;
