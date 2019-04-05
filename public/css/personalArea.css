@@ -312,3 +312,12 @@ table .info:hover a {
     max-width: 550px;
   }
 }
+
+.error {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  color: rgb(219, 63, 42);
+}

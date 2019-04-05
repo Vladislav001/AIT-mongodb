@@ -40,7 +40,6 @@
 <div class="block">
   <p>Create new student</p>
   <form action="/addNewStudent" method="POST" class="modal__form" name="addNewStudentForm">
-    <span class="error"></span>
 
     <%-partial('../pictograms')%>
 
@@ -56,6 +55,7 @@
       <option>Non-applicable</option>
       <option>I prefer not say</option>
     </select>
+    <span class="error"></span>
     <button type="submit" name="button">Create</button>
   </form>
 </div>
