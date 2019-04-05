@@ -8,7 +8,11 @@ const moneyGameSecoondSchema = mongoose.Schema({
     settings: {
         type: Object,
         required: true
-    }
+    },
+    currency: {
+        type: String,
+        default: "euro"
+    },
 }); 
 
 moneyGameSecoondSchema.virtual('moneyGameSecondId').get(function(){
