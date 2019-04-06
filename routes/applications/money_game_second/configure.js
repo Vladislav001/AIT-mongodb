@@ -65,7 +65,7 @@ exports.get = async function (req, res) {
 exports.post = async function (req, res) {
 
   try {
-console.log(req.body)
+
     let objectSettings = {
       backBtn: req.body.backBtn,
       progressBar: req.body.progressBar,
