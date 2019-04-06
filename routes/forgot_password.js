@@ -24,7 +24,7 @@ exports.post = async function (req, res) {
 
             return res.status(200).json('Password recovery information sent to email');
         } else {
-            return 'Caregiver not found'
+            return res.status(404).json('Caregiver not found');
         }
 
     } catch (err) {
