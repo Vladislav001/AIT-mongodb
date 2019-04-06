@@ -46,7 +46,7 @@ exports.get = async function (req, res) {
         });
       }
     });
-
+console.log(moneyGame.settings)
     res.render("./applications/moneygame_second/configure", {
       pid: pid,
       settings: JSON.stringify(moneyGame.settings),
@@ -65,7 +65,7 @@ exports.get = async function (req, res) {
 exports.post = async function (req, res) {
 
   try {
-
+console.log(req.body)
     let objectSettings = {
       backBtn: req.body.backBtn,
       progressBar: req.body.progressBar,
@@ -74,13 +74,13 @@ exports.post = async function (req, res) {
       wallet: req.body.wallet,
       basket: req.body.basket,
 
-      correctChoice: req.body.correctChoiсe,
-      incorrectСhoice: req.body.incorrectСhoice,
+      correctChoice: req.body.correctChoice,
+      incorrectChoice: req.body.incorrectChoice,
       textChoice: req.body.textChoice,
-      showTextChoiсe: req.body.showTextChoiсe,
+      showTextChoice: req.body.showTextChoice,
       backgroundColor: req.body.backgroundColor,
     }
-
+ 
     let updateData = {
       settings: objectSettings
     }
