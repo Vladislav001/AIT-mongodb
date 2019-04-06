@@ -27,8 +27,6 @@ function getCountFilesInDirectoryApplication(dirApplication, dirsPaired, pairNam
     delete countFiles[pair[1]];
   });
 
-
-  console.log(countFiles)
   return countFiles;
 }
 

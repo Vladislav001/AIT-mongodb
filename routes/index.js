@@ -354,8 +354,8 @@ module.exports = function (passport) {
     *        description: Information about settings for MoneyGame SECOND
     *        examples:
     *           application/json: { "progressBar": true, backBtn: "test-ait.herokuapp.com/application/applicationImages/MoneyGame/backBtn/1.png",
-    *           "nextBtn": "...", "againBtn": "...", "wallet": "...", "basket": "...", "correctChoise": "...", "incorrectChoice": "...",
-    *           "textChoise": "OK", "showTextChoise": false, "backgroundColor": "#fff" }
+    *           "nextBtn": "...", "againBtn": "...", "wallet": "...", "basket": "...", "correctChoiсe": "...", "incorrectChoice": "...",
+    *           "textChoiсe": "OK", "showTextChoiсe": false, "backgroundColor": "#fff" }
     *       401:
     *         description: Invalid data entered
     *         examples:

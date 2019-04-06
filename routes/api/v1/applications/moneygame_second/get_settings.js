@@ -14,10 +14,10 @@ exports.post = async function (req, res) {
         "wallet": req.headers.host + moneyGame.settings.wallet,
         "basket": req.headers.host + moneyGame.settings.basket,
 
-        "correctChoise": req.headers.host + moneyGame.settings.correctChoise,
+        "correctChoice": req.headers.host + moneyGame.settings.correctChoice,
         "incorrectСhoice": req.headers.host + moneyGame.settings.incorrectСhoice,
-        "textChoise": moneyGame.settings.textChoise,
-        "showTextChoise": moneyGame.settings.showTextChoise, 
+        "textChoice": moneyGame.settings.textChoice,
+        "showTextChoice": moneyGame.settings.showTextChoice, 
         "backgroundColor": moneyGame.settings.backgroundColor
       }
     );

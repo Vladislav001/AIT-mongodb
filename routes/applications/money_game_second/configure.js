@@ -65,7 +65,7 @@ exports.get = async function (req, res) {
 exports.post = async function (req, res) {
 
   try {
-
+console.log(req.body)
     let objectSettings = {
       backBtn: req.body.backBtn,
       progressBar: req.body.progressBar,
@@ -74,10 +74,10 @@ exports.post = async function (req, res) {
       wallet: req.body.wallet,
       basket: req.body.basket,
 
-      correctChoise :req.body.correctChoise,
+      correctChoice: req.body.correctChoiсe,
       incorrectСhoice: req.body.incorrectСhoice,
-      textChoise: req.body.textChoise,
-      showTextChoise: req.body.showTextChoise,
+      textChoice: req.body.textChoice,
+      showTextChoiсe: req.body.showTextChoiсe,
       backgroundColor: req.body.backgroundColor,
     }
 

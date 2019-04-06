@@ -20,9 +20,9 @@ module.exports = Object.freeze({
         wallet: "/applications/money_game_second/wallet/1.png",
         basket: "/applications/money_game_second/basket/1.png",
 
-        correctChoise: "/applications/money_game_second/correctChoise/1.png",
+        correctChoiсe: "/applications/money_game_second/correctChoice/1.png",
         incorrectСhoice: "/applications/money_game_second/incorrectСhoice/1.png",
-        textChoise: "Some text",
+        textChoice: "Some text",
         showTextChoise: false,
         backgroundColor: "#fff"
     }, 
