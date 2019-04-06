@@ -46,7 +46,7 @@ exports.get = async function (req, res) {
         });
       }
     });
-console.log(moneyGame.settings)
+
     res.render("./applications/moneygame_second/configure", {
       pid: pid,
       settings: JSON.stringify(moneyGame.settings),
@@ -65,7 +65,7 @@ console.log(moneyGame.settings)
 exports.post = async function (req, res) {
 
   try {
-console.log(req.body)
+
     let objectSettings = {
       backBtn: req.body.backBtn,
       progressBar: req.body.progressBar,
