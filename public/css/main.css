@@ -152,6 +152,11 @@
   background-color: white;
 }
 
+#reset_password {
+  padding-top: 40px;
+  min-height: auto;
+}
+
 /*  */
 .none {
   display: none!important;
