@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    PROTOCOL: 'http://', // протокол 
+    PROTOCOL: 'http://', // протокол
     TIME_LIFE_TOKEN: 259200, // время жизни токена (72 часа)
     SECRET_STRING: "OJ5cIMkraDqoGfVv6dyYu7wDF", // секретная строка (для токена) - !!! нужно из переменной окружения
     MIN_LENGTH_CAREGIVER_PASSWORD: 5, // минимальная длина пароля caregiver
@@ -11,7 +11,7 @@ module.exports = Object.freeze({
         againBtn: "/applications/money_game/againBtn/1.png",
         wallet: "/applications/money_game/wallet/1.png",
         basket: "/applications/money_game/basket/1.png"
-    }, 
+    },
     MONEY_GAME_SECOND_SETTINGS: {
         backBtn: "/applications/money_game_second/backBtn/1.png",
         progressBar: false,
@@ -23,6 +23,6 @@ module.exports = Object.freeze({
         incorrectChoice: "/applications/money_game_second/incorrectСhoice/1.png",
         textChoice: "Some text",
         showTextChoise: false,
-        backgroundColor: "#fff"
-    }, 
+        backgroundColor: "#ffffff"
+    },
 });

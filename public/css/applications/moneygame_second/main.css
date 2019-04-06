@@ -3,9 +3,13 @@
   margin-left: 20px;
 }
 
-#textChanger {
+#showTextChanger {
   width: auto;
   margin-left: 40px;
+}
+
+#textChanger {
+  margin-top: 10px;
 }
 
 .settings {

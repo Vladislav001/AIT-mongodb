@@ -75,6 +75,7 @@
   var currencyImages = document.getElementsByClassName("currencyImage");
 
   var textChanger = document.getElementById("textChanger");
+  var showTextChanger = document.getElementById("showTextChanger");
   var correctIncorrectChanger = document.getElementById("correctIncorrectChanger");
   var colorChanger = document.getElementById("colorChanger");
 
@@ -95,8 +96,9 @@
       changeCurrency(game);
   };
 
+  textChanger.addEventListener("input", changeElem);
   correctIncorrectChanger.addEventListener("change", changePairElems);
-  textChanger.addEventListener("change", changeElem);
+  showTextChanger.addEventListener("change", changeElem);
   colorChanger.addEventListener("change", changeElem);
 
   // set values of changers from DB
@@ -112,10 +114,13 @@
 
   fCurrency.selectedIndex = settings.fCurrency;
 
-  textChanger.checked = settings.showTextChoise;
+  textChanger.value = settings.textChoice;
+  correctIncorrectChanger.value = getValue(settings.correctChoice);
+  showTextChanger.checked = settings.showTextChoice;
   colorChanger.defaultValue = settings.backgroundColor;
 
   showFromDB(textChanger);
+  showFromDB(showTextChanger);
   showFromDB(correctIncorrectChanger);
   showFromDB(colorChanger);
   //
@@ -294,7 +299,7 @@
       if (this == progressBarChanger)
         for (let progressBar of progressBars)
           progressBar.classList.toggle("none");
-      else if (this == textChanger)
+      else if (this == showTextChanger)
         for (let text of texts)
           text.classList.toggle("hidden");
     } else if (this.getAttribute('type') == 'range') {
@@ -309,6 +314,10 @@
     } else if (this == colorChanger)
       for (let game of games)
         game.querySelector(".main").style.backgroundColor = this.value;
+
+    else if (this == textChanger)
+      for (let text of texts)
+        text.innerText = textChanger.value;
   }
 
   // change pair elements
@@ -332,7 +341,7 @@
       for (let elem of correct)
         elem.src = imagePathCorrect;
       //////////////////////////////////
-      var imagePathIncorrect = incorrect[1].src;
+      var imagePathIncorrect = incorrect[0].src;
       imagePathIncorrect = imagePathIncorrect.replace(/\w.png/, `${correctIncorrectChanger.value}.png`);
 
       for (let elem of incorrect)
@@ -360,6 +369,11 @@
         break;
         ///////////////////////////////////
       case textChanger:
+        for (let text of texts)
+          text.innerText = textChanger.value;
+        break;
+        ///////////////////////////////////
+      case showTextChanger:
         for (let text of texts)
           if (changer.checked)
             text.classList.remove("hidden");
@@ -401,11 +415,13 @@
     newSettings.progressBar = progressBarChanger.checked;
 
     // text
-    newSettings.showTextChoise = textChanger.checked;
+    newSettings.textChoice = textChanger.value;
+    // show text
+    newSettings.showTextChoice = showTextChanger.checked;
     // correct
-    newSettings.correctChoise = correct[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+    newSettings.correctChoice = correct[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // incorrect
-    newSettings.incorrectChoise = incorrect[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+    newSettings.incorrectChoice = incorrect[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // color
     newSettings.backgroundColor = colorChanger.value;
 
