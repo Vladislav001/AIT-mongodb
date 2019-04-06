@@ -14,10 +14,15 @@
         url: '/forgot_password',
         dataType: 'json',
         data: data,
-        success: data => alert(data.responseText),
-        error: data => alert(data.responseText)
+        success: data =>  {
+          document.querySelector(".error").innerHTML = "";
+          document.querySelector(".success").innerHTML = data;
+        },
+        error: data =>  {
+          document.querySelector(".success").innerHTML = "";
+          document.querySelector(".error").innerHTML = data;
+        }
       });
-
     }
   </script>
 
@@ -37,14 +42,18 @@
         Forgot your password?
       </p>
     </form>
-    <!--  -->
     <form class="modal__form none" id="restore" action="/forgot_password" method="POST" name="restorePasswordForm" ">
       <label for="login">E-mail</label>
       <input type="email" name="email" value=""  id="restoreEmail" required>
 
+      <span class="success" style="color: green"></span>
+
+      <span class="error" style="color: red"></span>
+
       <button type="button" name="button" onclick="onRestorePassword()">Restore</button>
+
+
     </form>
-    <!--  -->
     <form class="modal__form none" id="signUp" action="/signUp" method="POST" name="signupForm">
       <label for="login">E-mail</label>
       <input type="email" name="username" value="" required>

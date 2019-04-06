@@ -187,3 +187,11 @@
     display: none;
   }
 }
+
+.success, .error {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  padding: 5px;
+}
