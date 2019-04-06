@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 //Выслать на почту уведомление, потом вынести из , addAdmin (вызов 1 фун-ции везде)
 function sendEmailSuccesRegistration(url, recipient) {
   let mailOptions = {
-    from: 'nikitadmitriev97@yandex.ru',
+    from: '',
     to: recipient, // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
     subject: 'Registration successful',
     html: '<h1>Congratulations on registration</h1><br><p><a href="http://' + url + '">Go to the site!</a></p>'
