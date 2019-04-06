@@ -2,15 +2,15 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'nikita.webmaker@gmail.com',
-    pass: 'Dinkimom48'
+    user: '',
+    pass: ''
   }
 });
 
 //Выслать на почту уведомление, потом вынести из , addAdmin (вызов 1 фун-ции везде)
 function sendEmailSuccesRegistration(url, recipient) {
   let mailOptions = {
-    from: '',
+    from: 'nikitadmitriev97@yandex.ru',
     to: recipient, // для нескольких - через запятую 'myfriend@yahoo.com, myotherfriend@yahoo.com'
     subject: 'Registration successful',
     html: '<h1>Congratulations on registration</h1><br><p><a href="http://' + url + '">Go to the site!</a></p>'

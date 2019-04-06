@@ -48,6 +48,7 @@
   height: 200px;
   margin-top: 10px;
   border: none;
+  background-color: inherit;
 }
 
 
@@ -224,4 +225,19 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.correct, .incorrect {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 15px;
+}
+
+.correct {
+  left: 35%;
+}
+
+.incorrect {
+  left: calc(35% + 60px);
 }

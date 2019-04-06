@@ -23,6 +23,7 @@
   //settings from data base
   var settings = '<%-settings%>';
   settings = JSON.parse(settings); //parse to get object
+  console.log(settings);
   var currency = '<%-currency%>';
   var allCurrencies = '<%-allCurrencies%>';
   allCurrencies = JSON.parse(allCurrencies);
@@ -34,6 +35,11 @@
   var baskets = document.getElementsByClassName("basket");
   var nextBtns = document.getElementsByClassName("nextBtn");
   var backBtns = document.getElementsByClassName("backBtn");
+
+  var correct = document.getElementsByClassName("correct");
+  var incorrect = document.getElementsByClassName("incorrect");
+
+  var texts = document.getElementsByClassName("text");
 
   // game views declaration
   var games = document.getElementsByClassName("game");
@@ -68,6 +74,10 @@
 
   var currencyImages = document.getElementsByClassName("currencyImage");
 
+  var textChanger = document.getElementById("textChanger");
+  var correctIncorrectChanger = document.getElementById("correctIncorrectChanger");
+  var colorChanger = document.getElementById("colorChanger");
+
   // listeners of pagination buttons
   collectionMoneyBtn.addEventListener("click", pageChanger);
   selectionGoodsBtn.addEventListener("click", pageChanger);
@@ -85,6 +95,10 @@
       changeCurrency(game);
   };
 
+  correctIncorrectChanger.addEventListener("change", changePairElems);
+  textChanger.addEventListener("change", changeElem);
+  colorChanger.addEventListener("change", changeElem);
+
   // set values of changers from DB
   nextBackBtnsChanger.value = getValue(settings.nextBtn);
   progressBarChanger.checked = settings.progressBar;
@@ -98,7 +112,13 @@
 
   fCurrency.selectedIndex = settings.fCurrency;
 
+  textChanger.checked = settings.showTextChoise;
+  colorChanger.defaultValue = settings.backgroundColor;
 
+  showFromDB(textChanger);
+  showFromDB(correctIncorrectChanger);
+  showFromDB(colorChanger);
+  //
   showFromDB(fCurrency);
   showFromDB(nextBackBtnsChanger);
   showFromDB(progressBarChanger);
@@ -271,9 +291,13 @@
   // change alone element
   function changeElem(changer) {
     if (this.getAttribute('type') == 'checkbox') {
-      for (let progressBar of progressBars)
-        progressBar.classList.toggle("none");
-    } else {
+      if (this == progressBarChanger)
+        for (let progressBar of progressBars)
+          progressBar.classList.toggle("none");
+      else if (this == textChanger)
+        for (let text of texts)
+          text.classList.toggle("hidden");
+    } else if (this.getAttribute('type') == 'range') {
       var searchClass = this.id.toString().replace('Changer', '');
       var elems = document.getElementsByClassName(searchClass);
 
@@ -282,26 +306,46 @@
         imagePath = imagePath.replace(/\w.png/, `${this.value}.png`);
         elem.src = imagePath;
       }
-    }
+    } else if (this == colorChanger)
+      for (let game of games)
+        game.querySelector(".main").style.backgroundColor = this.value;
   }
 
   // change pair elements
   function changePairElems() {
-    var imagePathNextBtn = nextBtns[0].src;
-    imagePathNextBtn = imagePathNextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
+    if (this == nextBackBtnsChanger) {
+      var imagePathNextBtn = nextBtns[0].src;
+      imagePathNextBtn = imagePathNextBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
 
-    for (let nextBtn of nextBtns)
-      nextBtn.src = imagePathNextBtn;
-    //////////////////////////////////
-    var imagePathBackBtn = backBtns[1].src;
-    imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
+      for (let nextBtn of nextBtns)
+        nextBtn.src = imagePathNextBtn;
+      //////////////////////////////////
+      var imagePathBackBtn = backBtns[1].src;
+      imagePathBackBtn = imagePathBackBtn.replace(/\w.png/, `${nextBackBtnsChanger.value}.png`);
 
-    for (let backBtn of backBtns)
-      backBtn.src = imagePathBackBtn;
+      for (let backBtn of backBtns)
+        backBtn.src = imagePathBackBtn;
+    } else {
+      var imagePathCorrect = correct[0].src;
+      imagePathCorrect = imagePathCorrect.replace(/\w.png/, `${correctIncorrectChanger.value}.png`);
+
+      for (let elem of correct)
+        elem.src = imagePathCorrect;
+      //////////////////////////////////
+      var imagePathIncorrect = incorrect[1].src;
+      imagePathIncorrect = imagePathIncorrect.replace(/\w.png/, `${correctIncorrectChanger.value}.png`);
+
+      for (let elem of incorrect)
+        elem.src = imagePathIncorrect;
+    }
   }
 
   function showFromDB(changer) {
     switch (changer) {
+      case colorChanger:
+        for (let game of games)
+          game.querySelector(".main").style.backgroundColor = colorChanger.value;
+        break;
       case fCurrency:
         changer.value = currency;
         for (let game of games)
@@ -314,8 +358,19 @@
             progressBar.classList.remove("none");
           else progressBar.classList.add("none");
         break;
+        ///////////////////////////////////
+      case textChanger:
+        for (let text of texts)
+          if (changer.checked)
+            text.classList.remove("hidden");
+          else text.classList.add("hidden");
+        break;
         //////////////////////////////////
       case nextBackBtnsChanger:
+        changePairElems();
+        break;
+        //////////////////////////////////
+      case correctIncorrectChanger:
         changePairElems();
         break;
         //////////////////////////////////
@@ -341,9 +396,19 @@
   submitBtn.onclick = function() {
     var newSettings = {};
     // back
-    newSettings.backBtn = backBtns[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+    newSettings.backBtn = backBtns[1].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // progress bar
     newSettings.progressBar = progressBarChanger.checked;
+
+    // text
+    newSettings.showTextChoise = textChanger.checked;
+    // correct
+    newSettings.correctChoise = correct[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+    // incorrect
+    newSettings.incorrectChoise = incorrect[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
+    // color
+    newSettings.backgroundColor = colorChanger.value;
+
     // next
     newSettings.nextBtn = nextBtns[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // again
@@ -354,6 +419,8 @@
     newSettings.basket = baskets[0].src.replace(/http(s?):\/\//, '').replace(`${hostName}`, '');
     // currency
     newSettings.currency = fCurrency.value;
+
+    console.log(newSettings);
 
     $.ajax({
       type: 'POST',
