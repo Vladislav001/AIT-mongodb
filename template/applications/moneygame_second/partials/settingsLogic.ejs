@@ -23,6 +23,7 @@
   //settings from data base
   var settings = '<%-settings%>';
   settings = JSON.parse(settings); //parse to get object
+  console.log(settings);
   var currency = '<%-currency%>';
   var allCurrencies = '<%-allCurrencies%>';
   allCurrencies = JSON.parse(allCurrencies);
@@ -115,7 +116,10 @@
 
   textChanger.value = settings.textChoice;
   correctIncorrectChanger.value = getValue(settings.correctChoice);
-  showTextChanger.checked = settings.showTextChoice;
+
+  settings.showTextChoice == "true" ?
+    showTextChanger.checked = true : showTextChanger.checked = false;
+
   colorChanger.defaultValue = settings.backgroundColor;
 
   showFromDB(textChanger);
