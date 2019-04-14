@@ -27,11 +27,9 @@
 
 .nav-bar .linksContainer {
   width: 100%;
-  display: flex;
+  display: flex!important;
   flex-direction: column;
   transition-duration: .5s;
-  animation-name: fadeIn;
-  animation-duration: 1s;
 }
 
 .rotate {
@@ -39,33 +37,9 @@
 }
 
 .hidden {
-  visibility: hidden!important;
+  opacity: 0;
   transition: all;
   transition-duration: .5s;
-  animation-name: fadeOut;
-  animation-duration: 1s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    opacity: 1;
-    display: block;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    display: block;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
 }
 
 .nav-bar .link:hover {

@@ -21,6 +21,10 @@
   flex-direction: column;
 }
 
+h2 {
+  width: 100%;
+}
+
 .pagination {
   display: flex;
   justify-content: space-between;

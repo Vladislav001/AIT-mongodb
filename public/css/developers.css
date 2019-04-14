@@ -102,7 +102,7 @@ header .container {
   width: calc(50% - 10px);
   max-width: 495px;
   margin-top: 20px;
-  min-height: 620px;
+  max-height: 640px;
   box-shadow: var(--box-shadow-outset);
   background-color: white;
   display: flex;
@@ -127,8 +127,9 @@ header .container {
 }
 
 .block .position {
-  margin: 0 0 10px 0;
+  margin: 10px 0;
   text-align: center;
+  font-size: 20pt
 }
 
 .block .contacts {
@@ -152,7 +153,7 @@ header .container {
 }
 
 .mail {
-  background-image: url("/system_images/mail.png");
+  background-image: url("/system_images/contacts/mail.png");
   background-size: 100% 100%;
   opacity: 0.5;
 }
