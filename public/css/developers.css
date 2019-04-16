@@ -120,7 +120,7 @@ header .container {
 
 .block .photo {
   width: 350px;
-  height: 350px;
+  min-height: 350px;
   margin: 0 auto 10px auto;
   background-color: grey;
   background-size: 100% 100%;
