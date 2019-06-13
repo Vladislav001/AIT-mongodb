@@ -10,13 +10,11 @@ module.exports = function (passport) {
 
   router.get('/', require('./pages/main').get);
   router.get('/personalArea/:page', isAuthenticated, require('./pages/personal_area'));
-
-  // Либо регуляркой мб проверять, либо передалть вообще - но надо понимать кого смотрим
-  router.get('/publicProfile/admins/id:_id', require('./pages/public_profile').get);
-  router.get('/publicProfile/coaches/id:_id', require('./pages/public_profile').get);
-  router.get('/publicProfile/students/id:_id', require('./pages/public_profile').get);
-  router.get('/test_settings/id:_id', require('./pages/test_settings').get);
-  router.get('/developers', require('./pages/developers').get);
+  router.get('/publicProfile/admins/id:_id', isAuthenticated, require('./pages/public_profile').get);
+  router.get('/publicProfile/coaches/id:_id', isAuthenticated, require('./pages/public_profile').get);
+  router.get('/publicProfile/students/id:_id', isAuthenticated, require('./pages/public_profile').get);
+  router.get('/test_settings/id:_id', isAuthenticated, require('./pages/test_settings').get);
+  router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea/1',
