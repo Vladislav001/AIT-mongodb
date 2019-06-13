@@ -12,7 +12,7 @@ module.exports = function (passport) {
   router.get('/personalArea/:page', isAuthenticated, require('./pages/personal_area'));
   router.get('/publicProfile/admins/id:_id', isAuthenticated, require('./pages/public_profile').get);
   router.get('/publicProfile/coaches/id:_id', isAuthenticated, require('./pages/public_profile').get);
-  router.get('/publicProfile/students/id:_id', isAuthenticated, require('./pages/public_profile').get);
+  router.get('/publicProfile/students/id:_id', isAuthenticated, isCaregiver, require('./pages/public_profile').get);
   router.get('/test_settings/id:_id', isAuthenticated, require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
@@ -40,7 +40,7 @@ module.exports = function (passport) {
   router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post);
   router.post('/addNewStudent', isAuthenticated, require('./add/pid').post);
 
-  router.post('/delete-pid/id:_id', isAuthenticated, require('./delete_pid').post);
+  router.post('/delete-pid/id:_id', isAuthenticated, isCaregiver, require('./delete_pid').post);
   router.post('/deleteAdmin/id:_id', isAuthenticated, require('./delete_admin').post);
   router.post('/deleteCoach/id:_id', isAuthenticated, require('./delete_caregiver').post);
   router.post('/updateStudent/id:_id', isAuthenticated, isCaregiver, require('./update_pid').post);

@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
             return next();
         }
 
-        res.redirect('/personalArea');
+        res.redirect('/personalArea/1');
     });
 
 }
