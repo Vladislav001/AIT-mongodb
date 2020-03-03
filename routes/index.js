@@ -16,8 +16,6 @@ module.exports = function (passport) {
   router.get('/test_settings/id:_id', isAuthenticated, require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
-  router.get('/modules', isAuthenticated, require('./modules/list').get);
-
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea/1',
     failureRedirect: '/',
@@ -55,6 +53,11 @@ module.exports = function (passport) {
  // MoneyGame Second
   router.get('/configure/money-game-second/id:_id', isAuthenticated, require('./applications/money_game_second/configure').get);
   router.post('/configure/money-game-second/id:_id', isAuthenticated, require('./applications/money_game_second/configure').post);
+
+  // modules
+  router.get('/modules/:page' , require('./modules/list'));
+  router.post('/addNewModule', require('./modules/add').post);
+
 
 
   // swagger definition

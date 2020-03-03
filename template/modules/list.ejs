@@ -51,3 +51,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    var form = $('form[name="addNewModuleForm"]');
+
+    form.submit(function (e) {
+        e.preventDefault();
+
+        let newModule = {};
+
+        newModule.name = $("input[name='name']").val();
+        newModule.url = $("input[name='url']").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/addNewModule",
+            data: JSON.stringify(newModule),
+            dataType: "json",
+            contentType: "application/json",
+            statusCode: {
+                200: function () {
+                    form.trigger('reset'); // очистить поля формы
+                    $('.error', form).html('');
+                    window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+                }
+            }
+        });
+    });
+</script>
+
