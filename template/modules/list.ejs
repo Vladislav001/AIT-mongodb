@@ -1,0 +1,53 @@
+<% layout('../layout/pattern') -%>
+<link rel='stylesheet' href='/css/personalArea.css' />
+
+<div class="page">
+    <%-partial('../partials/leftVerticalMenu')%>
+    <div class="right-column">
+        <div class="container">
+
+            <div class="block">
+                <p>List of modules</p>
+                <table border="0">
+                    <tr class="table__headRow">
+                        <th>#</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <% for (var i=0; i< modules.length; i++) { %>
+                        <tbody>
+                        <tr class="info">
+                            <td>
+                                <%=i+1%>
+                            </td>
+                            <td>
+                                <a href="/modules/id<%=modules[i].id%>">
+                                    <%=modules[i].name%>
+                                </a>
+                            </td>
+                            <td class="delete">
+                                <button class="deleteBtn"  value="/delete-module/id<%=modules[i].id%>" onclick="toggleConfirm()">Delete</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <% } %>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="block">
+                <p>Add new module</p>
+                <form action="/addNewModule" method="POST" class="modal__form" name="addNewModuleForm">
+                    <label for="login">Name</label>
+                    <input type="text" name="name" value="" required>
+                    <label for="url">Url</label>
+                    <input type="text" name="url" required>
+                    <span class="error"></span>
+                    <button type="submit" name="button">Add</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

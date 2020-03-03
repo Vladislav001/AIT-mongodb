@@ -16,6 +16,8 @@ module.exports = function (passport) {
   router.get('/test_settings/id:_id', isAuthenticated, require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
+  router.get('/modules', isAuthenticated, require('./modules/list').get);
+
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea/1',
     failureRedirect: '/',
