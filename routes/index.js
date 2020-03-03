@@ -57,6 +57,7 @@ module.exports = function (passport) {
   // modules
   router.get('/modules/:page' , require('./modules/list'));
   router.post('/addNewModule', require('./modules/add').post);
+  router.get('/modules/detail/id:_id', require('./modules/detail').get);
 
 
 
