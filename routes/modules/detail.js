@@ -1,4 +1,5 @@
 const Module = require('../../models/module');
+const markdown = require( "markdown" ).markdown;
 
 exports.get = async function (req, res) {
 
@@ -7,7 +8,7 @@ exports.get = async function (req, res) {
 
         res.render("modules/detail", {
             module: module,
-
+            data: markdown.toHTML( "Hello *World*!" )
         });
     } catch (err) {
         throw err;
