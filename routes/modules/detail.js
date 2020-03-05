@@ -1,20 +1,21 @@
 const Module = require('../../models/module');
 const markdown = require( "markdown" ).markdown;
-var request = require("request"),
-    cheerio = require("cheerio"),
-    url = "https://github.com/steam0111/HallScheme/blob/master/README.md";
+const request = require("request");
+const cheerio = require("cheerio");
 
 exports.get = async function (req, res) {
 
     try {
+        let module = await Module.findOne({_id: req.params._id});
+        let url = `${module.url}blob/master/README.md`;
 
         request(url, async function (error, response, body) {
             if (!error) {
                 let $ = cheerio.load(body);
                 let readmeData = $("#readme").html();
-                let module = await Module.findOne({_id: req.params._id});
-                readmeData = readmeData.replace(/\n/g, "");
-                console.log(readmeData)
+
+                //readmeData = readmeData.replace(/\n/g, "");
+                //console.log(readmeData)
 
                 res.render("modules/detail", {
                     module: module,
