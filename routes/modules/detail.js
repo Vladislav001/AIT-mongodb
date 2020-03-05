@@ -1,5 +1,4 @@
 const Module = require('../../models/module');
-const markdown = require( "markdown" ).markdown;
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -14,12 +13,8 @@ exports.get = async function (req, res) {
                 let $ = cheerio.load(body);
                 let readmeData = $("#readme").html();
 
-                //readmeData = readmeData.replace(/\n/g, "");
-                //console.log(readmeData)
-
                 res.render("modules/detail", {
                     module: module,
-                    data: markdown.toHTML( "Hello *World*!" ),
                     readmeData:  readmeData,
                 });
             } else {
