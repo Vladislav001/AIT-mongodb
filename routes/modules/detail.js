@@ -8,6 +8,9 @@ exports.get = async function (req, res) {
         let module = await Module.findOne({_id: req.params._id});
         let url = `${module.url}blob/master/README.md`;
 
+        //TODO
+        // Проверка, что url действительный
+
         request(url, async function (error, response, body) {
             if (!error) {
                 let $ = cheerio.load(body);
@@ -21,12 +24,6 @@ exports.get = async function (req, res) {
                 console.log("Произошла ошибка: " + error);
             }
         });
-
-
-
-
-
-
 
     } catch (err) {
         throw err;
