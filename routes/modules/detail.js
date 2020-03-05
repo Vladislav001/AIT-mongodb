@@ -10,6 +10,8 @@ exports.get = async function (req, res) {
 
         //TODO
         // Проверка, что url действительный
+        // Сделать акк девелоперо + привязка к девелоперу
+        // доступ только авторизованным
 
         request(url, async function (error, response, body) {
             if (!error) {
