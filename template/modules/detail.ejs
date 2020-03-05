@@ -9,6 +9,7 @@
             <p style="float: left"><%=module.name%></p>
         </div>
         <div id="readme"></div>
+        <div id="readmeSecond"></div>
     </div>
 </div>
 
@@ -22,4 +23,8 @@
     }
 
     $( "#readme" ).append(htmlDecode('<%=data%>'));
+    $( "#readmeSecond" ).append(htmlDecode('<%=readmeData%>'));
+
+
+
 </script>
