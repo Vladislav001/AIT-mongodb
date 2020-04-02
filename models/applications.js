@@ -10,8 +10,13 @@ const applicationsSchema = mongoose.Schema({
     required: true,
   },
   defaultSettings: {
-    type: Object,
-    required: true,
+    pages: {
+      type: Object,
+      required: true,
+    },
+    common: {
+      type: Object,
+    },
   },
 })
 

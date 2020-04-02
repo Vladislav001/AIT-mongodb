@@ -10,8 +10,13 @@ const settingsSchema = mongoose.Schema({
     required: true,
   },
   settings: {
-    type: Object,
-    required: true,
+    pages: {
+      type: Object,
+      required: true,
+    },
+    common: {
+      type: Object,
+    },
   },
 })
 
