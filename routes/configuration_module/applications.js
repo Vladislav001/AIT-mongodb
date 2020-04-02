@@ -6,7 +6,7 @@ const Settings = require('../../models/settings')
 exports.getItems = async (req, res) => {
   try {
     const currentPage = req.query.currentPage || 1
-    const itemsPerPage = req.query.itemsPerPage || 9
+    const itemsPerPage = req.query.itemsPerPage || 7
 
     const skips = itemsPerPage * (currentPage - 1)
 
