@@ -80,7 +80,7 @@ exports.updateItem = (req, res) => {
             .status(400)
             .json({ err: 'There is no element with requested parameters' })
 
-        const newSettings = objectAssignDeep(result.settings, req.body)
+        const newSettings = objectAssignDeep(result.settings, req.body.settings)
 
         Settings.updateOne(
           {
