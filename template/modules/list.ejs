@@ -1,4 +1,6 @@
 <% layout('../layout/pattern') -%>
+<%-partial('../partials/confirm.ejs')%>
+
 <link rel='stylesheet' href='/css/personalArea.css' />
 
 <div class="page">
@@ -46,6 +48,14 @@
                     <span class="error"></span>
                     <button type="submit" name="button">Add</button>
                 </form>
+                <div class="instruction">
+                    <p>1. Follow multi module architecture described below.
+                    <img src="/system_images/module_architecture.png"></p>
+                    <p> 2. Upload you module use any public git repository</p>
+                    <p>3. Build your module using JitPack</p>
+                    <p>4. Fill module description in file README.md</p>
+                    <p>5. Add link on repository with module below</p>
+                </div>
             </div>
 
         </div>

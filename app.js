@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const favicon = require('serve-favicon');
 
 // Connect to DB
-mongoose.connect(dbConfig.url, { useNewUrlParser: true });
+mongoose.connect(dbConfig.url, { useNewUrlParser: true,  useUnifiedTopology: true });
 
 const app = express();
 

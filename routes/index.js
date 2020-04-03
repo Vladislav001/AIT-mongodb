@@ -58,7 +58,7 @@ module.exports = function (passport) {
   router.get('/modules/:page' , require('./modules/list'));
   router.post('/addNewModule', require('./modules/add').post);
   router.get('/modules/detail/id:_id', require('./modules/detail').get);
-
+  //router.post('/delete-module/id:_id', require('./modules/delete').post); // почему то редиректит и не удаляет
 
 
   // swagger definition
