@@ -1,6 +1,7 @@
 const login = require('./login');
 const signup = require('./signup');
 const Caregiver = require('../models/caregiver');
+const Developer = require('../models/developer');
 
 module.exports = function(passport){
 
@@ -11,14 +12,25 @@ module.exports = function(passport){
   });
 
   passport.deserializeUser(function(id, done) {
+
     Caregiver.findById(id, function(err, user) {
+
+      // жесткая костылина
+      if (user === null) {
+        Developer.findById(id, function (err, user) {
+          done(err, user);
+        });
+      } else
+      {
+        done(err, user);
+      }
+
       //console.log('deserializing user:',user);
-      done(err, user);
+      //done(err, user);
     });
   });
 
   // Setting up Passport Strategies for Login and SignUp/Registration
   login(passport);
   signup(passport);
-
-}
+};
