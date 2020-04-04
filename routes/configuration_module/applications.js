@@ -87,7 +87,7 @@ exports.updateItem = (req, res) => {
         { _id: new ObjectId(req.params._id) },
         { $set: { ...req.body } },
         {
-          returnOriginal: false,
+          new: true,
         },
         (err, result) => {
           if (err) return res.status(400).json({ err })
@@ -96,14 +96,16 @@ exports.updateItem = (req, res) => {
             {
               application_id: req.params._id,
             },
-            err => {
+            (err) => {
               if (err) return res.status(400).json({ err })
+
+              console.log(result)
+
+              return res.status(200).json({
+                item: result,
+              })
             },
           )
-
-          return res.status(200).json({
-            item: result,
-          })
         },
       )
     })
@@ -156,7 +158,7 @@ exports.addItem = (req, res) => {
 exports.deleteItem = (req, res) => {
   try {
     if (/^[0-9a-fA-F]{24}$/.test(req.params._id)) {
-      Applications.deleteOne({ _id: new ObjectId(req.params._id) }, err => {
+      Applications.deleteOne({ _id: new ObjectId(req.params._id) }, (err) => {
         if (err) return res.status(400).json({ err })
 
         this.getItems(req, res)
