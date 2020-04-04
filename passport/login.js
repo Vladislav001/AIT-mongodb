@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const Caregiver = require('../models/caregiver');
+const Developer = require('../models/developer');
 const bCrypt = require('bcrypt-nodejs');
 
 
@@ -10,24 +11,52 @@ module.exports = function (passport) {
   },
     function (req, email, password, done) {
 
-      Caregiver.findOne({ 'email': email },
-        function (err, user) {
-          if (err)
-            return done(err);
+        let userType = req.body.user_type;
 
-          if (!user) {
-            console.log('User Not Found with username ' + email);
-            return done(null, false, req.flash('message', 'User Not found.'));
-          }
+        if (userType === "caregiver")
+        {
+            Caregiver.findOne({ 'email': email },
+                function (err, user) {
+                    if (err)
+                        return done(err);
 
-          if (!isValidPassword(user, password)) {
-            console.log('Invalid Password');
-            return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
-          }
+                    if (!user) {
+                        console.log('Caregiver Not Found with username ' + email);
+                        return done(null, false, req.flash('message', 'Caregiver Not found.'));
+                    }
 
-          return done(null, user);
+                    if (!isValidPassword(user, password)) {
+                        console.log('Invalid Password');
+                        return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
+                    }
+
+                    return done(null, user);
+                }
+            );
         }
-      );
+
+        if (userType === "developer")
+        {
+            Developer.findOne({ 'email': email },
+                function (err, user) {
+                    if (err)
+                        return done(err);
+
+                    if (!user) {
+                        console.log('Developer Not Found with username ' + email);
+                        return done(null, false, req.flash('message', 'Developer Not found.'));
+                    }
+
+                    if (!isValidPassword(user, password)) {
+                        console.log('Invalid Password');
+                        return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
+                    }
+
+                    return done(null, user);
+                }
+            );
+        }
+
     })
   );
 
@@ -36,4 +65,4 @@ module.exports = function (passport) {
     return bCrypt.compareSync(password, user.password);
   }
 
-}
+};
