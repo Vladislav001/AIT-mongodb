@@ -88,7 +88,7 @@ exports.updateItem = (req, res) => {
             application_id: req.params.application_id,
           },
           { $set: { settings: newSettings } },
-          err => {
+          (err) => {
             if (err) return res.status(400).json({ err })
 
             return res.status(200).send()

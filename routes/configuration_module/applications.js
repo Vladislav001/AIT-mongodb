@@ -99,8 +99,6 @@ exports.updateItem = (req, res) => {
             (err) => {
               if (err) return res.status(400).json({ err })
 
-              console.log(result)
-
               return res.status(200).json({
                 item: result,
               })
