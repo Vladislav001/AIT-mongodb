@@ -16,14 +16,14 @@ module.exports = function (passport) {
   router.get('/test_settings/id:_id', isAuthenticated, require('./pages/test_settings').get);
   router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
-  router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/personalArea/1',
-    failureRedirect: '/',
-    failureFlash: true
-  }));
-  router.post('/login', passport.authenticate('login', {
-    successRedirect: '/personalArea/1',
-    failureRedirect: '/',
+      router.post('/signup', passport.authenticate('signup', {
+          successRedirect: '/personalArea/1',
+          failureRedirect: '/',
+          failureFlash: true
+      }));
+    router.post('/login', passport.authenticate('login', {
+        successRedirect: '/personalArea/1',
+        failureRedirect: '/',
     failureFlash: true
   }));
   router.get('/signout', function (req, res) {
@@ -55,10 +55,10 @@ module.exports = function (passport) {
   router.post('/configure/money-game-second/id:_id', isAuthenticated, require('./applications/money_game_second/configure').post);
 
   // modules
-  router.get('/modules/:page' , require('./modules/list'));
-  router.post('/addNewModule', require('./modules/add').post);
-  router.get('/modules/detail/id:_id', require('./modules/detail').get);
-  //router.post('/delete-module/id:_id', require('./modules/delete').post); // почему то редиректит и не удаляет
+  router.get('/modules/:page' , isAuthenticated, require('./modules/list'));
+  router.post('/addNewModule', isAuthenticated, require('./modules/add').post);
+  router.get('/modules/detail/id:_id', isAuthenticated, require('./modules/detail').get);
+  router.post('/delete-module/id:_id', isAuthenticated, require('./modules/delete').post); // почему то редиректит и не удаляет
 
 
   // swagger definition

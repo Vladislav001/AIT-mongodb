@@ -6,6 +6,12 @@ exports.get = async function (req, res) {
 
     try {
         let module = await Module.findOne({_id: req.params._id});
+
+        if (module.url.slice(-1) !== '/')
+        {
+            module.url = module.url + '/';
+        }
+
         let url = `${module.url}blob/master/README.md`;
 
         //TODO
