@@ -9,6 +9,12 @@
         <div class="container">
 
             <div class="block">
+
+                <input type="text" name="text_search_module" size="48" maxlength="100"
+                       placeholder="Поиск">
+                <input type="button" class="btn_search_module" value="Найти"/>
+
+
                 <p>List of modules</p>
                 <table border="0">
                     <tr class="table__headRow">
@@ -18,7 +24,7 @@
                     </tr>
                     <tr>
                         <% for (var i=0; i< modules.length; i++) { %>
-                        <tbody>
+                        <tbody class="module-string">
                         <tr class="info">
                             <td>
                                 <%=i+1%>
@@ -90,3 +96,44 @@
     });
 </script>
 
+<script>
+    $('.btn_search_module').on("click", function () {
+        let data = {};
+        data.search_module = $("[name=text_search_module]").val();
+
+            $.ajax({
+                url: '/searchModule',
+                type: "POST",
+                data: data,
+                cache: false,
+                success: function (response) {
+
+                    $('.module-string').remove();
+                    response['modules'].forEach((element, index) => {
+
+                        $("table").append(
+                            `
+                            <tbody class="module-string">
+                        <tr class="info">
+                            <td>
+                             ${index + 1}
+                            </td>
+                            <td>
+                                <a href="/modules/detail/id${element._id}">
+                                    ${element.name}
+                                </a>
+                            </td>
+                            <td class="delete">
+                                <button class="deleteBtn"  value="/delete-module/id${element._id}" onclick="toggleConfirm()">Delete</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                            `
+                        );
+
+                    });
+                }
+            });
+
+    });
+</script>

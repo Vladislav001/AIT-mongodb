@@ -59,7 +59,7 @@ module.exports = function (passport) {
   router.post('/addNewModule', isAuthenticated, require('./modules/add').post);
   router.get('/modules/detail/id:_id', isAuthenticated, require('./modules/detail').get);
   router.post('/delete-module/id:_id', isAuthenticated, require('./modules/delete').post); // почему то редиректит и не удаляет
-
+  router.post('/searchModule', isAuthenticated, require('./modules/search_module').post);
 
   // swagger definition
   const swaggerDefinition = require('../swagger.json');
