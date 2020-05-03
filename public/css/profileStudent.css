@@ -3,8 +3,8 @@
   --main-text-color: rgb(83, 83, 83);
   --skyblue-color: rgb(42, 95, 129);
   --lightgrey: rgb(240, 240, 240);
-  --box-shadow-outset: 4px 4px 0px 0px rgba(0, 0, 0, .25);
-  --box-shadow-inset: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  --box-shadow-outset: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
+  --box-shadow-inset: inset 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
 }
 
 body {
@@ -42,7 +42,7 @@ button:focus {
   min-height: 100vh;
   margin-right: 20px;
   background-color: rgb(173, 173, 173);
-  border-top: 4px solid rgba(0, 0, 0, .25);
+  border-top: 4px solid rgba(0, 0, 0, 0.25);
   box-shadow: var(--box-shadow-outset);
   position: fixed;
 }
@@ -68,14 +68,14 @@ header .link {
   display: block;
   cursor: pointer;
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 header .link:hover {
   background-color: white;
   color: var(--skyblue-color);
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 header .container {
@@ -143,14 +143,14 @@ header .container {
   width: 100px;
   height: 100px;
   background-color: orange;
-  background-image: url("/system_images/no-photo.jpg");
+  background-image: url('/system_images/no-photo.jpg');
   background-size: 100% 100%;
   box-shadow: var(--box-shadow-outset);
 }
 
 .photo-line #load-photo {
-  width: calc(100% - 120px)!important;
-  margin-bottom: 0!important;
+  width: calc(100% - 120px) !important;
+  margin-bottom: 0 !important;
   word-wrap: break-word;
 }
 
@@ -163,14 +163,15 @@ header .container {
   background-color: rgb(240, 240, 240);
   border: none;
   transition: all;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
-.modal__form input:focus, .modal__form select:focus {
-  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, .25);
+.modal__form input:focus,
+.modal__form select:focus {
+  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
   outline: none;
   transition: all;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .modal__form select {
@@ -180,7 +181,7 @@ header .container {
   border: none;
   background-color: rgb(240, 240, 240);
   color: var(--main-text-color);
-  border-radius: none!important;
+  border-radius: none !important;
 }
 
 .modal__form label {
@@ -199,9 +200,9 @@ header .container {
   border: none;
   background-color: rgb(42, 95, 129);
   color: white;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   cursor: pointer;
 }
 
@@ -213,10 +214,10 @@ header .container {
 }
 
 .row button:hover {
-  background-color: rgb(240, 240, 240)!important;
+  background-color: rgb(240, 240, 240) !important;
   box-shadow: none;
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .row button {
@@ -236,7 +237,7 @@ header .container {
 }
 
 .row #deleteBtn:hover {
-  color: rgb(219, 63, 42);;
+  color: rgb(219, 63, 42);
 }
 
 .apps {
@@ -246,7 +247,7 @@ header .container {
   padding-bottom: 20px;
 }
 
-.apps  .apps_buttonList {
+.apps .apps_buttonList {
   width: 100%;
   max-width: 400px;
   padding: 5px;
@@ -254,9 +255,9 @@ header .container {
   border: none;
   background-color: rgb(42, 95, 129);
   color: white;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   cursor: pointer;
 }
 
@@ -265,7 +266,7 @@ header .container {
   color: rgb(42, 95, 129);
   box-shadow: none;
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .apps_links {
@@ -287,9 +288,9 @@ header .container {
   border: none;
   background-color: grey;
   color: white;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
@@ -300,7 +301,7 @@ header .container {
   color: rgb(42, 95, 129);
   box-shadow: none;
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 @media screen and (max-width: 1100px) {
@@ -341,7 +342,7 @@ header .container {
   }
 
   .nav-bar {
-    display: none!important;
+    display: none !important;
   }
 
   .page {
@@ -355,7 +356,7 @@ header .container {
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
 }
 
@@ -397,17 +398,17 @@ header .container {
   border: none;
   background-color: rgb(42, 95, 129);
   color: white;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, .25);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   cursor: pointer;
 }
 
 .modal-alert__row button:hover {
-  background-color: rgb(240, 240, 240)!important;
+  background-color: rgb(240, 240, 240) !important;
   box-shadow: none;
   transition: all;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .modal-alert__row button {
@@ -423,11 +424,11 @@ header .container {
 }
 
 .modal-alert__row button:last-child {
-  background-color: rgb(219, 63, 42);;
+  background-color: rgb(219, 63, 42);
 }
 
 .row button:last-child:hover {
-  color: rgb(219, 63, 42);;
+  color: rgb(219, 63, 42);
 }
 
 .error {
@@ -442,4 +443,35 @@ header .container {
 /* programming styles */
 .none {
   display: none;
+}
+
+.configuration-block {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.configuration-block a {
+  display: block;
+  width: 30%;
+  max-width: 400px;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background-color: rgb(42, 95, 129);
+  color: white;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
+  transition: all;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.configuration-block a:hover {
+  background-color: rgb(240, 240, 240);
+  color: rgb(42, 95, 129);
+  box-shadow: none;
+  transition: all;
+  transition-duration: 0.5s;
 }

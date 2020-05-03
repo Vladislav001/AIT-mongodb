@@ -36,11 +36,10 @@
 
 <!--  -->
 
+
+
 <div class="block apps">
   <p>Applications</p>
-  <div class="apps_links">
-    <a href="https://configuration-module.herokuapp.com/panels/<%=student.id%>">Application Panels</a>
-  </div>
   <button type="button" name="button" class="apps_buttonList">MoneyGame</button>
   <div id="MoneyGame" class="apps_links none">
     <a href="/configure/money-game/id<%=student.id%>">Configure the interface</a>
@@ -61,7 +60,15 @@
     <a href="#">Second button</a>
     <a href="#">Third button</a>
   </div>
+
+  <div class="configuration-block"><p>Configuration Panels</p>
+  <div> 
+    <a href="https://configuration-module.herokuapp.com/panels/<%=student.id%>">Open</a>
+  </div></div>
+  
 </div>
+
+
 
 <script>
   var appsButtons = document.querySelectorAll(".apps_buttonList");

@@ -1,15 +1,11 @@
 <style>
   .block {
-    height: 50px;
     position: relative;
   }
-  .block .link {
+  .block a {
     display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    width: 100%;
+    max-width: 400px;
     padding: 5px;
     margin: 0 auto 10px auto;
     background-color: rgb(42, 95, 129);
@@ -21,10 +17,18 @@
     text-align: center;
     text-decoration: none;
   }
+
+  .block a:hover {
+    background-color: rgb(240, 240, 240);
+    color: rgb(42, 95, 129);
+    box-shadow: none;
+    transition: all;
+    transition-duration: 0.5s;
+  }
 </style>
 
 <div class="block">
-  <a class="link" href="https://configuration-module.herokuapp.com/editors"
-    >Application Editors</a
-  >
+  <p>Editors</p>
+
+  <a href="https://configuration-module.herokuapp.com/editors">Open</a>
 </div>
