@@ -132,38 +132,38 @@ module.exports = function (passport) {
     require('./modules/search_module').post,
   )
 
-  // configuration_module
+  // configuration module
   router.get(
-    '/configuration_module/applications/items/:currentPage?/:itemsPerPage?',
+    '/api/configuration_module/applications/items/:currentPage?/:itemsPerPage?',
     require('./configuration_module/applications').getItems,
   )
   router.get(
-    '/configuration_module/applications/item/:_id',
+    '/api/configuration_module/applications/item/:_id',
     require('./configuration_module/applications').getItem,
   )
   router.post(
-    '/configuration_module/applications/item/',
+    '/api/configuration_module/applications/item/',
     require('./configuration_module/applications').addItem,
   )
   router.put(
-    '/configuration_module/applications/item/:_id',
+    '/api/configuration_module/applications/item/:_id',
     check('name', 'Name is a required field').not().isEmpty(),
     check('descriptionCode').not().isEmpty(),
     check('defaultSettings').not().isEmpty(),
     require('./configuration_module/applications').updateItem,
   )
   router.delete(
-    '/configuration_module/applications/item/:_id',
+    '/api/configuration_module/applications/item/:_id',
     require('./configuration_module/applications').deleteItem,
   )
 
   router.get(
-    '/configuration_module/settings/item/:application_id/:user_id',
+    '/api/configuration_module/settings/item/:application_id/:user_id',
     require('./configuration_module/settings').getItem,
   )
 
   router.put(
-    '/configuration_module/settings/item/:application_id/:user_id',
+    '/api/configuration_module/settings/item/:application_id/:user_id',
     require('./configuration_module/settings').updateItem,
   )
 
