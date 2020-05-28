@@ -1,19 +1,24 @@
 <% layout('../layout/pattern') -%>
-<%-partial('../partials/confirm.ejs')%>
+<%- partial('../partials/confirm.ejs') %>
 
-<link rel='stylesheet' href='/css/personalArea.css' />
+<link rel='stylesheet' href='/css/personalArea.css'/>
 
 <div class="page">
-    <%-partial('../partials/leftVerticalMenu')%>
+    <%- partial('../partials/leftVerticalMenu') %>
     <div class="right-column">
         <div class="container">
 
-            <div class="block">
+            <div class="block"><p>Search for a module by name</p>
+                <div class="modal__form">
+                    <input type="text" name="text_search_module" size="45" maxlength="100"
+                           placeholder="Search">
+                    <div style="width: 100%">
+                        <button type="button" class="btn_search_module" style="width: 75%; margin-left: 5%">Search</button>
+                        <button type="button" class="btn_search_module_reset" style="width: 15%; float: right">Reset
+                        </button>
+                    </div>
 
-                <input type="text" name="text_search_module" size="45" maxlength="100"
-                       placeholder="Search">
-                <input type="button" class="btn_search_module" value="Search"/>
-
+                </div>
 
                 <p>List of modules</p>
                 <table border="0">
@@ -23,22 +28,24 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <% for (var i=0; i< modules.length; i++) { %>
-                        <tbody class="module-string">
-                        <tr class="info">
-                            <td>
-                                <%=i+1%>
-                            </td>
-                            <td>
-                                <a href="/modules/detail/id<%=modules[i].id%>">
-                                    <%=modules[i].name%>
-                                </a>
-                            </td>
-                            <td class="delete">
-                                <button class="deleteBtn"  value="/delete-module/id<%=modules[i].id%>" onclick="toggleConfirm()">Delete</button>
-                            </td>
-                        </tr>
-                        </tbody>
+                        <% for (var i = 0; i < modules.length; i++) { %>
+                            <tbody class="module-string">
+                            <tr class="info">
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <a href="/modules/detail/id<%= modules[i].id %>">
+                                        <%= modules[i].name %>
+                                    </a>
+                                </td>
+                                <td class="delete">
+                                    <button class="deleteBtn" value="/delete-module/id<%= modules[i].id %>"
+                                            onclick="toggleConfirm()">Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
                         <% } %>
                     </tr>
                 </table>
@@ -56,7 +63,7 @@
                 </form>
                 <div class="instruction">
                     <p>1. Follow multi module architecture described below.
-                    <img src="/system_images/module_architecture.png"></p>
+                        <img src="/system_images/module_architecture.png"></p>
                     <p> 2. Upload you module use any public git repository</p>
                     <p>3. Build your module using JitPack</p>
                     <p>4. Fill module description in file README.md</p>
@@ -101,18 +108,47 @@
         let data = {};
         data.search_module = $("[name=text_search_module]").val();
 
-            $.ajax({
-                url: '/searchModule',
-                type: "POST",
-                data: data,
-                cache: false,
-                success: function (response) {
+        $.ajax({
+            url: '/searchModule',
+            type: "POST",
+            data: data,
+            cache: false,
+            success: function (response) {
 
-                    $('.module-string').remove();
-                    response['modules'].forEach((element, index) => {
+                $('.module-string').remove();
+                showModules(response['modules']);
+            }
+        });
 
-                        $("table").append(
-                            `
+    });
+</script>
+
+<script>
+    $('.btn_search_module_reset').on("click", function () {
+        let data = {};
+        data.search_module = $("[name=text_search_module]").val();
+
+        $.ajax({
+            url: '/resetSearchModule',
+            type: "POST",
+            data: data,
+            cache: false,
+            success: function (response) {
+
+                $('.module-string').remove();
+                showModules(response['modules']);
+            }
+        });
+
+    });
+</script>
+
+<script>
+    function showModules(data) {
+        data.forEach((element, index) => {
+
+            $("table").append(
+                `
                             <tbody class="module-string">
                         <tr class="info">
                             <td>
@@ -129,11 +165,8 @@
                         </tr>
                         </tbody>
                             `
-                        );
+            );
 
-                    });
-                }
-            });
-
-    });
+        });
+    }
 </script>
