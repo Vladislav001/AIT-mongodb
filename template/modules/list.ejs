@@ -13,7 +13,8 @@
                     <input type="text" name="text_search_module" size="45" maxlength="100"
                            placeholder="Search">
                     <div style="width: 100%">
-                        <button type="button" class="btn_search_module" style="width: 75%; margin-left: 5%">Search</button>
+                        <button type="button" class="btn_search_module" style="width: 75%; margin-left: 5%">Search
+                        </button>
                         <button type="button" class="btn_search_module_reset" style="width: 15%; float: right">Reset
                         </button>
                     </div>
@@ -121,17 +122,13 @@
         });
 
     });
-</script>
 
-<script>
     $('.btn_search_module_reset').on("click", function () {
-        let data = {};
-        data.search_module = $("[name=text_search_module]").val();
+        $("input[name='text_search_module']").val('');
 
         $.ajax({
             url: '/resetSearchModule',
             type: "POST",
-            data: data,
             cache: false,
             success: function (response) {
 
@@ -141,9 +138,7 @@
         });
 
     });
-</script>
 
-<script>
     function showModules(data) {
         data.forEach((element, index) => {
 
