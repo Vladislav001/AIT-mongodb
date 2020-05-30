@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<template
+    format="4"
+    revision="1"
+    name="MVVM fragment"
+    description="MVVM fragment constructor"
+    minApi="7"
+    minBuildApi="8">
+
+    <category value="MVVM + Koin" />
+
+    <!-- Fragment -->
+    <parameter
+        id="className"
+        name="Fragment Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankFragment"
+        help="The name of the fragment class to create" />
+
+     <parameter
+        id="useSubPackage"
+        name="Use sub package?"
+        type="boolean"
+        default="true"
+        help="Add generated classes to specified package" />
+
+    <parameter
+        id="subPackage"
+        name="Package name"
+        type="string"
+        default="blank"
+        visibility="useSubPackage"
+        help="Package name" />
+
+    <!-- Layout -->
+    <parameter
+        id="includeLayout"
+        name="Create layout XML?"
+        type="boolean"
+        default="true"
+        help="Generate a layout XML for the fragment" />
+
+    <!-- ViewModel -->
+    <parameter
+        id="includeViewModel"
+        name="Create ViewModel?"
+        type="boolean"
+        default="true"
+        help="Generate a viewmodel for the fragment" />
+
+    <!-- Interactor -->
+    <parameter
+        name="Create Interactor?"
+        default="true"
+        help="Generate a interactor for the presenter"
+        id="includeInteractor"
+        type="boolean"/>
+
+    <parameter
+        id="fragmentName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|nonempty|unique"
+        default="fragment_blank"
+        visibility="includeLayout"
+        suggest="fragment_${classToResource(className)}"
+        help="The name of the layout to create" />
+
+    <!-- ViewModel -->
+    <parameter
+        id="viewModelName"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankViewModel"
+        visibility="includeViewModel"
+        suggest="${underscoreToCamelCase(classToResource(className))}ViewModel"
+        help="The name of the viewmodel interface to create" />
+
+    <parameter
+        name="Interactor Name"
+        constraints="class|nonempty|unique"
+        default="BlankInteractor"
+        help="The name of the interactor to create"
+        id="interactorName"
+        suggest="${underscoreToCamelCase(classToResource(className))}Interactor"
+        type="string"
+        visibility="includeInteractor"/>
+
+    <thumbs>
+        <thumb>clean mvvm.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
