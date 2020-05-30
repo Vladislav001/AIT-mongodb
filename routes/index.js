@@ -136,6 +136,11 @@ module.exports = function (passport) {
       isAuthenticated,
       require('./modules/reset_search_module').post,
   );
+  router.post(
+      '/approve-module/id:_id',
+      isAuthenticated,
+      require('./modules/approve').post,
+  );
 
   // configuration module
   router.get(

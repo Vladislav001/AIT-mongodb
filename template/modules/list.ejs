@@ -27,7 +27,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th></th>
-                        <% if(user.access_level == 3) { %>
+                        <% if(user.access_level == 1) { %>
                             <th></th>
                         <% } %>
                     </tr>
@@ -56,9 +56,9 @@
                                             onclick="toggleConfirm()">Delete
                                     </button>
                                 </td>
-                                <% if(user.access_level == 3 && !modules[i].approved) { %>
+                                <% if(user.access_level == 1 && !modules[i].approved) { %>
                                     <td class="approve">
-                                        <button class="approveBtn" value="/approve-module/id<%= modules[i].id %>">
+                                        <button class="approveBtn" onclick="toggleConfirm()" value="/approve-module/id<%= modules[i].id %>">
                                             Approve
                                         </button>
                                     </td>
@@ -156,6 +156,22 @@
         });
 
     });
+
+    // $('.approveBtn').on("click", function () {
+    //     $("input[name='text_search_module']").val('');
+    //
+    //     $.ajax({
+    //         url: '/approve-module/id:_id',
+    //         type: "POST",
+    //         cache: false,
+    //         success: function (response) {
+    //
+    //             $('.module-string').remove();
+    //             showModules(response['modules']);
+    //         }
+    //     });
+    //
+    // });
 
     function showModules(data) {
         data.forEach((element, index) => {
