@@ -9,11 +9,11 @@ const moduleSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    active: {
-        type: String,
-        default: 'true',
-        required: true
-    },
+    // active: {
+    //     type: String,
+    //     default: 'true',
+    //     required: true
+    // },
     created: {
         type: String,
         default: Date.now
