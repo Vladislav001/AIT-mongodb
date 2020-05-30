@@ -22,6 +22,11 @@ const moduleSchema = mongoose.Schema({
         type: String,
         default: '',
         required: false
+    },
+    approved_admin: {
+        type: Boolean,
+        default: false,
+        required: true
     }
 });
 
