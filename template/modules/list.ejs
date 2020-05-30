@@ -27,13 +27,16 @@
                         <th>#</th>
                         <th>Name</th>
                         <th></th>
+                        <% if(user.access_level == 3) { %>
+                            <th></th>
+                        <% } %>
                     </tr>
                     <tr>
                         <% for (var i = 0; i < modules.length; i++) { %>
                             <tbody class="module-string">
                             <tr class="info">
                                 <td>
-                                    <% if (!modules[i].approved_admin) { %>
+                                    <% if (!modules[i].approved) { %>
                                         <svg class="bi bi-exclamation-octagon" width="1em" height="1em"
                                              viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"
@@ -53,6 +56,13 @@
                                             onclick="toggleConfirm()">Delete
                                     </button>
                                 </td>
+                                <% if(user.access_level == 3 && !modules[i].approved) { %>
+                                    <td class="approve">
+                                        <button class="approveBtn" value="/approve-module/id<%= modules[i].id %>">
+                                            Approve
+                                        </button>
+                                    </td>
+                                <% } %>
                             </tr>
                             </tbody>
                         <% } %>

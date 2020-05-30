@@ -23,7 +23,7 @@ const moduleSchema = mongoose.Schema({
         default: '',
         required: false
     },
-    approved_admin: {
+    approved: { // одобряет админ(пока caregiver с уровнем доступа == 1)
         type: Boolean,
         default: false,
         required: true
