@@ -1,40 +1,40 @@
-const express = require('express')
-const router = express.Router()
-const swaggerJSDoc = require('swagger-jsdoc')
-const isAuthenticated = require('../middleware/isAuthenticated')
-const isCaregiver = require('../middleware/isCaregiver')
-const verifyToken = require('../middleware/verifyToken')
-const check = require('express-validator').check
+const express = require('express');
+const router = express.Router();
+const swaggerJSDoc = require('swagger-jsdoc');
+const isAuthenticated = require('../middleware/isAuthenticated');
+const isCaregiver = require('../middleware/isCaregiver');
+const verifyToken = require('../middleware/verifyToken');
+const check = require('express-validator').check;
 
 module.exports = function (passport) {
-  router.get('/', require('./pages/main').get)
+  router.get('/', require('./pages/main').get);
   router.get(
     '/personalArea/:page',
     isAuthenticated,
     require('./pages/personal_area'),
-  )
+  );
   router.get(
     '/publicProfile/admins/id:_id',
     isAuthenticated,
     require('./pages/public_profile').get,
-  )
+  );
   router.get(
     '/publicProfile/coaches/id:_id',
     isAuthenticated,
     require('./pages/public_profile').get,
-  )
+  );
   router.get(
     '/publicProfile/students/id:_id',
     isAuthenticated,
     isCaregiver,
     require('./pages/public_profile').get,
-  )
+  );
   router.get(
     '/test_settings/id:_id',
     isAuthenticated,
     require('./pages/test_settings').get,
-  )
-  router.get('/developers', isAuthenticated, require('./pages/developers').get)
+  );
+  router.get('/developers', isAuthenticated, require('./pages/developers').get);
 
   router.post(
     '/signup',
@@ -43,7 +43,7 @@ module.exports = function (passport) {
       failureRedirect: '/',
       failureFlash: true,
     }),
-  )
+  );
   router.post(
     '/login',
     passport.authenticate('login', {
@@ -51,121 +51,131 @@ module.exports = function (passport) {
       failureRedirect: '/',
       failureFlash: true,
     }),
-  )
+  );
   router.get('/signout', function (req, res) {
     req.logout()
     res.redirect('/')
-  })
+  });
 
   //router.post('/restore-password', require('./restore_password').post);
-  router.post('/forgot_password', require('./forgot_password').post)
-  router.post('/reset_password', require('./reset_password').post)
-  router.get('/reset_password', require('./reset_password').get)
+  router.post('/forgot_password', require('./forgot_password').post);
+  router.post('/reset_password', require('./reset_password').post);
+  router.get('/reset_password', require('./reset_password').get);
 
-  router.post('/addNewAdmin', isAuthenticated, require('./add/admin').post)
-  router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post)
-  router.post('/addNewStudent', isAuthenticated, require('./add/pid').post)
+  router.post('/addNewAdmin', isAuthenticated, require('./add/admin').post);
+  router.post('/addNewCoach', isAuthenticated, require('./add/caregiver').post);
+  router.post('/addNewStudent', isAuthenticated, require('./add/pid').post);
 
   router.post(
     '/delete-pid/id:_id',
     isAuthenticated,
     isCaregiver,
     require('./delete_pid').post,
-  )
+  );
   router.post(
     '/deleteAdmin/id:_id',
     isAuthenticated,
     require('./delete_admin').post,
-  )
+  );
   router.post(
     '/deleteCoach/id:_id',
     isAuthenticated,
     require('./delete_caregiver').post,
-  )
+  );
   router.post(
     '/updateStudent/id:_id',
     isAuthenticated,
     isCaregiver,
     require('./update_pid').post,
-  )
+  );
 
   // MoneyGame
   router.get(
     '/configure/money-game/id:_id',
     isAuthenticated,
     require('./applications/money_game/configure').get,
-  )
+  );
   router.post(
     '/configure/money-game/id:_id',
     isAuthenticated,
     require('./applications/money_game/configure').post,
-  )
+  );
 
   // MoneyGame Second
   router.get(
     '/configure/money-game-second/id:_id',
     isAuthenticated,
     require('./applications/money_game_second/configure').get,
-  )
+  );
   router.post(
     '/configure/money-game-second/id:_id',
     isAuthenticated,
     require('./applications/money_game_second/configure').post,
-  )
+  );
 
   // modules
-  router.get('/modules/:page', isAuthenticated, require('./modules/list'))
-  router.post('/addNewModule', isAuthenticated, require('./modules/add').post)
+  router.get('/modules/:page', isAuthenticated, require('./modules/list'));
+  router.post('/addNewModule', isAuthenticated, require('./modules/add').post);
   router.get(
     '/modules/detail/id:_id',
     isAuthenticated,
     require('./modules/detail').get,
-  )
+  );
   router.post(
     '/delete-module/id:_id',
     isAuthenticated,
     require('./modules/delete').post,
-  ) // почему то редиректит и не удаляет
+  ) ;
   router.post(
     '/searchModule',
     isAuthenticated,
     require('./modules/search_module').post,
-  )
-
-  // configuration_module
-  router.get(
-    '/configuration_module/applications/items/:currentPage?/:itemsPerPage?',
-    require('./configuration_module/applications').getItems,
-  )
-  router.get(
-    '/configuration_module/applications/item/:_id',
-    require('./configuration_module/applications').getItem,
-  )
+  );
   router.post(
-    '/configuration_module/applications/item/',
+      '/resetSearchModule',
+      isAuthenticated,
+      require('./modules/reset_search_module').post,
+  );
+  router.post(
+      '/approve-module/id:_id',
+      isAuthenticated,
+      require('./modules/approve').post,
+  );
+
+  // configuration module
+  router.get(
+    '/api/configuration_module/applications/items/:currentPage?/:itemsPerPage?',
+    require('./configuration_module/applications').getItems,
+  );
+  router.get(
+    '/api/configuration_module/applications/item/:_id',
+    require('./configuration_module/applications').getItem,
+  );
+  router.post(
+    '/api/configuration_module/applications/item/',
     require('./configuration_module/applications').addItem,
-  )
+  );
   router.put(
-    '/configuration_module/applications/item/:_id',
+    '/api/configuration_module/applications/item/:_id',
     check('name', 'Name is a required field').not().isEmpty(),
     check('descriptionCode').not().isEmpty(),
     check('defaultSettings').not().isEmpty(),
     require('./configuration_module/applications').updateItem,
-  )
+  );
   router.delete(
-    '/configuration_module/applications/item/:_id',
+    '/api/configuration_module/applications/item/:_id',
     require('./configuration_module/applications').deleteItem,
-  )
+  );
 
   router.get(
-    '/configuration_module/settings/item/:application_id/:user_id',
+    '/api/configuration_module/settings/item/:application_id/:user_id',
     require('./configuration_module/settings').getItem,
-  )
+  );
 
   router.put(
-    '/configuration_module/settings/item/:application_id/:user_id',
+    '/api/configuration_module/settings/item/:application_id/:user_id',
     require('./configuration_module/settings').updateItem,
-  )
+  );
 
   // swagger definition
   const swaggerDefinition = require('../swagger.json')
@@ -176,7 +186,7 @@ module.exports = function (passport) {
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
     apis: ['./routes/*.js'],
-  }
+  };
 
   // initialize swagger-jsdoc
   const swaggerSpec = swaggerJSDoc(options)
@@ -185,7 +195,7 @@ module.exports = function (passport) {
   router.get('/swagger.json', function (req, res) {
     res.setHeader('Content-Type', 'application/json')
     res.send(swaggerSpec)
-  })
+  });
 
   /*-----------------
       **** API ****
