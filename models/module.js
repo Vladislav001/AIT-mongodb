@@ -9,11 +9,6 @@ const moduleSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    active: {
-        type: String,
-        default: 'true',
-        required: true
-    },
     created: {
         type: String,
         default: Date.now
@@ -22,6 +17,11 @@ const moduleSchema = mongoose.Schema({
         type: String,
         default: '',
         required: false
+    },
+    approved: { // одобряет админ(пока caregiver с уровнем доступа == 1)
+        type: Boolean,
+        default: false,
+        required: true
     }
 });
 
